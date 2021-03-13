@@ -5,12 +5,16 @@
 /.pnp
 .pnp.js
 
+# firebase
+/actions/firebase.js
+
 # testing
 /coverage
 
 # next.js
 /.next/
 /out/
+next.config.js
 
 # production
 /build
