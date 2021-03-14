@@ -8,20 +8,25 @@ class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					<meta charSet="UTF-8" />
-					{/* <meta name="viewport" content="width=device-width, initial-scale=1.0" /> */}
-					<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
-					<link href="fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet" />
-					<link href="css/ui.css" rel="stylesheet" type="text/css" />
-					<link href="css/responsive.css" rel="stylesheet" type="text/css" />
+					{/* JQuery */}
+					<script src="/static/js/jquery-2.0.0.min.js" type="text/javascript" />
+					{/* Bootstrap */}
+					<script src="/static/js/bootstrap.bundle.min.js" type="text/javascript" />
+					<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
+
+					{/* <!-- Font awesome 5 --> */}
+					<link href="/static/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet" />
+
+					{/* <!-- custom style --> */}
+					<link href="/static/css/ui.css" rel="stylesheet" type="text/css" />
+					<link href="/static/css/responsive.css" rel="stylesheet" type="text/css" />
+
+					{/* <!-- custom javascript --> */}
+					<script src="/static/js/script.js" type="text/javascript" />
 				</Head>
 				<body>
 					<Main />
 					<NextScript />
-
-					<script src="js/jquery-2.0.0.min.js" type="text/javascript" />
-					<script src="js/bootstrap.bundle.min.js" type="text/javascript" />
-					<script src="js/script.js" type="text/javascript" />
 				</body>
 			</Html>
 		);

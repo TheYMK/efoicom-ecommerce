@@ -12,7 +12,7 @@ const Request = () => {
 					<div className="col-md-8">
 						<div
 							className="card-banner banner-quote overlay-gradient"
-							style={{ backgroundImage: "url('images/banners/banner9.jpg')" }}
+							style={{ backgroundImage: "url('/static/images/banners/banner9.jpg')" }}
 						>
 							<div className="card-img-overlay white">
 								<h3 className="card-title">An easy way to send request to suppliers</h3>

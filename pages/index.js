@@ -2,6 +2,7 @@ import React from 'react';
 import Ad from '../components/ads/Ad';
 import Deal from '../components/deal/Deal';
 import Header from '../components/header/Header';
+import Navbar from '../components/header/Navbar';
 import Items from '../components/items/Items';
 import Layout from '../components/Layout';
 import Main from '../components/main/Main';
@@ -16,7 +17,10 @@ const HomePage = () => {
 	return (
 		<Layout>
 			<b className="screen-overlay" />
-			<Header />
+			<header className="section-header">
+				<Header />
+				<Navbar />
+			</header>
 			<div className="container">
 				<Main />
 				<Deal />

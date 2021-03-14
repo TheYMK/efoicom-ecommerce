@@ -12,49 +12,53 @@ const Regions = () => {
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/CN.png" /> <span>China</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/CN.png" /> <span>China</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/DE.png" /> <span>Germany</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/DE.png" />{' '}
+							<span>Germany</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/AU.png" /> <span>Australia</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/AU.png" />{' '}
+							<span>Australia</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/RU.png" /> <span>Russia</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/RU.png" /> <span>Russia</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/IN.png" /> <span>India</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/IN.png" /> <span>India</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/GB.png" /> <span>England</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/GB.png" />{' '}
+							<span>England</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/TR.png" /> <span>Turkey</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/TR.png" /> <span>Turkey</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="images/icons/flags/UZ.png" /> <span>Uzbekistan</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/UZ.png" />{' '}
+							<span>Uzbekistan</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">

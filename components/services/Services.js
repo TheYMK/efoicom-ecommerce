@@ -11,7 +11,7 @@ const Services = () => {
 				<div className="row">
 					<div className="col-md-3 col-sm-6">
 						<article className="card card-post">
-							<img src="images/posts/1.jpg" className="card-img-top" />
+							<img src="/static/images/posts/1.jpg" className="card-img-top" />
 							<div className="card-body">
 								<h6 className="title">Trade Assurance</h6>
 								<p className="small text-uppercase text-muted">Order protection</p>
@@ -20,7 +20,7 @@ const Services = () => {
 					</div>
 					<div className="col-md-3 col-sm-6">
 						<article className="card card-post">
-							<img src="images/posts/2.jpg" className="card-img-top" />
+							<img src="/static/images/posts/2.jpg" className="card-img-top" />
 							<div className="card-body">
 								<h6 className="title">Pay anytime</h6>
 								<p className="small text-uppercase text-muted">Finance solution</p>
@@ -29,7 +29,7 @@ const Services = () => {
 					</div>
 					<div className="col-md-3 col-sm-6">
 						<article className="card card-post">
-							<img src="images/posts/3.jpg" className="card-img-top" />
+							<img src="/static/images/posts/3.jpg" className="card-img-top" />
 							<div className="card-body">
 								<h6 className="title">Inspection solution</h6>
 								<p className="small text-uppercase text-muted">Easy Inspection</p>
@@ -38,7 +38,7 @@ const Services = () => {
 					</div>
 					<div className="col-md-3 col-sm-6">
 						<article className="card card-post">
-							<img src="images/posts/4.jpg" className="card-img-top" />
+							<img src="/static/images/posts/4.jpg" className="card-img-top" />
 							<div className="card-body">
 								<h6 className="title">Ocean and Air Shipping</h6>
 								<p className="small text-uppercase text-muted">Logistic services</p>

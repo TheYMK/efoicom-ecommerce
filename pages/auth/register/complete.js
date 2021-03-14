@@ -1,0 +1,241 @@
+import React, { useEffect, useState } from 'react';
+import Router from 'next/router';
+import { auth } from '../../../actions/firebase';
+import { toast } from 'react-toastify';
+import Layout from '../../../components/Layout';
+import { useDispatch, useSelector } from 'react-redux';
+import Header from '../../../components/header/Header';
+import Link from 'next/link';
+import { createOrUpdateUser } from '../../../actions/auth';
+
+const RegisterCompletePage = () => {
+	const [ values, setValues ] = useState({
+		first_name: '',
+		last_name: '',
+		email: '',
+		phone_number: '',
+		account_type: '',
+		city: '',
+		island: '',
+		address: '',
+		password: '',
+		password_confirm: ''
+	});
+
+	const { user } = useSelector((state) => ({ ...state }));
+	const dispatch = useDispatch();
+
+	const [ loading, setLoading ] = useState(false);
+
+	const {
+		first_name,
+		last_name,
+		email,
+		phone_number,
+		password,
+		account_type,
+		city,
+		island,
+		address,
+		password_confirm
+	} = values;
+
+	useEffect(() => {
+		// To Future Kaym: you might get some bugs here. If so, you can check if those values exists in the local storage first, if no, just redirect back the user to registration page
+		setValues({
+			...values,
+			first_name: window.localStorage.getItem('firstNameToRegister'),
+			last_name: window.localStorage.getItem('lastNameToRegister'),
+			email: window.localStorage.getItem('emailToRegister'),
+			phone_number: window.localStorage.getItem('phoneNumberToRegister'),
+			account_type: window.localStorage.getItem('accountTypeToRegister'),
+			city: window.localStorage.getItem('cityToRegister'),
+			island: window.localStorage.getItem('islandToRegister'),
+			address: window.localStorage.getItem('addressToRegister')
+		});
+	}, []);
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		if (password !== password_confirm) {
+			toast.error('Les mots de passe doivent être identique!');
+			setLoading(false);
+			return;
+		}
+
+		setLoading(true);
+
+		if (
+			!first_name ||
+			!last_name ||
+			!email ||
+			!phone_number ||
+			!password ||
+			!account_type ||
+			!city ||
+			!island ||
+			!address
+		) {
+			toast.error(
+				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteur. Veuillez réessayer"
+			);
+
+			setLoading(false);
+
+			return;
+		}
+
+		if (password.length < 6) {
+			toast.error('Votre mot de passe doit avoir au minimum 6 caractères');
+			setLoading(false);
+			return;
+		}
+
+		try {
+			const result = await auth.signInWithEmailLink(email, window.location.href);
+
+			if (result.user.emailVerified) {
+				// remove user info from local storage
+				window.localStorage.removeItem('firstNameToRegister');
+				window.localStorage.removeItem('lastNameToRegister');
+				window.localStorage.removeItem('emailToRegister');
+				window.localStorage.removeItem('phoneNumberToRegister');
+				window.localStorage.removeItem('accountTypeToRegister');
+				window.localStorage.removeItem('cityToRegister');
+				window.localStorage.removeItem('islandToRegister');
+				window.localStorage.removeItem('addressToRegister');
+
+				// get user id token
+
+				let user = auth.currentUser;
+				await user.updatePassword(password);
+
+				const idTokenResult = await user.getIdTokenResult();
+
+				// Save to redux store
+				createOrUpdateUser(idTokenResult.token, values)
+					.then((response) => {
+						dispatch({
+							type: 'LOGGED_IN_USER',
+							payload: {
+								name: response.data.name,
+								email: response.data.email,
+								token: idTokenResult.token,
+								role: response.data.role,
+								_id: response.data._id
+							}
+						});
+						toast.success(
+							'Bienvenue sur Massiwa Market cher utilisateur. Nous vous souhaitons une agréable expérience avec nous.'
+						);
+					})
+					.catch((err) => {
+						console.log(
+							`Error occured during registration completion process (=> /auth/complete page): ${err}`
+						);
+						toast.error(
+							"Oops une erreur s'est produite durant la création de votre compte. Veuillez réessayer!"
+						);
+					});
+
+				// redirect
+				Router.push('/');
+			}
+		} catch (err) {
+			setLoading(false);
+			console.log(`Error occured during registration completion process (=> /auth/complete page): ${err}`);
+			toast.error("Oops une erreur s'est produite durant la création de votre compte. Veuillez réessayer!");
+		}
+	};
+
+	return (
+		<Layout>
+			<header className="section-header">
+				<Header />
+			</header>
+
+			<section className="section-content padding-y">
+				<div className="card mx-auto" style={{ maxWidth: '520px', marginTop: '40px' }}>
+					<article className="card-body">
+						<header className="mb-4">
+							<h4 className="card-title">Completez votre compte</h4>
+							<small>
+								Si les informations suivantes sont erronées, nous vous invitons à recommencer la
+								procédure d'enregistrement en{' '}
+								<Link href="/auth/register">
+									<a>cliquant ici</a>
+								</Link>.
+							</small>
+						</header>
+						<div className="mb-4">
+							<p>
+								Nom et Prenom:{' '}
+								<strong>
+									{first_name} {last_name}
+								</strong>
+							</p>
+							<p>
+								Email: <strong>{email}</strong>
+							</p>
+							<p>
+								Tel: <strong>{phone_number}</strong>
+							</p>
+							<p>
+								Type de compte: <strong>{account_type.toUpperCase()}</strong>
+							</p>
+							<p>
+								Ville: <strong>{city}</strong>
+							</p>
+							<p>
+								Île: <strong>{island}</strong>
+							</p>
+							<p>
+								Adresse: <strong>{address}</strong>
+							</p>
+						</div>
+						<form>
+							<div className="form-row">
+								<div className="col form-group">
+									<label htmlFor="password">
+										Mot de passe <span style={{ color: 'red' }}>*</span>
+									</label>
+									<input
+										type="password"
+										className="form-control"
+										id="password"
+										placeholder="••••••••••••"
+										required
+										value={password}
+										onChange={(e) => setValues({ ...values, password: e.target.value })}
+									/>
+								</div>
+								<div className="col form-group">
+									<label htmlFor="password_confirm">
+										Confirmer votre mot de passe <span style={{ color: 'red' }}>*</span>
+									</label>
+									<input
+										type="password"
+										className="form-control"
+										placeholder="••••••••••••"
+										id="password_confirm"
+										required
+										value={password_confirm}
+										onChange={(e) => setValues({ ...values, password_confirm: e.target.value })}
+									/>
+								</div>
+							</div>
+							<div className="form-group">
+								<button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit}>
+									{loading ? 'En cours...' : 'Validation'}
+								</button>
+							</div>
+						</form>
+					</article>
+				</div>
+			</section>
+		</Layout>
+	);
+};
+
+export default RegisterCompletePage;

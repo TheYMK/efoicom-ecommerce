@@ -20,7 +20,7 @@ const SectionTwo = () => {
 								<a href="#" className="btn btn-outline-primary rounded-pill">
 									Source now
 								</a>
-								<img src="images/items/14.jpg" className="img-bg" />
+								<img src="/static/images/items/14.jpg" className="img-bg" />
 							</div>
 						</div>
 						<div className="col-md-9">
@@ -29,7 +29,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Well made electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/7.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/7.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Tokyo, Japan
 											</p>
@@ -40,7 +40,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Another demo text for item stuff goes here </h6>
-											<img className="img-sm float-right" src="images/items/8.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/8.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Hong Kong, China
 											</p>
@@ -51,7 +51,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Home and kitchen electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/9.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/9.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Tashkent, Uzb
 											</p>
@@ -62,7 +62,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Group of electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/10.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/10.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Guanjou, China
 											</p>
@@ -73,7 +73,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Home and kitchen electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/11.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/11.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Guanjou, China
 											</p>
@@ -84,7 +84,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Home and kitchen electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/12.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/12.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Guanjou, China
 											</p>
@@ -95,7 +95,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Home and kitchen electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/1.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/1.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Guanjou, China
 											</p>
@@ -106,7 +106,7 @@ const SectionTwo = () => {
 									<a href="#" className="item">
 										<div className="card-body">
 											<h6 className="title">Home and kitchen electronic stuff collection </h6>
-											<img className="img-sm float-right" src="images/items/2.jpg" />
+											<img className="img-sm float-right" src="/static/images/items/2.jpg" />
 											<p className="text-muted">
 												<i className="fa fa-map-marker-alt" /> Guanjou, China
 											</p>

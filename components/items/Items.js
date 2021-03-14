@@ -13,7 +13,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/1.jpg" />{' '}
+								<img src="/static/images/items/1.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -27,7 +27,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/2.jpg" />{' '}
+								<img src="/static/images/items/2.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -41,7 +41,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/3.jpg" />{' '}
+								<img src="/static/images/items/3.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -55,7 +55,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/4.jpg" />{' '}
+								<img src="/static/images/items/4.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -69,7 +69,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/5.jpg" />{' '}
+								<img src="/static/images/items/5.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -83,7 +83,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/6.jpg" />{' '}
+								<img src="/static/images/items/6.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -97,7 +97,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/7.jpg" />{' '}
+								<img src="/static/images/items/7.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -111,7 +111,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/9.jpg" />{' '}
+								<img src="/static/images/items/9.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -125,7 +125,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/4.jpg" />{' '}
+								<img src="/static/images/items/4.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -139,7 +139,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/5.jpg" />{' '}
+								<img src="/static/images/items/5.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -153,7 +153,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/6.jpg" />{' '}
+								<img src="/static/images/items/6.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">
@@ -167,7 +167,7 @@ const Items = () => {
 						<div className="card card-sm card-product-grid">
 							<a href="#" className="img-wrap">
 								{' '}
-								<img src="images/items/7.jpg" />{' '}
+								<img src="/static/images/items/7.jpg" />{' '}
 							</a>
 							<figcaption className="info-wrap">
 								<a href="#" className="title">

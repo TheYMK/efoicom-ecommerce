@@ -33,7 +33,7 @@ const Deal = () => {
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="images/items/3.jpg" />
+									<img src="/static/images/items/3.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
@@ -46,7 +46,7 @@ const Deal = () => {
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="images/items/4.jpg" />
+									<img src="/static/images/items/4.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
@@ -59,7 +59,7 @@ const Deal = () => {
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="images/items/5.jpg" />
+									<img src="/static/images/items/5.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
@@ -72,7 +72,7 @@ const Deal = () => {
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="images/items/6.jpg" />
+									<img src="/static/images/items/6.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
@@ -85,7 +85,7 @@ const Deal = () => {
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="images/items/7.jpg" />
+									<img src="/static/images/items/7.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title text-truncate">

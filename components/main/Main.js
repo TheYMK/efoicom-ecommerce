@@ -67,13 +67,13 @@ const Main = () => {
 									</ol>
 									<div className="carousel-inner">
 										<div className="carousel-item active">
-											<img src="images/banners/slide1.jpg" alt="First slide" />
+											<img src="/static/images/banners/slide1.jpg" alt="First slide" />
 										</div>
 										<div className="carousel-item">
-											<img src="images/banners/slide2.jpg" alt="Second slide" />
+											<img src="/static/images/banners/slide2.jpg" alt="Second slide" />
 										</div>
 										<div className="carousel-item">
-											<img src="images/banners/slide3.jpg" alt="Third slide" />
+											<img src="/static/images/banners/slide3.jpg" alt="Third slide" />
 										</div>
 									</div>
 									<a
@@ -108,7 +108,7 @@ const Main = () => {
 												Source now{' '}
 											</a>
 										</div>
-										<img src="images/items/1.jpg" height="80" className="img-bg" />
+										<img src="/static/images/items/1.jpg" height="80" className="img-bg" />
 									</div>
 
 									<div className="card-banner border-bottom">
@@ -119,7 +119,7 @@ const Main = () => {
 												Source now{' '}
 											</a>
 										</div>
-										<img src="images/items/2.jpg" height="80" className="img-bg" />
+										<img src="/static/images/items/2.jpg" height="80" className="img-bg" />
 									</div>
 
 									<div className="card-banner border-bottom">
@@ -130,7 +130,7 @@ const Main = () => {
 												Source now{' '}
 											</a>
 										</div>
-										<img src="images/items/6.jpg" height="80" className="img-bg" />
+										<img src="/static/images/items/6.jpg" height="80" className="img-bg" />
 									</div>
 								</aside>
 							</div>
