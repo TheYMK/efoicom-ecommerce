@@ -7,10 +7,11 @@ const Deal = () => {
 				<div className="card card-deal">
 					<div className="col-heading content-body">
 						<header className="section-heading">
-							<h3 className="section-title">Deals and offers</h3>
-							<p>Hygiene equipments</p>
+							<h3 className="section-title text-center">
+								Notre selection hebdomadaire des meilleurs magasins et services
+							</h3>
 						</header>
-						<div className="timer">
+						{/* <div className="timer">
 							<div>
 								{' '}
 								<span className="num">04</span> <small>Days</small>
@@ -27,71 +28,91 @@ const Deal = () => {
 								{' '}
 								<span className="num">02</span> <small>Sec</small>
 							</div>
-						</div>
+						</div> */}
 					</div>
 					<div className="row no-gutters items-wrap">
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="/static/images/items/3.jpg" />
+									<img src="/static/images/products/vegetables.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
-										Summer clothes
+										Vente de Légumes
 									</a>
-									<span className="badge badge-danger"> -20% </span>
+
+									<span className="badge badge-danger"> Magasin 1 </span>
+									<p className="text-muted mt-3">
+										<i className="fa fa-map-marker-alt" /> Moroni, Malouzini
+									</p>
 								</div>
 							</figure>
 						</div>
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="/static/images/items/4.jpg" />
+									<img src="/static/images/products/jubba1.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
-										Some category
+										Fabrication de vêtement
 									</a>
-									<span className="badge badge-danger"> -5% </span>
+
+									<span className="badge badge-danger"> Chez Mr X </span>
+									<p className="text-muted mt-3">
+										<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
+									</p>
 								</div>
 							</figure>
 						</div>
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="/static/images/items/5.jpg" />
+									<img src="/static/images/products/vegetables.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
-										Another category
+										Vente de Légumes
 									</a>
-									<span className="badge badge-danger"> -20% </span>
+
+									<span className="badge badge-danger"> Magasin 1 </span>
+									<p className="text-muted mt-3">
+										<i className="fa fa-map-marker-alt" /> Moroni, Malouzini
+									</p>
 								</div>
 							</figure>
 						</div>
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="/static/images/items/6.jpg" />
+									<img src="/static/images/products/jubba1.jpg" />
 								</a>
 								<div className="text-wrap p-3">
 									<a href="#" className="title">
-										Home apparel
+										Fabrication de vêtement
 									</a>
-									<span className="badge badge-danger"> -15% </span>
+
+									<span className="badge badge-danger"> Chez Mr X </span>
+									<p className="text-muted mt-3">
+										<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
+									</p>
 								</div>
 							</figure>
 						</div>
 						<div className="col-md col-6">
 							<figure className="card-product-grid card-sm">
 								<a href="#" className="img-wrap">
-									<img src="/static/images/items/7.jpg" />
+									<img src="/static/images/products/vegetables.jpg" />
 								</a>
 								<div className="text-wrap p-3">
-									<a href="#" className="title text-truncate">
-										Smart watches
+									<a href="#" className="title">
+										Vente de Légumes
 									</a>
-									<span className="badge badge-danger"> -10% </span>
+
+									<span className="badge badge-danger"> Magasin 1 </span>
+									<p className="text-muted mt-3">
+										<i className="fa fa-map-marker-alt" /> Moroni, Malouzini
+									</p>
 								</div>
 							</figure>
 						</div>

@@ -19,7 +19,7 @@ const Navbar = () => {
 
 					<div className="collapse navbar-collapse" id="main_nav">
 						<ul className="navbar-nav">
-							<li className="nav-item dropdown">
+							{/* <li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
 									{' '}
 									<i className="fa fa-bars text-muted mr-2" /> Demo pages{' '}
@@ -52,54 +52,62 @@ const Navbar = () => {
 										</div>
 									</nav>
 								</div>
-							</li>
+							</li> */}
 							<li className="nav-item">
 								<a className="nav-link" href="#">
-									Ready to ship
+									Actualité Covid-19
 								</a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="#">
-									Trade shows
+									Bon plans
 								</a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="#">
-									Services
+									Devenez référent
 								</a>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="#">
-									Sell with us
+									Forum
 								</a>
+							</li>
+							<li className="nav-item dropdown">
+								<a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+									{' '}
+									<i className="fa fa-question-circle text-muted mr-2" /> Aide{' '}
+								</a>
+								<div className="dropdown-menu dropdown-large">
+									<nav className="row">
+										<div className="col-6">
+											<a href="#">Créer un compte client</a>
+										</div>
+										<div className="col-6">
+											<a href="#">Créer un compte référent</a>
+											<a href="#">Mettre en ligne un produit ou un service</a>
+										</div>
+									</nav>
+								</div>
 							</li>
 						</ul>
 						<ul className="navbar-nav ml-md-auto">
-							<li className="nav-item">
+							{/* <li className="nav-item">
 								<a className="nav-link" href="#">
 									Get the app
 								</a>
-							</li>
+							</li> */}
 							<li className="nav-item dropdown">
 								<a
 									className="nav-link dropdown-toggle"
 									href="http://example.com"
 									data-toggle="dropdown"
 								>
-									English
+									&#127467;&#127479; Français
 								</a>
 								<div className="dropdown-menu dropdown-menu-right">
 									<a className="dropdown-item" href="#">
-										Russian
-									</a>
-									<a className="dropdown-item" href="#">
-										French
-									</a>
-									<a className="dropdown-item" href="#">
-										Spanish
-									</a>
-									<a className="dropdown-item" href="#">
-										Chinese
+										&#x1f1ec;&#x1f1e7; English
 									</a>
 								</div>
 							</li>

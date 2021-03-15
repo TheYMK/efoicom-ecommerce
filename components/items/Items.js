@@ -5,7 +5,7 @@ const Items = () => {
 		<React.Fragment>
 			<section className="padding-bottom-sm">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Recommended items</h4>
+					<h4 className="title-section text-uppercase">Articles recommandés</h4>
 				</header>
 
 				<div className="row row-sm">

@@ -28,7 +28,7 @@ const HomePage = () => {
 				<SectionTwo />
 				<Request />
 				<Items />
-				<Services />
+				{/* <Services /> */}
 				<Regions />
 				<Ad />
 			</div>

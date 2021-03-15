@@ -29,8 +29,12 @@ const Header = () => {
 					<div className="row align-items-center">
 						<div className="col-xl-2 col-lg-3 col-md-12">
 							<a href="/" className="brand-wrap">
-								{/* <img className="logo" src="/static/images/logo.png" /> */}
-								<span className="logo">Massiwa Market</span>
+								<img
+									className="logo"
+									style={{ width: '200px', objectFit: 'cover' }}
+									src="/static/images/logo.png"
+								/>
+								{/* <span className="logo">Massiwa Market</span> */}
 							</a>
 						</div>
 						<div className="col-xl-6 col-lg-5 col-md-6">

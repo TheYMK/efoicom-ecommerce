@@ -5,20 +5,20 @@ const SectionTwo = () => {
 		<React.Fragment>
 			<section className="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Electronics</h4>
+					<h4 className="title-section text-uppercase">Beauté & Soins personnels</h4>
 				</header>
 
 				<div className="card card-home-category">
 					<div className="row no-gutters">
 						<div className="col-md-3">
 							<div className="home-category-banner bg-light-orange">
-								<h5 className="title">Machinery items for manufacturers</h5>
-								<p>
+								<h5 className="title">Découvrez une sélection d'articles uniques</h5>
+								{/* <p>
 									Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
 									magna aliqua.{' '}
-								</p>
-								<a href="#" className="btn btn-outline-primary rounded-pill">
-									Source now
+								</p> */}
+								<a href="#" className="btn btn-outline-primary rounded-pill mt-5">
+									Explorez plus
 								</a>
 								<img src="/static/images/items/14.jpg" className="img-bg" />
 							</div>
@@ -28,10 +28,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Well made electronic stuff collection </h6>
+											<h6 className="title">Article 1</h6>
 											<img className="img-sm float-right" src="/static/images/items/7.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Tokyo, Japan
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -39,10 +39,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Another demo text for item stuff goes here </h6>
+											<h6 className="title">Article 2 </h6>
 											<img className="img-sm float-right" src="/static/images/items/8.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Hong Kong, China
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -50,10 +50,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Home and kitchen electronic stuff collection </h6>
+											<h6 className="title">Article 3 </h6>
 											<img className="img-sm float-right" src="/static/images/items/9.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Tashkent, Uzb
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -61,10 +61,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Group of electronic stuff collection </h6>
+											<h6 className="title">Article 4 </h6>
 											<img className="img-sm float-right" src="/static/images/items/10.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Guanjou, China
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -72,10 +72,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Home and kitchen electronic stuff collection </h6>
+											<h6 className="title">Article 5 </h6>
 											<img className="img-sm float-right" src="/static/images/items/11.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Guanjou, China
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -83,10 +83,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Home and kitchen electronic stuff collection </h6>
+											<h6 className="title">Article 6 </h6>
 											<img className="img-sm float-right" src="/static/images/items/12.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Guanjou, China
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -94,10 +94,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Home and kitchen electronic stuff collection </h6>
+											<h6 className="title">Article 7 </h6>
 											<img className="img-sm float-right" src="/static/images/items/1.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Guanjou, China
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
@@ -105,10 +105,10 @@ const SectionTwo = () => {
 								<li className="col-6 col-lg-3 col-md-4">
 									<a href="#" className="item">
 										<div className="card-body">
-											<h6 className="title">Home and kitchen electronic stuff collection </h6>
+											<h6 className="title">Article 8 </h6>
 											<img className="img-sm float-right" src="/static/images/items/2.jpg" />
 											<p className="text-muted">
-												<i className="fa fa-map-marker-alt" /> Guanjou, China
+												<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 											</p>
 										</div>
 									</a>
