@@ -20,3 +20,27 @@ export const getCurrentUser = async (authtoken) => {
 		}
 	);
 };
+
+export const getCurrentAdmin = async (authtoken) => {
+	return await axios.post(
+		`${API_URL}/current-admin`,
+		{},
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};
+
+export const getCurrentReferent = async (authtoken) => {
+	return await axios.post(
+		`${API_URL}/current-referent`,
+		{},
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};

@@ -54,7 +54,7 @@ const AdminDashboard = () => {
 							</article>
 							<article className="card mb-4">
 								<header className="card-header">
-									<strong className="d-inline-block mr-3">Gerez les demandes</strong>
+									<strong className="d-inline-block mr-3">Gerez les requêtes</strong>
 								</header>
 
 								<div className="table-responsive" style={{ height: '500px' }}>

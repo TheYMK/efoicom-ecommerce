@@ -197,7 +197,14 @@ const Register = () => {
 								/>
 								<span className="custom-control-label"> Référent </span>
 							</label>
+							<br />
+							<small className="mt-4 mb-4">
+								<i className="fas fa-exclamation-triangle" style={{ color: '#f63b3b' }} /> Les comptes
+								référent sont soumis à une évaluation. Durant cette période d'evaluation vous ne serez
+								pas encore en mesure d'acceder aux fonctionnalités de votre compte.
+							</small>
 						</div>
+
 						<div className="form-row">
 							<div className="form-group col-md-6">
 								<label htmlFor="city">

@@ -29,6 +29,14 @@ function LoadingToRedirect() {
 					<div />
 				</div>
 			</div>
+			{/* <div className="overlay">
+				<div className="overlayDoor" />
+				<div className="overlayContent">
+					<div className="loader">
+						<div className="inner" />
+					</div>
+				</div>
+			</div> */}
 		</React.Fragment>
 	);
 }

@@ -50,3 +50,193 @@ INCLUDE STYLES AND COMPONENTS
 @import "ui-assets/pages/page-order";
 
 @import "ui-assets/rtl-override";
+
+
+/* 
+---------------------------------------------
+preloader
+--------------------------------------------- 
+*/
+#preloader {
+	overflow: hidden;
+	background-image: linear-gradient(135deg, #f25a46 0%, #eb444d 100%);
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	position: fixed;
+	z-index: 9999;
+	color: #fff;
+  }
+  
+  #preloader .jumper {
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+	position: absolute;
+	margin: auto;
+	width: 50px;
+	height: 50px;
+  }
+  
+  #preloader .jumper > div {
+	background-color: #fff;
+	width: 10px;
+	height: 10px;
+	border-radius: 100%;
+	-webkit-animation-fill-mode: both;
+	animation-fill-mode: both;
+	position: absolute;
+	opacity: 0;
+	width: 50px;
+	height: 50px;
+	-webkit-animation: jumper 1s 0s linear infinite;
+	animation: jumper 1s 0s linear infinite;
+  }
+  
+  #preloader .jumper > div:nth-child(2) {
+	-webkit-animation-delay: 0.33333s;
+	animation-delay: 0.33333s;
+  }
+  
+  #preloader .jumper > div:nth-child(3) {
+	-webkit-animation-delay: 0.66666s;
+	animation-delay: 0.66666s;
+  }
+  
+  @-webkit-keyframes jumper {
+	0% {
+	  opacity: 0;
+	  -webkit-transform: scale(0);
+	  transform: scale(0);
+	}
+	5% {
+	  opacity: 1;
+	}
+	100% {
+	  -webkit-transform: scale(1);
+	  transform: scale(1);
+	  opacity: 0;
+	}
+  }
+  
+  @keyframes jumper {
+	0% {
+	  opacity: 0;
+	  -webkit-transform: scale(0);
+	  transform: scale(0);
+	}
+	5% {
+	  opacity: 1;
+	}
+	100% {
+	  opacity: 0;
+	}
+  }
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100000000;
+	.overlayDoor {
+		&:before, &:after {
+			content: "";
+			position: absolute;
+			width: 50%;
+			height: 100%;
+			background-image: linear-gradient(135deg, #f25a46 0%, #eb444d 100%);
+			transition: .5s cubic-bezier(.77,0,.18,1);
+			transition-delay: .8s;
+		}
+		&:before {
+			left: 0;
+		}
+		&:after {
+			right: 0;
+		}
+	}
+	&.loaded {
+		.overlayDoor {
+			&:before {
+				left: -50%;
+			}
+			&:after {
+				right: -50%;
+			}
+		}
+		.overlayContent {
+			opacity: 0;
+			margin-top: -15px;
+		}
+	}
+	.overlayContent {
+		position: relative;
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		transition: .5s cubic-bezier(.77,0,.18,1);
+		.skip {
+			display: block;
+			width: 130px;
+			text-align: center;
+			margin: 50px auto 0;
+			cursor: pointer;
+			color: #fff;
+			font-family: 'Nunito';
+			font-weight: 700;
+			padding: 12px 0;
+			border: 2px solid #fff;
+			border-radius: 3px;
+			transition: 0.2s ease;
+			&:hover {
+				background: #ddd;
+				color: #444;
+				border-color: #ddd;
+			}
+		}
+	}
+}
+.loader {
+	width: 128px;
+	height: 128px;
+	border: 3px solid #fff;
+	border-bottom: 3px solid transparent;
+	border-radius: 50%;
+	position: relative;
+	animation: spin 1s linear infinite;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	.inner {
+		width: 64px;
+		height: 64px;
+		border: 3px solid transparent;
+		border-top: 3px solid #fff;
+		border-radius: 50%;
+		animation: spinInner 1s linear infinite;
+	}
+}
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+@keyframes spinInner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-720deg);
+	}
+}
