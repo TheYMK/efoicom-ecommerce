@@ -6,6 +6,7 @@ import Layout from '../../../components/Layout';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/header/Header';
 import Link from 'next/link';
+import Head from 'next/head';
 import { createOrUpdateUser } from '../../../actions/auth';
 
 const RegisterCompletePage = () => {
@@ -42,17 +43,21 @@ const RegisterCompletePage = () => {
 
 	useEffect(() => {
 		// To Future Kaym: you might get some bugs here. If so, you can check if those values exists in the local storage first, if no, just redirect back the user to registration page
-		setValues({
-			...values,
-			first_name: window.localStorage.getItem('firstNameToRegister'),
-			last_name: window.localStorage.getItem('lastNameToRegister'),
-			email: window.localStorage.getItem('emailToRegister'),
-			phone_number: window.localStorage.getItem('phoneNumberToRegister'),
-			account_type: window.localStorage.getItem('accountTypeToRegister'),
-			city: window.localStorage.getItem('cityToRegister'),
-			island: window.localStorage.getItem('islandToRegister'),
-			address: window.localStorage.getItem('addressToRegister')
-		});
+		if (window && window.localStorage.getItem('firstNameToRegister') !== null) {
+			setValues({
+				...values,
+				first_name: window.localStorage.getItem('firstNameToRegister'),
+				last_name: window.localStorage.getItem('lastNameToRegister'),
+				email: window.localStorage.getItem('emailToRegister'),
+				phone_number: window.localStorage.getItem('phoneNumberToRegister'),
+				account_type: window.localStorage.getItem('accountTypeToRegister'),
+				city: window.localStorage.getItem('cityToRegister'),
+				island: window.localStorage.getItem('islandToRegister'),
+				address: window.localStorage.getItem('addressToRegister')
+			});
+		} else {
+			Router.push('/auth/register');
+		}
 	}, []);
 
 	const handleSubmit = async (e) => {
@@ -149,92 +154,101 @@ const RegisterCompletePage = () => {
 		}
 	};
 
-	return (
-		<Layout>
-			<header className="section-header">
-				<Header />
-			</header>
+	const head = () => (
+		<Head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+		</Head>
+	);
 
-			<section className="section-content padding-y">
-				<div className="card mx-auto" style={{ maxWidth: '520px', marginTop: '40px' }}>
-					<article className="card-body">
-						<header className="mb-4">
-							<h4 className="card-title">Completez votre compte</h4>
-							<small>
-								Si les informations suivantes sont erronées, nous vous invitons à recommencer la
-								procédure d'enregistrement en{' '}
-								<Link href="/auth/register">
-									<a>cliquant ici</a>
-								</Link>.
-							</small>
-						</header>
-						<div className="mb-4">
-							<p>
-								Nom et Prenom:{' '}
-								<strong>
-									{first_name} {last_name}
-								</strong>
-							</p>
-							<p>
-								Email: <strong>{email}</strong>
-							</p>
-							<p>
-								Tel: <strong>{phone_number}</strong>
-							</p>
-							<p>
-								Type de compte: <strong>{account_type.toUpperCase()}</strong>
-							</p>
-							<p>
-								Ville: <strong>{city}</strong>
-							</p>
-							<p>
-								Île: <strong>{island}</strong>
-							</p>
-							<p>
-								Adresse: <strong>{address}</strong>
-							</p>
-						</div>
-						<form>
-							<div className="form-row">
-								<div className="col form-group">
-									<label htmlFor="password">
-										Mot de passe <span style={{ color: 'red' }}>*</span>
-									</label>
-									<input
-										type="password"
-										className="form-control"
-										id="password"
-										placeholder="••••••••••••"
-										required
-										value={password}
-										onChange={(e) => setValues({ ...values, password: e.target.value })}
-									/>
-								</div>
-								<div className="col form-group">
-									<label htmlFor="password_confirm">
-										Confirmer votre mot de passe <span style={{ color: 'red' }}>*</span>
-									</label>
-									<input
-										type="password"
-										className="form-control"
-										placeholder="••••••••••••"
-										id="password_confirm"
-										required
-										value={password_confirm}
-										onChange={(e) => setValues({ ...values, password_confirm: e.target.value })}
-									/>
-								</div>
+	return (
+		<React.Fragment>
+			{head()}
+			<Layout>
+				<header className="section-header">
+					<Header />
+				</header>
+
+				<section className="section-content padding-y">
+					<div className="card mx-auto" style={{ maxWidth: '520px', marginTop: '40px' }}>
+						<article className="card-body">
+							<header className="mb-4">
+								<h4 className="card-title">Completez votre compte</h4>
+								<small>
+									Si les informations suivantes sont erronées, nous vous invitons à recommencer la
+									procédure d'enregistrement en{' '}
+									<Link href="/auth/register">
+										<a>cliquant ici</a>
+									</Link>.
+								</small>
+							</header>
+							<div className="mb-4">
+								<p>
+									Nom et Prenom:{' '}
+									<strong>
+										{first_name} {last_name}
+									</strong>
+								</p>
+								<p>
+									Email: <strong>{email}</strong>
+								</p>
+								<p>
+									Tel: <strong>{phone_number}</strong>
+								</p>
+								<p>
+									Type de compte: <strong>{account_type}</strong>
+								</p>
+								<p>
+									Ville: <strong>{city}</strong>
+								</p>
+								<p>
+									Île: <strong>{island}</strong>
+								</p>
+								<p>
+									Adresse: <strong>{address}</strong>
+								</p>
 							</div>
-							<div className="form-group">
-								<button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit}>
-									{loading ? 'En cours...' : 'Validation'}
-								</button>
-							</div>
-						</form>
-					</article>
-				</div>
-			</section>
-		</Layout>
+							<form>
+								<div className="form-row">
+									<div className="col form-group">
+										<label htmlFor="password">
+											Mot de passe <span style={{ color: 'red' }}>*</span>
+										</label>
+										<input
+											type="password"
+											className="form-control"
+											id="password"
+											placeholder="••••••••••••"
+											required
+											value={password}
+											onChange={(e) => setValues({ ...values, password: e.target.value })}
+										/>
+									</div>
+									<div className="col form-group">
+										<label htmlFor="password_confirm">
+											Confirmer votre mot de passe <span style={{ color: 'red' }}>*</span>
+										</label>
+										<input
+											type="password"
+											className="form-control"
+											placeholder="••••••••••••"
+											id="password_confirm"
+											required
+											value={password_confirm}
+											onChange={(e) => setValues({ ...values, password_confirm: e.target.value })}
+										/>
+									</div>
+								</div>
+								<div className="form-group">
+									<button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit}>
+										{loading ? 'En cours...' : 'Validation'}
+									</button>
+								</div>
+							</form>
+						</article>
+					</div>
+				</section>
+			</Layout>
+		</React.Fragment>
 	);
 };
 

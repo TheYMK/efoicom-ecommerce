@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Header from '../../components/header/Header';
 import Layout from '../../components/Layout';
 import ReferentDashboard from '../../components/referent/ReferentDashboard';
@@ -12,14 +13,14 @@ import EvaluationSection from '../../components/referent/EvaluationSection';
 
 const ReferentProfilePage = () => {
 	const { user } = useSelector((state) => ({ ...state }));
-	const [ isApproved, setIsApproved ] = useState(false);
+	const [ requestStatus, setRequestStatus ] = useState('');
 
 	useEffect(
 		() => {
 			if (user && user.token) {
 				getCurrentUser(user.token)
 					.then((res) => {
-						setIsApproved(res.data.referent_account_approval);
+						setRequestStatus(res.data.referent_account_approval);
 					})
 					.catch((err) => {
 						console.log(err);
@@ -29,17 +30,30 @@ const ReferentProfilePage = () => {
 		[ user ]
 	);
 
+	const head = () => (
+		<Head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+		</Head>
+	);
+
 	return (
-		<Layout>
-			<ReferentProtected>
-				<b className="screen-overlay" />
-				<header className="section-header">
-					<Header />
-				</header>
-				<PageTop title={'Mon profile référent'} />
-				{isApproved ? <ReferentDashboard /> : <EvaluationSection pageLocation="dashboard" />}
-			</ReferentProtected>
-		</Layout>
+		<React.Fragment>
+			{head()}
+			<Layout>
+				<ReferentProtected>
+					<b className="screen-overlay" />
+					<header className="section-header">
+						<Header />
+					</header>
+					<PageTop title={'Mon profile référent'} />
+					{requestStatus === 'approved' ? (
+						<ReferentDashboard />
+					) : (
+						<EvaluationSection pageLocation="dashboard" />
+					)}
+				</ReferentProtected>
+			</Layout>
+		</React.Fragment>
 	);
 };
 

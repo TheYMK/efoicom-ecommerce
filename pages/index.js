@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Ad from '../components/ads/Ad';
 import Deal from '../components/deal/Deal';
 import Header from '../components/header/Header';
@@ -14,27 +15,36 @@ import Services from '../components/services/Services';
 import Subscribe from '../components/subscribe/Subscribe';
 
 const HomePage = () => {
-	return (
-		<Layout>
-			<b className="screen-overlay" />
-			<header className="section-header">
-				<Header />
-				<Navbar />
-			</header>
-			<div className="container">
-				<Main />
-				<Deal />
-				<SectionOne />
-				<SectionTwo />
-				<Request />
-				<Items />
-				{/* <Services /> */}
-				<Regions />
-				<Ad />
-			</div>
+	const head = () => (
+		<Head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+		</Head>
+	);
 
-			<Subscribe />
-		</Layout>
+	return (
+		<React.Fragment>
+			{head()}
+			<Layout>
+				<b className="screen-overlay" />
+				<header className="section-header">
+					<Header />
+					<Navbar />
+				</header>
+				<div className="container">
+					<Main />
+					<Deal />
+					<SectionOne />
+					<SectionTwo />
+					<Request />
+					<Items />
+					{/* <Services /> */}
+					<Regions />
+					<Ad />
+				</div>
+
+				<Subscribe />
+			</Layout>
+		</React.Fragment>
 	);
 };
 

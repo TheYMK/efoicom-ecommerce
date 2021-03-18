@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Header from '../../../components/header/Header';
 import Layout from '../../../components/Layout';
 import { useSelector } from 'react-redux';
@@ -43,36 +44,49 @@ const ForgotPasswordPage = () => {
 			toast.error("Nous n'avons pas pu récupérer votre mot de passe. Veuillez réessayer!");
 		}
 	};
+
+	const head = () => (
+		<Head>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+		</Head>
+	);
 	return (
-		<Layout>
-			<header className="section-header">
-				<Header />
-			</header>
-			<section className="section-content padding-y" style={{ minHeight: '84vh' }}>
-				<div className="card mx-auto" style={{ maxWidth: '580px', marginTop: '100px' }}>
-					<div className="card-body">
-						<h4 className="card-title mb-4">Voulez-vous reinitialiser votre mot de passe ?</h4>
-						<form>
-							<div className="form-group">
-								<input
-									className="form-control"
-									placeholder="Entrez votre adresse email ici"
-									type="text"
-									value={email}
-									onChange={(e) => setEmail(e.target.value)}
-									autoFocus
-								/>
-							</div>
-							<div className="form-group">
-								<button className="btn btn-primary btn-block" onClick={handleSubmit} disabled={!email}>
-									{loading ? 'En cours....' : 'Reinitialiser votre mot de passe'}
-								</button>
-							</div>
-						</form>
+		<React.Fragment>
+			{head()}
+			<Layout>
+				<header className="section-header">
+					<Header />
+				</header>
+				<section className="section-content padding-y" style={{ minHeight: '84vh' }}>
+					<div className="card mx-auto" style={{ maxWidth: '580px', marginTop: '100px' }}>
+						<div className="card-body">
+							<h4 className="card-title mb-4">Voulez-vous reinitialiser votre mot de passe ?</h4>
+							<form>
+								<div className="form-group">
+									<input
+										className="form-control"
+										placeholder="Entrez votre adresse email ici"
+										type="text"
+										value={email}
+										onChange={(e) => setEmail(e.target.value)}
+										autoFocus
+									/>
+								</div>
+								<div className="form-group">
+									<button
+										className="btn btn-primary btn-block"
+										onClick={handleSubmit}
+										disabled={!email}
+									>
+										{loading ? 'En cours....' : 'Reinitialiser votre mot de passe'}
+									</button>
+								</div>
+							</form>
+						</div>
 					</div>
-				</div>
-			</section>
-		</Layout>
+				</section>
+			</Layout>
+		</React.Fragment>
 	);
 };
 

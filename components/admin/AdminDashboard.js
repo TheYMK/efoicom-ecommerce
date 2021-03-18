@@ -1,7 +1,155 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AdminMenu from './AdminMenu';
+import { useSelector } from 'react-redux';
+import { getCurrentUser } from '../../actions/auth';
+import { getCounts, getTotalRefRequests, updateReferentAccountApprovalStatus } from '../../actions/user';
+import { toast } from 'react-toastify';
+import ApproveRequestDialog from '../dialogs/ApproveRequestDialog';
 
 const AdminDashboard = () => {
+	const [ currentUser, setCurrentUser ] = useState({});
+	const [ requests, setRequests ] = useState([]);
+	const [ referentCount, setReferentCount ] = useState(0);
+	const [ customerCount, setCustomerCount ] = useState(0);
+	const { user } = useSelector((state) => ({ ...state }));
+
+	useEffect(() => {
+		if (user && user.token) {
+			loadUserInfo();
+			fetchTotalRefAccountCounts();
+			fetchAllRefRequests();
+		}
+	}, []);
+
+	// // Loads the current user informations
+	const loadUserInfo = () => {
+		getCurrentUser(user.token)
+			.then((res) => {
+				setCurrentUser(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// get total referent accounts count
+	const fetchTotalRefAccountCounts = () => {
+		getCounts(user.token)
+			.then((res) => {
+				setReferentCount(res.data.totalRefCount);
+				setCustomerCount(res.data.totalCustomerCount);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// get all referents requests
+	const fetchAllRefRequests = () => {
+		getTotalRefRequests(user.token)
+			.then((res) => {
+				setRequests(res.data);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	// display requests
+	const showRequests = () => (
+		<div className="table-responsive" style={{ height: '500px' }}>
+			<table className="table table-hover">
+				<thead>
+					<tr>
+						<th>Type de requête</th>
+						<th>Envoyé par</th>
+						<th>Tel</th>
+						<th>Email</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{requests.map((request, index) => (
+						<tr key={index}>
+							<td>Approbation de référent</td>
+							<td>
+								<p className="title">{request.name} </p>
+							</td>
+							<td>{request.phone_number}</td>
+							<td>{request.email}</td>
+							<td>{request.referent_account_approval.toUpperCase()}</td>
+							<td>
+								<div className="dropdown d-inline-block">
+									<button
+										href="#"
+										data-toggle="dropdown"
+										className="dropdown-toggle btn btn-outline-primary"
+									>
+										Cliquer ici
+									</button>
+									<div className="dropdown-menu dropdown-menu-right">
+										<button
+											href="#"
+											className="dropdown-item"
+											onClick={() => handleRequestApproval(request.email)}
+										>
+											Approuver
+										</button>
+										<button
+											href="#"
+											className="dropdown-item"
+											onClick={() => handleRequestRejection(request.email)}
+										>
+											Décliner
+										</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
+
+	const handleRequestApproval = (email) => {
+		const result = window.confirm('Êtes-vous sûr de vouloir approuver ce référent?');
+		const approval_status = 'approved';
+		if (result === true) {
+			updateReferentAccountApprovalStatus(user.token, email, approval_status)
+				.then((res) => {
+					toast.info(
+						`Vous venez d'approuver un référent. Ce dernier peut desormais mettre en ligne des produits ou services, et converser avec des clients de la platforme`
+					);
+					fetchAllRefRequests();
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
+				});
+		}
+	};
+
+	const handleRequestRejection = (email) => {
+		const result = window.confirm('Êtes-vous sûr de vouloir decliner ce référent?');
+		const approval_status = 'rejected';
+
+		if (result === true) {
+			updateReferentAccountApprovalStatus(user.token, email, approval_status)
+				.then((res) => {
+					toast.info(
+						`Vous venez de decliner un référent. Son compte sera automatiquement supprimer de la base de donnée. Assurez vous de supprimer le compte sur firebase aussi`
+					);
+					fetchAllRefRequests();
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
+				});
+		}
+	};
+
 	return (
 		<React.Fragment>
 			<section className="section-content padding-y">
@@ -15,8 +163,8 @@ const AdminDashboard = () => {
 								<div className="card-body">
 									<figure className="icontext">
 										<div className="text">
-											<strong> Mr. Kaym Kassai </strong> <br />
-											<p className="mb-2"> kaymkassai269@gmail.com </p>
+											<strong> {currentUser.name} </strong> <br />
+											<p className="mb-2"> {currentUser.email} </p>
 											<a href="#" className="btn btn-light btn-sm">
 												Modifier les informations
 											</a>
@@ -27,13 +175,13 @@ const AdminDashboard = () => {
 									<article className="card-group card-stat">
 										<figure className="card bg">
 											<div className="p-3">
-												<h4 className="title">38</h4>
+												<h4 className="title">{referentCount}</h4>
 												<span>Nombre de référents</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
-												<h4 className="title">5</h4>
+												<h4 className="title">{customerCount}</h4>
 												<span>Nombre de clients</span>
 											</div>
 										</figure>
@@ -57,272 +205,7 @@ const AdminDashboard = () => {
 									<strong className="d-inline-block mr-3">Gerez les requêtes</strong>
 								</header>
 
-								<div className="table-responsive" style={{ height: '500px' }}>
-									<table className="table table-hover">
-										<thead>
-											<tr>
-												<th>Type de requête</th>
-												<th>Envoyé par</th>
-												<th>Tel</th>
-												<th>Email</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-											{/* 1 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 2 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 3 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 4 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 5 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 6 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 7 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-											{/* 8 */}
-											<tr>
-												<td>Création de compte</td>
-												<td>
-													<p className="title">Asmina Said Ahmed </p>
-												</td>
-												<td>3725168</td>
-												<td>asmina@gmail.com</td>
-												<td>
-													<div className="dropdown d-inline-block">
-														<a
-															href="#"
-															data-toggle="dropdown"
-															className="dropdown-toggle btn btn-outline-secondary"
-														>
-															Cliquer ici
-														</a>
-														<div className="dropdown-menu dropdown-menu-right">
-															<a href="#" className="dropdown-item">
-																Approuver
-															</a>
-															<a href="#" className="dropdown-item">
-																Décliner
-															</a>
-														</div>
-													</div>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
+								{showRequests()}
 							</article>
 						</main>
 					</div>

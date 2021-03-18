@@ -1,3 +1,4 @@
+// import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/globals.css';
 import { createStore } from 'redux';
