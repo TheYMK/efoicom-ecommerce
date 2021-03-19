@@ -23,7 +23,7 @@ const ReferentProfilePage = () => {
 						setRequestStatus(res.data.referent_account_approval);
 					})
 					.catch((err) => {
-						console.log(err);
+						console.log(`----> Failed to get current user: {Error: ${err}`);
 					});
 			}
 		},

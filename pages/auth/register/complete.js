@@ -20,7 +20,8 @@ const RegisterCompletePage = () => {
 		island: '',
 		address: '',
 		password: '',
-		password_confirm: ''
+		password_confirm: '',
+		reference_zone: ''
 	});
 
 	const { user } = useSelector((state) => ({ ...state }));
@@ -38,11 +39,11 @@ const RegisterCompletePage = () => {
 		city,
 		island,
 		address,
-		password_confirm
+		password_confirm,
+		reference_zone
 	} = values;
 
 	useEffect(() => {
-		// To Future Kaym: you might get some bugs here. If so, you can check if those values exists in the local storage first, if no, just redirect back the user to registration page
 		if (window && window.localStorage.getItem('firstNameToRegister') !== null) {
 			setValues({
 				...values,
@@ -53,7 +54,8 @@ const RegisterCompletePage = () => {
 				account_type: window.localStorage.getItem('accountTypeToRegister'),
 				city: window.localStorage.getItem('cityToRegister'),
 				island: window.localStorage.getItem('islandToRegister'),
-				address: window.localStorage.getItem('addressToRegister')
+				address: window.localStorage.getItem('addressToRegister'),
+				reference_zone: window.localStorage.getItem('referenceZoneToRegister')
 			});
 		} else {
 			Router.push('/auth/register');
@@ -91,6 +93,16 @@ const RegisterCompletePage = () => {
 			return;
 		}
 
+		if (account_type === 'referent' && !reference_zone) {
+			toast.error(
+				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteur. Veuillez réessayer"
+			);
+
+			setLoading(false);
+
+			return;
+		}
+
 		if (password.length < 6) {
 			toast.error('Votre mot de passe doit avoir au minimum 6 caractères');
 			setLoading(false);
@@ -110,6 +122,7 @@ const RegisterCompletePage = () => {
 				window.localStorage.removeItem('cityToRegister');
 				window.localStorage.removeItem('islandToRegister');
 				window.localStorage.removeItem('addressToRegister');
+				window.localStorage.removeItem('referenceZoneToRegister');
 
 				// get user id token
 

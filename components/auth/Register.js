@@ -13,6 +13,7 @@ const Register = () => {
 		email: '',
 		phone_number: '',
 		account_type: '',
+		reference_zone: '',
 		city: '',
 		island: '',
 		address: ''
@@ -24,7 +25,7 @@ const Register = () => {
 
 	const [ termsAndConditionsAccepted, setTermsAndConditionsAccepted ] = useState(false);
 
-	const { first_name, last_name, email, phone_number, account_type, city, island, address } = values;
+	const { first_name, last_name, email, phone_number, account_type, city, island, address, reference_zone } = values;
 
 	useEffect(
 		() => {
@@ -42,18 +43,37 @@ const Register = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		if (
-			first_name === '' ||
-			last_name === '' ||
-			email === '' ||
-			phone_number === '' ||
-			account_type === '' ||
-			city === '' ||
-			island === '' ||
-			address === ''
-		) {
-			toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
-			return;
+		if (account_type === 'customer') {
+			if (
+				first_name === '' ||
+				last_name === '' ||
+				email === '' ||
+				phone_number === '' ||
+				account_type === '' ||
+				city === '' ||
+				island === '' ||
+				address === ''
+			) {
+				toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
+				return;
+			}
+		}
+
+		if (account_type === 'referent') {
+			if (
+				first_name === '' ||
+				last_name === '' ||
+				email === '' ||
+				phone_number === '' ||
+				account_type === '' ||
+				city === '' ||
+				island === '' ||
+				address === '' ||
+				reference_zone === ''
+			) {
+				toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
+				return;
+			}
 		}
 
 		setLoading(true);
@@ -79,7 +99,7 @@ const Register = () => {
 			window.localStorage.setItem('cityToRegister', city);
 			window.localStorage.setItem('islandToRegister', island);
 			window.localStorage.setItem('addressToRegister', address);
-
+			window.localStorage.setItem('referenceZoneToRegister', reference_zone);
 			setValues({
 				first_name: '',
 				last_name: '',
@@ -88,12 +108,13 @@ const Register = () => {
 				account_type: '',
 				city: '',
 				island: '',
-				address: ''
+				address: '',
+				reference_zone: ''
 			});
 			setLoading(false);
 		} catch (err) {
 			setLoading(false);
-			console.log(`Error occured during registration process (=> /auth/register page): ${err}`);
+			console.log(`----> Error occured during registration process (=> /auth/register page): ${err}`);
 			toast.error("Oops une erreur s'est produite durant la création de votre compte. Veuillez réessayer!");
 		}
 	};
@@ -232,16 +253,41 @@ const Register = () => {
 									onChange={(e) => setValues({ ...values, island: e.target.value })}
 								>
 									<option value=""> Veuillez choisir une île...</option>
-									<option>Anjouan</option>
-									<option>Ngazidja</option>
-									<option>Mohéli</option>
+									<option value="anjouan">Anjouan</option>
+									<option value="ngazidja">Ngazidja</option>
+									<option value="mohéli">Mohéli</option>
 								</select>
 							</div>
 						</div>
+
+						{account_type === 'referent' && (
+							<div className="form-group">
+								<label htmlFor="reference_zone">
+									Quelle zone souhaitez-vous référer? <small style={{ color: 'red' }}>*</small>
+								</label>
+								<select
+									id="reference_zone"
+									className="form-control"
+									required
+									value={reference_zone}
+									onChange={(e) => setValues({ ...values, reference_zone: e.target.value })}
+								>
+									<option value=""> Veuillez choisir une zone...</option>
+									<option value="zone1">Zone 1</option>
+									<option value="zone2">Zone 2</option>
+									<option value="zone3">Zone 3</option>
+									<option value="zone4">Zone 4</option>
+									<option value="zone5">Zone 5</option>
+									<option value="zone6">Zone 6</option>
+									<option value="zone7">Zone 7</option>
+								</select>
+							</div>
+						)}
+
 						<div className="form-row">
 							<div className="form-group col-md-12">
 								<label htmlFor="address">
-									Adresse <small style={{ color: 'red' }}>*</small>
+									Votre adresse complète<small style={{ color: 'red' }}>*</small>
 								</label>
 								<input
 									className="form-control"

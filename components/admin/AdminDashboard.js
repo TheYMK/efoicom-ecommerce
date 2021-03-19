@@ -163,7 +163,7 @@ const AdminDashboard = () => {
 								<div className="card-body">
 									<figure className="icontext">
 										<div className="text">
-											<strong> {currentUser.name} </strong> <br />
+											<strong> {currentUser.name} (Administrateur) </strong> <br />
 											<p className="mb-2"> {currentUser.email} </p>
 											<a href="#" className="btn btn-light btn-sm">
 												Modifier les informations

@@ -88,7 +88,7 @@ const Login = () => {
 				})
 				.catch((err) => {
 					setLoading(false);
-					console.log(`Error occured during login process (=> /auth/login page): ${err}`);
+					console.log(`----> Error occured during login process (=> /auth/login page): ${err}`);
 				});
 		} catch (err) {
 			setLoading(false);

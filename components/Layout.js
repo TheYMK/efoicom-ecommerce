@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Footer from './footer/Footer';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import { auth } from '../actions/firebase';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from '../actions/auth';
@@ -26,7 +26,9 @@ const Layout = ({ children }) => {
 							}
 						});
 					})
-					.catch((err) => console.log(err));
+					.catch((err) => {
+						console.log(`----> Failed to get current user: {Error: ${err}`);
+					});
 			}
 		});
 

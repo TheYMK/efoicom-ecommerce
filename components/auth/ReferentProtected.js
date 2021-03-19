@@ -16,7 +16,7 @@ const ReferentProtected = ({ children }) => {
 						setAccessGranted(true);
 					})
 					.catch((err) => {
-						console.log('Failed to grant access to admin resource', err);
+						console.log(`----> Failed to get current referent user: {Error: ${err}`);
 						// toast.error("Vous n'êtes pas autorisé à acceder à cette section de la platforme");
 						setAccessGranted(false);
 					});
