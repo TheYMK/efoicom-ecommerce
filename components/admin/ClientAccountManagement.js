@@ -36,7 +36,7 @@ const ClientAccountManagement = () => {
 												<td>Moroni, Zilimadjou</td>
 												<td>Ngazidja</td>
 												<td>
-													<a href="#" class="btn btn-outline-primary">
+													<a href="#" className="btn btn-outline-primary">
 														Voir le profile
 													</a>
 												</td>
@@ -49,7 +49,7 @@ const ClientAccountManagement = () => {
 												<td>Moroni, Zilimadjou</td>
 												<td>Ngazidja</td>
 												<td>
-													<a href="#" class="btn btn-outline-primary">
+													<a href="#" className="btn btn-outline-primary">
 														Voir le profile
 													</a>
 												</td>
@@ -62,7 +62,7 @@ const ClientAccountManagement = () => {
 												<td>Moroni, Zilimadjou</td>
 												<td>Ngazidja</td>
 												<td>
-													<a href="#" class="btn btn-outline-primary">
+													<a href="#" className="btn btn-outline-primary">
 														Voir le profile
 													</a>
 												</td>

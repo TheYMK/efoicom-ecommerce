@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 export const getCounts = async (authtoken) => {
-	return await axios.get(`${API_URL}/get-counts`, {
+	return await axios.get(`${API_URL}/admin/get-counts`, {
 		headers: {
 			authtoken: authtoken
 		}
@@ -10,7 +10,7 @@ export const getCounts = async (authtoken) => {
 };
 
 export const getTotalRefRequests = async (authtoken) => {
-	return await axios.get(`${API_URL}/referents/requests`, {
+	return await axios.get(`${API_URL}/admin/referents/requests`, {
 		headers: {
 			authtoken: authtoken
 		}
@@ -19,7 +19,7 @@ export const getTotalRefRequests = async (authtoken) => {
 
 export const updateReferentAccountApprovalStatus = async (authtoken, email, approval_status) => {
 	return await axios.put(
-		`${API_URL}/referent/update-account-approval-status`,
+		`${API_URL}/admin/referent/update-account-approval-status`,
 		{ email, approval_status },
 		{
 			headers: {
@@ -27,4 +27,12 @@ export const updateReferentAccountApprovalStatus = async (authtoken, email, appr
 			}
 		}
 	);
+};
+
+export const getAllReferents = async (authtoken) => {
+	return await axios.get(`${API_URL}/admin/referents/all-approved`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
 };

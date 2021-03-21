@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Router from 'next/router';
 
 function LoadingToRedirect() {
-	const [ count, setCount ] = useState(5);
+	const [ count, setCount ] = useState(10);
 
 	useEffect(
 		() => {

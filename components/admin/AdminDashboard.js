@@ -5,18 +5,20 @@ import { getCurrentUser } from '../../actions/auth';
 import { getCounts, getTotalRefRequests, updateReferentAccountApprovalStatus } from '../../actions/user';
 import { toast } from 'react-toastify';
 import ApproveRequestDialog from '../dialogs/ApproveRequestDialog';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 const AdminDashboard = () => {
 	const [ currentUser, setCurrentUser ] = useState({});
-	const [ requests, setRequests ] = useState([]);
 	const [ referentCount, setReferentCount ] = useState(0);
 	const [ customerCount, setCustomerCount ] = useState(0);
+	const [ requests, setRequests ] = useState(null);
+	const [ loading, setLoading ] = useState(false);
 	const { user } = useSelector((state) => ({ ...state }));
 
 	useEffect(() => {
 		if (user && user.token) {
 			loadUserInfo();
-			fetchTotalRefAccountCounts();
+			fetchTotalAccountsCount();
 			fetchAllRefRequests();
 		}
 	}, []);
@@ -33,7 +35,7 @@ const AdminDashboard = () => {
 	};
 
 	// get total referent accounts count
-	const fetchTotalRefAccountCounts = () => {
+	const fetchTotalAccountsCount = () => {
 		getCounts(user.token)
 			.then((res) => {
 				setReferentCount(res.data.totalRefCount);
@@ -46,12 +48,15 @@ const AdminDashboard = () => {
 
 	// get all referents requests
 	const fetchAllRefRequests = () => {
+		setLoading(true);
 		getTotalRefRequests(user.token)
 			.then((res) => {
 				setRequests(res.data);
+				setLoading(false);
 			})
 			.catch((err) => {
 				console.log(err);
+				setLoading(false);
 			});
 	};
 
@@ -65,6 +70,7 @@ const AdminDashboard = () => {
 						<th>Envoyé par</th>
 						<th>Tel</th>
 						<th>Email</th>
+						<th>Zone de référence</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -78,13 +84,16 @@ const AdminDashboard = () => {
 							</td>
 							<td>{request.phone_number}</td>
 							<td>{request.email}</td>
-							<td>{request.referent_account_approval.toUpperCase()}</td>
+							<td>{request.reference_zone}</td>
+							<td>
+								<strong style={{ color: 'red' }}>En attente...</strong>
+							</td>
 							<td>
 								<div className="dropdown d-inline-block">
 									<button
 										href="#"
 										data-toggle="dropdown"
-										className="dropdown-toggle btn btn-outline-primary"
+										className="dropdown-toggle btn btn-secondary"
 									>
 										Cliquer ici
 									</button>
@@ -97,7 +106,6 @@ const AdminDashboard = () => {
 											Approuver
 										</button>
 										<button
-											href="#"
 											className="dropdown-item"
 											onClick={() => handleRequestRejection(request.email)}
 										>
@@ -116,6 +124,7 @@ const AdminDashboard = () => {
 	const handleRequestApproval = (email) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir approuver ce référent?');
 		const approval_status = 'approved';
+		setLoading(true);
 		if (result === true) {
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
@@ -123,9 +132,11 @@ const AdminDashboard = () => {
 						`Vous venez d'approuver un référent. Ce dernier peut desormais mettre en ligne des produits ou services, et converser avec des clients de la platforme`
 					);
 					fetchAllRefRequests();
+					setLoading(false);
 				})
 				.catch((err) => {
 					console.log(err);
+					setLoading(false);
 					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
 				});
 		}
@@ -134,21 +145,35 @@ const AdminDashboard = () => {
 	const handleRequestRejection = (email) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir decliner ce référent?');
 		const approval_status = 'rejected';
-
+		setLoading(true);
 		if (result === true) {
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
 					toast.info(
 						`Vous venez de decliner un référent. Son compte sera automatiquement supprimer de la base de donnée. Assurez vous de supprimer le compte sur firebase aussi`
 					);
+
 					fetchAllRefRequests();
+					setLoading(false);
 				})
 				.catch((err) => {
 					console.log(err);
+					setLoading(false);
 					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
 				});
 		}
 	};
+
+	const showLoadingRequest = () => (
+		<div className="p-5">
+			<Skeleton animation="wave" variant="text" />
+			<Skeleton animation="wave" variant="text" />
+			<Skeleton animation="wave" variant="text" />
+			<Skeleton animation="wave" variant="text" />
+			<Skeleton animation="wave" variant="text" />
+			<Skeleton animation="wave" variant="text" />
+		</div>
+	);
 
 	return (
 		<React.Fragment>
@@ -204,8 +229,7 @@ const AdminDashboard = () => {
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">Gerez les requêtes</strong>
 								</header>
-
-								{showRequests()}
+								{requests === null || loading ? showLoadingRequest() : showRequests()}
 							</article>
 						</main>
 					</div>

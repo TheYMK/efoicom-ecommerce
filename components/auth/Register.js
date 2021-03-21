@@ -87,7 +87,7 @@ const Register = () => {
 			await auth.sendSignInLinkToEmail(email, config);
 
 			toast.success(
-				`Un email de confirmation vous a été envoyer. Clickez sur le lien pour completer votre enregistrement.`
+				`Un email de confirmation vous a été envoyer. Cliquez sur le lien pour completer votre enregistrement.`
 			);
 
 			// save user info to local storage
@@ -115,7 +115,7 @@ const Register = () => {
 		} catch (err) {
 			setLoading(false);
 			console.log(`----> Error occured during registration process (=> /auth/register page): ${err}`);
-			toast.error("Oops une erreur s'est produite durant la création de votre compte. Veuillez réessayer!");
+			toast.error("Oops une erreur s'est produite lors de la création de votre compte. Veuillez réessayer!");
 		}
 	};
 

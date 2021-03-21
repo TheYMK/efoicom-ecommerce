@@ -24,7 +24,7 @@ const RegisterCompletePage = () => {
 		reference_zone: ''
 	});
 
-	const { user } = useSelector((state) => ({ ...state }));
+	// const { user } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
 
 	const [ loading, setLoading ] = useState(false);
@@ -44,7 +44,8 @@ const RegisterCompletePage = () => {
 	} = values;
 
 	useEffect(() => {
-		if (window && window.localStorage.getItem('firstNameToRegister') !== null) {
+		// check if we at least have one field existing in the local storage. I'm assuming here that if one is there, others should also be there.
+		if (window && window.localStorage.getItem('emailToRegister') !== null) {
 			setValues({
 				...values,
 				first_name: window.localStorage.getItem('firstNameToRegister'),
@@ -65,13 +66,13 @@ const RegisterCompletePage = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		setLoading(true);
+
 		if (password !== password_confirm) {
 			toast.error('Les mots de passe doivent être identique!');
 			setLoading(false);
 			return;
 		}
-
-		setLoading(true);
 
 		if (
 			!first_name ||
@@ -124,11 +125,9 @@ const RegisterCompletePage = () => {
 				window.localStorage.removeItem('addressToRegister');
 				window.localStorage.removeItem('referenceZoneToRegister');
 
-				// get user id token
-
 				let user = auth.currentUser;
 				await user.updatePassword(password);
-
+				// get user id token
 				const idTokenResult = await user.getIdTokenResult();
 
 				// Save to redux store
