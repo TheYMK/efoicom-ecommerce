@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
 
-const ReferentProfileOverview = ({ referent, open, handleClose }) => {
+const ReferentProfileOverview = ({ referent, open, handleClose, handleDeleteUser, loading }) => {
 	return (
 		<div>
 			<Dialog
@@ -100,8 +100,12 @@ const ReferentProfileOverview = ({ referent, open, handleClose }) => {
 										</div>
 									</div>
 								</div>
-								<button onClick={handleClose} className="btn btn-danger mt-5">
-									Supprimer ce compte
+								<button
+									onClick={handleClose}
+									className="btn btn-danger mt-5"
+									onClick={() => handleDeleteUser(referent._id)}
+								>
+									{loading ? 'En cours...' : 'Supprimer ce compte'}
 								</button>
 							</div>
 						</div>

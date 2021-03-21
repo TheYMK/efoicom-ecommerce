@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllReferents } from '../../actions/user';
+import { getAllReferents, deleteReferentUser } from '../../actions/user';
 import AdminMenu from './AdminMenu';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -11,6 +11,7 @@ const ReferentAccountManagement = () => {
 	const [ open, setOpen ] = useState(false);
 	const [ currentReferent, setCurrentReferent ] = useState([]);
 	const { user } = useSelector((state) => ({ ...state }));
+	const [ loading, setLoading ] = useState(false);
 
 	useEffect(() => {
 		if (user && user.token) {
@@ -26,6 +27,28 @@ const ReferentAccountManagement = () => {
 		} catch (err) {
 			console.log(`----> Failed to get all approved referents: {Error: ${err}}`);
 			toast.error('Failed to get all approved referents');
+		}
+	};
+
+	const handleDeleteUser = (id) => {
+		if (user && user.token) {
+			const result = window.confirm('Êtes-vous sûr de vouloir supprimer ce compte?');
+
+			if (result) {
+				setLoading(true);
+				deleteReferentUser(user.token, id)
+					.then((res) => {
+						setLoading(false);
+						setOpen(false);
+						toast.success(`Le compte ${res.data.email} a bien été supprimer`);
+						loadReferents(user.token);
+					})
+					.catch((err) => {
+						setLoading(false);
+						console.log(err);
+						toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
+					});
+			}
 		}
 	};
 
@@ -86,7 +109,13 @@ const ReferentAccountManagement = () => {
 
 	return (
 		<React.Fragment>
-			<ReferentProfileOverview referent={currentReferent} open={open} handleClose={handleClose} />
+			<ReferentProfileOverview
+				referent={currentReferent}
+				open={open}
+				handleClose={handleClose}
+				handleDeleteUser={handleDeleteUser}
+				loading={loading}
+			/>
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">

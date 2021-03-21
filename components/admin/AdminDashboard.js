@@ -124,8 +124,9 @@ const AdminDashboard = () => {
 	const handleRequestApproval = (email) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir approuver ce référent?');
 		const approval_status = 'approved';
-		setLoading(true);
+
 		if (result === true) {
+			setLoading(true);
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
 					toast.info(
@@ -145,8 +146,9 @@ const AdminDashboard = () => {
 	const handleRequestRejection = (email) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir decliner ce référent?');
 		const approval_status = 'rejected';
-		setLoading(true);
+
 		if (result === true) {
+			setLoading(true);
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
 					toast.info(

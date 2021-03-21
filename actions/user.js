@@ -36,3 +36,11 @@ export const getAllReferents = async (authtoken) => {
 		}
 	});
 };
+
+export const deleteReferentUser = async (authtoken, id) => {
+	return await axios.delete(`${API_URL}/admin/referent/${id}`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
