@@ -44,3 +44,27 @@ export const deleteReferentUser = async (authtoken, id) => {
 		}
 	});
 };
+
+export const updateAdminUserAccount = async (authtoken, name, email) => {
+	return await axios.put(
+		`${API_URL}/admin/account-update`,
+		{ newName: name, newEmail: email },
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};
+
+export const updateAdminPassword = async (authtoken, newPassword) => {
+	return await axios.put(
+		`${API_URL}/admin/password-update`,
+		{ newPassword },
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};

@@ -19,6 +19,7 @@ const ReferentAccountManagement = () => {
 		}
 	}, []);
 
+	// code improvement to be done here: token doesn't have to be passed as parameter, we can just directly use user.token
 	const loadReferents = async (token) => {
 		try {
 			const allRefs = await getAllReferents(token);

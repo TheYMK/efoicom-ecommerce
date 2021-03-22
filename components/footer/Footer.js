@@ -8,94 +8,58 @@ const Footer = () => {
 					<section className="footer-top padding-y-lg text-white">
 						<div className="row">
 							<aside className="col-md col-6">
-								<h6 className="title">Brands</h6>
+								<h6 className="title">Services à la clientèle</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
-										<a href="#">Adidas</a>
+										<a href="#">Centre d’aide</a>
 									</li>
 									<li>
 										{' '}
-										<a href="#">Puma</a>
+										<a href="#">Nous contacter</a>
 									</li>
 									<li>
 										{' '}
-										<a href="#">Reebok</a>
+										<a href="#">Signaler un abus</a>
 									</li>
 									<li>
 										{' '}
-										<a href="#">Nike</a>
+										<a href="#">Politiques et règles</a>
 									</li>
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title">Company</h6>
+								<h6 className="title">Qui sommes-nous</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
-										<a href="#">About us</a>
+										<a href="#">À propos de Massiwa Market</a>
 									</li>
 									<li>
 										{' '}
-										<a href="#">Career</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Find a store</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Rules and terms</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Sitemap</a>
+										<a href="#">Plan du site</a>
 									</li>
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title">Help</h6>
+								<h6 className="title">Vendre sur MassiwaMarket</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
-										<a href="#">Contact us</a>
+										<a href="#">Adhésion comme référent</a>
 									</li>
 									<li>
 										{' '}
-										<a href="#">Money refund</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Order status</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Shipping info</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Open dispute</a>
+										<a href="#">Centre d’apprentissage</a>
 									</li>
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title">Account</h6>
+								<h6 className="title">Acheter sur Massiwa Market</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
-										<a href="#"> User Login </a>
-									</li>
-									<li>
-										{' '}
-										<a href="#"> User register </a>
-									</li>
-									<li>
-										{' '}
-										<a href="#"> Account Setting </a>
-									</li>
-									<li>
-										{' '}
-										<a href="#"> My Orders </a>
+										<a href="#">Toutes les catégories </a>
 									</li>
 								</ul>
 							</aside>
