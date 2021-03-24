@@ -5,66 +5,28 @@ const Regions = () => {
 		<React.Fragment>
 			<section className="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Choose region</h4>
+					<h4 className="title-section text-uppercase">Chosissez une île</h4>
 				</header>
 
 				<ul className="row mt-4">
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/CN.png" /> <span>China</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/CN.png" />{' '}
+							<span>Anjouan</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/DE.png" />{' '}
-							<span>Germany</span>{' '}
+							<img className="icon-flag-sm" src="/static/images/icons/flags/DE.png" /> <span>Mohéli</span>{' '}
 						</a>
 					</li>
 					<li className="col-md col-6">
 						<a href="#" className="icontext">
 							{' '}
 							<img className="icon-flag-sm" src="/static/images/icons/flags/AU.png" />{' '}
-							<span>Australia</span>{' '}
-						</a>
-					</li>
-					<li className="col-md col-6">
-						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/RU.png" /> <span>Russia</span>{' '}
-						</a>
-					</li>
-					<li className="col-md col-6">
-						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/IN.png" /> <span>India</span>{' '}
-						</a>
-					</li>
-					<li className="col-md col-6">
-						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/GB.png" />{' '}
-							<span>England</span>{' '}
-						</a>
-					</li>
-					<li className="col-md col-6">
-						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/TR.png" /> <span>Turkey</span>{' '}
-						</a>
-					</li>
-					<li className="col-md col-6">
-						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/UZ.png" />{' '}
-							<span>Uzbekistan</span>{' '}
-						</a>
-					</li>
-					<li className="col-md col-6">
-						<a href="#" className="icontext">
-							{' '}
-							<i className="mr-3 fa fa-ellipsis-h" /> <span>More regions</span>{' '}
+							<span>Ngazidja</span>{' '}
 						</a>
 					</li>
 				</ul>

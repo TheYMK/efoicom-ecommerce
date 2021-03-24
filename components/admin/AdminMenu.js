@@ -18,6 +18,11 @@ const AdminMenu = ({ pageLocation }) => {
 						Gestion comptes clients
 					</a>
 				</Link>
+				<Link href="/admin/categories-subs">
+					<a className={`list-group-item ${pageLocation === 'categories-subs' ? 'active' : ''}`}>
+						Catégories et Sous-Catégories
+					</a>
+				</Link>
 				<Link href="/admin/products-services-management">
 					<a className={`list-group-item ${pageLocation === 'products_and_services' ? 'active' : ''}`}>
 						Gestion produits & services
