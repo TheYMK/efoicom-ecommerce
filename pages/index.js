@@ -13,6 +13,8 @@ import SectionOne from '../components/sections/SectionOne';
 import SectionTwo from '../components/sections/SectionTwo';
 import Services from '../components/services/Services';
 import Subscribe from '../components/subscribe/Subscribe';
+import Annoucements from '../components/annoucements/Annoucements';
+import OurCategories from '../components/ourCategories/OurCategories';
 
 const HomePage = () => {
 	const head = () => (
@@ -30,16 +32,18 @@ const HomePage = () => {
 					<Header />
 					<Navbar />
 				</header>
-				<div className="container">
-					<Main />
+				<Main />
+				<div className="container mt-0">
+					<OurCategories />
 					<Deal />
-					<SectionOne />
-					<SectionTwo />
+					{/* <SectionOne />
+					<SectionTwo /> */}
 					<Request />
 					<Items />
-					{/* <Services /> */}
-					<Regions />
-					<Ad />
+					<Annoucements />
+					<Services />
+					{/* <Regions /> */}
+					{/* <Ad /> */}
 				</div>
 
 				<Subscribe />

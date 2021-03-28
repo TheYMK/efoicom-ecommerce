@@ -4,6 +4,10 @@ const Deal = () => {
 	return (
 		<React.Fragment>
 			<section className="padding-bottom">
+				<header className="section-heading heading-line">
+					<h4 className="title-section text-uppercase">À découvrir</h4>
+				</header>
+
 				<div className="card card-deal">
 					<div className="col-heading content-body">
 						<header className="section-heading">
@@ -41,7 +45,7 @@ const Deal = () => {
 										Vente de Légumes
 									</a>
 
-									<span className="badge badge-danger"> Magasin 1 </span>
+									<span className="badge badge-primary"> Magasin 1 </span>
 									<p className="text-muted mt-3">
 										<i className="fa fa-map-marker-alt" /> Moroni, Malouzini
 									</p>
@@ -58,7 +62,7 @@ const Deal = () => {
 										Fabrication de vêtement
 									</a>
 
-									<span className="badge badge-danger"> Chez Mr X </span>
+									<span className="badge badge-primary"> Chez Mr X </span>
 									<p className="text-muted mt-3">
 										<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 									</p>
@@ -75,7 +79,7 @@ const Deal = () => {
 										Vente de Légumes
 									</a>
 
-									<span className="badge badge-danger"> Magasin 1 </span>
+									<span className="badge badge-primary"> Magasin 1 </span>
 									<p className="text-muted mt-3">
 										<i className="fa fa-map-marker-alt" /> Moroni, Malouzini
 									</p>
@@ -92,7 +96,7 @@ const Deal = () => {
 										Fabrication de vêtement
 									</a>
 
-									<span className="badge badge-danger"> Chez Mr X </span>
+									<span className="badge badge-primary"> Chez Mr X </span>
 									<p className="text-muted mt-3">
 										<i className="fa fa-map-marker-alt" /> Anjouan, Domoni
 									</p>
@@ -109,7 +113,7 @@ const Deal = () => {
 										Vente de Légumes
 									</a>
 
-									<span className="badge badge-danger"> Magasin 1 </span>
+									<span className="badge badge-primary"> Magasin 1 </span>
 									<p className="text-muted mt-3">
 										<i className="fa fa-map-marker-alt" /> Moroni, Malouzini
 									</p>

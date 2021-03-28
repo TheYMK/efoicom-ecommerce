@@ -3,47 +3,72 @@ import React from 'react';
 const Services = () => {
 	return (
 		<React.Fragment>
-			<section className="padding-bottom">
+			<section classNameName="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Trade services</h4>
+					<h4 className="title-section text-uppercase">Nos partenaires</h4>
 				</header>
 
-				<div className="row">
-					<div className="col-md-3 col-sm-6">
-						<article className="card card-post">
-							<img src="/static/images/posts/1.jpg" className="card-img-top" />
-							<div className="card-body">
-								<h6 className="title">Trade Assurance</h6>
-								<p className="small text-uppercase text-muted">Order protection</p>
+				{/* <div className="brands">
+					<div className="brands-container">
+						<div className="row ml-5 px-5">
+							<div className="brands-col-5 mr-5">
+								<img src="/static/images/partenaires/comores.png" alt="" />
 							</div>
-						</article>
+							<div className="brands-col-5 mr-5">
+								<img src="/static/images/partenaires/efoicom.png" alt="" />
+							</div>
+							<div className="brands-col-5 mr-5 mt-5">
+								<img src="/static/images/partenaires/onu.png" alt="" />
+							</div>
+							<div className="brands-col-5 mr-5 mt-4">
+								<img src="/static/images/partenaires/pnud.png" alt="" />
+							</div>
+							<div className="brands-col-5 mr-5">
+								<img src="/static/images/partenaires/canada.png" alt="" />
+							</div>
+							<div className="brands-col-5">
+								<img src="/static/images/partenaires/9.jpg" alt="" />
+							</div>
+						</div>
 					</div>
-					<div className="col-md-3 col-sm-6">
-						<article className="card card-post">
-							<img src="/static/images/posts/2.jpg" className="card-img-top" />
-							<div className="card-body">
-								<h6 className="title">Pay anytime</h6>
-								<p className="small text-uppercase text-muted">Finance solution</p>
+				</div> */}
+
+				<div className="container">
+					<div className="card mb-5 ">
+						<div className="card-body px-5">
+							<div className="row mt-3" style={{ marginLeft: '60px' }}>
+								<div className="brands-col-5 ml-2 mr-5">
+									<img
+										src="/static/images/partenaires/comores.png"
+										alt=""
+										style={{ width: '140px' }}
+									/>
+								</div>
+								<div className="brands-col-5 mr-5">
+									<img
+										src="/static/images/partenaires/efoicom.jpg"
+										alt=""
+										style={{ width: '130px' }}
+									/>
+								</div>
+								<div className="brands-col-5 mr-5">
+									<img src="/static/images/partenaires/onu.png" alt="" />
+								</div>
+								<div className="brands-col-5 mr-5">
+									<img src="/static/images/partenaires/pnud.svg" alt="" />
+								</div>
+								<div className="brands-col-5 mt-5 mr-5">
+									<img
+										src="/static/images/partenaires/canada.png"
+										alt=""
+										style={{ width: '300px' }}
+									/>
+								</div>
+								<div className="brands-col-5">
+									<img src="/static/images/partenaires/9.jpg" alt="" />
+								</div>
 							</div>
-						</article>
-					</div>
-					<div className="col-md-3 col-sm-6">
-						<article className="card card-post">
-							<img src="/static/images/posts/3.jpg" className="card-img-top" />
-							<div className="card-body">
-								<h6 className="title">Inspection solution</h6>
-								<p className="small text-uppercase text-muted">Easy Inspection</p>
-							</div>
-						</article>
-					</div>
-					<div className="col-md-3 col-sm-6">
-						<article className="card card-post">
-							<img src="/static/images/posts/4.jpg" className="card-img-top" />
-							<div className="card-body">
-								<h6 className="title">Ocean and Air Shipping</h6>
-								<p className="small text-uppercase text-muted">Logistic services</p>
-							</div>
-						</article>
+						</div>
 					</div>
 				</div>
 			</section>

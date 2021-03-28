@@ -105,7 +105,11 @@ const Navbar = () => {
 								>
 									&#127467;&#127479; Français
 								</a>
+
 								<div className="dropdown-menu dropdown-menu-right">
+									<a className="dropdown-item" href="#">
+										&#127472;&#127474; Shikomori
+									</a>
 									<a className="dropdown-item" href="#">
 										&#x1f1ec;&#x1f1e7; English
 									</a>

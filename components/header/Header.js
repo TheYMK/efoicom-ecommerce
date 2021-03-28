@@ -31,7 +31,7 @@ const Header = () => {
 							<a href="/" className="brand-wrap">
 								<img
 									className="logo"
-									style={{ width: '200px', objectFit: 'cover' }}
+									style={{ width: '250px', objectFit: 'cover' }}
 									src="/static/images/logo.png"
 								/>
 								{/* <span className="logo">Massiwa Market</span> */}
@@ -58,6 +58,11 @@ const Header = () => {
 						</div>
 						<div className="col-xl-4 col-lg-4 col-md-6">
 							<div className="widgets-wrap float-md-right">
+								<div className="widget-header mr-5">
+									<p>
+										<i className="fa fa-phone" /> +269 3725168
+									</p>
+								</div>
 								<div className="widget-header mr-3">
 									<a href="#" className="widget-view">
 										<div className="icon-area">
@@ -70,10 +75,10 @@ const Header = () => {
 								<div className="widget-header mr-3">
 									<a href="#" className="widget-view">
 										<div className="icon-area">
-											<i className="fa fa-shopping-cart" />
+											<i className="fa fa-heart" />
 											<span className="notify">1</span>
 										</div>
-										<small className="text"> Pannier </small>
+										<small className="text"> Mes favoris </small>
 									</a>
 								</div>
 								{!user && (
@@ -83,7 +88,7 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-sign-in-alt" />
 												</div>
-												<small className="text">Se Connecter</small>
+												<small className="text">Se connecter</small>
 											</a>
 										</Link>
 									</div>

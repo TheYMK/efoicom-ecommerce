@@ -96,10 +96,8 @@ const Footer = () => {
 					</section>
 
 					<section className="footer-bottom text-center">
-						<p className="text-white">
-							Privacy Policy - Terms of Use - User Information Legal Enquiry Guide
-						</p>
-						<p className="text-muted"> &copy 2019 Company name, All rights reserved </p>
+						<p className="text-white">Politique de confidentialité - Mentions Legales</p>
+						<p className="text-muted"> COPYRIGHT &copy; 2021 BANGWÉ LA MASSIWA, TOUS DROIT RESERVÉS </p>
 						<br />
 					</section>
 				</div>

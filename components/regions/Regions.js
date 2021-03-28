@@ -8,28 +8,37 @@ const Regions = () => {
 					<h4 className="title-section text-uppercase">Chosissez une île</h4>
 				</header>
 
-				<ul className="row mt-4">
-					<li className="col-md col-6">
+				<div className="container text-center mt-4">
+					<div className="row">
+						<div className="col-md-4">
+							<button className="btn button-region btn-lg">Anjouan</button>
+						</div>
+						<div className="col-md-4">
+							<button className="btn button-region btn-lg">Ngazidja</button>
+						</div>
+						<div className="col-md-4">
+							<button className="btn button-region btn-lg">Mohéli</button>
+						</div>
+					</div>
+				</div>
+
+				{/* <ul className="row mt-4">
+					<li className="col-md col-3">
 						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/CN.png" />{' '}
-							<span>Anjouan</span>{' '}
+							<span>Anjouan</span>
 						</a>
 					</li>
-					<li className="col-md col-6">
+					<li className="col-md col-3">
 						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/DE.png" /> <span>Mohéli</span>{' '}
+							<span>Mohéli</span>
 						</a>
 					</li>
-					<li className="col-md col-6">
+					<li className="col-md col-3">
 						<a href="#" className="icontext">
-							{' '}
-							<img className="icon-flag-sm" src="/static/images/icons/flags/AU.png" />{' '}
-							<span>Ngazidja</span>{' '}
+							<span>Ngazidja</span>
 						</a>
 					</li>
-				</ul>
+				</ul> */}
 			</section>
 		</React.Fragment>
 	);
