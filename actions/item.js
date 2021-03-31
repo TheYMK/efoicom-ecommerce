@@ -1,0 +1,52 @@
+import axios from 'axios';
+import { API_URL } from '../config';
+
+export const createItem = async (authtoken, item) => {
+	return await axios.post(`${API_URL}/referent/item/create`, item, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
+
+export const getItemsCounts = async (authtoken) => {
+	return await axios.get(`${API_URL}/referent/items/get-counts`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
+
+export const getAllItems = async (authtoken, productslimit, productskip, serviceslimit, serviceskip) => {
+	const data = {
+		productslimit,
+		productskip,
+		serviceslimit,
+		serviceskip
+	};
+	return await axios.post(`${API_URL}/referent/items/get-all`, data, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
+
+export const getSingleItem = async (slug) => {
+	return await axios.get(`${API_URL}/item/${slug}`);
+};
+
+export const updateItem = async (authtoken, slug, item) => {
+	return await axios.put(`${API_URL}/referent/item/${slug}`, item, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
+
+export const removeItem = async (authtoken, slug) => {
+	return await axios.delete(`${API_URL}/referent/item/${slug}`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};

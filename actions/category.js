@@ -36,3 +36,7 @@ export const updateCategory = async (authtoken, slug, name) => {
 		}
 	);
 };
+
+export const getCategorySubs = async (id) => {
+	return await axios.get(`${API_URL}/category/${id}/subs`);
+};

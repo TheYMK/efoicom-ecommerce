@@ -12,9 +12,9 @@ const Items = () => {
 				<div className="container">
 					<div className="row row-sm">
 						<SingleProduct imageSrc="/static/images/products/1.jpg" />
-						<SingleProduct imageSrc="/static/images/products/1.jpg" />
-						<SingleProduct imageSrc="/static/images/products/1.jpg" />
-						<SingleProduct imageSrc="/static/images/products/1.jpg" />
+						<SingleProduct imageSrc="/static/images/products/2.jpg" />
+						<SingleProduct imageSrc="/static/images/products/3.jpg" />
+						<SingleProduct imageSrc="/static/images/products/3.jpg" />
 					</div>
 				</div>
 			</section>

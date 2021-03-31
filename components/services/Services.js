@@ -3,7 +3,7 @@ import React from 'react';
 const Services = () => {
 	return (
 		<React.Fragment>
-			<section classNameName="padding-bottom">
+			<section className="padding-bottom">
 				<header className="section-heading heading-line">
 					<h4 className="title-section text-uppercase">Nos partenaires</h4>
 				</header>

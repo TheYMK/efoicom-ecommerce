@@ -3,27 +3,26 @@ import Link from 'next/link';
 
 const SingleProduct = ({ imageSrc }) => {
 	return (
-		<div className="col-xl-3 col-lg-3 col-md-4 col-12">
-			<div className="product-wrapper">
-				<div className="product-container">
-					<div className="product-top">
-						<img src={imageSrc} />
-					</div>
-					<div className="product-bottom">
-						<div className="product-left">
-							<div className="product-details">
-								<p style={{ fontSize: '13px', fontWeight: '700' }}>Gamme Ridoah</p>
-							</div>
-							<div className="product-buy">
-								<Link href="/products">
-									<a>
-										<i className="material-icons">add_shopping_cart</i>
-									</a>
-								</Link>
-							</div>
-						</div>
-					</div>
+		<div className="col-md-3">
+			<div className="product-card product-card-profile">
+				<div className="product-card-header product-card-header-image">
+					<a href="#">
+						<img className="img" src={imageSrc} />
+					</a>
+					<div className="colored-shadow" />
 				</div>
+				<div className="product-card-body ">
+					<h6 className="product-card-category text-info">Annonce 1</h6>
+
+					<p className="product-card-description">
+						Don't be scared of the truth because we need to restart the human foundation in truth And I love
+						you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+					</p>
+					<button className="btn btn-primary">
+						<i className="fas fa-cart-plus" />
+					</button>
+				</div>
+
 				<div className="product-inside">
 					<div className="product-icon">
 						<i className="material-icons">info_outline</i>

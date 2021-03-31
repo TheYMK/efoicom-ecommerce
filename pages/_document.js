@@ -8,6 +8,13 @@ class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
+					{/* antd */}
+					<link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.14.1/antd.min.css"
+						integrity="sha512-GElOEG62hoWTO/9pNNVPBz+b9AELiVOuEEjM3h5jE5nVx+SVHRaKP/TjcJrwjkJC3CfnSK4clQ6l1jxmaeK9tg=="
+						crossOrigin="anonymous"
+					/>
 					{/* JQuery */}
 					<script src="/static/js/jquery-2.0.0.min.js" type="text/javascript" />
 					{/* Bootstrap */}

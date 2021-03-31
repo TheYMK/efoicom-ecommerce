@@ -1,5 +1,6 @@
 // import 'antd/dist/antd.css';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-phone-number-input/style.css';
 import '../styles/globals.css';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';

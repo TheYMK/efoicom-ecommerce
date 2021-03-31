@@ -58,11 +58,11 @@ const Header = () => {
 						</div>
 						<div className="col-xl-4 col-lg-4 col-md-6">
 							<div className="widgets-wrap float-md-right">
-								<div className="widget-header mr-5">
+								{/* <div className="widget-header mr-5">
 									<p>
 										<i className="fa fa-phone" /> +269 3725168
 									</p>
-								</div>
+								</div> */}
 								<div className="widget-header mr-3">
 									<a href="#" className="widget-view">
 										<div className="icon-area">
