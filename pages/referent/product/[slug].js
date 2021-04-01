@@ -9,6 +9,7 @@ import FileUpload from '../../../components/FileUpload';
 import ItemUpdateForm from '../../../components/referent/forms/itemUpdateForm';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
+import ReferentProtected from '../../../components/auth/ReferentProtected';
 
 const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, params, categoriesFromDB }) => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -148,38 +149,40 @@ const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesId
 	return (
 		<React.Fragment>
 			<Layout>
-				<b className="screen-overlay" />
-				<header className="section-header">
-					<Header />
-					<Navbar />
-				</header>
-				<section className="section-pagetop bg-light">
-					<div className="container">
-						<h2 className="title-page">Modification</h2>
-					</div>
-				</section>
-				<section className="section-content bg-white padding-y">
-					<div className="container">
-						<div>
-							<FileUpload
+				<ReferentProtected>
+					<b className="screen-overlay" />
+					<header className="section-header">
+						<Header />
+						<Navbar />
+					</header>
+					<section className="section-pagetop bg-light">
+						<div className="container">
+							<h2 className="title-page">Modification</h2>
+						</div>
+					</section>
+					<section className="section-content bg-white padding-y">
+						<div className="container">
+							<div>
+								<FileUpload
+									values={values}
+									setValues={setValues}
+									loading={loading}
+									setLoading={setLoading}
+								/>
+							</div>
+							<ItemUpdateForm
 								values={values}
 								setValues={setValues}
-								loading={loading}
-								setLoading={setLoading}
+								handleChange={handleChange}
+								handleSubmit={handleSubmit}
+								handleCategoryChange={handleCategoryChange}
+								subOptions={subOptions}
+								arrayOfSubIds={arrayOfSubIds}
+								setArrayOfSubIds={setArrayOfSubIds}
 							/>
 						</div>
-						<ItemUpdateForm
-							values={values}
-							setValues={setValues}
-							handleChange={handleChange}
-							handleSubmit={handleSubmit}
-							handleCategoryChange={handleCategoryChange}
-							subOptions={subOptions}
-							arrayOfSubIds={arrayOfSubIds}
-							setArrayOfSubIds={setArrayOfSubIds}
-						/>
-					</div>
-				</section>
+					</section>
+				</ReferentProtected>
 			</Layout>
 		</React.Fragment>
 	);

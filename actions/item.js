@@ -50,3 +50,23 @@ export const removeItem = async (authtoken, slug) => {
 		}
 	});
 };
+
+export const getTotalItemsRequests = async (authtoken) => {
+	return await axios.get(`${API_URL}/admin/items/requests`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
+
+export const updateItemApprovalStatus = async (authtoken, slug, item_approval_status) => {
+	return await axios.put(
+		`${API_URL}/admin/item/${slug}/update-item-approval-status`,
+		{ item_approval_status },
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};

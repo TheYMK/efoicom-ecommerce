@@ -4,22 +4,27 @@ import { useSelector } from 'react-redux';
 import { getCurrentUser } from '../../actions/auth';
 import { getCounts, getTotalRefRequests, updateReferentAccountApprovalStatus } from '../../actions/user';
 import { toast } from 'react-toastify';
-import ApproveRequestDialog from '../dialogs/ApproveRequestDialog';
 import Skeleton from '@material-ui/lab/Skeleton';
+import { getTotalItemsRequests, updateItemApprovalStatus } from '../../actions/item';
+import AdminViewItemDialog from '../dialogs/AdminViewItemDialog';
 
 const AdminDashboard = () => {
 	const [ currentUser, setCurrentUser ] = useState({});
 	const [ referentCount, setReferentCount ] = useState(0);
 	const [ customerCount, setCustomerCount ] = useState(0);
 	const [ requests, setRequests ] = useState(null);
+	const [ itemsrequests, setItemsRequests ] = useState(null);
 	const [ loading, setLoading ] = useState(false);
 	const { user } = useSelector((state) => ({ ...state }));
+	const [ openViewItemDialog, setOpenViewItemDialog ] = useState(false);
+	const [ currentItem, setCurrentItem ] = useState({});
 
 	useEffect(() => {
 		if (user && user.token) {
 			loadUserInfo();
 			fetchTotalAccountsCount();
 			fetchAllRefRequests();
+			fetchAllItemsRequests();
 		}
 	}, []);
 
@@ -60,6 +65,20 @@ const AdminDashboard = () => {
 			});
 	};
 
+	// get all items requests
+	const fetchAllItemsRequests = () => {
+		setLoading(true);
+		getTotalItemsRequests(user.token)
+			.then((res) => {
+				setItemsRequests(res.data);
+				setLoading(false);
+			})
+			.catch((err) => {
+				console.log(err);
+				setLoading(false);
+			});
+	};
+
 	// display requests
 	const showRequests = () => (
 		<div className="table-responsive" style={{ height: '500px' }}>
@@ -67,8 +86,8 @@ const AdminDashboard = () => {
 				<thead>
 					<tr>
 						<th>Type de requête</th>
-						<th>Envoyé par</th>
-						<th>Tel</th>
+						<th>Envoyé par (référent)</th>
+						<th>Titre de l'article</th>
 						<th>Email</th>
 						<th>Zone de référence</th>
 						<th>Status</th>
@@ -83,11 +102,7 @@ const AdminDashboard = () => {
 								<p className="title">{request.name} </p>
 							</td>
 							<td>{request.phone_number}</td>
-							<td>{request.email}</td>
-							<td>{request.reference_zone}</td>
-							<td>
-								<strong style={{ color: 'red' }}>En attente...</strong>
-							</td>
+
 							<td>
 								<div className="dropdown d-inline-block">
 									<button
@@ -121,6 +136,7 @@ const AdminDashboard = () => {
 		</div>
 	);
 
+	// to be reduced because same as below. Just use one function and let the backend decide
 	const handleRequestApproval = (email) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir approuver ce référent?');
 		const approval_status = 'approved';
@@ -143,6 +159,7 @@ const AdminDashboard = () => {
 		}
 	};
 
+	// to be reduced because same as above. Just use one function and let the backend decide
 	const handleRequestRejection = (email) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir decliner ce référent?');
 		const approval_status = 'rejected';
@@ -166,6 +183,125 @@ const AdminDashboard = () => {
 		}
 	};
 
+	// display items requests
+	const showItemsRequests = () => (
+		<div className="table-responsive" style={{ height: '500px' }}>
+			<table className="table table-hover">
+				<thead>
+					<tr>
+						<th>Type de requête</th>
+						<th>Envoyé par (référent)</th>
+						<th>Titre de l'article</th>
+						<th>Nom du fournisseur</th>
+						<th>Tel du fournisseur</th>
+						<th>Adresse du fournisseur</th>
+						<th>Status</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{itemsrequests.map((request, index) => (
+						<tr key={index}>
+							<td>Approbation d'article</td>
+							<td>
+								<p className="title">{request.referent_email} </p>
+							</td>
+							<td>{request.title}</td>
+							<td>{request.provider_name}</td>
+							<td>{request.provider_phone_number}</td>
+							<td>{request.provider_address}</td>
+							<td>
+								<strong style={{ color: 'red' }}>En attente...</strong>
+							</td>
+							<td>
+								<div className="dropdown d-inline-block">
+									<button
+										href="#"
+										data-toggle="dropdown"
+										className="dropdown-toggle btn btn-secondary"
+									>
+										Cliquer ici
+									</button>
+									<div className="dropdown-menu dropdown-menu-right">
+										<button
+											href="#"
+											className="dropdown-item"
+											onClick={(e) => handleOpenViewItemDialog(request)}
+										>
+											Voir l'article
+										</button>
+										<button
+											href="#"
+											className="dropdown-item"
+											onClick={(e) => handleUpdateItemApprovalStatus(request.slug, 'approved')}
+										>
+											Approuver
+										</button>
+										<button
+											className="dropdown-item"
+											onClick={(e) => handleUpdateItemApprovalStatus(request.slug, 'rejected')}
+										>
+											Décliner
+										</button>
+									</div>
+								</div>
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+	);
+
+	const handleUpdateItemApprovalStatus = (slug, item_approval_status) => {
+		if (item_approval_status === 'approved') {
+			const result = window.confirm('Êtes-vous sûr de vouloir approuver cet article?');
+
+			if (result) {
+				setLoading(true);
+				if (user && user.token) {
+					updateItemApprovalStatus(user.token, slug, item_approval_status)
+						.then((res) => {
+							toast.success("L'article a été approuvé!");
+							fetchAllItemsRequests();
+							setLoading(false);
+						})
+						.catch((err) => {
+							console.log(err);
+							toast.error("Oops! l'opération a echoué. Veuillez réessayer");
+							setLoading(false);
+						});
+				}
+			}
+		}
+
+		if (item_approval_status === 'rejected') {
+			const result = window.confirm('Êtes-vous sûr de vouloir rejeter cet article?');
+
+			if (result) {
+				setLoading(true);
+				if (user && user.token) {
+					updateItemApprovalStatus(user.token, slug, item_approval_status)
+						.then((res) => {
+							toast.success("La requête a été decliner. L'article sera automatiquement supprimé");
+							fetchAllItemsRequests();
+							setLoading(false);
+						})
+						.catch((err) => {
+							console.log(err);
+							toast.error("Oops! l'opération a echoué. Veuillez réessayer");
+							setLoading(false);
+						});
+				}
+			}
+		}
+	};
+
+	const handleOpenViewItemDialog = (item) => {
+		setCurrentItem(item);
+		setOpenViewItemDialog(true);
+	};
+
 	const showLoadingRequest = () => (
 		<div className="p-5">
 			<Skeleton animation="wave" variant="text" />
@@ -177,8 +313,14 @@ const AdminDashboard = () => {
 		</div>
 	);
 
+	const handleCloseViewItemDialog = () => {
+		setOpenViewItemDialog(false);
+		setCurrentItem({});
+	};
+
 	return (
 		<React.Fragment>
+			<AdminViewItemDialog open={openViewItemDialog} handleClose={handleCloseViewItemDialog} item={currentItem} />
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">
@@ -229,9 +371,19 @@ const AdminDashboard = () => {
 							</article>
 							<article className="card mb-4">
 								<header className="card-header">
-									<strong className="d-inline-block mr-3">Gerez les requêtes</strong>
+									<strong className="d-inline-block mr-3">
+										Gerez les requêtes de création de compte
+									</strong>
 								</header>
 								{requests === null || loading ? showLoadingRequest() : showRequests()}
+							</article>
+							<article className="card mb-4">
+								<header className="card-header">
+									<strong className="d-inline-block mr-3">
+										Gerez les requêtes de publication d'article
+									</strong>
+								</header>
+								{itemsrequests === null || loading ? showLoadingRequest() : showItemsRequests()}
 							</article>
 						</main>
 					</div>
