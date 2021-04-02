@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getItemsCounts } from '../../actions/item';
+import { getItemsCountsForReferent } from '../../actions/item';
 import ReferentMenu from './ReferentMenu';
 import { useSelector } from 'react-redux';
 
@@ -17,7 +17,7 @@ const ReferentDashboard = () => {
 	}, []);
 
 	const loadCounts = () => {
-		getItemsCounts(user.token)
+		getItemsCountsForReferent(user.token)
 			.then((res) => {
 				setTotalOnHoldItems(res.data.totalOnHoldItems);
 				setTotalApprovedProducts(res.data.totalApprovedProducts);

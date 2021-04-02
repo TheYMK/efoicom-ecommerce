@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Skeleton from '@material-ui/lab/Skeleton';
 import ReferentProfileOverview from '../dialogs/ReferentProfileOverview';
+import { getItemsCountsByReferent } from '../../actions/item';
 
 const ReferentAccountManagement = () => {
 	const [ referents, setReferents ] = useState(null);
@@ -12,17 +13,19 @@ const ReferentAccountManagement = () => {
 	const [ currentReferent, setCurrentReferent ] = useState([]);
 	const { user } = useSelector((state) => ({ ...state }));
 	const [ loading, setLoading ] = useState(false);
+	const [ totalApprovedProducts, setTotalApprovedProducts ] = useState(0);
+	const [ totalApprovedServices, setTotalApprovedServices ] = useState(0);
 
 	useEffect(() => {
 		if (user && user.token) {
-			loadReferents(user.token);
+			loadReferents();
 		}
 	}, []);
 
 	// code improvement to be done here: token doesn't have to be passed as parameter, we can just directly use user.token
-	const loadReferents = async (token) => {
+	const loadReferents = async () => {
 		try {
-			const allRefs = await getAllReferents(token);
+			const allRefs = await getAllReferents(user.token);
 
 			setReferents(allRefs.data);
 		} catch (err) {
@@ -90,10 +93,13 @@ const ReferentAccountManagement = () => {
 
 	const handleClose = () => {
 		setOpen(false);
+		setTotalApprovedServices(0);
+		setTotalApprovedProducts(0);
 	};
 
 	const handleViewProfile = (referent) => {
 		setCurrentReferent(referent);
+		loadCounts(referent.email);
 		setOpen(true);
 	};
 
@@ -108,6 +114,17 @@ const ReferentAccountManagement = () => {
 		</div>
 	);
 
+	const loadCounts = (email) => {
+		getItemsCountsByReferent(email)
+			.then((res) => {
+				setTotalApprovedProducts(res.data.totalApprovedProducts);
+				setTotalApprovedServices(res.data.totalApprovedServices);
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
 	return (
 		<React.Fragment>
 			<ReferentProfileOverview
@@ -116,6 +133,8 @@ const ReferentAccountManagement = () => {
 				handleClose={handleClose}
 				handleDeleteUser={handleDeleteUser}
 				loading={loading}
+				totalApprovedProducts={totalApprovedProducts}
+				totalApprovedServices={totalApprovedServices}
 			/>
 			<section className="section-content padding-y">
 				<div className="container">

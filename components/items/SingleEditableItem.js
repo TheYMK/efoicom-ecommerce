@@ -16,7 +16,7 @@ const SingleEditableItem = ({ item, handleRemoveItem }) => {
 				<div className="product-card-body ">
 					<h6 className="product-card-category text-info">{title.substring(0, 50)}...</h6>
 
-					<Link href={`/referent/product/${item.slug}`}>
+					<Link href={`/referent/item/${item.slug}`}>
 						<a className="btn btn-primary">
 							<i className="fas fa-edit" /> Modifier
 						</a>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -6,8 +6,17 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import moment from 'moment';
+import { getItemsCountsByReferent } from '../../actions/item';
 
-const ReferentProfileOverview = ({ referent, open, handleClose, handleDeleteUser, loading }) => {
+const ReferentProfileOverview = ({
+	referent,
+	open,
+	handleClose,
+	handleDeleteUser,
+	loading,
+	totalApprovedProducts,
+	totalApprovedServices
+}) => {
 	return (
 		<div>
 			<Dialog
@@ -81,7 +90,7 @@ const ReferentProfileOverview = ({ referent, open, handleClose, handleDeleteUser
 													className="card-text"
 													style={{ fontSize: '30px', fontWeight: '600' }}
 												>
-													0
+													{totalApprovedProducts}
 												</p>
 											</div>
 										</div>
@@ -94,7 +103,7 @@ const ReferentProfileOverview = ({ referent, open, handleClose, handleDeleteUser
 													className="card-text"
 													style={{ fontSize: '30px', fontWeight: '600' }}
 												>
-													0
+													{totalApprovedServices}
 												</p>
 											</div>
 										</div>

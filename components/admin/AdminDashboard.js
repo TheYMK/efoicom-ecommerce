@@ -7,11 +7,15 @@ import { toast } from 'react-toastify';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { getTotalItemsRequests, updateItemApprovalStatus } from '../../actions/item';
 import AdminViewItemDialog from '../dialogs/AdminViewItemDialog';
+import Link from 'next/link';
+import NoData from '../indicators/NoData';
 
 const AdminDashboard = () => {
 	const [ currentUser, setCurrentUser ] = useState({});
 	const [ referentCount, setReferentCount ] = useState(0);
 	const [ customerCount, setCustomerCount ] = useState(0);
+	const [ productCount, setProductCount ] = useState(0);
+	const [ serviceCount, setServiceCount ] = useState(0);
 	const [ requests, setRequests ] = useState(null);
 	const [ itemsrequests, setItemsRequests ] = useState(null);
 	const [ loading, setLoading ] = useState(false);
@@ -22,7 +26,7 @@ const AdminDashboard = () => {
 	useEffect(() => {
 		if (user && user.token) {
 			loadUserInfo();
-			fetchTotalAccountsCount();
+			fetchTotalCounts();
 			fetchAllRefRequests();
 			fetchAllItemsRequests();
 		}
@@ -40,11 +44,13 @@ const AdminDashboard = () => {
 	};
 
 	// get total referent accounts count
-	const fetchTotalAccountsCount = () => {
+	const fetchTotalCounts = () => {
 		getCounts(user.token)
 			.then((res) => {
 				setReferentCount(res.data.totalRefCount);
 				setCustomerCount(res.data.totalCustomerCount);
+				setProductCount(res.data.totalProductsCount);
+				setServiceCount(res.data.totalServicesCount);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -87,7 +93,7 @@ const AdminDashboard = () => {
 					<tr>
 						<th>Type de requête</th>
 						<th>Envoyé par (référent)</th>
-						<th>Titre de l'article</th>
+						<th>Tel</th>
 						<th>Email</th>
 						<th>Zone de référence</th>
 						<th>Status</th>
@@ -102,7 +108,11 @@ const AdminDashboard = () => {
 								<p className="title">{request.name} </p>
 							</td>
 							<td>{request.phone_number}</td>
-
+							<td>{request.email}</td>
+							<td>{request.reference_zone}</td>
+							<td>
+								<strong style={{ color: 'red' }}>En attente...</strong>
+							</td>
 							<td>
 								<div className="dropdown d-inline-block">
 									<button
@@ -334,9 +344,9 @@ const AdminDashboard = () => {
 										<div className="text">
 											<strong> {currentUser.name} (Administrateur) </strong> <br />
 											<p className="mb-2"> {currentUser.email} </p>
-											<a href="#" className="btn btn-light btn-sm">
-												Modifier les informations
-											</a>
+											<Link href="/admin/account-settings">
+												<a className="btn btn-light btn-sm">Modifier les informations</a>
+											</Link>
 										</div>
 									</figure>
 									<hr />
@@ -356,13 +366,13 @@ const AdminDashboard = () => {
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
-												<h4 className="title">12</h4>
+												<h4 className="title">{productCount}</h4>
 												<span>Nombre de produits en ligne</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
-												<h4 className="title">50</h4>
+												<h4 className="title">{serviceCount}</h4>
 												<span>Nombre de services en ligne</span>
 											</div>
 										</figure>
@@ -372,15 +382,18 @@ const AdminDashboard = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Gerez les requêtes de création de compte
+										Gerez les requêtes de création de compte{' '}
+										{requests !== null && requests.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
+
 								{requests === null || loading ? showLoadingRequest() : showRequests()}
 							</article>
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Gerez les requêtes de publication d'article
+										Gerez les requêtes de publication d'article{' '}
+										{itemsrequests !== null && itemsrequests.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
 								{itemsrequests === null || loading ? showLoadingRequest() : showItemsRequests()}

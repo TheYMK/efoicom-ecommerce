@@ -9,9 +9,9 @@ import FileUpload from '../../../components/FileUpload';
 import ItemUpdateForm from '../../../components/referent/forms/itemUpdateForm';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
-import ReferentProtected from '../../../components/auth/ReferentProtected';
+import AdminProtected from '../../../components/auth/AdminProtected';
 
-const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, params, categoriesFromDB }) => {
+const AdminItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, params, categoriesFromDB }) => {
 	const { user } = useSelector((state) => ({ ...state }));
 
 	const [ values, setValues ] = useState({
@@ -44,22 +44,6 @@ const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesId
 		provider_phone_number,
 		item_type
 	} = values;
-
-	// useEffect(() => {
-	// 	if (user && user.token) {
-	// 		loadCategories();
-	// 	}
-	// }, []);
-
-	// const loadCategories = () => {
-	// 	getCategories()
-	// 		.then((res) => {
-	// 			setValues({ ...values, categories: res.data });
-	// 		})
-	// 		.catch((err) => {
-	// 			console.log(err);
-	// 		});
-	// };
 
 	const loadProduct = () => {
 		getSingleItem(params.slug)
@@ -132,7 +116,7 @@ const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesId
 			updateItem(user.token, params.slug, values)
 				.then((res) => {
 					setLoading(false);
-					Router.push('/referent/all-products-services');
+					Router.push('/admin/products-services-management');
 					toast.success(`L'article a bien été modifier`);
 				})
 				.catch((err) => {
@@ -149,7 +133,7 @@ const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesId
 	return (
 		<React.Fragment>
 			<Layout>
-				<ReferentProtected>
+				<AdminProtected>
 					<b className="screen-overlay" />
 					<header className="section-header">
 						<Header />
@@ -182,7 +166,7 @@ const ReferentProductUpdatePage = ({ item, subCategoriesOptions, subCategoriesId
 							/>
 						</div>
 					</section>
-				</ReferentProtected>
+				</AdminProtected>
 			</Layout>
 		</React.Fragment>
 	);
@@ -210,4 +194,4 @@ export async function getServerSideProps({ params }) {
 	});
 }
 
-export default ReferentProductUpdatePage;
+export default AdminItemUpdatePage;

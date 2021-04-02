@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReferentMenu from './ReferentMenu';
 import { useSelector } from 'react-redux';
-import { getAllItems, removeItem } from '../../actions/item';
+import { getAllItemsForReferent, removeItem } from '../../actions/item';
 import SingleEditableItem from '../items/SingleEditableItem';
 import { toast } from 'react-toastify';
 
@@ -27,7 +27,7 @@ const AllProductsAndServices = () => {
 	}, []);
 
 	const loadProductsAndServices = () => {
-		getAllItems(user.token, productslimit, productskip, serviceslimit, serviceskip)
+		getAllItemsForReferent(user.token, productslimit, productskip, serviceslimit, serviceskip)
 			.then((res) => {
 				setAllApprovedProducts(res.data.allApprovedProducts);
 				setAllApprovedServices(res.data.allApprovedServices);
@@ -63,18 +63,22 @@ const AllProductsAndServices = () => {
 	};
 
 	const handleRemoveItem = (slug) => {
-		if (user && user.token) {
-			removeItem(user.token, slug)
-				.then((res) => {
-					toast.success("L'article a été supprimer");
-					setTimeout(() => {
-						window.location.reload();
-					}, 2000);
-				})
-				.catch((err) => {
-					toast.error("L'article n'a pas pu être supprimer. Veuillez réessayer");
-					console.log(err);
-				});
+		const result = window.confirm('Êtes-vous sûr de vouloir supprimer cet article?');
+
+		if (result) {
+			if (user && user.token) {
+				removeItem(user.token, slug)
+					.then((res) => {
+						toast.success("L'article a été supprimer");
+						setTimeout(() => {
+							window.location.reload();
+						}, 2000);
+					})
+					.catch((err) => {
+						toast.error("L'article n'a pas pu être supprimer. Veuillez réessayer");
+						console.log(err);
+					});
+			}
 		}
 	};
 
@@ -82,7 +86,7 @@ const AllProductsAndServices = () => {
 		let toSkip = productskip + productslimit;
 		setLoading(true);
 		if (user && user.token) {
-			getAllItems(user.token, productslimit, toSkip, serviceslimit, serviceskip)
+			getAllItemsForReferent(user.token, productslimit, toSkip, serviceslimit, serviceskip)
 				.then((res) => {
 					setAllApprovedProducts([ ...allApprovedProducts, ...res.data.allApprovedProducts ]);
 					// setAllApprovedServices(res.data.allApprovedServices);
@@ -111,7 +115,7 @@ const AllProductsAndServices = () => {
 		let toSkip = serviceskip + serviceslimit;
 		setLoading(true);
 		if (user && user.token) {
-			getAllItems(user.token, productslimit, productskip, serviceslimit, toSkip)
+			getAllItemsForReferent(user.token, productslimit, productskip, serviceslimit, toSkip)
 				.then((res) => {
 					// setAllApprovedProducts([ ...allApprovedProducts, ...res.data.allApprovedProducts ]);
 					setAllApprovedServices([ ...allApprovedServices, ...res.data.allApprovedServices ]);
