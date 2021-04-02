@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import Skeleton from '@material-ui/lab/Skeleton';
 import ReferentProfileOverview from '../dialogs/ReferentProfileOverview';
 import { getItemsCountsByReferent } from '../../actions/item';
+import NoData from '../indicators/NoData';
 
 const ReferentAccountManagement = () => {
 	const [ referents, setReferents ] = useState(null);
@@ -34,13 +35,13 @@ const ReferentAccountManagement = () => {
 		}
 	};
 
-	const handleDeleteUser = (id) => {
+	const handleDeleteUser = (id, referent_email) => {
 		if (user && user.token) {
 			const result = window.confirm('Êtes-vous sûr de vouloir supprimer ce compte?');
 
 			if (result) {
 				setLoading(true);
-				deleteReferentUser(user.token, id)
+				deleteReferentUser(user.token, id, referent_email)
 					.then((res) => {
 						setLoading(false);
 						setOpen(false);
@@ -146,7 +147,8 @@ const ReferentAccountManagement = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Tous les comptes référents approuvés
+										Tous les comptes référents approuvés{' '}
+										{referents !== null && referents.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
 								{referents === null ? showLoadingReferents() : showReferents()}

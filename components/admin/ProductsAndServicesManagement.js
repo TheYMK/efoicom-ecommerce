@@ -5,6 +5,7 @@ import AdminMenu from './AdminMenu';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import NoData from '../../components/indicators/NoData';
 
 const ProductsAndServicesManagement = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -187,13 +188,19 @@ const ProductsAndServicesManagement = () => {
 						<main className="col-md-9">
 							<article className="card mb-4">
 								<header className="card-header">
-									<strong className="d-inline-block mr-3">Tous les produits</strong>
+									<strong className="d-inline-block mr-3">
+										Tous les produits{' '}
+										{allProducts !== null && allProducts.length === 0 ? <NoData /> : ''}
+									</strong>
 								</header>
 								<div className="card-body">{showProducts()}</div>
 							</article>
 							<article className="card mb-4">
 								<header className="card-header">
-									<strong className="d-inline-block mr-3">Tous les services</strong>
+									<strong className="d-inline-block mr-3">
+										Tous les services{' '}
+										{allServices !== null && allServices.length === 0 ? <NoData /> : ''}
+									</strong>
 								</header>
 								<div className="card-body">{showServices()}</div>
 							</article>

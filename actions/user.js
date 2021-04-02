@@ -37,12 +37,16 @@ export const getAllReferents = async (authtoken) => {
 	});
 };
 
-export const deleteReferentUser = async (authtoken, id) => {
-	return await axios.delete(`${API_URL}/admin/referent/${id}`, {
-		headers: {
-			authtoken: authtoken
+export const deleteReferentUser = async (authtoken, id, referent_email) => {
+	return await axios.put(
+		`${API_URL}/admin/referent/${id}`,
+		{ referent_email },
+		{
+			headers: {
+				authtoken: authtoken
+			}
 		}
-	});
+	);
 };
 
 export const updateAdminUserAccount = async (authtoken, name, email) => {

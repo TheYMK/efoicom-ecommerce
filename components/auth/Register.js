@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Router from 'next/router';
 import { REGISTER_REDIRECT_URL } from '../../config';
 import Link from 'next/link';
+import PhoneInput from 'react-phone-number-input';
 
 const Register = () => {
 	const [ values, setValues ] = useState({
@@ -179,14 +180,13 @@ const Register = () => {
 								<label htmlFor="phone_number">
 									Phone Number <span style={{ color: 'red' }}>*</span>
 								</label>
-								<input
-									type="tel"
-									className="form-control"
-									id="phone_number"
-									required
+								<PhoneInput
 									placeholder="3725168"
 									value={phone_number}
-									onChange={(e) => setValues({ ...values, phone_number: e.target.value })}
+									required
+									name="phone_number"
+									className="form-control"
+									onChange={(e) => setValues({ ...values, phone_number: e })}
 								/>
 							</div>
 						</div>

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { getAllItemsForReferent, removeItem } from '../../actions/item';
 import SingleEditableItem from '../items/SingleEditableItem';
 import { toast } from 'react-toastify';
+import NoData from '../indicators/NoData';
 
 const AllProductsAndServices = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -139,7 +140,10 @@ const AllProductsAndServices = () => {
 					<main className="col-md-9">
 						<article className="card mb-4">
 							<header className="card-header">
-								<strong className="d-inline-block mr-3">Tous vos produits</strong>
+								<strong className="d-inline-block mr-3">
+									Tous vos produits{' '}
+									{allApprovedProducts !== null && allApprovedProducts.length === 0 ? <NoData /> : ''}
+								</strong>
 							</header>
 							<div className="card-body">
 								<div className="container">
@@ -150,7 +154,10 @@ const AllProductsAndServices = () => {
 						</article>
 						<article className="card mb-4">
 							<header className="card-header">
-								<strong className="d-inline-block mr-3">Tous vos services</strong>
+								<strong className="d-inline-block mr-3">
+									Tous vos services{' '}
+									{allApprovedServices !== null && allApprovedServices.length === 0 ? <NoData /> : ''}
+								</strong>
 							</header>
 							<div className="card-body">
 								<div className="container">

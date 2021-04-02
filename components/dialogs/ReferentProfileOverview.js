@@ -112,7 +112,7 @@ const ReferentProfileOverview = ({
 								<button
 									onClick={handleClose}
 									className="btn btn-danger mt-5"
-									onClick={() => handleDeleteUser(referent._id)}
+									onClick={() => handleDeleteUser(referent._id, referent.email)}
 								>
 									{loading ? 'En cours...' : 'Supprimer ce compte'}
 								</button>
