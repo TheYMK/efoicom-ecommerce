@@ -7,9 +7,28 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import TextField from '@material-ui/core/TextField';
 import { toast } from 'react-toastify';
+import FileUpload from '../FileUpload';
 
-const EditCategoryDialog = ({ open, handleClose, currentCategory, setCurrentCategory, handleUpdate, loading }) => {
-	const { name, slug } = currentCategory;
+const EditCategoryDialog = ({
+	open,
+	handleClose,
+	currentCategory,
+	setCurrentCategory,
+	handleUpdate,
+	loading,
+	setLoading
+}) => {
+	const { name, slug, images } = currentCategory;
+	const [ values, setValues ] = useState({
+		images: []
+	});
+
+	useEffect(
+		() => {
+			setValues({ ...values, images: images });
+		},
+		[ images ]
+	);
 
 	const handleSubmit = () => {
 		if (!currentCategory.name) {
@@ -17,7 +36,7 @@ const EditCategoryDialog = ({ open, handleClose, currentCategory, setCurrentCate
 			return;
 		}
 
-		handleUpdate();
+		handleUpdate(values);
 	};
 
 	return (
@@ -31,7 +50,12 @@ const EditCategoryDialog = ({ open, handleClose, currentCategory, setCurrentCate
 				fullWidth={true}
 			>
 				<DialogTitle id="alert-dialog-title">Modifier la catégorie </DialogTitle>
+
 				<DialogContent>
+					<div className="mt-4">
+						<FileUpload values={values} setValues={setValues} loading={loading} setLoading={setLoading} />
+					</div>
+
 					<TextField
 						autoFocus
 						margin="dense"

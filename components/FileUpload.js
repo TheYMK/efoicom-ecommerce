@@ -6,8 +6,6 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { API_URL } from '../config';
 
-const { Dragger } = Upload;
-
 const FileUpload = ({ values, setValues, setLoading, loading }) => {
 	const { images } = values;
 

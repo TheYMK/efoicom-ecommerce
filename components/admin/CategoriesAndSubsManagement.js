@@ -10,11 +10,12 @@ import EditSubDialog from '../dialogs/EditSubDialog';
 import SubCategoryForm from './subcategory/SubCategoryForm';
 import TextField from '@material-ui/core/TextField';
 import { createSubCategory, getSubs, removeSub, updateSub } from '../../actions/sub';
+import FileUpload from '../FileUpload';
 
 const CategoriesAndSubsManagement = () => {
 	const [ values, setValues ] = useState({
 		name: '',
-		loading: '',
+		images: [],
 		categories: [],
 		keyword: ''
 	});
@@ -29,7 +30,8 @@ const CategoriesAndSubsManagement = () => {
 
 	const [ currentCategory, setCurrentCategory ] = useState({
 		name: '',
-		slug: ''
+		slug: '',
+		images: []
 	});
 
 	const [ currentSub, setCurrentSub ] = useState({
@@ -38,7 +40,8 @@ const CategoriesAndSubsManagement = () => {
 		parent: ''
 	});
 
-	const { name, loading, categories, keyword } = values;
+	const [ loading, setLoading ] = useState(false);
+	const { name, categories, keyword, images } = values;
 	const { subName, subLoading, subs, parentCategory } = subValues;
 	const { user } = useSelector((state) => ({ ...state }));
 	const [ reload, setReload ] = useState(false);
@@ -69,17 +72,25 @@ const CategoriesAndSubsManagement = () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		setValues({ ...values, loading: true });
+		setLoading(true);
+
+		if (!name || images.length < 1) {
+			toast.error('Tous les champs doivent être remplis');
+			setLoading(false);
+			return;
+		}
+
 		if (user && user.token) {
-			createCategory(user.token, name)
+			createCategory(user.token, name, images)
 				.then((res) => {
-					setValues({ ...values, loading: false, name: '' });
+					setValues({ ...values, name: '', images: [] });
+					setLoading(false);
 					setReload(!reload);
 					toast.success(`La catégorie "${res.data.name}" a été ajouter`);
 				})
 				.catch((err) => {
 					console.log(err);
-					setValues({ ...values, loading: false });
+					setLoading(false);
 					toast.error(`Oops! La categorie n'a pas été créer. Veuillez réessayer`);
 				});
 		}
@@ -87,17 +98,18 @@ const CategoriesAndSubsManagement = () => {
 
 	const handleRemove = async (slug) => {
 		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette catégorie?');
-		setValues({ ...values, loading: true });
+		setLoading(true);
 		if (answer) {
 			if (user && user.token) {
 				removeCategory(user.token, slug)
 					.then((res) => {
-						setValues({ ...values, loading: false });
+						setLoading(false);
 						toast.success(`La catégorie ${res.data.name} à bien été supprimer`);
 						setReload(!reload);
 					})
 					.catch((err) => {
 						console.log(err);
+						setLoading(false);
 						toast.error(`Oops! La categorie n'a pas été supprimer. Veuillez réessayer`);
 					});
 			}
@@ -114,7 +126,7 @@ const CategoriesAndSubsManagement = () => {
 					</button>
 					<button
 						className="btn btn-sm btn-secondary ml-3"
-						onClick={() => handleOpenDialog(category.name, category.slug)}
+						onClick={() => handleOpenDialog(category.name, category.slug, category.images)}
 					>
 						<i className="fas fa-edit" />
 					</button>
@@ -123,8 +135,8 @@ const CategoriesAndSubsManagement = () => {
 		));
 	};
 
-	const handleOpenDialog = (catName, catSlug) => {
-		setCurrentCategory({ name: catName, slug: catSlug });
+	const handleOpenDialog = (catName, catSlug, catImages) => {
+		setCurrentCategory({ name: catName, slug: catSlug, images: catImages });
 		setOpen(true);
 	};
 
@@ -136,13 +148,13 @@ const CategoriesAndSubsManagement = () => {
 		});
 	};
 
-	const handleUpdate = () => {
-		setValues({ ...values, loading: true });
+	const handleUpdate = (v) => {
+		setLoading(true);
 
 		if (user && user.token) {
-			updateCategory(user.token, currentCategory.slug, currentCategory.name)
+			updateCategory(user.token, currentCategory.slug, currentCategory.name, v.images)
 				.then((res) => {
-					setValues({ ...values, loading: false });
+					setLoading(false);
 					setOpen(false);
 					toast.success(`Modification effectuer`);
 					setReload(!reload);
@@ -153,6 +165,7 @@ const CategoriesAndSubsManagement = () => {
 				})
 				.catch((err) => {
 					console.log(err);
+					setLoading(false);
 					toast.error(`Oops! La categorie n'a pas été modifier. Veuillez réessayer`);
 				});
 		}
@@ -280,6 +293,7 @@ const CategoriesAndSubsManagement = () => {
 				setCurrentCategory={setCurrentCategory}
 				handleUpdate={handleUpdate}
 				loading={loading}
+				setLoading={setLoading}
 			/>
 			<EditSubDialog
 				openSub={openSub}
@@ -305,7 +319,19 @@ const CategoriesAndSubsManagement = () => {
 									<strong className="d-inline-block mr-3">Ajouter une catégorie</strong>
 								</header>
 								<div className="card-body">
-									<CategoryForm values={values} setValues={setValues} handleSubmit={handleSubmit} />
+									<FileUpload
+										values={values}
+										setValues={setValues}
+										loading={loading}
+										setLoading={setLoading}
+									/>
+									<div className="mt-4">
+										<CategoryForm
+											values={values}
+											setValues={setValues}
+											handleSubmit={handleSubmit}
+										/>
+									</div>
 									<div className="mt-5">
 										<LocalSearch setValues={setValues} values={values} />
 									</div>

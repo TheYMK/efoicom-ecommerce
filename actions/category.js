@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { API_URL } from '../config';
 
-export const createCategory = async (authtoken, category_name) => {
+export const createCategory = async (authtoken, category_name, category_images) => {
 	return await axios.post(
 		`${API_URL}/admin/category/create`,
-		{ category_name },
+		{ category_name, category_images },
 		{
 			headers: {
 				authtoken: authtoken
@@ -25,10 +25,10 @@ export const removeCategory = async (authtoken, slug) => {
 	});
 };
 
-export const updateCategory = async (authtoken, slug, name) => {
+export const updateCategory = async (authtoken, slug, name, images) => {
 	return await axios.put(
 		`${API_URL}/admin/category/update/${slug}`,
-		{ name },
+		{ name, images },
 		{
 			headers: {
 				authtoken: authtoken
