@@ -14,10 +14,6 @@ const SingleProduct = ({ imageSrc }) => {
 				<div className="product-card-body ">
 					<h6 className="product-card-category text-info">Annonce 1</h6>
 
-					<p className="product-card-description">
-						Don't be scared of the truth because we need to restart the human foundation in truth And I love
-						you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-					</p>
 					<button className="btn btn-primary">
 						<i className="fas fa-cart-plus" />
 					</button>

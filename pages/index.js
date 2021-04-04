@@ -15,8 +15,9 @@ import Services from '../components/services/Services';
 import Subscribe from '../components/subscribe/Subscribe';
 import Annoucements from '../components/annoucements/Annoucements';
 import OurCategories from '../components/ourCategories/OurCategories';
+import { getCategories } from '../actions/category';
 
-const HomePage = () => {
+const HomePage = ({ allCategories }) => {
 	const head = () => (
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
@@ -34,7 +35,7 @@ const HomePage = () => {
 				</header>
 				<Main />
 				<div className="container mt-0">
-					<OurCategories />
+					<OurCategories allCategories={allCategories} />
 					<Deal />
 					{/* <SectionOne />
 					<SectionTwo /> */}
@@ -51,5 +52,15 @@ const HomePage = () => {
 		</React.Fragment>
 	);
 };
+
+export async function getServerSideProps({ params }) {
+	return getCategories().then((res) => {
+		return {
+			props: {
+				allCategories: res.data
+			}
+		};
+	});
+}
 
 export default HomePage;
