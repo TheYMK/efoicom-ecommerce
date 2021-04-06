@@ -34,7 +34,6 @@ const PasswordChangeDialog = ({
 						onChange={(e) => setPassword(e.target.value)}
 					/>
 					<TextField
-						autoFocus
 						margin="dense"
 						id="confirmPassword"
 						label="Confirmer votre mot de passe"

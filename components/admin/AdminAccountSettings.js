@@ -104,7 +104,7 @@ const AdminAccountSettings = () => {
 			updateAdminPassword(user.token, password)
 				.then((res) => {
 					logout();
-					toast.success('Le mot de passe a bien été mis à jour');
+					toast.success('Votre mot de passe a bien été mis à jour');
 					setLoading(false);
 					setOpen(false);
 

@@ -45,7 +45,7 @@ const AdminDashboard = () => {
 
 	// get total referent accounts count
 	const fetchTotalCounts = () => {
-		getCounts(user.token)
+		getCounts()
 			.then((res) => {
 				setReferentCount(res.data.totalRefCount);
 				setCustomerCount(res.data.totalCustomerCount);
@@ -179,7 +179,7 @@ const AdminDashboard = () => {
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
 					toast.info(
-						`Vous venez de decliner un référent. Son compte sera automatiquement supprimer de la base de donnée. Assurez vous de supprimer le compte sur firebase aussi`
+						`Vous venez de decliner un référent. Son compte sera automatiquement supprimer de la base de donnée.`
 					);
 
 					fetchAllRefRequests();

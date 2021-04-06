@@ -18,15 +18,13 @@ const ReferentAccountManagement = () => {
 	const [ totalApprovedServices, setTotalApprovedServices ] = useState(0);
 
 	useEffect(() => {
-		if (user && user.token) {
-			loadReferents();
-		}
+		loadReferents();
 	}, []);
 
 	// code improvement to be done here: token doesn't have to be passed as parameter, we can just directly use user.token
 	const loadReferents = async () => {
 		try {
-			const allRefs = await getAllReferents(user.token);
+			const allRefs = await getAllReferents();
 
 			setReferents(allRefs.data);
 		} catch (err) {
@@ -45,13 +43,16 @@ const ReferentAccountManagement = () => {
 					.then((res) => {
 						setLoading(false);
 						setOpen(false);
-						toast.success(`Le compte ${res.data.email} a bien été supprimer`);
-						loadReferents(user.token);
+						toast.success(
+							`Le compte ${res.data
+								.email} a bien été supprimer. Tous les articles de cet utilisateur ont été également supprimés`
+						);
+						loadReferents();
 					})
 					.catch((err) => {
 						setLoading(false);
 						console.log(err);
-						toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
+						toast.error(`Oops! l'opération n'a pas été effectuer, veuillez recommencer`);
 					});
 			}
 		}

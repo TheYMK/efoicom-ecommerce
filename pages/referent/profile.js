@@ -45,7 +45,7 @@ const ReferentProfilePage = () => {
 					<header className="section-header">
 						<Header />
 					</header>
-					<PageTop title={'Mon profile référent'} />
+					<PageTop title={'Mon profile référent'} message="" />
 					{requestStatus === 'approved' ? (
 						<ReferentDashboard />
 					) : (

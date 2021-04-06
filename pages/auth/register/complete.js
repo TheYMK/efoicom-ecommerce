@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { auth } from '../../../actions/firebase';
 import { toast } from 'react-toastify';
 import Layout from '../../../components/Layout';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import Header from '../../../components/header/Header';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -24,7 +24,6 @@ const RegisterCompletePage = () => {
 		reference_zone: ''
 	});
 
-	// const { user } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
 
 	const [ loading, setLoading ] = useState(false);
@@ -63,17 +62,23 @@ const RegisterCompletePage = () => {
 		}
 	}, []);
 
+	/**
+	 * This function first cleans up the local storage, then signs the user in firebase and save this user to the database.
+	 * @param {*} e 
+	 * @returns 
+	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
 		setLoading(true);
 
+		// check if passwords match
 		if (password !== password_confirm) {
 			toast.error('Les mots de passe doivent être identique!');
 			setLoading(false);
 			return;
 		}
-
+		// check if fields are empty
 		if (
 			!first_name ||
 			!last_name ||
@@ -111,6 +116,7 @@ const RegisterCompletePage = () => {
 		}
 
 		try {
+			// Signs the user
 			const result = await auth.signInWithEmailLink(email, window.location.href);
 
 			if (result.user.emailVerified) {
@@ -130,7 +136,7 @@ const RegisterCompletePage = () => {
 				// get user id token
 				const idTokenResult = await user.getIdTokenResult();
 
-				// Save to redux store
+				// save to DB and redux store
 				createOrUpdateUser(idTokenResult.token, values)
 					.then((response) => {
 						dispatch({
@@ -144,15 +150,15 @@ const RegisterCompletePage = () => {
 							}
 						});
 						toast.success(
-							'Bienvenue sur Massiwa Market cher utilisateur. Nous vous souhaitons une agréable expérience avec nous.'
+							'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience sur notre plateforme.'
 						);
 					})
 					.catch((err) => {
 						console.log(
-							`Error occured during registration completion process (=> /auth/complete page): ${err}`
+							`----> Error occured during registration completion process (=> /auth/complete page): ${err}`
 						);
 						toast.error(
-							"Oops une erreur s'est produite durant la création de votre compte. Veuillez réessayer!"
+							"Oops! une erreur s'est produite durant la création de votre compte. Veuillez réessayer! Contacter nous si le problème persiste."
 						);
 					});
 
@@ -161,8 +167,10 @@ const RegisterCompletePage = () => {
 			}
 		} catch (err) {
 			setLoading(false);
-			console.log(`Error occured during registration completion process (=> /auth/complete page): ${err}`);
-			toast.error("Oops une erreur s'est produite durant la création de votre compte. Veuillez réessayer!");
+			console.log(`----> Error occured during registration completion process (=> /auth/complete page): ${err}`);
+			toast.error(
+				"Oops! une erreur s'est produite durant la création de votre compte. Veuillez réessayer! Contacter nous si le problème persiste."
+			);
 		}
 	};
 

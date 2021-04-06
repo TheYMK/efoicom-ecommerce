@@ -20,6 +20,7 @@ const Register = () => {
 		address: ''
 	});
 
+	// Get currently logged in user from redux
 	const { user } = useSelector((state) => ({ ...state }));
 
 	const [ loading, setLoading ] = useState(false);
@@ -37,13 +38,28 @@ const Register = () => {
 		[ user ]
 	);
 
+	/**
+	 * This function set the termsAndConditionsAccepted state to true. Which, once true, will enable the button to register.
+	 * @param {*} e 
+	 */
 	const handleTermsAndConditionsCheck = (e) => {
 		setTermsAndConditionsAccepted(e.target.checked);
 	};
 
+	/**
+	 * This function saves the values to the local storage and then sends a sign in link to the user email.
+	 * @param {*} e 
+	 * @returns 
+	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
+		if (account_type === '') {
+			toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
+			return;
+		}
+
+		// checking to make sure all fields are not empty
 		if (account_type === 'customer') {
 			if (
 				first_name === '' ||
@@ -59,7 +75,7 @@ const Register = () => {
 				return;
 			}
 		}
-
+		// checking to make sure all fields are not empty
 		if (account_type === 'referent') {
 			if (
 				first_name === '' ||
@@ -76,10 +92,17 @@ const Register = () => {
 				return;
 			}
 		}
+		if (termsAndConditionsAccepted === false) {
+			toast.error(
+				'Veuillez lire et accepter les termes et conditions de la plateforme avant de vous enregistrer'
+			);
+			return;
+		}
 
 		setLoading(true);
 
 		try {
+			// firebase config
 			const config = {
 				url: REGISTER_REDIRECT_URL,
 				handleCodeInApp: true
@@ -101,6 +124,8 @@ const Register = () => {
 			window.localStorage.setItem('islandToRegister', island);
 			window.localStorage.setItem('addressToRegister', address);
 			window.localStorage.setItem('referenceZoneToRegister', reference_zone);
+
+			// clean up the state
 			setValues({
 				first_name: '',
 				last_name: '',
@@ -114,9 +139,11 @@ const Register = () => {
 			});
 			setLoading(false);
 		} catch (err) {
-			setLoading(false);
 			console.log(`----> Error occured during registration process (=> /auth/register page): ${err}`);
-			toast.error("Oops une erreur s'est produite lors de la création de votre compte. Veuillez réessayer!");
+			toast.error(
+				"Oops! Une erreur s'est produite lors de la création de votre compte. Assurez vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, veuillez nous contacter"
+			);
+			setLoading(false);
 		}
 	};
 

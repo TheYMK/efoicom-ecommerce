@@ -23,7 +23,9 @@ const Login = () => {
 
 	useEffect(
 		() => {
+			// check to see if we already have a user logged in
 			if (user && user.token) {
+				// gets the current user information so that if there is no value 'from' coming from previous location, it will redirect the user back to the appropriate private page
 				getCurrentUser(user.token).then((res) => {
 					if (router.query.from) {
 						Router.push(`/${from}`);
@@ -42,6 +44,12 @@ const Login = () => {
 		[ user ]
 	);
 
+	/**
+	 * This function checks for the previous location of the user. If the value 'from' was passed from the previous location,
+	 * user will be redirected back to that location.
+	 * Or based on the role, the user will be redirected to appropriate private page.
+	 * @param {*} res 
+	 */
 	const roleBasedRedirect = (res) => {
 		if (router.query.from) {
 			Router.push(`/${from}`);
@@ -56,6 +64,11 @@ const Login = () => {
 		}
 	};
 
+	/**
+	 * This function signs a user in to firebase, then using the token of that user, updates the redux store with the current logged in users' info.
+	 * Then redirects that user to the appropriate private page
+	 * @param {*} e 
+	 */
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
@@ -81,7 +94,7 @@ const Login = () => {
 					});
 
 					toast.success(
-						'Bienvenue sur Massiwa Market cher utilisateur. Nous vous souhaitons une agréable expérience avec nous.'
+						'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience avec notre plateforme.'
 					);
 					setLoading(false);
 					roleBasedRedirect(response);
@@ -92,7 +105,7 @@ const Login = () => {
 				});
 		} catch (err) {
 			setLoading(false);
-			console.log(`Error occured during login process (=> /auth/login page): ${err}`);
+			console.log(`----> Error occured during login process (=> /auth/login page): ${err}`);
 			toast.error('Email ou mot de passe non valide');
 		}
 	};

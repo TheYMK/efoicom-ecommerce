@@ -75,7 +75,9 @@ const CategoriesAndSubsManagement = () => {
 		setLoading(true);
 
 		if (!name || images.length < 1) {
-			toast.error('Tous les champs doivent être remplis');
+			toast.error(
+				`Tous les champs doivent être remplis. Noubliez pas d'inclure une image représentant la catégorie`
+			);
 			setLoading(false);
 			return;
 		}
@@ -160,7 +162,8 @@ const CategoriesAndSubsManagement = () => {
 					setReload(!reload);
 					setCurrentCategory({
 						name: '',
-						slug: ''
+						slug: '',
+						images: []
 					});
 				})
 				.catch((err) => {
@@ -329,6 +332,7 @@ const CategoriesAndSubsManagement = () => {
 										<CategoryForm
 											values={values}
 											setValues={setValues}
+											loading={loading}
 											handleSubmit={handleSubmit}
 										/>
 									</div>

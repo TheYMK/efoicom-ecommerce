@@ -2,11 +2,7 @@ import axios from 'axios';
 import { API_URL } from '../config';
 
 export const getCounts = async (authtoken) => {
-	return await axios.get(`${API_URL}/admin/get-counts`, {
-		headers: {
-			authtoken: authtoken
-		}
-	});
+	return await axios.get(`${API_URL}/get-counts`);
 };
 
 export const getTotalRefRequests = async (authtoken) => {
@@ -17,10 +13,10 @@ export const getTotalRefRequests = async (authtoken) => {
 	});
 };
 
-export const updateReferentAccountApprovalStatus = async (authtoken, email, approval_status) => {
+export const updateReferentAccountApprovalStatus = async (authtoken, referent_email, approval_status) => {
 	return await axios.put(
 		`${API_URL}/admin/referent/update-account-approval-status`,
-		{ email, approval_status },
+		{ referent_email, approval_status },
 		{
 			headers: {
 				authtoken: authtoken
@@ -29,12 +25,8 @@ export const updateReferentAccountApprovalStatus = async (authtoken, email, appr
 	);
 };
 
-export const getAllReferents = async (authtoken) => {
-	return await axios.get(`${API_URL}/admin/referents/all-approved`, {
-		headers: {
-			authtoken: authtoken
-		}
-	});
+export const getAllReferents = async () => {
+	return await axios.get(`${API_URL}/referents/all-approved`);
 };
 
 export const deleteReferentUser = async (authtoken, id, referent_email) => {

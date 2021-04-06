@@ -1,8 +1,8 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-const CategoryForm = ({ values, setValues, handleSubmit }) => {
-	const { name, loading } = values;
+const CategoryForm = ({ values, setValues, handleSubmit, loading }) => {
+	const { name } = values;
 	return (
 		<div>
 			<form>

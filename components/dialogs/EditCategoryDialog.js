@@ -31,8 +31,10 @@ const EditCategoryDialog = ({
 	);
 
 	const handleSubmit = () => {
-		if (!currentCategory.name) {
-			toast.success('Le nom ne peut pas être vide');
+		if (!currentCategory.name || values.images.length < 1) {
+			toast.success(
+				`Tous les champs doivent être remplis. Noubliez pas d'inclure une image représentant la catégorie`
+			);
 			return;
 		}
 

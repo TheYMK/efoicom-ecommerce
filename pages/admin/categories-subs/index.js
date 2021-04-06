@@ -7,6 +7,8 @@ import PageTop from '../../../components/sections/PageTop';
 import CategoriesAndSubsManagement from '../../../components/admin/CategoriesAndSubsManagement';
 
 const CategoriesAndSubsManagementPage = () => {
+	const message = `Bievenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
+
 	const head = () => (
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
@@ -21,7 +23,7 @@ const CategoriesAndSubsManagementPage = () => {
 					<header className="section-header">
 						<Header />
 					</header>
-					<PageTop title={'Tableau de bord administrateur'} />
+					<PageTop title={'Tableau de bord administrateur'} message={message} />
 					<CategoriesAndSubsManagement />
 				</AdminProtected>
 			</Layout>
