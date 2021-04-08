@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getAllItems, removeItem } from '../../actions/item';
+import { getAllItems, doNotRecommendItem, recommendItem, removeItem } from '../../actions/item';
 import AdminViewItemDialog from '../dialogs/AdminViewItemDialog';
 import AdminMenu from './AdminMenu';
 import Link from 'next/link';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import NoData from '../../components/indicators/NoData';
+import ConfirmRecommendationDialog from '../dialogs/ConfirmRecommendationDialog';
 
 const ProductsAndServicesManagement = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -13,6 +14,7 @@ const ProductsAndServicesManagement = () => {
 	const [ allProducts, setAllProducts ] = useState([]);
 	const [ allServices, setAllServices ] = useState([]);
 	const [ openViewItemDialog, setOpenViewItemDialog ] = useState(false);
+	const [ openConfirmRecommendationDialog, setOpenConfirmRecommendationDialog ] = useState(false);
 	const [ currentItem, setCurrentItem ] = useState({});
 
 	useEffect(() => {
@@ -31,17 +33,20 @@ const ProductsAndServicesManagement = () => {
 			<table className="table table-hover">
 				<thead>
 					<tr>
-						<th>Titre</th>
-						<th>Categorie</th>
-						<th>Sous-catégorie</th>
-						<th>Référent</th>
-						<th>Action</th>
+						<th scope="col">#</th>
+						<th scope="col">Titre</th>
+						<th scope="col">Categorie</th>
+						<th scope="col">Sous-catégorie</th>
+						<th scope="col">Référent</th>
+						<th scope="col">Recommandation</th>
+						<th scope="col">Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					{/* 1 */}
-					{allProducts.map((product) => (
+					{allProducts.map((product, index) => (
 						<tr key={product._id}>
+							<td scope="row">{index + 1}</td>
 							<td>{product.title}</td>
 							<td>
 								<span className="badge rounded-pill bg-success">{product.category.name}</span>
@@ -55,6 +60,17 @@ const ProductsAndServicesManagement = () => {
 							</td>
 							<td>{product.referent_email}</td>
 							<td>
+								{product.isRecommended === true ? (
+									<div>
+										<i className="fas fa-check-circle text-success" /> Oui
+									</div>
+								) : (
+									<div>
+										<i className="fas fa-times-circle text-danger" /> Non
+									</div>
+								)}
+							</td>
+							<td>
 								<div className="dropdown d-inline-block">
 									<button data-toggle="dropdown" className="dropdown-toggle btn btn-secondary">
 										Cliquer ici
@@ -66,6 +82,22 @@ const ProductsAndServicesManagement = () => {
 										>
 											Voir l'article
 										</button>
+										{product.isRecommended === true ? (
+											<button
+												className="dropdown-item"
+												onClick={(e) => handleUpdateItemIsNotRecommended(product)}
+											>
+												Ne pas recommander
+											</button>
+										) : (
+											<button
+												className="dropdown-item"
+												onClick={(e) => handleOpenConfirmRecommendationDialog(product)}
+											>
+												Recommander cet article
+											</button>
+										)}
+
 										<Link href={`/admin/item/${product.slug}`}>
 											<a className="dropdown-item">Modifer</a>
 										</Link>
@@ -95,6 +127,7 @@ const ProductsAndServicesManagement = () => {
 						<th>Categorie</th>
 						<th>Sous-catégorie</th>
 						<th>Référent</th>
+						<th>Recommandation</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -115,6 +148,17 @@ const ProductsAndServicesManagement = () => {
 							</td>
 							<td>{service.referent_email}</td>
 							<td>
+								{service.isRecommended === true ? (
+									<div>
+										<i className="fas fa-check-circle text-success" /> Oui
+									</div>
+								) : (
+									<div>
+										<i className="fas fa-times-circle text-danger" /> Non
+									</div>
+								)}
+							</td>
+							<td>
 								<div className="dropdown d-inline-block">
 									<button data-toggle="dropdown" className="dropdown-toggle btn btn-secondary">
 										Cliquer ici
@@ -126,6 +170,21 @@ const ProductsAndServicesManagement = () => {
 										>
 											Voir l'article
 										</button>
+										{service.isRecommended === true ? (
+											<button
+												className="dropdown-item"
+												onClick={(e) => handleUpdateItemIsNotRecommended(service)}
+											>
+												Ne pas recommander
+											</button>
+										) : (
+											<button
+												className="dropdown-item"
+												onClick={(e) => handleOpenConfirmRecommendationDialog(service)}
+											>
+												Recommander cet article
+											</button>
+										)}
 										<Link href={`/admin/item/${service.slug}`}>
 											<a className="dropdown-item">Modifer</a>
 										</Link>
@@ -155,6 +214,46 @@ const ProductsAndServicesManagement = () => {
 		setCurrentItem({});
 	};
 
+	const handleOpenConfirmRecommendationDialog = (item) => {
+		setCurrentItem(item);
+		setOpenConfirmRecommendationDialog(true);
+	};
+
+	const handleCloseConfirmRecommendationDialog = (item) => {
+		setOpenConfirmRecommendationDialog(false);
+		setCurrentItem({});
+	};
+
+	const handleUpdateItemIsRecommended = (item) => {
+		if (user && user.token) {
+			recommendItem(user.token, item.slug)
+				.then((res) => {
+					toast.success(`L'article a été ajouté dans la liste des recommendations`);
+					setOpenConfirmRecommendationDialog(false);
+					setCurrentItem({});
+					loadItems();
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(`Oops! L'opération a echoué.`);
+				});
+		}
+	};
+
+	const handleUpdateItemIsNotRecommended = (item) => {
+		if (user && user.token) {
+			doNotRecommendItem(user.token, item.slug)
+				.then((res) => {
+					toast.success(`L'article à été retirer de la liste des recommendations`);
+					loadItems();
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(`Oops! L'opération a echoué.`);
+				});
+		}
+	};
+
 	const handleRemoveItem = (slug) => {
 		const result = window.confirm('Êtes-vous sûr de vouloir supprimer cet article?');
 
@@ -178,7 +277,12 @@ const ProductsAndServicesManagement = () => {
 	return (
 		<React.Fragment>
 			<AdminViewItemDialog open={openViewItemDialog} handleClose={handleCloseViewItemDialog} item={currentItem} />
-
+			<ConfirmRecommendationDialog
+				open={openConfirmRecommendationDialog}
+				handleClose={handleCloseConfirmRecommendationDialog}
+				item={currentItem}
+				handleUpdateItemIsRecommended={handleUpdateItemIsRecommended}
+			/>
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">

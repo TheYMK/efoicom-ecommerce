@@ -78,3 +78,31 @@ export const updateItemApprovalStatus = async (authtoken, slug, item_approval_st
 		}
 	);
 };
+
+export const recommendItem = async (authtoken, slug) => {
+	return await axios.put(
+		`${API_URL}/admin/items/${slug}/recommend/yes`,
+		{},
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};
+
+export const doNotRecommendItem = async (authtoken, slug) => {
+	return await axios.put(
+		`${API_URL}/admin/items/${slug}/recommend/no`,
+		{},
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};
+
+export const getAllRecommendedItems = async () => {
+	return await axios.get(`${API_URL}/items/get-all/recommended`);
+};

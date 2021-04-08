@@ -361,3 +361,15 @@ section.categories {
 .product-inside .product-contents p {
 	font-size: 13px;
 }
+
+.cardcontent {
+	color: #999;
+    background-color: #fff;
+    font-size: 17px;
+    letter-spacing: 1px;
+    line-height: 30px;
+    padding: 20px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
+    border-radius: 20px;
+    position: relative;
+}

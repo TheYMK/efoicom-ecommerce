@@ -16,8 +16,9 @@ import Subscribe from '../components/subscribe/Subscribe';
 import Annoucements from '../components/annoucements/Annoucements';
 import OurCategories from '../components/ourCategories/OurCategories';
 import { getCategories } from '../actions/category';
+import { getAllRecommendedItems } from '../actions/item';
 
-const HomePage = ({ allCategories }) => {
+const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedServices }) => {
 	const head = () => (
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
@@ -40,7 +41,8 @@ const HomePage = ({ allCategories }) => {
 					{/* <SectionOne />
 					<SectionTwo /> */}
 					<Request />
-					<Items />
+					<Items items_type="products" items={allRecommendedProducts} />
+					<Items items_type="services" items={allRecommendedServices} />
 					<Annoucements />
 					<Services />
 					{/* <Regions /> */}
@@ -54,12 +56,16 @@ const HomePage = ({ allCategories }) => {
 };
 
 export async function getServerSideProps({ params }) {
-	return getCategories().then((res) => {
-		return {
-			props: {
-				allCategories: res.data
-			}
-		};
+	return getCategories().then((res1) => {
+		return getAllRecommendedItems().then((res2) => {
+			return {
+				props: {
+					allCategories: res1.data,
+					allRecommendedProducts: res2.data.allRecommendedProducts,
+					allRecommendedServices: res2.data.allRecommendedServices
+				}
+			};
+		});
 	});
 }
 
