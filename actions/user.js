@@ -64,3 +64,7 @@ export const updateAdminPassword = async (authtoken, newPassword) => {
 		}
 	);
 };
+
+export const getSingleReferentByEmail = async (email) => {
+	return await axios.get(`${API_URL}/referent/${email}`);
+};

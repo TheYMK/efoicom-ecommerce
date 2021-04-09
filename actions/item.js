@@ -106,3 +106,7 @@ export const doNotRecommendItem = async (authtoken, slug) => {
 export const getAllRecommendedItems = async () => {
 	return await axios.get(`${API_URL}/items/get-all/recommended`);
 };
+
+export const getRelatedItems = async (id) => {
+	return await axios.get(`${API_URL}/items/related/${id}`);
+};

@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import RelatedItems from './RelatedItems';
+import { useSelector } from 'react-redux';
+import ContactReferentDialog from '../dialogs/ContactReferentDialog';
+import { getCurrentUser } from '../../actions/auth';
+import { toast } from 'react-toastify';
+import Router from 'next/router';
+import { contactReferent } from '../../actions/form';
 
-const SingleItemDetails = ({ item }) => {
+const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 	const {
 		title,
 		referent_email,
@@ -18,10 +25,87 @@ const SingleItemDetails = ({ item }) => {
 		item_type,
 		isRecommended
 	} = item;
+
+	const [ loading, setLoading ] = useState(false);
 	const [ selectedImage, setSelectedImage ] = useState(images[0]);
+	const [ openContactForm, setOpenContactForm ] = useState(false);
+	const { user } = useSelector((state) => ({ ...state }));
+	const [ values, setValues ] = useState({
+		ref_email: referent_info.email,
+		usr_email: '',
+		usr_phone: '',
+		usr_name: '',
+		subject: '',
+		message: ''
+	});
+
+	// useEffect(() => {
+	// 	if (user && user.token) {
+
+	// 	}
+	// }, []);
+
+	const handleOpenContactForm = (e) => {
+		if (user && user.token) {
+			getCurrentUser(user.token)
+				.then((res) => {
+					setValues({
+						...values,
+						usr_email: res.data.email,
+						usr_phone: res.data.phone_number,
+						usr_name: res.data.name
+					});
+					setOpenContactForm(true);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		} else {
+			toast.error(
+				'Vous devez avoir un compte et être connecter avant de pouvoir rentrer en contact avec un référent'
+			);
+			setInterval(() => {
+				Router.push('/auth/login');
+			}, 3000);
+		}
+	};
+
+	const handleCloseContactForm = () => {
+		setOpenContactForm(false);
+	};
+
+	const handleSubmitContactForm = () => {
+		// console.table(values);
+		setLoading(true);
+		contactReferent(values)
+			.then((res) => {
+				toast.success(
+					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délai'
+				);
+				setOpenContactForm(false);
+				setLoading(false);
+			})
+			.catch((err) => {
+				toast.error(`Oops! Echec de l'envoi. Veuillez réessayer`);
+				setLoading(false);
+			});
+	};
 
 	return (
 		<React.Fragment>
+			<ContactReferentDialog
+				open={openContactForm}
+				handleClose={handleCloseContactForm}
+				ref_name={referent_info.name}
+				ref_phone={referent_info.phone_number}
+				ref_city={referent_info.city}
+				ref_island={referent_info.island}
+				ref_address={referent_info.address}
+				values={values}
+				setValues={setValues}
+				loading={loading}
+				handleSubmitContactForm={handleSubmitContactForm}
+			/>
 			<section className="section-content bg-white padding-y">
 				<div className="container">
 					<div className="row">
@@ -128,15 +212,15 @@ const SingleItemDetails = ({ item }) => {
 
 								<div className="form-row  mt-4">
 									<div className="form-group col-md">
-										<a href="#" className="btn  btn-primary mt-2">
-											<i className="fas fa-comments" />{' '}
+										<button className="btn  btn-primary mt-2" onClick={handleOpenContactForm}>
+											<i className="fas fa-comments" />
 											<span className="text">Contactez le référent</span>
-										</a>
+										</button>
 
-										<a href="#" className="btn btn-danger mt-2 ml-xl-2">
+										<button className="btn btn-danger mt-2 ml-xl-2">
 											<i className="fas fa-heart" />{' '}
 											<span className="text">Ajouter aux favoris</span>
-										</a>
+										</button>
 									</div>
 								</div>
 							</article>
@@ -149,63 +233,31 @@ const SingleItemDetails = ({ item }) => {
 			<section className="section-name padding-y bg">
 				<div className="container">
 					<div className="row">
-						<div className="col-md-8">
-							<div className="cardcontent">
-								<h5>Map here</h5>
+						<div className="col-md-8 mt-2">
+							<div className="card">
+								<div className="card-body">
+									<div className="card-title">
+										<h5>Map here</h5>
+										{JSON.stringify(referent_info)}
+									</div>
+									<div />
+								</div>
 							</div>
 						</div>
 
-						<aside className="col-md-4">
-							<div className="cardcontent">
-								<h5 className="title-description mb-4">Voir aussi</h5>
-
-								<article className="media mb-3">
-									<a href="#">
-										<img className="img-sm mr-3" src="images/posts/3.jpg" />
-									</a>
-									<div className="media-body">
-										<h6 className="mt-0">
-											<a href="#">How to use this item</a>
-										</h6>
-										<p className="mb-2">
-											{' '}
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-											ante sollicitudin{' '}
-										</p>
+						<aside className="col-md-4 mt-2">
+							<div className="card">
+								<div className="card-body">
+									<div className="card-title">
+										<h5 className="title-description mb-4">Voir aussi</h5>
 									</div>
-								</article>
 
-								<article className="media mb-3">
-									<a href="#">
-										<img className="img-sm mr-3" src="images/posts/2.jpg" />
-									</a>
-									<div className="media-body">
-										<h6 className="mt-0">
-											<a href="#">New tips and tricks</a>
-										</h6>
-										<p className="mb-2">
-											{' '}
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-											ante sollicitudin{' '}
-										</p>
-									</div>
-								</article>
-
-								<article className="media mb-3">
-									<a href="#">
-										<img className="img-sm mr-3" src="images/posts/1.jpg" />
-									</a>
-									<div className="media-body">
-										<h6 className="mt-0">
-											<a href="#">New tips and tricks</a>
-										</h6>
-										<p className="mb-2">
-											{' '}
-											Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque
-											ante sollicitudin{' '}
-										</p>
-									</div>
-								</article>
+									{relatedItems.length > 0 ? (
+										relatedItems.map((item) => <RelatedItems key={item._id} item={item} />)
+									) : (
+										<p>Aucun article</p>
+									)}
+								</div>
 							</div>
 						</aside>
 					</div>
