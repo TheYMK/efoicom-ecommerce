@@ -1,30 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 
-const ReferentMenu = ({ pageLocation }) => {
+const CustomerMenu = ({ pageLocation }) => {
 	return (
 		<React.Fragment>
 			<nav className="list-group">
-				<Link href="/referent/profile">
+				<Link href="/customer/profile">
 					<a className={`list-group-item ${pageLocation === 'dashboard' ? 'active' : ''}`}>Aperçu</a>
 				</Link>
-				<Link href="/referent/product-service-submission">
-					<a className={`list-group-item ${pageLocation === 'submission' ? 'active' : ''}`}>
-						Soumettre un produit ou service
-					</a>
-				</Link>
-				<Link href="/referent/all-products-services">
-					<a className={`list-group-item ${pageLocation === 'allproducts' ? 'active' : ''}`}>
-						Tous vos produits et services
-					</a>
-				</Link>
-				<Link href="/referent/myfavorite">
+				<Link href="/customer/myfavorite">
 					<a className={`list-group-item ${pageLocation === 'myfavorite' ? 'active' : ''}`}>Mes favoris</a>
 				</Link>
-				<Link href="/referent/client-messages">
+
+				<Link href="#">
 					<a className={`list-group-item ${pageLocation === 'client_messages' ? 'active' : ''}`}>Messages</a>
 				</Link>
-				<Link href="/referent/account-settings">
+				<Link href="#">
 					<a className={`list-group-item ${pageLocation === 'account_settings' ? 'active' : ''}`}>
 						Paramètre du compte
 					</a>
@@ -34,4 +25,4 @@ const ReferentMenu = ({ pageLocation }) => {
 	);
 };
 
-export default ReferentMenu;
+export default CustomerMenu;

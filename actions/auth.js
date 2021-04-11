@@ -44,3 +44,15 @@ export const getCurrentReferent = async (authtoken) => {
 		}
 	);
 };
+
+export const getCurrentCustomer = async (authtoken) => {
+	return await axios.post(
+		`${API_URL}/current-customer`,
+		{},
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};

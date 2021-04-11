@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const Header = () => {
 	const dispatch = useDispatch();
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, wishlistCount } = useSelector((state) => ({ ...state }));
 
 	const logout = () => {
 		firebase.auth().signOut();
@@ -72,15 +72,29 @@ const Header = () => {
 										<small className="text">Message</small>
 									</a>
 								</div>
-								<div className="widget-header mr-3">
-									<a href="#" className="widget-view">
-										<div className="icon-area">
-											<i className="fa fa-heart" />
-											<span className="notify">1</span>
-										</div>
-										<small className="text"> Mes favoris </small>
-									</a>
-								</div>
+								{user &&
+								user.role !== 'sysadmin' && (
+									<div className="widget-header mr-3">
+										<Link
+											href={
+												user.role === 'customer' ? (
+													'/customer/myfavorite'
+												) : (
+													'/referent/myfavorite'
+												)
+											}
+										>
+											<a className="widget-view">
+												<div className="icon-area">
+													<i className="fa fa-heart" />
+													<span className="notify">{wishlistCount}</span>
+												</div>
+												<small className="text"> Mes favoris </small>
+											</a>
+										</Link>
+									</div>
+								)}
+
 								{!user && (
 									<div className="widget-header">
 										<Link href="/auth/login">

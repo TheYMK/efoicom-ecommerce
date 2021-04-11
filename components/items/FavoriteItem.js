@@ -1,41 +1,11 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSelector, useDispatch } from 'react-redux';
-import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
-import { toast } from 'react-toastify';
 
-const SingleItem = ({ imageSrc, item }) => {
+const FavoriteItem = ({ imageSrc, item, handleRemoveItem }) => {
 	const { title, description, provider_name, provider_phone_number, provider_address } = item;
-	const { user } = useSelector((state) => ({ ...state }));
-	const dispatch = useDispatch();
-
-	const handleAddItemToWishlist = () => {
-		if (user && user.token) {
-			addItemToWishlist(user.token, item._id)
-				.then((res) => {
-					toast.success('Article ajouté dans vos favoris');
-					getUserWishlistCount(user.token)
-						.then((response2) => {
-							dispatch({
-								type: 'SET_COUNT',
-								payload: response2.data.count
-							});
-						})
-						.catch((err) => {
-							console.log(`----> Failed to get total count of items on user's wishlist: {Error: ${err}`);
-						});
-				})
-				.catch((err) => {
-					console.log(err);
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer`);
-				});
-		} else {
-			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouté un article dans vos favoris`);
-		}
-	};
 
 	return (
-		<div className="col-md-3">
+		<div className="col-md-4">
 			<div className="product-card product-card-profile">
 				<div className="product-card-header product-card-header-image">
 					<a href="#">
@@ -51,8 +21,8 @@ const SingleItem = ({ imageSrc, item }) => {
 						</a>
 					</Link>
 
-					<button className="btn btn-danger ml-3" onClick={handleAddItemToWishlist}>
-						<i className="fas fa-heart" />
+					<button className="btn btn-danger ml-3" onClick={(e) => handleRemoveItem(item._id)}>
+						<i className="fas fa-trash" /> Retirer
 					</button>
 				</div>
 
@@ -80,4 +50,4 @@ const SingleItem = ({ imageSrc, item }) => {
 	);
 };
 
-export default SingleItem;
+export default FavoriteItem;

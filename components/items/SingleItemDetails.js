@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import RelatedItems from './RelatedItems';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ContactReferentDialog from '../dialogs/ContactReferentDialog';
 import { getCurrentUser } from '../../actions/auth';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 import { contactReferent } from '../../actions/form';
+import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
 
 const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 	const {
@@ -30,6 +27,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 	const [ selectedImage, setSelectedImage ] = useState(images[0]);
 	const [ openContactForm, setOpenContactForm ] = useState(false);
 	const { user } = useSelector((state) => ({ ...state }));
+	const dispatch = useDispatch();
 	const [ values, setValues ] = useState({
 		ref_email: referent_info.email,
 		usr_email: '',
@@ -38,12 +36,6 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 		subject: '',
 		message: ''
 	});
-
-	// useEffect(() => {
-	// 	if (user && user.token) {
-
-	// 	}
-	// }, []);
 
 	const handleOpenContactForm = (e) => {
 		if (user && user.token) {
@@ -89,6 +81,31 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 				toast.error(`Oops! Echec de l'envoi. Veuillez réessayer`);
 				setLoading(false);
 			});
+	};
+
+	const handleAddItemToWishlist = () => {
+		if (user && user.token) {
+			addItemToWishlist(user.token, item._id)
+				.then((res) => {
+					toast.success('Article ajouté dans vos favoris');
+					getUserWishlistCount(user.token)
+						.then((response2) => {
+							dispatch({
+								type: 'SET_COUNT',
+								payload: response2.data.count
+							});
+						})
+						.catch((err) => {
+							console.log(`----> Failed to get total count of items on user's wishlist: {Error: ${err}`);
+						});
+				})
+				.catch((err) => {
+					console.log(err);
+					toast.error(`Oops! Echec de l'opération. Veuillez réessayer`);
+				});
+		} else {
+			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouté un article dans vos favoris`);
+		}
 	};
 
 	return (
@@ -217,7 +234,10 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 											<span className="text">Contactez le référent</span>
 										</button>
 
-										<button className="btn btn-danger mt-2 ml-xl-2">
+										<button
+											className="btn btn-danger mt-2 ml-xl-2"
+											onClick={handleAddItemToWishlist}
+										>
 											<i className="fas fa-heart" />{' '}
 											<span className="text">Ajouter aux favoris</span>
 										</button>

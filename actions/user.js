@@ -68,3 +68,43 @@ export const updateAdminPassword = async (authtoken, newPassword) => {
 export const getSingleReferentByEmail = async (email) => {
 	return await axios.get(`${API_URL}/referent/${email}`);
 };
+
+export const addItemToWishlist = async (authtoken, item_id) => {
+	return await axios.post(
+		`${API_URL}/wishlist/add`,
+		{ item_id },
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};
+
+export const getUserWishlist = async (authtoken) => {
+	return await axios.get(`${API_URL}/user/wishlist/get`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};
+
+export const removeFromWishlist = async (authtoken, id) => {
+	return await axios.put(
+		`${API_URL}/user/wishlist/remove/${id}`,
+		{},
+		{
+			headers: {
+				authtoken: authtoken
+			}
+		}
+	);
+};
+
+export const getUserWishlistCount = async (authtoken) => {
+	return await axios.get(`${API_URL}/user/wishlist/count`, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};

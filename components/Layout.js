@@ -4,6 +4,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import { auth } from '../actions/firebase';
 import { useDispatch } from 'react-redux';
 import { getCurrentUser } from '../actions/auth';
+import { getUserWishlistCount } from '../actions/user';
 
 const Layout = ({ children }) => {
 	const dispatch = useDispatch();
@@ -25,6 +26,19 @@ const Layout = ({ children }) => {
 								_id: response.data._id
 							}
 						});
+
+						getUserWishlistCount(idTokenResult.token)
+							.then((response2) => {
+								dispatch({
+									type: 'SET_COUNT',
+									payload: response2.data.count
+								});
+							})
+							.catch((err) => {
+								console.log(
+									`----> Failed to get total count of items on user's wishlist: {Error: ${err}`
+								);
+							});
 					})
 					.catch((err) => {
 						console.log(`----> Failed to get current user: {Error: ${err}`);
