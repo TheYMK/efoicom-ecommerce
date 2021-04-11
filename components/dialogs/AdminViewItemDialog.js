@@ -75,6 +75,10 @@ const AdminViewItemDialog = ({ open, handleClose, item }) => {
 									<br /> {item.provider_name}
 								</p>
 								<p>
+									<strong>Île</strong>
+									<br /> {item.provider_island}
+								</p>
+								<p>
 									<strong>Adresse</strong>
 									<br /> {item.provider_address}
 								</p>

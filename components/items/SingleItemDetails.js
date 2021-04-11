@@ -20,6 +20,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 		provider_phone_number,
 		provider_address,
 		item_type,
+		provider_island,
 		isRecommended
 	} = item;
 
@@ -209,18 +210,21 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 									<dt className="col-sm-3">Tel</dt>
 									<dd className="col-sm-9">{provider_phone_number}</dd>
 
+									<dt className="col-sm-3">Île</dt>
+									<dd className="col-sm-9">{provider_island && provider_island.toUpperCase()}</dd>
+
 									<dt className="col-sm-3">Adresse</dt>
 									<dd className="col-sm-9">{provider_address}</dd>
 
 									<dt className="col-sm-3">Categorie</dt>
 									<dd className="col-sm-9">
-										<span className="badge bg-success text-white">{category.name}</span>
+										<span className="tag bg-success text-white">{category.name}</span>
 									</dd>
 
 									<dt className="col-sm-3">Sous-catégorie</dt>
 									<dd className="col-sm-9">
 										{subs.map((sub) => (
-											<span key={sub._id} className="badge bg-info text-white mr-2">
+											<span key={sub._id} className="tag bg-info text-white mr-2">
 												{sub.name}
 											</span>
 										))}

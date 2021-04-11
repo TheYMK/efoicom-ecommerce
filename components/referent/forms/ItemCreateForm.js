@@ -22,6 +22,7 @@ const ItemCreateForm = ({
 		subs,
 		images,
 		provider_name,
+		provider_island,
 		provider_phone_number,
 		provider_address,
 		// availability,
@@ -106,18 +107,38 @@ const ItemCreateForm = ({
 					/>
 				</div>
 			</div>
-			<div className="form-group mt-4">
-				<label>Adresse du fournisseur</label>
-				<input
-					type="text"
-					name="provider_address"
-					className="form-control"
-					value={provider_address}
-					required
-					onChange={handleChange}
-					placeholder="Saisissez l'adresse du fournisseur"
-				/>
+			<div className="form-row">
+				<div className="form-group col-md-4 mt-4">
+					<label htmlFor="island">
+						île <small style={{ color: 'red' }}>*</small>
+					</label>
+					<select
+						id="island"
+						className="form-control"
+						required
+						value={provider_island}
+						onChange={(e) => setValues({ ...values, provider_island: e.target.value })}
+					>
+						<option value=""> Veuillez choisir une île...</option>
+						<option value="anjouan">Anjouan</option>
+						<option value="ngazidja">Ngazidja</option>
+						<option value="mohéli">Mohéli</option>
+					</select>
+				</div>
+				<div className="form-group col-md-8 mt-4">
+					<label>Adresse du fournisseur</label>
+					<input
+						type="text"
+						name="provider_address"
+						className="form-control"
+						value={provider_address}
+						required
+						onChange={handleChange}
+						placeholder="Saisissez l'adresse du fournisseur"
+					/>
+				</div>
 			</div>
+
 			<div className="form-group mt-3">
 				<label>Categorie</label>
 				<select name="category" className="form-control" onChange={handleCategoryChange}>

@@ -110,3 +110,11 @@ export const getAllRecommendedItems = async () => {
 export const getRelatedItems = async (id) => {
 	return await axios.get(`${API_URL}/items/related/${id}`);
 };
+
+export const getAllProductsByCount = async (count) => {
+	return await axios.get(`${API_URL}/items/products/${count}`);
+};
+
+export const getAllServicesByCount = async (count) => {
+	return await axios.get(`${API_URL}/items/services/${count}`);
+};

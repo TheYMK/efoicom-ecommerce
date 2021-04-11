@@ -24,6 +24,7 @@ const ItemUpdateForm = ({
 		images,
 		provider_name,
 		provider_phone_number,
+		provider_island,
 		provider_address,
 		// availability,
 		item_type
@@ -32,7 +33,10 @@ const ItemUpdateForm = ({
 	const showUpdateItemForm = () => (
 		<form>
 			<div className="form-group">
-				<label>Que voulez-vous soumettre?</label> <br />
+				<label>
+					Que voulez-vous soumettre? <small style={{ color: 'red' }}>*</small>
+				</label>{' '}
+				<br />
 				<label className="custom-control custom-radio custom-control-inline">
 					<input
 						className="custom-control-input"
@@ -60,7 +64,9 @@ const ItemUpdateForm = ({
 			</div>
 
 			<div className="form-group">
-				<label>Titre</label>
+				<label>
+					Titre <small style={{ color: 'red' }}>*</small>
+				</label>
 				<input
 					type="text"
 					name="title"
@@ -72,7 +78,9 @@ const ItemUpdateForm = ({
 				/>
 			</div>
 			<div className="form-group">
-				<label>Description</label>
+				<label>
+					Description <small style={{ color: 'red' }}>*</small>
+				</label>
 				<input
 					type="text"
 					name="description"
@@ -86,7 +94,9 @@ const ItemUpdateForm = ({
 
 			<div className="form-row">
 				<div className="col-md-6">
-					<label>Nom du fournisseur</label>
+					<label>
+						Nom du fournisseur <small style={{ color: 'red' }}>*</small>
+					</label>
 					<input
 						type="text"
 						name="provider_name"
@@ -98,7 +108,9 @@ const ItemUpdateForm = ({
 					/>
 				</div>
 				<div className="col-md-6">
-					<label>Numéro de téléphone du fournisseur</label>
+					<label>
+						Numéro de téléphone du fournisseur <small style={{ color: 'red' }}>*</small>
+					</label>
 					<PhoneInput
 						placeholder="3725168"
 						value={provider_phone_number}
@@ -109,20 +121,41 @@ const ItemUpdateForm = ({
 					/>
 				</div>
 			</div>
-			<div className="form-group mt-4">
-				<label>Adresse du fournisseur</label>
-				<input
-					type="text"
-					name="provider_address"
-					className="form-control"
-					value={provider_address}
-					required
-					onChange={handleChange}
-					placeholder="Saisissez l'adresse du fournisseur"
-				/>
+			<div className="form-row">
+				<div className="form-group col-md-4 mt-4">
+					<label htmlFor="island">
+						île du fournisseur<small style={{ color: 'red' }}>*</small>
+					</label>
+					<input
+						type="text"
+						name="provider_island"
+						className="form-control"
+						value={provider_island}
+						required
+						onChange={handleChange}
+						disabled
+					/>
+				</div>
+				<div className="form-group mt-4 col-md-8">
+					<label>
+						Adresse du fournisseur <small style={{ color: 'red' }}>*</small>
+					</label>
+					<input
+						type="text"
+						name="provider_address"
+						className="form-control"
+						value={provider_address}
+						required
+						onChange={handleChange}
+						placeholder="Saisissez l'adresse du fournisseur"
+					/>
+				</div>
 			</div>
+
 			<div className="form-group mt-3">
-				<label>Categorie</label>
+				<label>
+					Categorie <small style={{ color: 'red' }}>*</small>
+				</label>
 				<select value={category._id} name="category" className="form-control" onChange={handleCategoryChange}>
 					{categories.length > 0 &&
 						categories.map((category) => (
@@ -134,7 +167,9 @@ const ItemUpdateForm = ({
 			</div>
 
 			<div>
-				<label>Sous-Categorie</label>
+				<label>
+					Sous-Categorie <small style={{ color: 'red' }}>*</small>
+				</label>
 				<Select
 					mode="multiple"
 					allowClear

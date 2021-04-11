@@ -23,6 +23,7 @@ const AdminItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, par
 		images: item.images,
 		provider_name: item.provider_name,
 		provider_phone_number: item.provider_phone_number,
+		provider_island: item.provider_island,
 		provider_address: item.provider_address,
 		// availability: '',
 		item_type: item.item_type
@@ -41,6 +42,7 @@ const AdminItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, par
 		images,
 		provider_name,
 		provider_address,
+		provider_island,
 		provider_phone_number,
 		item_type
 	} = values;

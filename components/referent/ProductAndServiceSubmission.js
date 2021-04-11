@@ -19,6 +19,7 @@ const ProductAndServiceSubmission = () => {
 		images: [],
 		provider_name: '',
 		provider_phone_number: '',
+		provider_island: '',
 		provider_address: '',
 		// availability: '',
 		item_type: ''
@@ -33,6 +34,7 @@ const ProductAndServiceSubmission = () => {
 		images,
 		provider_name,
 		provider_phone_number,
+		provider_island,
 		provider_address,
 		item_type
 	} = values;
@@ -67,6 +69,7 @@ const ProductAndServiceSubmission = () => {
 			images.length < 1 ||
 			!provider_name ||
 			!provider_phone_number ||
+			!provider_island ||
 			!provider_address ||
 			!item_type
 		) {

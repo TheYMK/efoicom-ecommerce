@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleItem from './SingleItem';
+import Link from 'next/link';
 
 const Items = ({ items_type, items }) => {
 	return (
@@ -20,9 +21,13 @@ const Items = ({ items_type, items }) => {
 				</div>
 				<div className="text-center">
 					{items_type === 'products' ? (
-						<button className="btn btn-primary mt-4 rounded-pill">Tous les produits</button>
+						<Link href="/items/products">
+							<a className="btn btn-primary mt-4 rounded-pill">Tous les produits</a>
+						</Link>
 					) : (
-						<button className="btn btn-primary mt-4 rounded-pill">Tous les services</button>
+						<Link href="/items/services">
+							<a className="btn btn-primary mt-4 rounded-pill">Tous les services</a>
+						</Link>
 					)}
 				</div>
 			</section>
