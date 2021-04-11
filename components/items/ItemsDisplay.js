@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
 import Link from 'next/link';
+import { showAverage } from '../../actions/rating';
 
 const ItemsDisplay = ({ items }) => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -49,21 +50,29 @@ const ItemsDisplay = ({ items }) => {
 							<a href="#" className="h5 title">
 								{item.title}
 							</a>
-							<div className="rating-wrap mb-2">
-								<ul className="rating-stars">
-									<li style={{ width: '100%' }} className="stars-active">
-										<i className="fa fa-star" /> <i className="fa fa-star" />
-										<i className="fa fa-star" /> <i className="fa fa-star" />
-										<i className="fa fa-star" />
-									</li>
-									<li>
-										<i className="fa fa-star" /> <i className="fa fa-star" />
-										<i className="fa fa-star" /> <i className="fa fa-star" />
-										<i className="fa fa-star" />
-									</li>
-								</ul>
-								<div className="label-rating">9/10</div>
-							</div>
+							{item && item.ratings && item.ratings.length > 0 ? (
+								showAverage(item)
+							) : (
+								<div className="rating-wrap mb-2">
+									<ul className="rating-stars">
+										{/* <li style={{ width: '100%' }} className="stars-active">
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+												</li> */}
+										<li>
+											<i className="fa fa-star" />
+											<i className="fa fa-star" />
+											<i className="fa fa-star" />
+											<i className="fa fa-star" />
+											<i className="fa fa-star" />
+										</li>
+									</ul>
+									<div className="label-rating">(0)</div>
+								</div>
+							)}
 							<p className="mb-3">
 								Categorie: <span className="tag bg-success text-white">{item.category.name}</span>
 							</p>

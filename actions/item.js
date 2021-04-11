@@ -118,3 +118,11 @@ export const getAllProductsByCount = async (count) => {
 export const getAllServicesByCount = async (count) => {
 	return await axios.get(`${API_URL}/items/services/${count}`);
 };
+
+export const itemStarRating = async (authtoken, item_id, rating) => {
+	return await axios.put(`${API_URL}/item/star/${item_id}`, rating, {
+		headers: {
+			authtoken: authtoken
+		}
+	});
+};

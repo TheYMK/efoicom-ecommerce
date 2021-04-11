@@ -5,10 +5,14 @@ import ContactReferentDialog from '../dialogs/ContactReferentDialog';
 import { getCurrentUser } from '../../actions/auth';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
+import StarRating from 'react-star-ratings';
 import { contactReferent } from '../../actions/form';
 import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
+import RatingDialog from '../dialogs/RatingDialog';
+import { showAverage } from '../../actions/rating';
+import { Divider } from '@material-ui/core';
 
-const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
+const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, handleSubmitRating, vals, setVals }) => {
 	const {
 		title,
 		referent_email,
@@ -23,6 +27,8 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 		provider_island,
 		isRecommended
 	} = item;
+
+	const { star, comment } = vals;
 
 	const [ loading, setLoading ] = useState(false);
 	const [ selectedImage, setSelectedImage ] = useState(images[0]);
@@ -172,25 +178,58 @@ const SingleItemDetails = ({ item, relatedItems, referent_info }) => {
 						<main className="col-md-6">
 							<article className="product-info-aside">
 								<h2 className="title mt-3">{title}</h2>
-
 								<div className="rating-wrap my-3">
-									<ul className="rating-stars">
-										<li style={{ width: '80%' }} className="stars-active">
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-										</li>
-										<li>
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-											<i className="fa fa-star" />
-										</li>
-									</ul>
-									<small className="label-rating text-muted">132 reviews</small>
+									{item && item.ratings && item.ratings.length > 0 ? (
+										showAverage(item)
+									) : (
+										<div className="rating-wrap mb-2">
+											<ul className="rating-stars">
+												{/* <li style={{ width: '100%' }} className="stars-active">
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+												</li> */}
+												<li>
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+													<i className="fa fa-star" />
+												</li>
+											</ul>
+											<div className="label-rating">(0)</div>
+										</div>
+									)}
+
+									<div className="mt-2">
+										<RatingDialog handleSubmitRating={handleSubmitRating} slug={item.slug}>
+											<div>
+												<StarRating
+													name={item._id}
+													numberOfStars={5}
+													rating={star}
+													changeRating={onStarClick}
+													isSelectable={true}
+													starRatedColor="orange"
+													starDimension="40px"
+												/>
+												<form className="mt-3">
+													<div className="form-group">
+														<input
+															type="text"
+															className="form-control"
+															value={comment}
+															placeholder="Comment..."
+															onChange={(e) =>
+																setVals({ ...vals, comment: e.target.value })}
+														/>
+													</div>
+												</form>
+											</div>
+										</RatingDialog>
+									</div>
 								</div>
 
 								{isRecommended && (
