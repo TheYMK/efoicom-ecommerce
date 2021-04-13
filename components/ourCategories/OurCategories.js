@@ -1,5 +1,6 @@
 import React from 'react';
 import SingleCategorie from './SingleCategorie';
+import Link from 'next/link';
 
 const OurCategories = ({ allCategories }) => {
 	return (
@@ -16,8 +17,9 @@ const OurCategories = ({ allCategories }) => {
 								.slice(0, 4)
 								.map((category) => <SingleCategorie key={category._id} category={category} />)}
 						</div>
-
-						<button className="btn btn-primary mt-5 rounded-pill">Voir la liste complète</button>
+						<Link href="/categories">
+							<a className="btn btn-primary mt-5 rounded-pill">Voir la liste complète</a>
+						</Link>
 					</div>
 				</section>
 			</section>

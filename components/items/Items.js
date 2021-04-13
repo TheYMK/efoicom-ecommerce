@@ -20,6 +20,11 @@ const Items = ({ items_type, items }) => {
 					</div>
 				</div>
 				<div className="text-center">
+					<Link href="/items">
+						<a className="btn btn-primary mt-4 rounded-pill">Tous les articles</a>
+					</Link>
+				</div>
+				{/* <div className="text-center">
 					{items_type === 'products' ? (
 						<Link href="/items">
 							<a className="btn btn-primary mt-4 rounded-pill">Tous les produits</a>
@@ -29,7 +34,7 @@ const Items = ({ items_type, items }) => {
 							<a className="btn btn-primary mt-4 rounded-pill">Tous les services</a>
 						</Link>
 					)}
-				</div>
+				</div> */}
 			</section>
 		</React.Fragment>
 	);

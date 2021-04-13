@@ -10,7 +10,9 @@ const Filters = ({
 	handleRatingChange,
 	selectedSub,
 	handleSubChange,
-	allSubsFromDB
+	allSubsFromDB,
+	selectedType,
+	handleTypeChange
 }) => {
 	const showIslands = () => (
 		<article className="filter-group">
@@ -210,7 +212,7 @@ const Filters = ({
 				</a>
 				<small>Selection multiple</small>
 			</h6>
-			<div className="filter-content collapse show" id="collapse_4">
+			<div className="filter-content collapse" id="collapse_4">
 				<div className="inner">
 					{allSubsFromDB.map((sub, index) => (
 						<label className="checkbox-btn mr-2" key={index} onClick={(e) => handleSubChange(sub)}>
@@ -221,10 +223,61 @@ const Filters = ({
 			</div>
 		</article>
 	);
+
+	const showTypes = () => (
+		<article className="filter-group">
+			<h6 className="title">
+				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5">
+					{' '}
+					Filtrer par type d'article{' '}
+				</a>
+			</h6>
+			<div className="filter-content collapse show" id="collapse_5">
+				<div className="inner">
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="all"
+							value="all"
+							checked={selectedType === 'all'}
+							className="custom-control-input"
+							onChange={handleTypeChange}
+						/>
+						<div className="custom-control-label">Tous types</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="product"
+							value="product"
+							checked={selectedType === 'product'}
+							onChange={handleTypeChange}
+							className="custom-control-input"
+						/>
+						<div className="custom-control-label">Produits</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="service"
+							value="service"
+							checked={selectedType === 'service'}
+							onChange={handleTypeChange}
+							className="custom-control-input"
+						/>
+						<div className="custom-control-label">Services</div>
+					</label>
+				</div>
+			</div>
+		</article>
+	);
 	return (
 		<aside className="col-md-2">
 			{showIslands()}
 			{showCategories()}
+			{showTypes()}
 			{showRatings()}
 			{showSubs()}
 		</aside>

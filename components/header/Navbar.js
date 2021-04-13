@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Link from 'next/link';
 const Navbar = () => {
 	return (
 		<React.Fragment>
@@ -55,13 +55,13 @@ const Navbar = () => {
 							</li> */}
 							<li className="nav-item">
 								<a className="nav-link" href="#">
-									Actualité Covid-19
+									Actualité
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link" href="#">
-									Bon plans
-								</a>
+								<Link href="/items">
+									<a className="nav-link">Catalogue</a>
+								</Link>
 							</li>
 							<li className="nav-item">
 								<a className="nav-link" href="#">

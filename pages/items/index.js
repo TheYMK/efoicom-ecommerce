@@ -24,6 +24,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 	const { text, island_choice } = search;
 
 	const [ selectedIsland, setSelectedIsland ] = useState(island_choice);
+	const [ selectedType, setSelectedType ] = useState('all');
 	const [ selectedCategories, setSelectedCategories ] = useState([]);
 	const [ selectedSub, setSelectedSub ] = useState('');
 	const [ selectedRating, setSelectedRating ] = useState(0);
@@ -68,6 +69,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedCategories([]);
 		setSelectedRating(0);
 		setSelectedSub('');
+		selectedType('all');
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		setSelectedIsland(e.target.value);
@@ -86,6 +88,8 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedRating(0);
 		setSelectedIsland(island_choice);
 		setSelectedSub('');
+		selectedType('all');
+
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		let inTheState = [ ...selectedCategories ];
@@ -118,6 +122,8 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedCategories([]);
 		setSelectedIsland('');
 		setSelectedSub('');
+		selectedType('all');
+
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		setSelectedRating(e.target.value);
@@ -136,11 +142,32 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedRating(0);
 		setSelectedIsland(island_choice);
 		setSelectedCategories([]);
+		selectedType('all');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		setSelectedSub(sub);
 		fetchItems({ sub: sub });
+	};
+
+	// ************************************************
+	//		6 .load items on type selected
+	// ************************************************
+	const handleTypeChange = (e) => {
+		// START RESET PREVIOUS SEARCH OPTIONS
+		dispatch({
+			type: 'SEARCH_QUERY',
+			payload: { text: '', island_choice: 'all' }
+		});
+		setSelectedCategories([]);
+		setSelectedRating(0);
+		setSelectedSub('');
+		setSelectedIsland(island_choice);
+
+		// END RESET PREVIOUS SEARCH OPTIONS
+
+		setSelectedType(e.target.value);
+		fetchItems({ type: e.target.value });
 	};
 
 	return (
@@ -157,7 +184,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 							<div className="card-body">
 								<ol className="breadcrumb float-left">
 									<li className="breadcrumb-item">
-										<a href="#">Accueil</a>
+										<a href="/">Accueil</a>
 									</li>
 									<li className="breadcrumb-item active">Tous les produits</li>
 								</ol>
@@ -169,6 +196,8 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 							<Filters
 								selectedIsland={selectedIsland}
 								handleIslandChange={handleIslandChange}
+								selectedType={selectedType}
+								handleTypeChange={handleTypeChange}
 								selectedCategories={selectedCategories}
 								handleCategoriesChange={handleCategoriesChange}
 								allCategoriesFromDB={allCategoriesFromDB}
