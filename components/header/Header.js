@@ -4,6 +4,7 @@ import firebase from 'firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import Router from 'next/router';
 import { toast } from 'react-toastify';
+import Search from './Search';
 
 const Header = () => {
 	const dispatch = useDispatch();
@@ -37,25 +38,7 @@ const Header = () => {
 								{/* <span className="logo">Massiwa Market</span> */}
 							</a>
 						</div>
-						<div className="col-xl-6 col-lg-5 col-md-6">
-							<form action="#" className="search-header">
-								<div className="input-group w-100">
-									<select className="custom-select border-right" name="category_name">
-										<option value="">Toutes les îles</option>
-										<option value="codex">Anjouan</option>
-										<option value="comments">Ngazidja</option>
-										<option value="content">Moheli</option>
-									</select>
-									<input type="text" className="form-control" placeholder="Recherche..." />
-
-									<div className="input-group-append">
-										<button className="btn btn-primary" type="submit">
-											<i className="fa fa-search" /> Rechercher
-										</button>
-									</div>
-								</div>
-							</form>
-						</div>
+						<Search />
 						<div className="col-xl-4 col-lg-4 col-md-6">
 							<div className="widgets-wrap float-md-right">
 								{/* <div className="widget-header mr-5">

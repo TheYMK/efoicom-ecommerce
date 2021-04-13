@@ -1,176 +1,232 @@
 import React from 'react';
 
-const Filters = () => {
+const Filters = ({
+	selectedIsland,
+	handleIslandChange,
+	selectedCategories,
+	handleCategoriesChange,
+	allCategoriesFromDB,
+	selectedRating,
+	handleRatingChange,
+	selectedSub,
+	handleSubChange,
+	allSubsFromDB
+}) => {
+	const showIslands = () => (
+		<article className="filter-group">
+			<h6 className="title">
+				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">
+					{' '}
+					Filtrer par île{' '}
+				</a>
+			</h6>
+			<div className="filter-content collapse show" id="collapse_1">
+				<div className="inner">
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="all"
+							value="all"
+							checked={selectedIsland === 'all'}
+							className="custom-control-input"
+							onChange={handleIslandChange}
+						/>
+						<div className="custom-control-label">Toutes les îles</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="anjouan"
+							value="anjouan"
+							checked={selectedIsland === 'anjouan'}
+							onChange={handleIslandChange}
+							className="custom-control-input"
+						/>
+						<div className="custom-control-label">Anjouan</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="ngazidja"
+							value="ngazidja"
+							checked={selectedIsland === 'ngazidja'}
+							onChange={handleIslandChange}
+							className="custom-control-input"
+						/>
+						<div className="custom-control-label">Ngazidja</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							name="mohéli"
+							value="mohéli"
+							checked={selectedIsland === 'mohéli'}
+							onChange={handleIslandChange}
+							className="custom-control-input"
+						/>
+						<div className="custom-control-label">Mohéli</div>
+					</label>
+				</div>
+			</div>
+		</article>
+	);
+
+	const showCategories = () => (
+		<article className="filter-group">
+			<h6 className="title">
+				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">
+					{' '}
+					Filtrer par catégories{' '}
+				</a>
+				<small>Selection multiple</small>
+			</h6>
+			<div className="filter-content collapse show" id="collapse_2">
+				<div className="inner">
+					{allCategoriesFromDB.map((category, index) => (
+						<label className="checkbox-btn mr-2" key={category._id}>
+							<input
+								type="checkbox"
+								name="category"
+								value={category._id}
+								checked={selectedCategories.includes(category._id)}
+								onChange={handleCategoriesChange}
+							/>
+							<span className="btn btn-light"> {category.name} </span>
+						</label>
+					))}
+				</div>
+			</div>
+		</article>
+	);
+
+	const showRatings = () => (
+		<article className="filter-group">
+			<h6 className="title">
+				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3">
+					{' '}
+					Filtrer par réputation{' '}
+				</a>
+			</h6>
+			<div className="filter-content collapse show" id="collapse_3">
+				<div className="inner">
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							checked={selectedRating === '5'}
+							value={5}
+							className="custom-control-input"
+							onChange={handleRatingChange}
+						/>
+						<div className="custom-control-label text-warning">
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+						</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							checked={selectedRating === '4'}
+							value={4}
+							className="custom-control-input"
+							onChange={handleRatingChange}
+						/>
+						<div className="custom-control-label text-warning">
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+						</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							checked={selectedRating === '3'}
+							value={3}
+							className="custom-control-input"
+							onChange={handleRatingChange}
+						/>
+						<div className="custom-control-label text-warning">
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+						</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							checked={selectedRating === '2'}
+							value={2}
+							className="custom-control-input"
+							onChange={handleRatingChange}
+						/>
+						<div className="custom-control-label text-warning">
+							<i className="fa fa-star" />
+							<i className="fa fa-star" />
+						</div>
+					</label>
+
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							checked={selectedRating === '1'}
+							value={1}
+							className="custom-control-input"
+							onChange={handleRatingChange}
+						/>
+						<div className="custom-control-label text-warning">
+							<i className="fa fa-star" />
+						</div>
+					</label>
+					<label className="custom-control custom-radio">
+						<input
+							type="radio"
+							checked={selectedRating === '0'}
+							value={0}
+							className="custom-control-input"
+							onChange={handleRatingChange}
+						/>
+						<div className="custom-control-label text-warning">Tous</div>
+					</label>
+				</div>
+			</div>
+		</article>
+	);
+
+	const showSubs = () => (
+		<article className="filter-group">
+			<h6 className="title">
+				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_4">
+					{' '}
+					Filtrer par sous-catégorie{' '}
+				</a>
+				<small>Selection multiple</small>
+			</h6>
+			<div className="filter-content collapse show" id="collapse_4">
+				<div className="inner">
+					{allSubsFromDB.map((sub, index) => (
+						<label className="checkbox-btn mr-2" key={index} onClick={(e) => handleSubChange(sub)}>
+							<span className="btn btn-light"> {sub.name} </span>
+						</label>
+					))}
+				</div>
+			</div>
+		</article>
+	);
 	return (
 		<aside className="col-md-2">
-			<article className="filter-group">
-				<h6 className="title">
-					<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">
-						{' '}
-						Product type{' '}
-					</a>
-				</h6>
-				<div className="filter-content collapse show" id="collapse_1">
-					<div className="inner">
-						<ul className="list-menu">
-							<li>
-								<a href="#">Shorts </a>
-							</li>
-							<li>
-								<a href="#">Trousers </a>
-							</li>
-							<li>
-								<a href="#">Sweaters </a>
-							</li>
-							<li>
-								<a href="#">Clothes </a>
-							</li>
-							<li>
-								<a href="#">Home items </a>
-							</li>
-							<li>
-								<a href="#">Jackats</a>
-							</li>
-							<li>
-								<a href="#">Somethings </a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</article>
-			<article className="filter-group">
-				<h6 className="title">
-					<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">
-						{' '}
-						Brands{' '}
-					</a>
-				</h6>
-				<div className="filter-content collapse show" id="collapse_2">
-					<div className="inner">
-						<label className="custom-control custom-checkbox">
-							<input type="checkbox" checked="" className="custom-control-input" />
-							<div className="custom-control-label">
-								Adidas
-								<b className="badge badge-pill badge-light float-right">120</b>{' '}
-							</div>
-						</label>
-						<label className="custom-control custom-checkbox">
-							<input type="checkbox" checked="" className="custom-control-input" />
-							<div className="custom-control-label">
-								Nike
-								<b className="badge badge-pill badge-light float-right">15</b>{' '}
-							</div>
-						</label>
-						<label className="custom-control custom-checkbox">
-							<input type="checkbox" checked="" className="custom-control-input" />
-							<div className="custom-control-label">
-								The Noth Face
-								<b className="badge badge-pill badge-light float-right">35</b>{' '}
-							</div>
-						</label>
-						<label className="custom-control custom-checkbox">
-							<input type="checkbox" checked="" className="custom-control-input" />
-							<div className="custom-control-label">
-								The cat
-								<b className="badge badge-pill badge-light float-right">89</b>{' '}
-							</div>
-						</label>
-						<label className="custom-control custom-checkbox">
-							<input type="checkbox" className="custom-control-input" />
-							<div className="custom-control-label">
-								Honda
-								<b className="badge badge-pill badge-light float-right">30</b>{' '}
-							</div>
-						</label>
-					</div>
-				</div>
-			</article>
-			<article className="filter-group">
-				<h6 className="title">
-					<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3">
-						{' '}
-						Price range{' '}
-					</a>
-				</h6>
-				<div className="filter-content collapse show" id="collapse_3">
-					<div className="inner">
-						<input type="range" className="custom-range" min="0" max="100" name="" />
-						<div className="form-row">
-							<div className="form-group col-md-6">
-								<label>Min</label>
-								<input className="form-control" placeholder="$0" type="number" />
-							</div>
-							<div className="form-group text-right col-md-6">
-								<label>Max</label>
-								<input className="form-control" placeholder="$1,0000" type="number" />
-							</div>
-						</div>
-						<button className="btn btn-block btn-primary">Apply</button>
-					</div>
-				</div>
-			</article>
-			<article className="filter-group">
-				<h6 className="title">
-					<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_4">
-						{' '}
-						Sizes{' '}
-					</a>
-				</h6>
-				<div className="filter-content collapse show" id="collapse_4">
-					<div className="inner">
-						<label className="checkbox-btn">
-							<input type="checkbox" />
-							<span className="btn btn-light"> XS </span>
-						</label>
-
-						<label className="checkbox-btn">
-							<input type="checkbox" />
-							<span className="btn btn-light"> SM </span>
-						</label>
-
-						<label className="checkbox-btn">
-							<input type="checkbox" />
-							<span className="btn btn-light"> LG </span>
-						</label>
-
-						<label className="checkbox-btn">
-							<input type="checkbox" />
-							<span className="btn btn-light"> XXL </span>
-						</label>
-					</div>
-				</div>
-			</article>
-			<article className="filter-group">
-				<h6 className="title">
-					<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5">
-						{' '}
-						Condition{' '}
-					</a>
-				</h6>
-				<div className="filter-content collapse show" id="collapse_5">
-					<div className="inner">
-						<label className="custom-control custom-radio">
-							<input type="radio" name="myfilter_radio" checked="" className="custom-control-input" />
-							<div className="custom-control-label">Any condition</div>
-						</label>
-
-						<label className="custom-control custom-radio">
-							<input type="radio" name="myfilter_radio" className="custom-control-input" />
-							<div className="custom-control-label">Brand new </div>
-						</label>
-
-						<label className="custom-control custom-radio">
-							<input type="radio" name="myfilter_radio" className="custom-control-input" />
-							<div className="custom-control-label">Used items</div>
-						</label>
-
-						<label className="custom-control custom-radio">
-							<input type="radio" name="myfilter_radio" className="custom-control-input" />
-							<div className="custom-control-label">Very old</div>
-						</label>
-					</div>
-				</div>
-			</article>
+			{showIslands()}
+			{showCategories()}
+			{showRatings()}
+			{showSubs()}
 		</aside>
 	);
 };

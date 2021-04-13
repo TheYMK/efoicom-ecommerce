@@ -21,11 +21,11 @@ const Items = ({ items_type, items }) => {
 				</div>
 				<div className="text-center">
 					{items_type === 'products' ? (
-						<Link href="/items/products">
+						<Link href="/items">
 							<a className="btn btn-primary mt-4 rounded-pill">Tous les produits</a>
 						</Link>
 					) : (
-						<Link href="/items/services">
+						<Link href="/items">
 							<a className="btn btn-primary mt-4 rounded-pill">Tous les services</a>
 						</Link>
 					)}

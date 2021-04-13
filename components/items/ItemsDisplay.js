@@ -79,7 +79,7 @@ const ItemsDisplay = ({ items }) => {
 							<p className="mb-3">
 								Sous-Categorie:{' '}
 								{item.subs.map((sub, i) => (
-									<React.Fragment>
+									<React.Fragment key={i}>
 										<span className="tag bg-info text-white">{sub.name}</span>
 									</React.Fragment>
 								))}

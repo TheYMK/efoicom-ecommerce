@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { getAllProductsByCount } from '../../../actions/item';
+import { getAllProductsByCount, fetchProductByFilter } from '../../../actions/item';
 import Header from '../../../components/header/Header';
 import Navbar from '../../../components/header/Navbar';
 import Filters from '../../../components/items/Filters';
 import ItemsDisplay from '../../../components/items/ItemsDisplay';
 import Layout from '../../../components/Layout';
+import { useSelector, useDispatch } from 'react-redux';
 
 const AllProductsPage = ({ allProductsFromDB }) => {
 	const [ values, setValues ] = useState({
@@ -12,6 +13,34 @@ const AllProductsPage = ({ allProductsFromDB }) => {
 	});
 
 	const { allProducts } = values;
+
+	const dispatch = useDispatch();
+	const { search } = useSelector((state) => ({ ...state }));
+	const { text } = search;
+
+	const fetchItem = (arg) => {
+		fetchProductByFilter(arg).then((res) => {
+			setValues({ ...values, allProducts: res.data });
+		});
+	};
+
+	// ************************************************
+	//		1 .load products on user search input
+	// ************************************************
+	useEffect(
+		() => {
+			if (text === '') {
+				setValues({ ...values, allProducts: allProductsFromDB });
+			} else {
+				const delayed = setTimeout(() => {
+					fetchItem({ query: text });
+				}, 300);
+
+				return () => clearTimeout(delayed);
+			}
+		},
+		[ text ]
+	);
 
 	return (
 		<React.Fragment>

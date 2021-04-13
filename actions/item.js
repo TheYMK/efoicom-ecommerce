@@ -126,3 +126,7 @@ export const itemStarRating = async (authtoken, item_id, rating) => {
 		}
 	});
 };
+
+export const fetchItemsByFilter = async (arg) => {
+	return await axios.post(`${API_URL}/search/filters`, arg);
+};
