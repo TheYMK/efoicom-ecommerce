@@ -13,10 +13,10 @@ import SectionOne from '../components/sections/SectionOne';
 import SectionTwo from '../components/sections/SectionTwo';
 import Services from '../components/services/Services';
 import Subscribe from '../components/subscribe/Subscribe';
-import Annoucements from '../components/annoucements/Annoucements';
 import OurCategories from '../components/ourCategories/OurCategories';
 import { getCategories } from '../actions/category';
 import { getAllRecommendedItems } from '../actions/item';
+import News from '../components/news/News';
 
 const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedServices }) => {
 	const head = () => (
@@ -43,7 +43,7 @@ const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedService
 					<Request />
 					<Items items_type="products" items={allRecommendedProducts} />
 					<Items items_type="services" items={allRecommendedServices} />
-					<Annoucements />
+					<News />
 					<Services />
 					{/* <Regions /> */}
 					{/* <Ad /> */}

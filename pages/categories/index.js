@@ -4,8 +4,12 @@ import { getSubs } from '../../actions/sub';
 import Header from '../../components/header/Header';
 import Navbar from '../../components/header/Navbar';
 import Layout from '../../components/Layout';
+import { useSelector, useDispatch } from 'react-redux';
+import Router from 'next/router';
 
 const AllCategoriesPage = ({ allCategories, allSubs }) => {
+	const dispatch = useDispatch();
+
 	const showCategorySubs = (id) => {
 		let subs = [];
 
@@ -15,9 +19,27 @@ const AllCategoriesPage = ({ allCategories, allSubs }) => {
 
 		return subs.map((sub) => (
 			<li key={sub._id}>
-				<a href="">{sub.name}</a>
+				<a onClick={() => handleClickSub(sub)}>{sub.name}</a>
 			</li>
 		));
+	};
+
+	const handleClickCategory = (id) => {
+		dispatch({
+			type: 'SET_FILTER',
+			payload: { byCategory: [ id ], bySub: '', byType: 'all' }
+		});
+
+		Router.push('/items');
+	};
+
+	const handleClickSub = (sub) => {
+		dispatch({
+			type: 'SET_FILTER',
+			payload: { byCategory: [], bySub: sub, byType: 'all' }
+		});
+
+		Router.push('/items');
 	};
 
 	return (
@@ -39,7 +61,7 @@ const AllCategoriesPage = ({ allCategories, allSubs }) => {
 										</div>
 										<div className="card-body">
 											<h4 className="card-title">
-												<a href="#">{category.name}</a>
+												<a onClick={() => handleClickCategory(category._id)}>{category.name}</a>
 											</h4>
 											<ul className="list-menu">{showCategorySubs(category._id)}</ul>
 										</div>

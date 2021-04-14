@@ -20,13 +20,14 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 	const { allItems } = values;
 
 	const dispatch = useDispatch();
-	const { search } = useSelector((state) => ({ ...state }));
+	const { search, filter } = useSelector((state) => ({ ...state }));
 	const { text, island_choice } = search;
+	const { byCategory, bySub, byType } = filter;
 
 	const [ selectedIsland, setSelectedIsland ] = useState(island_choice);
-	const [ selectedType, setSelectedType ] = useState('all');
-	const [ selectedCategories, setSelectedCategories ] = useState([]);
-	const [ selectedSub, setSelectedSub ] = useState('');
+	const [ selectedType, setSelectedType ] = useState(byType);
+	const [ selectedCategories, setSelectedCategories ] = useState(byCategory);
+	const [ selectedSub, setSelectedSub ] = useState(bySub);
 	const [ selectedRating, setSelectedRating ] = useState(0);
 
 	const fetchItems = (arg) => {
@@ -69,7 +70,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedCategories([]);
 		setSelectedRating(0);
 		setSelectedSub('');
-		selectedType('all');
+		setSelectedType('all');
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		setSelectedIsland(e.target.value);
@@ -79,6 +80,19 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 	// ************************************************
 	//		3 .load items on category selected
 	// ************************************************
+
+	// This bit of code is for when the user selects a category from the home page
+	useEffect(
+		() => {
+			if (byCategory.length > 0) {
+				fetchItems({ category: selectedCategories });
+			} else {
+				setValues({ ...values, allItems: [ ...allProductsFromDB, ...allServicesFromDB ] });
+			}
+		},
+		[ byCategory ]
+	);
+
 	const handleCategoriesChange = (e) => {
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
@@ -88,7 +102,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedRating(0);
 		setSelectedIsland(island_choice);
 		setSelectedSub('');
-		selectedType('all');
+		setSelectedType('all');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
@@ -106,6 +120,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		if (inTheState.length < 1) {
 			setValues({ ...values, allItems: [ ...allProductsFromDB, ...allServicesFromDB ] });
 		} else {
+			console.log(inTheState);
 			fetchItems({ category: inTheState });
 		}
 	};
@@ -122,7 +137,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedCategories([]);
 		setSelectedIsland('');
 		setSelectedSub('');
-		selectedType('all');
+		setSelectedType('all');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
@@ -133,6 +148,18 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 	// ************************************************
 	//		5 .load items on sub selected
 	// ************************************************
+
+	useEffect(
+		() => {
+			if (bySub === '') {
+				setValues({ ...values, allItems: [ ...allProductsFromDB, ...allServicesFromDB ] });
+			} else {
+				fetchItems({ sub: selectedSub });
+			}
+		},
+		[ bySub ]
+	);
+
 	const handleSubChange = (sub) => {
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
@@ -142,7 +169,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedRating(0);
 		setSelectedIsland(island_choice);
 		setSelectedCategories([]);
-		selectedType('all');
+		setSelectedType('all');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
@@ -153,6 +180,18 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 	// ************************************************
 	//		6 .load items on type selected
 	// ************************************************
+
+	useEffect(
+		() => {
+			if (byType === 'all') {
+				setValues({ ...values, allItems: [ ...allProductsFromDB, ...allServicesFromDB ] });
+			} else {
+				fetchItems({ type: selectedType });
+			}
+		},
+		[ bySub ]
+	);
+
 	const handleTypeChange = (e) => {
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({

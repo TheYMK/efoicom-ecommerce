@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Annoucements = () => {
+const News = () => {
 	return (
 		<React.Fragment>
 			<section className="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Annonces récentes</h4>
+					<h4 className="title-section text-uppercase">Actualités récentes</h4>
 				</header>
 
 				<div className="row">
@@ -26,6 +26,7 @@ const Annoucements = () => {
 									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
 									back is...
 								</p>
+								<button className="btn btn-primary">Lire plus</button>
 							</div>
 						</div>
 					</div>
@@ -46,6 +47,7 @@ const Annoucements = () => {
 									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
 									back is...
 								</p>
+								<button className="btn btn-primary">Lire plus</button>
 							</div>
 						</div>
 					</div>
@@ -66,6 +68,7 @@ const Annoucements = () => {
 									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
 									back is...
 								</p>
+								<button className="btn btn-primary">Lire plus</button>
 							</div>
 						</div>
 					</div>
@@ -86,6 +89,7 @@ const Annoucements = () => {
 									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
 									back is...
 								</p>
+								<button className="btn btn-primary">Lire plus</button>
 							</div>
 						</div>
 					</div>
@@ -95,4 +99,4 @@ const Annoucements = () => {
 	);
 };
 
-export default Annoucements;
+export default News;
