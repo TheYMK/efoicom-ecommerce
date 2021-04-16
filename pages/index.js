@@ -16,7 +16,7 @@ import Subscribe from '../components/subscribe/Subscribe';
 import OurCategories from '../components/ourCategories/OurCategories';
 import { getCategories } from '../actions/category';
 import { getAllRecommendedItems } from '../actions/item';
-import News from '../components/news/News';
+import Blogs from '../components/blogs/Blogs';
 
 const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedServices }) => {
 	const head = () => (
@@ -43,7 +43,7 @@ const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedService
 					<Request />
 					<Items items_type="products" items={allRecommendedProducts} />
 					<Items items_type="services" items={allRecommendedServices} />
-					<News />
+					<Blogs />
 					<Services />
 					{/* <Regions /> */}
 					{/* <Ad /> */}

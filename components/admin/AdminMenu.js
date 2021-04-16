@@ -28,9 +28,9 @@ const AdminMenu = ({ pageLocation }) => {
 						Gestion produits & services
 					</a>
 				</Link>
-				<Link href="/admin/homepage-structure">
-					<a className={`list-group-item ${pageLocation === 'home_page_structure' ? 'active' : ''}`}>
-						Structure de la page d'accueil
+				<Link href="/admin/blog-management">
+					<a className={`list-group-item ${pageLocation === 'blog_management' ? 'active' : ''}`}>
+						Gestion actualité
 					</a>
 				</Link>
 

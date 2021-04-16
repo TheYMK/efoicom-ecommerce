@@ -49,11 +49,11 @@ const ProductsAndServicesManagement = () => {
 							<td scope="row">{index + 1}</td>
 							<td>{product.title}</td>
 							<td>
-								<span className="badge rounded-pill bg-success">{product.category.name}</span>
+								<span className="tag rounded-pill bg-dark text-white">{product.category.name}</span>
 							</td>
 							<td>
 								{product.subs.map((sub) => (
-									<span key={sub._id} className="mr-2 badge rounded-pill bg-primary">
+									<span key={sub._id} className="mr-2 tag rounded-pill bg-info text-white">
 										{sub.name}
 									</span>
 								))}
@@ -72,7 +72,7 @@ const ProductsAndServicesManagement = () => {
 							</td>
 							<td>
 								<div className="dropdown d-inline-block">
-									<button data-toggle="dropdown" className="dropdown-toggle btn btn-secondary">
+									<button data-toggle="dropdown" className="dropdown-toggle btn btn-primary">
 										Cliquer ici
 									</button>
 									<div className="dropdown-menu dropdown-menu-right">
@@ -137,11 +137,11 @@ const ProductsAndServicesManagement = () => {
 						<tr key={service._id}>
 							<td>{service.title}</td>
 							<td>
-								<span className="badge rounded-pill bg-success">{service.category.name}</span>
+								<span className="tag rounded-pill bg-dark text-white">{service.category.name}</span>
 							</td>
 							<td>
 								{service.subs.map((sub) => (
-									<span key={sub._id} className="mr-2 badge rounded-pill bg-primary">
+									<span key={sub._id} className="mr-2 tag rounded-pill bg-info text-white">
 										{sub.name}
 									</span>
 								))}
@@ -160,7 +160,7 @@ const ProductsAndServicesManagement = () => {
 							</td>
 							<td>
 								<div className="dropdown d-inline-block">
-									<button data-toggle="dropdown" className="dropdown-toggle btn btn-secondary">
+									<button data-toggle="dropdown" className="dropdown-toggle btn btn-primary">
 										Cliquer ici
 									</button>
 									<div className="dropdown-menu dropdown-menu-right">

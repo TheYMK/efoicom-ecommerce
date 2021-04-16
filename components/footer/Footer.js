@@ -97,7 +97,13 @@ const Footer = () => {
 
 					<section className="footer-bottom text-center">
 						<p className="text-white">Politique de confidentialité - Mentions Legales</p>
-						<p className="text-muted"> COPYRIGHT &copy; 2021 BANGWÉ LA MASSIWA, TOUS DROIT RESERVÉS </p>
+						<p className="text-muted">
+							{' '}
+							COPYRIGHT &copy; 2021 BANGWÉ LA MASSIWA by{' '}
+							<a href="https://kaymkassai.tech" target="blank" style={{ color: '#fff' }}>
+								Kaym Kassai
+							</a>, TOUS DROIT RESERVÉS{' '}
+						</p>
 						<br />
 					</section>
 				</div>

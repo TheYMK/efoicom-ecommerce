@@ -1,12 +1,12 @@
 import React from 'react';
 import Head from 'next/head';
-import HomePageStructure from '../../components/admin/HomePageStructure';
+import BlogManagement from '../../components/admin/BlogManagement';
 import AdminProtected from '../../components/auth/AdminProtected';
 import Header from '../../components/header/Header';
 import Layout from '../../components/Layout';
 import PageTop from '../../components/sections/PageTop';
 
-const HomePageStructurePage = () => {
+const BlogManagementPage = () => {
 	const message = `Bievenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
 
 	const head = () => (
@@ -24,11 +24,11 @@ const HomePageStructurePage = () => {
 						<Header />
 					</header>
 					<PageTop title={'Tableau de bord administrateur'} message={message} />
-					<HomePageStructure />
+					<BlogManagement />
 				</AdminProtected>
 			</Layout>
 		</React.Fragment>
 	);
 };
 
-export default HomePageStructurePage;
+export default BlogManagementPage;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const News = () => {
+const Blogs = () => {
 	return (
 		<React.Fragment>
 			<section className="padding-bottom">
@@ -99,4 +99,4 @@ const News = () => {
 	);
 };
 
-export default News;
+export default Blogs;

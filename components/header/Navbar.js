@@ -54,9 +54,9 @@ const Navbar = () => {
 								</div>
 							</li> */}
 							<li className="nav-item">
-								<a className="nav-link" href="#">
-									Actualité
-								</a>
+								<Link href="/blogs">
+									<a className="nav-link">Actualité</a>
+								</Link>
 							</li>
 							<li className="nav-item">
 								<Link href="/items">
@@ -64,14 +64,14 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link" href="#">
-									Devenez référent
-								</a>
+								<Link href="/become-referent">
+									<a className="nav-link">Devenez référent</a>
+								</Link>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link" href="#">
-									Forum
-								</a>
+								<Link href="/forum">
+									<a className="nav-link">Forum</a>
+								</Link>
 							</li>
 							<li className="nav-item dropdown">
 								<a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
