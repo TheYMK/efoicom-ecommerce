@@ -17,8 +17,19 @@ import OurCategories from '../components/ourCategories/OurCategories';
 import { getCategories } from '../actions/category';
 import { getAllRecommendedItems } from '../actions/item';
 import Blogs from '../components/blogs/Blogs';
+import { getBlogsWithCategoriesAndTags } from '../actions/blog';
 
-const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedServices }) => {
+const HomePage = ({
+	allCategories,
+	allRecommendedProducts,
+	allRecommendedServices,
+	blogs,
+	blogcategories,
+	tags,
+	totalBlogs,
+	blogsLimit,
+	blogsSkip
+}) => {
 	const head = () => (
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
@@ -43,7 +54,14 @@ const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedService
 					<Request />
 					<Items items_type="products" items={allRecommendedProducts} />
 					<Items items_type="services" items={allRecommendedServices} />
-					<Blogs />
+					<Blogs
+						blogs={blogs}
+						blogcategories={blogcategories}
+						tags={tags}
+						totalBlogs={totalBlogs}
+						blogsLimit={blogsLimit}
+						blogsSkip={blogsSkip}
+					/>
 					<Services />
 					{/* <Regions /> */}
 					{/* <Ad /> */}
@@ -56,15 +74,26 @@ const HomePage = ({ allCategories, allRecommendedProducts, allRecommendedService
 };
 
 export async function getServerSideProps({ params }) {
+	let skip = 0;
+	let limit = 4;
+
 	return getCategories().then((res1) => {
 		return getAllRecommendedItems().then((res2) => {
-			return {
-				props: {
-					allCategories: res1.data,
-					allRecommendedProducts: res2.data.allRecommendedProducts,
-					allRecommendedServices: res2.data.allRecommendedServices
-				}
-			};
+			return getBlogsWithCategoriesAndTags(skip, limit).then((res3) => {
+				return {
+					props: {
+						allCategories: res1.data,
+						allRecommendedProducts: res2.data.allRecommendedProducts,
+						allRecommendedServices: res2.data.allRecommendedServices,
+						blogs: res3.data.blogs,
+						blogcategories: res3.data.blogcategories,
+						tags: res3.data.tags,
+						totalBlogs: res3.data.size,
+						blogsLimit: limit,
+						blogsSkip: skip
+					}
+				};
+			});
 		});
 	});
 }

@@ -8,7 +8,7 @@ const Footer = () => {
 					<section className="footer-top padding-y-lg text-white">
 						<div className="row">
 							<aside className="col-md col-6">
-								<h6 className="title">Services à la clientèle</h6>
+								<h6 className="title text-white">Services à la clientèle</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
@@ -29,7 +29,7 @@ const Footer = () => {
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title">Qui sommes-nous</h6>
+								<h6 className="title text-white">Qui sommes-nous</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
@@ -42,7 +42,7 @@ const Footer = () => {
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title">Vendre sur MassiwaMarket</h6>
+								<h6 className="title text-white">Vendre sur MassiwaMarket</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
@@ -55,7 +55,7 @@ const Footer = () => {
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title">Acheter sur Massiwa Market</h6>
+								<h6 className="title text-white">Acheter sur Massiwa Market</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
@@ -64,7 +64,7 @@ const Footer = () => {
 								</ul>
 							</aside>
 							<aside className="col-md">
-								<h6 className="title">Social</h6>
+								<h6 className="title text-white">Social</h6>
 								<ul className="list-unstyled">
 									<li>
 										<a href="#">

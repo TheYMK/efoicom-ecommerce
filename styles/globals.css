@@ -373,3 +373,49 @@ section.categories {
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
 }
+
+/* Article Jumbotron */
+.jumbotron {
+	display: flex;
+	align-items: center;
+	height: 450px;
+	margin-bottom: 0px;
+	background-size: cover;
+	background-position: center;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+  }
+  
+  .jumbotron p {
+	background-color: #FFFFFF;
+	display: inline-block;
+	color: #FF914D;
+	font-weight: 700;
+	padding: 10px 35px;
+	font-size: 30px;
+	border-radius: 5px;
+  }
+
+  .jumbotron button {
+	background-color: #FFFFFF;
+	display: inline-block;
+	color: #FF914D;
+	font-weight: 700;
+	padding: 10px 35px;
+	font-size: 10px;
+	border-radius: 5px;
+  }
+  
+  .jumbotron h3 {
+	color: #FFFFFF;
+	font-weight: bold;
+  }
+
+  @media screen and (max-width: 480px) {
+	.jumbotron {
+		height: 250px;
+	}
+	.jumbotron p {
+		font-size: 15px;
+	}
+  }

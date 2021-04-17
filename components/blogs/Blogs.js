@@ -1,6 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { getBlogsWithCategoriesAndTags } from '../../actions/blog';
+import BlogItem from './BlogItem';
 
-const Blogs = () => {
+const Blogs = ({ blogs, blogcategories, tags, totalBlogs, blogsLimit, blogsSkip }) => {
+	const [ limit, setLimit ] = useState(blogsLimit);
+	const [ skip, setSkip ] = useState(blogsSkip);
+	const [ size, setSize ] = useState(totalBlogs);
+	const [ loadedBlogs, setLoadedBlogs ] = useState([]);
+	const [ loading, setLoading ] = useState(false);
+
+	const showAllBlogs = () => {
+		return blogs.map((b, i) => <BlogItem blog={b} key={i} />);
+	};
+
+	const loadMoreButton = () => {
+		return (
+			size > 0 &&
+			size >= limit && (
+				<button className="btn btn-primary mt-4 rounded-pill" onClick={loadMore}>
+					{loading ? 'Chargement...' : 'Charger plus'}
+				</button>
+			)
+		);
+	};
+
+	const loadMore = () => {
+		let toSkip = skip + limit;
+		setLoading(true);
+		getBlogsWithCategoriesAndTags(toSkip, limit).then((res) => {
+			setLoadedBlogs([ ...loadedBlogs, ...res.data.blogs ]);
+			setSize(res.data.size);
+			setSkip(toSkip);
+			setLoading(false);
+		});
+	};
+
+	const showLoadedBlogs = () => {
+		return loadedBlogs.map((b, i) => <BlogItem blog={b} key={i} />);
+	};
+
 	return (
 		<React.Fragment>
 			<section className="padding-bottom">
@@ -9,91 +47,11 @@ const Blogs = () => {
 				</header>
 
 				<div className="row">
-					{/* 1 */}
-					<div className="col-md-3">
-						<div className="annoucement-card annoucement-card-profile">
-							<div className="annoucement-card-header annoucement-card-header-image">
-								<a href="#">
-									<img className="img" src="/static/images/items/article1.jpg" />
-								</a>
-								<div className="colored-shadow" />
-							</div>
-							<div className="annoucement-card-body ">
-								<h6 className="annoucement-card-category text-info">Annonce 1</h6>
-
-								<p className="annoucement-card-description">
-									Don't be scared of the truth because we need to restart the human foundation in
-									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-									back is...
-								</p>
-								<button className="btn btn-primary">Lire plus</button>
-							</div>
-						</div>
-					</div>
-					{/* 2 */}
-					<div className="col-md-3">
-						<div className="annoucement-card annoucement-card-profile">
-							<div className="annoucement-card-header annoucement-card-header-image">
-								<a href="#">
-									<img className="img" src="/static/images/items/article2.jpg" />
-								</a>
-								<div className="colored-shadow" />
-							</div>
-							<div className="annoucement-card-body ">
-								<h6 className="annoucement-card-category text-info">Annonce 2</h6>
-
-								<p className="annoucement-card-description">
-									Don't be scared of the truth because we need to restart the human foundation in
-									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-									back is...
-								</p>
-								<button className="btn btn-primary">Lire plus</button>
-							</div>
-						</div>
-					</div>
-					{/* 3 */}
-					<div className="col-md-3">
-						<div className="annoucement-card annoucement-card-profile">
-							<div className="annoucement-card-header annoucement-card-header-image">
-								<a href="#">
-									<img className="img" src="/static/images/items/article1.jpg" />
-								</a>
-								<div className="colored-shadow" />
-							</div>
-							<div className="annoucement-card-body ">
-								<h6 className="annoucement-card-category text-info">Annonce 3</h6>
-
-								<p className="annoucement-card-description">
-									Don't be scared of the truth because we need to restart the human foundation in
-									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-									back is...
-								</p>
-								<button className="btn btn-primary">Lire plus</button>
-							</div>
-						</div>
-					</div>
-					{/* 4 */}
-					<div className="col-md-3">
-						<div className="annoucement-card annoucement-card-profile">
-							<div className="annoucement-card-header annoucement-card-header-image">
-								<a href="#">
-									<img className="img" src="/static/images/items/article2.jpg" />
-								</a>
-								<div className="colored-shadow" />
-							</div>
-							<div className="annoucement-card-body ">
-								<h6 className="annoucement-card-category text-info">Annonce 4</h6>
-
-								<p className="annoucement-card-description">
-									Don't be scared of the truth because we need to restart the human foundation in
-									truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the
-									back is...
-								</p>
-								<button className="btn btn-primary">Lire plus</button>
-							</div>
-						</div>
-					</div>
+					{showAllBlogs()}
+					{showLoadedBlogs()}
 				</div>
+
+				<div className="text-center">{loadMoreButton()}</div>
 			</section>
 		</React.Fragment>
 	);

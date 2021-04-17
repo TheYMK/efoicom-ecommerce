@@ -15,7 +15,7 @@ const Request = () => {
 							style={{ backgroundImage: "url('/static/images/banners/banner9.jpg')" }}
 						>
 							<div className="card-img-overlay white">
-								<h3 className="card-title">Une communauté unique</h3>
+								<h3 className="card-title text-white">Une communauté unique</h3>
 								<p className="card-text" style={{ maxWidth: '400px' }}>
 									Bangwé La Massiwa est un marché national en ligne, où les gens se retrouvent pour
 									fabriquer, vendre, acheter et collectionner des articles uniques.
