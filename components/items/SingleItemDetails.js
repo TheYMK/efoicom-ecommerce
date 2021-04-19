@@ -11,6 +11,15 @@ import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
 import RatingDialog from '../dialogs/RatingDialog';
 import { showAverage } from '../../actions/rating';
 import { Divider } from '@material-ui/core';
+import { DOMAIN } from '../../config';
+import {
+	EmailShareButton,
+	FacebookShareButton,
+	TwitterShareButton,
+	FacebookMessengerShareButton,
+	WhatsappShareButton
+} from 'react-share';
+import { EmailIcon, FacebookIcon, TwitterIcon, FacebookMessengerIcon, WhatsappIcon } from 'react-share';
 
 const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, handleSubmitRating, vals, setVals }) => {
 	const {
@@ -285,6 +294,28 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 											<span className="text">Ajouter aux favoris</span>
 										</button>
 									</div>
+								</div>
+								<div>
+									<p>Partager</p>
+									<span>
+										<FacebookShareButton quote={`${item.title}`} url="https://www.kaymkassai.tech/">
+											<FacebookIcon size={32} round={true} />
+										</FacebookShareButton>
+									</span>
+									<span className="ml-3">
+										<TwitterShareButton title={`${item.title}`} url="https://www.kaymkassai.tech/">
+											<TwitterIcon size={32} round={true} />
+										</TwitterShareButton>
+									</span>
+									<span className="ml-3">
+										<WhatsappShareButton
+											title={`${item.title}`}
+											url="https://www.kaymkassai.tech/"
+											separator=" | "
+										>
+											<WhatsappIcon size={32} round={true} />
+										</WhatsappShareButton>
+									</span>
 								</div>
 							</article>
 						</main>

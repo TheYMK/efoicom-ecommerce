@@ -1,9 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { fetchBlogsByFilter, getBlogs } from '../../actions/blog';
+import { getBlogCategories } from '../../actions/blogcategory';
+import { getCategories } from '../../actions/category';
+import BlogItem from '../../components/blogs/BlogItem';
 import Header from '../../components/header/Header';
 import Navbar from '../../components/header/Navbar';
 import Layout from '../../components/Layout';
 
-const BlogsPage = () => {
+const BlogsPage = ({ allBlogs, allCategories }) => {
+	const [ values, setValues ] = useState({
+		blogs: allBlogs,
+		blogcategories: allCategories
+	});
+	const [ selectedCategory, setSelectedCategory ] = useState('all');
+	const [ current, setCurrent ] = useState('all');
+
+	const { blogs, blogcategories } = values;
+
+	const fetchBlogs = (arg) => {
+		fetchBlogsByFilter(arg)
+			.then((res) => {
+				setValues({ ...values, blogs: res.data });
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+
+	const handleBlogCategoryChange = (blogcategory) => {
+		setCurrent(blogcategory);
+		setSelectedCategory(blogcategory);
+		fetchBlogs({ blogcategory: blogcategory });
+	};
+
+	const showAllBlogs = () => {
+		return blogs.map((b, i) => <BlogItem blog={b} key={i} />);
+	};
+
+	const showCategories = () => (
+		<article className="filter-group">
+			<h6 className="title">Filtrer par categories</h6>
+			<div className="filter-content collapse show">
+				<div className="inner">
+					<label className="checkbox-btn mr-2">
+						<input
+							type="radio"
+							name="blogcategory"
+							value={'all'}
+							checked={current === 'all'}
+							onChange={() => handleBlogCategoryChange('all')}
+						/>
+						<span className="btn btn-light"> Toutes les categories </span>
+					</label>
+					{blogcategories.map((c, i) => (
+						<label className="checkbox-btn mr-2" key={c._id}>
+							<input
+								type="radio"
+								name="blogcategory"
+								value={c._id}
+								checked={current === c}
+								onChange={() => handleBlogCategoryChange(c)}
+							/>
+							<span className="btn btn-light"> {c.name} </span>
+						</label>
+					))}
+				</div>
+			</div>
+		</article>
+	);
+
 	return (
 		<React.Fragment>
 			<Layout>
@@ -20,120 +85,31 @@ const BlogsPage = () => {
 				<div className="card">
 					<div className="card-body d-flex">
 						<div className="" role="group" aria-label="Filter by">
-							<button type="button" className="btn btn-outline-primary active mr-2">
-								Featured
-							</button>
-							<button type="button" className="btn btn-outline-primary mr-2">
-								New Items
-							</button>
-							<button type="button" className="btn btn-outline-primary mr-2">
-								On Sale
-							</button>
-							<button type="button" className="btn btn-outline-primary mr-2">
-								On Sale
-							</button>
-							<button type="button" className="btn btn-outline-primary mr-2">
-								On Sale
-							</button>
-							<button type="button" className="btn btn-outline-primary mr-2k">
-								On Sale
-							</button>
+							{showCategories()}
 						</div>
 					</div>
 				</div>
 				<section className="section-content bg-white padding-y">
 					<div className="container">
-						<div className="row">
-							{/* 1 */}
-							<div className="col-md-3">
-								<div className="annoucement-card annoucement-card-profile">
-									<div className="annoucement-card-header annoucement-card-header-image">
-										<a href="#">
-											<img className="img" src="/static/images/items/article1.jpg" />
-										</a>
-										<div className="colored-shadow" />
-									</div>
-									<div className="annoucement-card-body ">
-										<h6 className="annoucement-card-category text-info">Annonce 1</h6>
-
-										<p className="annoucement-card-description">
-											Don't be scared of the truth because we need to restart the human foundation
-											in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design
-											but the back is...
-										</p>
-										<button className="btn btn-primary">Lire plus</button>
-									</div>
-								</div>
-							</div>
-							{/* 2 */}
-							<div className="col-md-3">
-								<div className="annoucement-card annoucement-card-profile">
-									<div className="annoucement-card-header annoucement-card-header-image">
-										<a href="#">
-											<img className="img" src="/static/images/items/article2.jpg" />
-										</a>
-										<div className="colored-shadow" />
-									</div>
-									<div className="annoucement-card-body ">
-										<h6 className="annoucement-card-category text-info">Annonce 2</h6>
-
-										<p className="annoucement-card-description">
-											Don't be scared of the truth because we need to restart the human foundation
-											in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design
-											but the back is...
-										</p>
-										<button className="btn btn-primary">Lire plus</button>
-									</div>
-								</div>
-							</div>
-							{/* 3 */}
-							<div className="col-md-3">
-								<div className="annoucement-card annoucement-card-profile">
-									<div className="annoucement-card-header annoucement-card-header-image">
-										<a href="#">
-											<img className="img" src="/static/images/items/article1.jpg" />
-										</a>
-										<div className="colored-shadow" />
-									</div>
-									<div className="annoucement-card-body ">
-										<h6 className="annoucement-card-category text-info">Annonce 3</h6>
-
-										<p className="annoucement-card-description">
-											Don't be scared of the truth because we need to restart the human foundation
-											in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design
-											but the back is...
-										</p>
-										<button className="btn btn-primary">Lire plus</button>
-									</div>
-								</div>
-							</div>
-							{/* 4 */}
-							<div className="col-md-3">
-								<div className="annoucement-card annoucement-card-profile">
-									<div className="annoucement-card-header annoucement-card-header-image">
-										<a href="#">
-											<img className="img" src="/static/images/items/article2.jpg" />
-										</a>
-										<div className="colored-shadow" />
-									</div>
-									<div className="annoucement-card-body ">
-										<h6 className="annoucement-card-category text-info">Annonce 4</h6>
-
-										<p className="annoucement-card-description">
-											Don't be scared of the truth because we need to restart the human foundation
-											in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design
-											but the back is...
-										</p>
-										<button className="btn btn-primary">Lire plus</button>
-									</div>
-								</div>
-							</div>
-						</div>
+						<div className="row">{showAllBlogs()}</div>
 					</div>
 				</section>
 			</Layout>
 		</React.Fragment>
 	);
 };
+
+export async function getServerSideProps({ params }) {
+	return getBlogs().then((res1) => {
+		return getBlogCategories().then((res2) => {
+			return {
+				props: {
+					allBlogs: res1.data,
+					allCategories: res2.data
+				}
+			};
+		});
+	});
+}
 
 export default BlogsPage;
