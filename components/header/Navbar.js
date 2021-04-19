@@ -19,40 +19,11 @@ const Navbar = () => {
 
 					<div className="collapse navbar-collapse" id="main_nav">
 						<ul className="navbar-nav">
-							{/* <li className="nav-item dropdown">
-								<a className="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-									{' '}
-									<i className="fa fa-bars text-muted mr-2" /> Demo pages{' '}
+							<li className="nav-item">
+								<a href="/" className="nav-link">
+									Accueil
 								</a>
-								<div className="dropdown-menu dropdown-large">
-									<nav className="row">
-										<div className="col-6">
-											<a href="page-index-1.html">Home page 1</a>
-											<a href="page-index-2.html">Home page 2</a>
-											<a href="page-category.html">All category</a>
-											<a href="page-listing-large.html">Listing list</a>
-											<a href="page-listing-grid.html">Listing grid</a>
-											<a href="page-shopping-cart.html">Shopping cart</a>
-											<a href="page-detail-product.html">Product detail</a>
-											<a href="page-content.html">Page content</a>
-											<a href="page-user-login.html">Page login</a>
-											<a href="page-user-register.html">Page register</a>
-										</div>
-										<div className="col-6">
-											<a href="page-profile-main.html">Profile main</a>
-											<a href="page-profile-orders.html">Profile orders</a>
-											<a href="page-profile-seller.html">Profile seller</a>
-											<a href="page-profile-wishlist.html">Profile wishlist</a>
-											<a href="page-profile-setting.html">Profile setting</a>
-											<a href="page-profile-address.html">Profile address</a>
-											<a href="rtl-page-index-1.html">RTL home page</a>
-											<a href="page-components.html" target="_blank">
-												More components
-											</a>
-										</div>
-									</nav>
-								</div>
-							</li> */}
+							</li>
 							<li className="nav-item">
 								<Link href="/blogs">
 									<a className="nav-link">Actualité</a>

@@ -418,6 +418,10 @@ section.categories {
 	.jumbotron p {
 		font-size: 15px;
 	}
+	.search-text {
+		display: none;	
+	}
+	
   }
 
   .player-wrapper {
@@ -431,3 +435,4 @@ section.categories {
 	top: 0;
 	left: 0;
   }
+

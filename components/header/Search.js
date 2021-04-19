@@ -25,36 +25,35 @@ const Search = () => {
 	};
 
 	return (
-		<div className="col-xl-6 col-lg-5 col-md-6">
-			<form className="search-header">
-				<div className="input-group w-100">
-					<select
-						className="custom-select border-right"
-						name="island_choice"
-						value={island_choice}
-						onChange={handleChange}
-					>
-						<option value="all">Toutes les îles</option>
-						<option value="anjouan">Anjouan</option>
-						<option value="ngazidja">Ngazidja</option>
-						<option value="mohéli">Moheli</option>
-					</select>
-					<input
-						type="text"
-						className="form-control"
-						name="text"
-						placeholder="Recherche..."
-						value={text}
-						onChange={handleChange}
-					/>
-					<div className="input-group-append">
-						<button className="btn btn-primary" type="submit" onClick={handleSubmit}>
-							<i className="fa fa-search" /> Rechercher
-						</button>
-					</div>
+		<form className="search-header">
+			<div className="input-group w-100">
+				<select
+					className="custom-select border-right"
+					name="island_choice"
+					value={island_choice}
+					onChange={handleChange}
+				>
+					<option value="all">Toutes les îles</option>
+					<option value="anjouan">Anjouan</option>
+					<option value="ngazidja">Ngazidja</option>
+					<option value="mohéli">Moheli</option>
+				</select>
+				<input
+					type="text"
+					className="form-control"
+					name="text"
+					placeholder="Recherche..."
+					value={text}
+					onChange={handleChange}
+				/>
+				<div className="input-group-append">
+					<button className="btn btn-primary" type="submit" onClick={handleSubmit}>
+						<i className="fa fa-search" />
+						<span className="search-text">Rechercher</span>
+					</button>
 				</div>
-			</form>
-		</div>
+			</div>
+		</form>
 	);
 };
 

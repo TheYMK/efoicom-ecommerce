@@ -27,9 +27,9 @@ const Filters = ({
 					<label className="custom-control custom-radio">
 						<input
 							type="radio"
-							name="all"
-							value="all"
-							checked={selectedIsland === 'all'}
+							name="allIslands"
+							value="allIslands"
+							checked={selectedIsland === 'allIslands'}
 							className="custom-control-input"
 							onChange={handleIslandChange}
 						/>

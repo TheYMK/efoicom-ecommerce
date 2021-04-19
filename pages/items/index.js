@@ -65,7 +65,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
 			type: 'SEARCH_QUERY',
-			payload: { text: '', island_choice: 'all' }
+			payload: { text: '', island_choice: 'allIslands' }
 		});
 		setSelectedCategories([]);
 		setSelectedRating(0);
@@ -97,7 +97,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
 			type: 'SEARCH_QUERY',
-			payload: { text: '', island_choice: 'all' }
+			payload: { text: '', island_choice: 'allIslands' }
 		});
 		setSelectedRating(0);
 		setSelectedIsland(island_choice);
@@ -132,7 +132,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
 			type: 'SEARCH_QUERY',
-			payload: { text: '', island_choice: 'all' }
+			payload: { text: '', island_choice: 'allIslands' }
 		});
 		setSelectedCategories([]);
 		setSelectedIsland('');
@@ -164,7 +164,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
 			type: 'SEARCH_QUERY',
-			payload: { text: '', island_choice: 'all' }
+			payload: { text: '', island_choice: 'allIslands' }
 		});
 		setSelectedRating(0);
 		setSelectedIsland(island_choice);
@@ -196,7 +196,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		// START RESET PREVIOUS SEARCH OPTIONS
 		dispatch({
 			type: 'SEARCH_QUERY',
-			payload: { text: '', island_choice: 'all' }
+			payload: { text: '', island_choice: 'allIslands' }
 		});
 		setSelectedCategories([]);
 		setSelectedRating(0);

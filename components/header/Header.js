@@ -38,7 +38,9 @@ const Header = () => {
 								{/* <span className="logo">Massiwa Market</span> */}
 							</a>
 						</div>
-						<Search />
+						<div className="col-xl-6 col-lg-5 col-md-6">
+							<Search />
+						</div>
 						<div className="col-xl-4 col-lg-4 col-md-6">
 							<div className="widgets-wrap float-md-right">
 								{/* <div className="widget-header mr-5">
@@ -125,7 +127,7 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Tableau de bord</small>
+												<small className="text">Profile</small>
 											</a>
 										</Link>
 									</div>

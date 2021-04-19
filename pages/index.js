@@ -48,9 +48,7 @@ const HomePage = ({
 				<Main />
 				<div className="container mt-0">
 					<OurCategories allCategories={allCategories} />
-					<Deal />
-					{/* <SectionOne />
-					<SectionTwo /> */}
+
 					<Request />
 					<Items items_type="products" items={allRecommendedProducts} />
 					<Items items_type="services" items={allRecommendedServices} />
@@ -62,9 +60,6 @@ const HomePage = ({
 						blogsLimit={blogsLimit}
 						blogsSkip={blogsSkip}
 					/>
-					<Services />
-					{/* <Regions /> */}
-					{/* <Ad /> */}
 				</div>
 
 				<Subscribe />
