@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useSelector, useDispatch } from 'react-redux';
 import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
 import { toast } from 'react-toastify';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const SingleItem = ({ imageSrc, item }) => {
 	const { title, description, provider_name, provider_phone_number, provider_address } = item;
 	const { user } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
+
+	useEffect(() => {
+		AOS.init();
+		AOS.refresh();
+	}, []);
 
 	const handleAddItemToWishlist = () => {
 		if (user && user.token) {
@@ -35,7 +42,7 @@ const SingleItem = ({ imageSrc, item }) => {
 	};
 
 	return (
-		<div className="col-md-3">
+		<div className="col-md-3" data-aos="zoom-in">
 			<div className="product-card product-card-profile">
 				<div className="product-card-header product-card-header-image">
 					<a href="#">

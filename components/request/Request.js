@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Request = () => {
+	useEffect(() => {
+		AOS.init();
+		AOS.refresh();
+	}, []);
+
 	return (
 		<React.Fragment>
 			<section className="padding-bottom">
@@ -8,7 +15,7 @@ const Request = () => {
 					<h4 className="title-section text-uppercase">Qu'est ce que Bangwé La Massiwa</h4>
 				</header>
 
-				<div className="row">
+				<div className="row" data-aos="zoom-in-up">
 					<div className="col-md-8">
 						<div
 							className="card-banner banner-quote overlay-gradient"

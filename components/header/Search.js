@@ -49,7 +49,7 @@ const Search = () => {
 				<div className="input-group-append">
 					<button className="btn btn-primary" type="submit" onClick={handleSubmit}>
 						<i className="fa fa-search" />
-						<span className="search-text">Rechercher</span>
+						<span className="search-text"> Rechercher</span>
 					</button>
 				</div>
 			</div>

@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const BlogItem = ({ blog }) => {
+	useEffect(() => {
+		AOS.init();
+		AOS.refresh();
+	}, []);
+
 	return (
-		<div className="col-md-3">
+		<div className="col-md-3" data-aos="zoom-out">
 			<div className="annoucement-card annoucement-card-profile">
 				<div className="annoucement-card-header annoucement-card-header-image">
 					<a href="#">
