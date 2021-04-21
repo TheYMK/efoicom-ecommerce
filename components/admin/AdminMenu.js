@@ -20,7 +20,12 @@ const AdminMenu = ({ pageLocation }) => {
 				</Link>
 				<Link href="/admin/categories-subs">
 					<a className={`list-group-item ${pageLocation === 'categories-subs' ? 'active' : ''}`}>
-						Catégories et Sous-Catégories
+						Gestion catégories & sous-catégories
+					</a>
+				</Link>
+				<Link href="/admin/reference-zone-management">
+					<a className={`list-group-item ${pageLocation === 'reference_zone' ? 'active' : ''}`}>
+						Gestion zones de référence
 					</a>
 				</Link>
 				<Link href="/admin/products-services-management">
