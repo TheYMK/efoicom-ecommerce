@@ -6,6 +6,7 @@ import { createItem } from '../../actions/item';
 import { getCategories, getCategorySubs } from '../../actions/category';
 import FileUpload from '../FileUpload';
 import ItemCreateForm from './forms/ItemCreateForm';
+import { getAllZones } from '../../actions/zone';
 
 const ProductAndServiceSubmission = () => {
 	const { user } = useSelector((state) => ({ ...state }));
@@ -19,7 +20,6 @@ const ProductAndServiceSubmission = () => {
 		images: [],
 		provider_name: '',
 		provider_phone_number: '',
-		provider_island: '',
 		provider_address: '',
 		// availability: '',
 		item_type: ''
@@ -34,7 +34,6 @@ const ProductAndServiceSubmission = () => {
 		images,
 		provider_name,
 		provider_phone_number,
-		provider_island,
 		provider_address,
 		item_type
 	} = values;
@@ -69,7 +68,6 @@ const ProductAndServiceSubmission = () => {
 			images.length < 1 ||
 			!provider_name ||
 			!provider_phone_number ||
-			!provider_island ||
 			!provider_address ||
 			!item_type
 		) {
@@ -82,7 +80,7 @@ const ProductAndServiceSubmission = () => {
 			try {
 				createItem(user.token, values).then((res) => {
 					setLoading(false);
-					toast.success('Soumission effectué!');
+					toast.success('Votre article a été soumis!');
 					setTimeout(() => {
 						window.location.reload();
 					}, 2000);
@@ -136,6 +134,7 @@ const ProductAndServiceSubmission = () => {
 								<div className="mt-4">
 									<ItemCreateForm
 										values={values}
+										loading={loading}
 										setValues={setValues}
 										handleSubmit={handleSubmit}
 										handleChange={handleChange}

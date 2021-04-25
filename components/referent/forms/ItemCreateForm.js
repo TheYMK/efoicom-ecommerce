@@ -5,6 +5,7 @@ import PhoneInput from 'react-phone-number-input';
 
 const ItemCreateForm = ({
 	values,
+	loading,
 	handleSubmit,
 	handleChange,
 	handleCategoryChange,
@@ -12,8 +13,6 @@ const ItemCreateForm = ({
 	showSubs,
 	setValues
 }) => {
-	const [ loading, setLoading ] = useState(false);
-
 	const {
 		title,
 		description,
@@ -22,7 +21,6 @@ const ItemCreateForm = ({
 		subs,
 		images,
 		provider_name,
-		provider_island,
 		provider_phone_number,
 		provider_address,
 		// availability,
@@ -108,9 +106,9 @@ const ItemCreateForm = ({
 				</div>
 			</div>
 			<div className="form-row">
-				<div className="form-group col-md-4 mt-4">
+				{/* <div className="form-group col-md-4 mt-4">
 					<label htmlFor="island">
-						île <small style={{ color: 'red' }}>*</small>
+						Zone de référence <small style={{ color: 'red' }}>*</small>
 					</label>
 					<select
 						id="island"
@@ -124,7 +122,7 @@ const ItemCreateForm = ({
 						<option value="ngazidja">Ngazidja</option>
 						<option value="mohéli">Mohéli</option>
 					</select>
-				</div>
+				</div> */}
 				<div className="form-group col-md-8 mt-4">
 					<label>Adresse du fournisseur</label>
 					<input

@@ -45,16 +45,18 @@ const SingleItem = ({ imageSrc, item }) => {
 		<div className="col-md-3" data-aos="zoom-in">
 			<div className="product-card product-card-profile">
 				<div className="product-card-header product-card-header-image">
-					<a href="#">
-						<img className="img" src={imageSrc} />
-					</a>
+					<Link href={`/item/${item.slug}`}>
+						<a>
+							<img className="img" src={imageSrc} />
+						</a>
+					</Link>
 					<div className="colored-shadow" />
 				</div>
 				<div className="product-card-body ">
 					<h6 className="product-card-category text-info">{title}</h6>
 					<p className="text-muted mt-3">
 						<i className="fa fa-map-marker-alt" />{' '}
-						{item.provider_island && item.provider_island.toUpperCase()}
+						{item.reference_zone && item.reference_zone.name.toUpperCase()}
 					</p>
 					<Link href={`/item/${item.slug}`}>
 						<a className="btn btn-primary">

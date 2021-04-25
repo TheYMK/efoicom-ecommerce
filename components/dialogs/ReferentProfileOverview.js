@@ -59,11 +59,13 @@ const ReferentProfileOverview = ({
 									<strong>Adresse:</strong> {referent.address}
 								</span>
 							</DialogContentText>
-							<DialogContentText id="alert-dialog-description">
-								<span style={{ color: '#000' }}>
-									<strong>Zone de référence:</strong> {referent.reference_zone}
-								</span>
-							</DialogContentText>
+							{referent.reference_zone && (
+								<DialogContentText id="alert-dialog-description">
+									<span style={{ color: '#000' }}>
+										<strong>Zone de référence:</strong> {referent.reference_zone.name} ({referent.reference_zone.island.toUpperCase()})
+									</span>
+								</DialogContentText>
+							)}
 						</div>
 						<div className="col-md-6">
 							<DialogContentText id="alert-dialog-description">

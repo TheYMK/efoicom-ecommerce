@@ -23,7 +23,6 @@ const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, 
 		images: item.images,
 		provider_name: item.provider_name,
 		provider_phone_number: item.provider_phone_number,
-		provider_island: item.provider_island,
 		provider_address: item.provider_address,
 		// availability: '',
 		item_type: item.item_type
@@ -43,7 +42,6 @@ const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, 
 		provider_name,
 		provider_address,
 		provider_phone_number,
-		provider_island,
 		item_type
 	} = values;
 
@@ -122,7 +120,6 @@ const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, 
 			images.length < 1 ||
 			!provider_name ||
 			!provider_phone_number ||
-			!provider_island ||
 			!provider_address ||
 			!item_type
 		) {

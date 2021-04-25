@@ -13,7 +13,6 @@ const SubCategoryForm = ({ subValues, setSubValues, handleSubSubmit }) => {
 					placeholder="T-shirt"
 					value={subName}
 					onChange={(e) => setSubValues({ ...subValues, subName: e.target.value })}
-					autoFocus
 					required
 				/>
 				<button className="btn btn-primary mt-3" disabled={!subName} onClick={handleSubSubmit}>

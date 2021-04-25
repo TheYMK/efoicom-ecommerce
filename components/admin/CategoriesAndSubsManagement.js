@@ -224,7 +224,7 @@ const CategoriesAndSubsManagement = () => {
 		if (user && user.token) {
 			createSubCategory(user.token, { name: subName, parent: parentCategory })
 				.then((res) => {
-					setSubValues({ ...subValues, subLoading: false, subName: '', parentCategory: '' });
+					setSubValues({ ...subValues, subLoading: false, subName: '' });
 					setReload(!reload);
 					toast.success(`La sous-catégorie "${res.data.name}" a été ajouter`);
 				})

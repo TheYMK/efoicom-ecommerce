@@ -9,8 +9,6 @@ import EditZoneDialog from '../dialogs/EditZoneDialog';
 const ReferenceZoneManagement = () => {
 	const [ values, setValues ] = useState({
 		name: '',
-		city: '',
-		district: '',
 		island: '',
 		loading: false
 	});
@@ -18,7 +16,7 @@ const ReferenceZoneManagement = () => {
 	const [ openEditDialog, setOpenEditDialog ] = useState(false);
 	const [ currentSelectedZone, setCurrentSelectedZone ] = useState({});
 
-	const { name, city, district, island, loading } = values;
+	const { name, island, loading } = values;
 	const { user } = useSelector((state) => ({ ...state }));
 
 	useEffect(() => {
@@ -40,7 +38,7 @@ const ReferenceZoneManagement = () => {
 
 		setValues({ ...values, loading: true });
 
-		if (!name || !city || !district || !island) {
+		if (!name || !island) {
 			toast.error(`Oops! Vous devez remplir tous les champs`);
 			setValues({ ...values, loading: false });
 			return;
@@ -50,11 +48,13 @@ const ReferenceZoneManagement = () => {
 			createZone(user.token, values)
 				.then((res) => {
 					toast.success(`Nouvelle zone de référence ajouté`);
-					setValues({ ...values, name: '', city: '', district: '', loading: false });
+					setValues({ ...values, name: '', loading: false });
 					loadZones();
 				})
 				.catch((err) => {
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer.`);
+					toast.error(
+						`Oops! Echec de l'opération. Cette zone existe peut-être déjà. Essayer avec un autre nom.`
+					);
 					setValues({ ...values, loading: false });
 					return;
 				});
@@ -92,12 +92,7 @@ const ReferenceZoneManagement = () => {
 	};
 
 	const handleUpdateZone = () => {
-		if (
-			!currentSelectedZone.name ||
-			!currentSelectedZone.city ||
-			!currentSelectedZone.district ||
-			!currentSelectedZone.island
-		) {
+		if (!currentSelectedZone.name || !currentSelectedZone.island) {
 			toast.error(`Oops! Vous devez remplir tous les champs`);
 			return;
 		}
@@ -111,7 +106,9 @@ const ReferenceZoneManagement = () => {
 					loadZones();
 				})
 				.catch((err) => {
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer.`);
+					toast.error(
+						`Oops! Echec de l'opération. Cette zone existe peut-être déjà. Essayer avec un autre nom.`
+					);
 					return;
 				});
 		} else {
@@ -127,19 +124,15 @@ const ReferenceZoneManagement = () => {
 					<tr>
 						<th>#</th>
 						<th>Nom de la zone</th>
-						<th>Ville</th>
-						<th>Quartier</th>
 						<th>Île</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
 					{allZones.map((zone, index) => (
-						<tr>
+						<tr key={index}>
 							<td>{index + 1}</td>
 							<td>{zone.name}</td>
-							<td>{zone.city}</td>
-							<td>{zone.district}</td>
 							<td>{zone.island}</td>
 							<td>
 								<div className="dropdown d-inline-block">
@@ -201,34 +194,6 @@ const ReferenceZoneManagement = () => {
 													value={name}
 													onChange={(e) => setValues({ ...values, name: e.target.value })}
 													placeholder="Donnez un nom à cette zone"
-													required
-												/>
-											</div>
-											<div className="form-group col-md-4">
-												<label htmlFor="city">
-													Ville <span style={{ color: 'red' }}>*</span>
-												</label>
-												<input
-													type="text"
-													id="city"
-													className="form-control"
-													value={city}
-													onChange={(e) => setValues({ ...values, city: e.target.value })}
-													placeholder="Dans quelle ville se situe cette zone?"
-													required
-												/>
-											</div>
-											<div className="form-group col-md-4">
-												<label htmlFor="district">
-													Quartier <span style={{ color: 'red' }}>*</span>
-												</label>
-												<input
-													type="text"
-													id="district"
-													className="form-control"
-													value={district}
-													onChange={(e) => setValues({ ...values, district: e.target.value })}
-													placeholder="Dans quelle quartier se situe cette zone?"
 													required
 												/>
 											</div>

@@ -7,7 +7,7 @@ const OurCategories = ({ allCategories }) => {
 		<React.Fragment>
 			<section className="padding-bottom padding-y">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Nos catégories populaire</h4>
+					<h4 className="title-section text-uppercase">Nos catégories populaires</h4>
 				</header>
 
 				<section className="categories px-5">

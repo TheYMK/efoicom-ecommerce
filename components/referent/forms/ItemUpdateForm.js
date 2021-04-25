@@ -24,7 +24,6 @@ const ItemUpdateForm = ({
 		images,
 		provider_name,
 		provider_phone_number,
-		provider_island,
 		provider_address,
 		// availability,
 		item_type
@@ -122,20 +121,6 @@ const ItemUpdateForm = ({
 				</div>
 			</div>
 			<div className="form-row">
-				<div className="form-group col-md-4 mt-4">
-					<label htmlFor="island">
-						île du fournisseur<small style={{ color: 'red' }}>*</small>
-					</label>
-					<input
-						type="text"
-						name="provider_island"
-						className="form-control"
-						value={provider_island}
-						required
-						onChange={handleChange}
-						disabled
-					/>
-				</div>
 				<div className="form-group mt-4 col-md-8">
 					<label>
 						Adresse du fournisseur <small style={{ color: 'red' }}>*</small>

@@ -258,8 +258,8 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 									<dt className="col-sm-3">Tel</dt>
 									<dd className="col-sm-9">{provider_phone_number}</dd>
 
-									<dt className="col-sm-3">Île</dt>
-									<dd className="col-sm-9">{provider_island && provider_island.toUpperCase()}</dd>
+									{/* <dt className="col-sm-3">Île</dt>
+									<dd className="col-sm-9">{provider_island && provider_island.toUpperCase()}</dd> */}
 
 									<dt className="col-sm-3">Adresse</dt>
 									<dd className="col-sm-9">{provider_address}</dd>

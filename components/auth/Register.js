@@ -6,6 +6,7 @@ import Router from 'next/router';
 import { REGISTER_REDIRECT_URL } from '../../config';
 import Link from 'next/link';
 import PhoneInput from 'react-phone-number-input';
+import { getAllZones } from '../../actions/zone';
 
 const Register = () => {
 	const [ values, setValues ] = useState({
@@ -17,7 +18,8 @@ const Register = () => {
 		reference_zone: '',
 		city: '',
 		island: '',
-		address: ''
+		address: '',
+		allZones: []
 	});
 
 	// Get currently logged in user from redux
@@ -27,7 +29,18 @@ const Register = () => {
 
 	const [ termsAndConditionsAccepted, setTermsAndConditionsAccepted ] = useState(false);
 
-	const { first_name, last_name, email, phone_number, account_type, city, island, address, reference_zone } = values;
+	const {
+		first_name,
+		last_name,
+		email,
+		phone_number,
+		account_type,
+		city,
+		island,
+		address,
+		reference_zone,
+		allZones
+	} = values;
 
 	useEffect(
 		() => {
@@ -37,6 +50,20 @@ const Register = () => {
 		},
 		[ user ]
 	);
+
+	useEffect(() => {
+		loadZones();
+	}, []);
+
+	const loadZones = () => {
+		getAllZones()
+			.then((res) => {
+				setValues({ ...values, allZones: res.data });
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
 
 	/**
 	 * This function set the termsAndConditionsAccepted state to true. Which, once true, will enable the button to register.
@@ -300,13 +327,11 @@ const Register = () => {
 									onChange={(e) => setValues({ ...values, reference_zone: e.target.value })}
 								>
 									<option value=""> Veuillez choisir une zone...</option>
-									<option value="zone1">Zone 1</option>
-									<option value="zone2">Zone 2</option>
-									<option value="zone3">Zone 3</option>
-									<option value="zone4">Zone 4</option>
-									<option value="zone5">Zone 5</option>
-									<option value="zone6">Zone 6</option>
-									<option value="zone7">Zone 7</option>
+									{allZones.map((zone, index) => (
+										<option value={zone._id} key={index}>
+											{zone.name} ({zone.island.toUpperCase()})
+										</option>
+									))}
 								</select>
 							</div>
 						)}

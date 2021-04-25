@@ -101,7 +101,8 @@ const ItemsDisplay = ({ items }) => {
 								Tel: <strong>{item.provider_phone_number}</strong>
 							</p>
 							<p className="text-muted mt-3">
-								Île: <strong>{item.provider_island && item.provider_island.toUpperCase()}</strong>
+								Zone de référence:{' '}
+								<strong>{item.reference_zone && item.reference_zone.name.toUpperCase()}</strong>
 							</p>
 							<p className="text-muted mt-3">
 								Adresse: <strong>{item.provider_address}</strong>

@@ -67,7 +67,6 @@ const ReferentAccountManagement = () => {
 						<th>Email</th>
 						<th>Tel</th>
 						<th>Adresse</th>
-						<th>Île</th>
 						<th>Zone de référence</th>
 						<th>Action</th>
 					</tr>
@@ -79,10 +78,14 @@ const ReferentAccountManagement = () => {
 							<td>{referent.email}</td>
 							<td>{referent.phone_number}</td>
 							<td>{referent.address}</td>
-							<td>{referent.island}</td>
-							<td>{referent.reference_zone}</td>
 							<td>
-								<button className="btn btn-primary" onClick={() => handleViewProfile(referent)}>
+								{referent.reference_zone.name} ({referent.reference_zone.island.toUpperCase()})
+							</td>
+							<td>
+								<button
+									className="btn btn-primary rounded-pill"
+									onClick={() => handleViewProfile(referent)}
+								>
 									Voir le profil
 								</button>
 							</td>

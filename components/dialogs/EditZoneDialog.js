@@ -7,7 +7,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const EditZoneDialog = ({ open, handleClose, currentZone, setCurrentZone, handleUpdateZone }) => {
-	const { name, city, district, island } = currentZone;
+	const { name, island } = currentZone;
 	const [ loading, setLoading ] = useState(false);
 	return (
 		<div>
@@ -23,44 +23,16 @@ const EditZoneDialog = ({ open, handleClose, currentZone, setCurrentZone, handle
 				<DialogContent>
 					<div className="form-row">
 						<div className="form-group col-md-4">
-							<label htmlFor="name">
+							<label htmlFor="nameD">
 								Nom de la zone <span style={{ color: 'red' }}>*</span>
 							</label>
 							<input
 								type="text"
-								id="name"
+								id="nameD"
 								className="form-control"
 								value={name}
 								onChange={(e) => setCurrentZone({ ...currentZone, name: e.target.value })}
 								placeholder="Donnez un nom à cette zone"
-								required
-							/>
-						</div>
-						<div className="form-group col-md-4">
-							<label htmlFor="city">
-								Ville <span style={{ color: 'red' }}>*</span>
-							</label>
-							<input
-								type="text"
-								id="city"
-								className="form-control"
-								value={city}
-								onChange={(e) => setCurrentZone({ ...currentZone, city: e.target.value })}
-								placeholder="Dans quelle ville se situe cette zone?"
-								required
-							/>
-						</div>
-						<div className="form-group col-md-4">
-							<label htmlFor="district">
-								Quartier <span style={{ color: 'red' }}>*</span>
-							</label>
-							<input
-								type="text"
-								id="district"
-								className="form-control"
-								value={district}
-								onChange={(e) => setCurrentZone({ ...currentZone, district: e.target.value })}
-								placeholder="Dans quelle quartier se situe cette zone?"
 								required
 							/>
 						</div>

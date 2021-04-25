@@ -9,6 +9,7 @@ import { getTotalItemsRequests, updateItemApprovalStatus } from '../../actions/i
 import AdminViewItemDialog from '../dialogs/AdminViewItemDialog';
 import Link from 'next/link';
 import NoData from '../indicators/NoData';
+import ViewRequestInfoDialog from '../dialogs/ViewRequestInfoDialog';
 
 const AdminDashboard = () => {
 	const [ currentUser, setCurrentUser ] = useState({});
@@ -22,6 +23,8 @@ const AdminDashboard = () => {
 	const { user } = useSelector((state) => ({ ...state }));
 	const [ openViewItemDialog, setOpenViewItemDialog ] = useState(false);
 	const [ currentItem, setCurrentItem ] = useState({});
+	const [ openViewRequestDialog, setOpenViewRequestDialog ] = useState(false);
+	const [ currentRequest, setCurrentRequest ] = useState({});
 
 	useEffect(() => {
 		if (user && user.token) {
@@ -85,6 +88,16 @@ const AdminDashboard = () => {
 			});
 	};
 
+	const handleOpenViewRequestDialog = (request) => {
+		setCurrentRequest(request);
+		setOpenViewRequestDialog(true);
+	};
+
+	const handleCloseViewRequestDialog = (request) => {
+		setCurrentRequest({});
+		setOpenViewRequestDialog(false);
+	};
+
 	// display requests
 	const showRequests = () => (
 		<div className="table-responsive" style={{ height: '500px' }}>
@@ -109,7 +122,9 @@ const AdminDashboard = () => {
 							</td>
 							<td>{request.phone_number}</td>
 							<td>{request.email}</td>
-							<td>{request.reference_zone}</td>
+							<td>
+								{request.reference_zone.name} ({request.reference_zone.island.toUpperCase()})
+							</td>
 							<td>
 								<strong style={{ color: 'red' }}>En attente...</strong>
 							</td>
@@ -124,7 +139,12 @@ const AdminDashboard = () => {
 									</button>
 									<div className="dropdown-menu dropdown-menu-right">
 										<button
-											href="#"
+											className="dropdown-item"
+											onClick={() => handleOpenViewRequestDialog(request)}
+										>
+											Voir le profil
+										</button>
+										<button
 											className="dropdown-item"
 											onClick={() => handleRequestApproval(request.email)}
 										>
@@ -331,6 +351,11 @@ const AdminDashboard = () => {
 	return (
 		<React.Fragment>
 			<AdminViewItemDialog open={openViewItemDialog} handleClose={handleCloseViewItemDialog} item={currentItem} />
+			<ViewRequestInfoDialog
+				open={openViewRequestDialog}
+				handleClose={handleCloseViewRequestDialog}
+				request={currentRequest}
+			/>
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">
