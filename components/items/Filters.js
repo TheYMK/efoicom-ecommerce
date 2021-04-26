@@ -12,7 +12,10 @@ const Filters = ({
 	handleSubChange,
 	allSubsFromDB,
 	selectedType,
-	handleTypeChange
+	handleTypeChange,
+	allZonesFromDB,
+	selectedZone,
+	handleZoneChange
 }) => {
 	const showIslands = () => (
 		<article className="filter-group">
@@ -210,7 +213,6 @@ const Filters = ({
 					{' '}
 					Filtrer par sous-catégorie{' '}
 				</a>
-				<small>Selection multiple</small>
 			</h6>
 			<div className="filter-content collapse" id="collapse_4">
 				<div className="inner">
@@ -273,9 +275,36 @@ const Filters = ({
 			</div>
 		</article>
 	);
+
+	const showZones = () => (
+		<article className="filter-group">
+			<h6 className="title">
+				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_6">
+					{' '}
+					Filtrer par zone de référence{' '}
+				</a>
+			</h6>
+			<div className="filter-content collapse show" id="collapse_6">
+				<div className="inner">
+					<div className="form-inline mr-auto">
+						<select className="ml-2 form-control" value={selectedZone} onChange={handleZoneChange}>
+							<option value="allzones">Toutes les zones</option>
+							{allZonesFromDB.map((zone, index) => (
+								<option value={zone._id} key={zone._id}>
+									{zone.name} ({zone.island})
+								</option>
+							))}
+						</select>
+					</div>
+				</div>
+			</div>
+		</article>
+	);
+
 	return (
 		<aside className="col-md-2">
 			{showIslands()}
+			{showZones()}
 			{showCategories()}
 			{showTypes()}
 			{showRatings()}

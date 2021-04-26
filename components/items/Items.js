@@ -10,7 +10,7 @@ const Items = ({ items_type, items }) => {
 	const handleClickProducts = () => {
 		dispatch({
 			type: 'SET_FILTER',
-			payload: { byCategory: [], bySub: '', byType: 'product' }
+			payload: { byCategory: [], bySub: '', byType: 'product', byzone: 'allzones' }
 		});
 
 		Router.push('/items');
@@ -19,7 +19,7 @@ const Items = ({ items_type, items }) => {
 	const handleClickServices = () => {
 		dispatch({
 			type: 'SET_FILTER',
-			payload: { byCategory: [], bySub: '', byType: 'service' }
+			payload: { byCategory: [], bySub: '', byType: 'service', byzone: 'allzones' }
 		});
 
 		Router.push('/items');

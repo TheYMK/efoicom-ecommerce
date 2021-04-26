@@ -15,7 +15,7 @@ const SingleCategorie = ({ category }) => {
 	const handleClick = (id) => {
 		dispatch({
 			type: 'SET_FILTER',
-			payload: { byCategory: [ id ], bySub: '', byType: 'all' }
+			payload: { byCategory: [ id ], bySub: '', byType: 'all', byzone: 'allzones' }
 		});
 
 		Router.push('/items');

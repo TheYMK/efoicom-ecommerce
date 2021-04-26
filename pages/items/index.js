@@ -9,12 +9,18 @@ import { getAllItems, fetchItemsByFilter } from '../../actions/item';
 import { toast } from 'react-toastify';
 import { getCategories } from '../../actions/category';
 import { getSubs } from '../../actions/sub';
+import { getAllZones } from '../../actions/zone';
 
-const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFromDB, allSubsFromDB }) => {
+const AllProductsPage = ({
+	allProductsFromDB,
+	allServicesFromDB,
+	allCategoriesFromDB,
+	allSubsFromDB,
+	allZonesFromDB
+}) => {
 	const [ values, setValues ] = useState({
 		allItems: [ ...allProductsFromDB, ...allServicesFromDB ],
-		allCategories: allCategoriesFromDB,
-		allSubs: allSubsFromDB
+		allCategories: allCategoriesFromDB
 	});
 
 	const { allItems } = values;
@@ -22,13 +28,14 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 	const dispatch = useDispatch();
 	const { search, filter } = useSelector((state) => ({ ...state }));
 	const { text, island_choice } = search;
-	const { byCategory, bySub, byType } = filter;
+	const { byCategory, bySub, byType, byzone } = filter;
 
 	const [ selectedIsland, setSelectedIsland ] = useState(island_choice);
 	const [ selectedType, setSelectedType ] = useState(byType);
 	const [ selectedCategories, setSelectedCategories ] = useState(byCategory);
 	const [ selectedSub, setSelectedSub ] = useState(bySub);
 	const [ selectedRating, setSelectedRating ] = useState(0);
+	const [ selectedZone, setSelectedZone ] = useState(byzone);
 
 	const fetchItems = (arg) => {
 		fetchItemsByFilter(arg)
@@ -71,6 +78,8 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedRating(0);
 		setSelectedSub('');
 		setSelectedType('all');
+		setSelectedZone('allzones');
+
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		setSelectedIsland(e.target.value);
@@ -103,6 +112,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedIsland(island_choice);
 		setSelectedSub('');
 		setSelectedType('all');
+		setSelectedZone('allzones');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
@@ -138,6 +148,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedIsland('');
 		setSelectedSub('');
 		setSelectedType('all');
+		setSelectedZone('allzones');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
@@ -170,6 +181,7 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedIsland(island_choice);
 		setSelectedCategories([]);
 		setSelectedType('all');
+		setSelectedZone('allzones');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
@@ -202,11 +214,44 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 		setSelectedRating(0);
 		setSelectedSub('');
 		setSelectedIsland(island_choice);
+		setSelectedZone('allzones');
 
 		// END RESET PREVIOUS SEARCH OPTIONS
 
 		setSelectedType(e.target.value);
 		fetchItems({ type: e.target.value });
+	};
+
+	// ************************************************
+	//		7 .load items on zone selected
+	// ************************************************
+	useEffect(
+		() => {
+			if (byzone === 'allzones') {
+				setValues({ ...values, allItems: [ ...allProductsFromDB, ...allServicesFromDB ] });
+			} else {
+				fetchItems({ type: selectedZone });
+			}
+		},
+		[ byzone ]
+	);
+
+	const handleZoneChange = (e) => {
+		// START RESET PREVIOUS SEARCH OPTIONS
+		dispatch({
+			type: 'SEARCH_QUERY',
+			payload: { text: '', island_choice: 'allIslands' }
+		});
+		setSelectedCategories([]);
+		setSelectedRating(0);
+		setSelectedSub('');
+		setSelectedIsland(island_choice);
+		setSelectedType('all');
+
+		// END RESET PREVIOUS SEARCH OPTIONS
+
+		setSelectedZone(e.target.value);
+		fetchItems({ zone: e.target.value });
 	};
 
 	return (
@@ -245,6 +290,9 @@ const AllProductsPage = ({ allProductsFromDB, allServicesFromDB, allCategoriesFr
 								selectedSub={selectedSub}
 								handleSubChange={handleSubChange}
 								allSubsFromDB={allSubsFromDB}
+								allZonesFromDB={allZonesFromDB}
+								selectedZone={selectedZone}
+								handleZoneChange={handleZoneChange}
 							/>
 							<ItemsDisplay items={allItems} />
 						</div>
@@ -259,14 +307,17 @@ export async function getServerSideProps({ params }) {
 	return getAllItems().then((i) => {
 		return getCategories().then((c) => {
 			return getSubs().then((s) => {
-				return {
-					props: {
-						allProductsFromDB: i.data.allApprovedProducts,
-						allServicesFromDB: i.data.allApprovedServices,
-						allCategoriesFromDB: c.data,
-						allSubsFromDB: s.data
-					}
-				};
+				return getAllZones().then((z) => {
+					return {
+						props: {
+							allProductsFromDB: i.data.allApprovedProducts,
+							allServicesFromDB: i.data.allApprovedServices,
+							allCategoriesFromDB: c.data,
+							allSubsFromDB: s.data,
+							allZonesFromDB: z.data
+						}
+					};
+				});
 			});
 		});
 	});
