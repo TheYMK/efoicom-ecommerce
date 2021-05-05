@@ -6,10 +6,12 @@ const CategoryForm = ({ values, setValues, handleSubmit, loading }) => {
 	return (
 		<div>
 			<form>
-				<TextField
+				<label htmlFor="category_name">
+					Nom de la catégorie <small style={{ color: 'red' }}>*</small>
+				</label>
+				<input
 					id="category_name"
-					label="Nom de la catégorie"
-					fullWidth
+					className="form-control"
 					placeholder="Vêtements"
 					value={name}
 					onChange={(e) => setValues({ ...values, name: e.target.value })}

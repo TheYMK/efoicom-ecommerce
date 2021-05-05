@@ -13,9 +13,9 @@ function LocalSearch({ values, setValues }) {
 		<TextField
 			type="search"
 			id="category_name"
-			label="Filtrer"
+			label={<i className="fas fa-search"> Filtrer</i>}
 			fullWidth
-			placeholder="Recherche..."
+			placeholder="Chercher un terme..."
 			value={keyword}
 			onChange={handleSearchChange}
 		/>

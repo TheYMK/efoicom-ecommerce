@@ -11,13 +11,13 @@ import Regions from '../components/regions/Regions';
 import Request from '../components/request/Request';
 import SectionOne from '../components/sections/SectionOne';
 import SectionTwo from '../components/sections/SectionTwo';
-import Services from '../components/services/Services';
 import Subscribe from '../components/subscribe/Subscribe';
 import OurCategories from '../components/ourCategories/OurCategories';
 import { getCategories } from '../actions/category';
 import { getAllRecommendedItems } from '../actions/item';
 import Blogs from '../components/blogs/Blogs';
 import { getBlogsWithCategoriesAndTags } from '../actions/blog';
+import Brands from '../components/brands/Brands';
 
 const HomePage = ({
 	allCategories,
@@ -60,6 +60,7 @@ const HomePage = ({
 						blogsLimit={blogsLimit}
 						blogsSkip={blogsSkip}
 					/>
+					<Brands />
 				</div>
 
 				<Subscribe />

@@ -36,7 +36,7 @@ const Navbar = () => {
 							</li>
 							<li className="nav-item">
 								<Link href="/become-referent">
-									<a className="nav-link">Devenez référent</a>
+									<a className="nav-link">Trouver un référent</a>
 								</Link>
 							</li>
 							<li className="nav-item">
@@ -50,15 +50,14 @@ const Navbar = () => {
 									<i className="fa fa-question-circle text-muted mr-2" /> Aide{' '}
 								</a>
 								<div className="dropdown-menu dropdown-large">
-									<nav className="row">
-										<div className="col-6">
-											<a href="#">Créer un compte client</a>
-										</div>
-										<div className="col-6">
-											<a href="#">Créer un compte référent</a>
-											<a href="#">Mettre en ligne un produit ou un service</a>
-										</div>
-									</nav>
+									<div className="">
+										<Link href="/help/how-to-become-referent">
+											<a>Comment devenir référent?</a>
+										</Link>
+										<Link href="/help/how-to-upload-items">
+											<a>Comment mettre en ligne un produit ou un service?</a>
+										</Link>
+									</div>
 								</div>
 							</li>
 						</ul>

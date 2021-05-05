@@ -6,10 +6,12 @@ const SubCategoryForm = ({ subValues, setSubValues, handleSubSubmit }) => {
 	return (
 		<div>
 			<form>
-				<TextField
+				<label htmlFor="subcategory_name">
+					Nom de la sous-catégorie <small style={{ color: 'red' }}>*</small>
+				</label>
+				<input
 					id="subcategory_name"
-					label="Nom de la sous-catégorie"
-					fullWidth
+					className="form-control"
 					placeholder="T-shirt"
 					value={subName}
 					onChange={(e) => setSubValues({ ...subValues, subName: e.target.value })}

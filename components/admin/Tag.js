@@ -65,8 +65,8 @@ const Tag = ({ refresh, setRefresh }) => {
 				/>
 			</div>
 			<div>
-				<button className="btn btn-primary text-white rounded-pill" onClick={handleSubmit}>
-					{loading ? 'En cours...' : 'Sauvegarder'}
+				<button className="btn btn-primary text-white" onClick={handleSubmit}>
+					{loading ? 'En cours...' : 'Ajouter'}
 				</button>
 			</div>
 		</form>
@@ -98,7 +98,7 @@ const Tag = ({ refresh, setRefresh }) => {
 					onDoubleClick={() => deleteConfirm(tag.slug)}
 					title="Double click to delete"
 					key={index}
-					className="tag bg-info text-white mr-1 ml-1 mt-3"
+					className="tag bg-dark text-white mr-1 ml-1 mt-3"
 				>
 					{tag.name}
 				</button>
@@ -109,7 +109,7 @@ const Tag = ({ refresh, setRefresh }) => {
 	return (
 		<div>
 			{newTagForm()}
-			<div>Liste: {showTags()}</div>
+			<div className="mt-3">Liste: {showTags()}</div>
 		</div>
 	);
 };

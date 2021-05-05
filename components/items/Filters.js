@@ -42,13 +42,13 @@ const Filters = ({
 					<label className="custom-control custom-radio">
 						<input
 							type="radio"
-							name="anjouan"
-							value="anjouan"
-							checked={selectedIsland === 'anjouan'}
+							name="ndzuwani"
+							value="ndzuwani"
+							checked={selectedIsland === 'ndzuwani'}
 							onChange={handleIslandChange}
 							className="custom-control-input"
 						/>
-						<div className="custom-control-label">Anjouan</div>
+						<div className="custom-control-label">Ndzuwani</div>
 					</label>
 
 					<label className="custom-control custom-radio">
@@ -66,13 +66,13 @@ const Filters = ({
 					<label className="custom-control custom-radio">
 						<input
 							type="radio"
-							name="mohéli"
-							value="mohéli"
-							checked={selectedIsland === 'mohéli'}
+							name="mwali"
+							value="mwali"
+							checked={selectedIsland === 'mwali'}
 							onChange={handleIslandChange}
 							className="custom-control-input"
 						/>
-						<div className="custom-control-label">Mohéli</div>
+						<div className="custom-control-label">Mwali</div>
 					</label>
 				</div>
 			</div>

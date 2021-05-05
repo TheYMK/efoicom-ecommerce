@@ -41,13 +41,13 @@ const AdminViewItemDialog = ({ open, handleClose, item }) => {
 								</p>
 								<p>
 									<strong>Categorie:</strong>
-									<br /> <span className="badge rounded-pill bg-success">{item.category.name}</span>
+									<br /> <span className="tag bg-info text-white">{item.category.name}</span>
 								</p>
 								<div>
 									<strong>Sous-Catégorie:</strong>
 									<br />
 									{item.subs.map((sub) => (
-										<span key={sub._id} className="mr-2 mt-2 badge rounded-pill bg-primary">
+										<span key={sub._id} className="mr-2 mt-2 tag bg-info text-white">
 											{sub.name}
 										</span>
 									))}
@@ -96,9 +96,9 @@ const AdminViewItemDialog = ({ open, handleClose, item }) => {
 					</DialogContent>
 				)}
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<button onClick={handleClose} className="btn btn-primary">
 						Fermer
-					</Button>
+					</button>
 				</DialogActions>
 			</Dialog>
 		</div>

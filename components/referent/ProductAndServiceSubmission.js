@@ -119,9 +119,14 @@ const ProductAndServiceSubmission = () => {
 						<article className="card mb-4">
 							<header className="card-header">
 								<strong className="d-inline-block mr-3">Soumettre un produit ou un service</strong>
+								<br />
+								<small>
+									Cet étape est très simple. Tout ce que vous avez à faire c'est de telecharger une ou
+									plusieurs images de votre produit/service, et le décrire. Cet article sera soumis à
+									une évaluation. Il ne sera visible qu'une fois approuvé par l'équipe Bangwé La
+									Massiwa.
+								</small>
 							</header>
-						</article>
-						<article className="card mb-4">
 							<div className="card-body mt-4">
 								<div className="px-3">
 									<FileUpload

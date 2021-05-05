@@ -94,7 +94,7 @@ const Login = () => {
 					});
 
 					toast.success(
-						'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience avec notre plateforme.'
+						'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience sur notre plateforme.'
 					);
 					setLoading(false);
 					roleBasedRedirect(response);
@@ -106,7 +106,9 @@ const Login = () => {
 		} catch (err) {
 			setLoading(false);
 			console.log(`----> Error occured during login process (=> /auth/login page): ${err}`);
-			toast.error('Email ou mot de passe non valide');
+			toast.error(
+				`Email ou mot de passe non valide. Verifiez encore une fois vos information. Si vous n'avez pas de compte, assurez vous d'en créer un avant de vous connecter.`
+			);
 		}
 	};
 
@@ -199,7 +201,9 @@ const Login = () => {
 			<p className="text-center mt-4">
 				Vous n'avez pas de compte?{' '}
 				<Link href="/auth/register">
-					<a>Enregistrez vous</a>
+					<a>
+						<i className="fas fa-hand-point-right" /> Enregistrez vous ici
+					</a>
 				</Link>
 			</p>
 			<br />

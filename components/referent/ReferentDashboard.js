@@ -69,19 +69,19 @@ const ReferentDashboard = () => {
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{totalOnHoldItems}</h4>
-												<span>Article en attente d'approbation</span>
+												<span>Articles en attente d'approbation</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{totalApprovedProducts}</h4>
-												<span>Produit approuvé</span>
+												<span>Produits approuvés</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{totalApprovedServices}</h4>
-												<span>Service approuvé</span>
+												<span>Services approuvés</span>
 											</div>
 										</figure>
 									</article>

@@ -65,8 +65,8 @@ const Category = ({ refresh, setRefresh }) => {
 				/>
 			</div>
 			<div>
-				<button className="btn btn-primary text-white rounded-pill" onClick={handleSubmit}>
-					{loading ? 'En cours...' : 'Sauvegarder'}
+				<button className="btn btn-primary text-white" onClick={handleSubmit}>
+					{loading ? 'En cours...' : 'Ajouter'}
 				</button>
 			</div>
 		</form>
@@ -109,7 +109,7 @@ const Category = ({ refresh, setRefresh }) => {
 	return (
 		<div>
 			{newCategoryForm()}
-			<div>Liste: {showCategories()}</div>
+			<div className="mt-3">Liste: {showCategories()}</div>
 		</div>
 	);
 };

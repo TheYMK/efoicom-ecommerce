@@ -22,34 +22,39 @@ const PasswordChangeDialog = ({
 			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Changer votre mot de passe</DialogTitle>
 				<DialogContent>
-					<DialogContentText>Vous serez deconnecter après cette opération</DialogContentText>
-					<TextField
+					<DialogContentText>Vous serez déconnecter après cette opération</DialogContentText>
+
+					<label htmlFor="password">
+						Nouveau mot de passe <span style={{ color: 'red' }}>*</span>
+					</label>
+					<input
 						autoFocus
-						margin="dense"
 						id="password"
-						label="Nouveau mot de passe"
+						className="form-control"
 						type="password"
+						placeholder="••••••"
 						value={password}
-						fullWidth
 						onChange={(e) => setPassword(e.target.value)}
 					/>
-					<TextField
-						margin="dense"
+					<label htmlFor="confirmPassword" className="mt-2">
+						Confirmer mot de passe <span style={{ color: 'red' }}>*</span>
+					</label>
+					<input
 						id="confirmPassword"
-						label="Confirmer votre mot de passe"
 						type="password"
-						fullWidth
+						className="form-control"
+						placeholder="••••••"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 					/>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<button onClick={handleClose} className="btn btn-secondary">
 						Annuler
-					</Button>
-					<Button onClick={handlePasswordSubmit} color="primary">
+					</button>
+					<button onClick={handlePasswordSubmit} className="btn btn-primary">
 						{loading ? 'En cours...' : 'Confirmer'}
-					</Button>
+					</button>
 				</DialogActions>
 			</Dialog>
 		</div>

@@ -5,18 +5,25 @@ import { useSelector } from 'react-redux';
 import { createZone, getAllZones, removeZone, updateZone } from '../../actions/zone';
 import Link from 'next/link';
 import EditZoneDialog from '../dialogs/EditZoneDialog';
+import LocalSearch from '../searchforms/LocalSearch';
+import ConfirmDeleteDiaog from '../dialogs/ConfirmDeleteDialog';
 
 const ReferenceZoneManagement = () => {
 	const [ values, setValues ] = useState({
 		name: '',
 		island: '',
-		loading: false
+		loading: false,
+		keyword: ''
 	});
 	const [ allZones, setAllZones ] = useState([]);
 	const [ openEditDialog, setOpenEditDialog ] = useState(false);
-	const [ currentSelectedZone, setCurrentSelectedZone ] = useState({});
+	const [ openConfirmDialog, setOpenConfirmDialog ] = useState(false);
+	const [ currentSelectedZone, setCurrentSelectedZone ] = useState({
+		name: '',
+		island: ''
+	});
 
-	const { name, island, loading } = values;
+	const { name, island, loading, keyword } = values;
 	const { user } = useSelector((state) => ({ ...state }));
 
 	useEffect(() => {
@@ -47,13 +54,13 @@ const ReferenceZoneManagement = () => {
 		if (user && user.token) {
 			createZone(user.token, values)
 				.then((res) => {
-					toast.success(`Nouvelle zone de référence ajouté`);
+					toast.success(`Nouvelle commune ajouté`);
 					setValues({ ...values, name: '', loading: false });
 					loadZones();
 				})
 				.catch((err) => {
 					toast.error(
-						`Oops! Echec de l'opération. Cette zone existe peut-être déjà. Essayer avec un autre nom.`
+						`Oops! Echec de l'opération. Cette commune existe peut-être déjà. Essayer avec un autre nom.`
 					);
 					setValues({ ...values, loading: false });
 					return;
@@ -65,17 +72,18 @@ const ReferenceZoneManagement = () => {
 		}
 	};
 
-	const handleRemoveZone = (slug) => {
+	const handleRemoveZone = (zone) => {
 		setValues({ ...values, loading: true });
 		if (user && user.token) {
-			removeZone(user.token, slug)
+			removeZone(user.token, zone.slug)
 				.then((res) => {
-					toast.success(`La zone a été retiré`);
+					toast.success(`La commune a été retiré.`);
 					setValues({ ...values, loading: false });
+					setOpenConfirmDialog(false);
 					loadZones();
 				})
 				.catch((err) => {
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer`);
+					toast.error(`Oops! Echec de l'opération. Veuillez réessayer.`);
 					setValues({ ...values, loading: false });
 				});
 		}
@@ -87,13 +95,13 @@ const ReferenceZoneManagement = () => {
 	};
 
 	const handleCloseEditDialog = () => {
-		setCurrentSelectedZone('');
+		setCurrentSelectedZone({ name: '', island: '' });
 		setOpenEditDialog(false);
 	};
 
 	const handleUpdateZone = () => {
 		if (!currentSelectedZone.name || !currentSelectedZone.island) {
-			toast.error(`Oops! Vous devez remplir tous les champs`);
+			toast.error(`Oops! Vous devez remplir tous les champs.`);
 			return;
 		}
 
@@ -101,13 +109,16 @@ const ReferenceZoneManagement = () => {
 			updateZone(user.token, currentSelectedZone.slug, currentSelectedZone)
 				.then((res) => {
 					toast.success(`Modification effectué`);
-					setCurrentSelectedZone({});
+					setCurrentSelectedZone({
+						name: '',
+						island: ''
+					});
 					handleCloseEditDialog();
 					loadZones();
 				})
 				.catch((err) => {
 					toast.error(
-						`Oops! Echec de l'opération. Cette zone existe peut-être déjà. Essayer avec un autre nom.`
+						`Oops! Echec de l'opération. Cette commune existe peut-être déjà. Essayer avec un autre nom.`
 					);
 					return;
 				});
@@ -117,29 +128,38 @@ const ReferenceZoneManagement = () => {
 		}
 	};
 
+	const searched = (keyword) => (z) => z.name.toLowerCase().includes(keyword);
+
+	const handleOpenConfirmDeleteDialog = (zone) => {
+		setCurrentSelectedZone(zone);
+		setOpenConfirmDialog(true);
+	};
+
+	const handleCloseConfirmDialog = () => {
+		setCurrentSelectedZone({ name: '', island: '' });
+		setOpenConfirmDialog(false);
+	};
+
 	const showZones = () => (
 		<div className="table-responsive" style={{ height: '500px' }}>
 			<table className="table table-hover">
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Nom de la zone</th>
+						<th>Nom de la commune</th>
 						<th>Île</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
-					{allZones.map((zone, index) => (
+					{allZones.filter(searched(keyword)).map((zone, index) => (
 						<tr key={index}>
 							<td>{index + 1}</td>
 							<td>{zone.name}</td>
 							<td>{zone.island}</td>
 							<td>
 								<div className="dropdown d-inline-block">
-									<button
-										data-toggle="dropdown"
-										className="dropdown-toggle btn rounded-pill btn-primary"
-									>
+									<button data-toggle="dropdown" className="dropdown-toggle btn btn-primary">
 										Cliquer ici
 									</button>
 									<div className="dropdown-menu dropdown-menu-right">
@@ -147,7 +167,10 @@ const ReferenceZoneManagement = () => {
 											Modifer
 										</button>
 
-										<button className="dropdown-item" onClick={(e) => handleRemoveZone(zone.slug)}>
+										<button
+											className="dropdown-item"
+											onClick={(e) => handleOpenConfirmDeleteDialog(zone)}
+										>
 											Supprimer
 										</button>
 									</div>
@@ -169,6 +192,13 @@ const ReferenceZoneManagement = () => {
 				setCurrentZone={setCurrentSelectedZone}
 				handleUpdateZone={handleUpdateZone}
 			/>
+			<ConfirmDeleteDiaog
+				open={openConfirmDialog}
+				handleClose={handleCloseConfirmDialog}
+				element={currentSelectedZone}
+				action={handleRemoveZone}
+				text={`Êtes-vous sûr de vouloir supprimer cette commune? Tous les référents et les articles liés à cette commune doivent être modifiés avant de procéder à la suppression.`}
+			/>
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">
@@ -177,15 +207,23 @@ const ReferenceZoneManagement = () => {
 						</aside>
 						<main className="col-md-9">
 							<article className="card mb-4">
-								<header className="card-header">
-									<strong className="d-inline-block mr-3">Ajouter une zone de référence</strong>
+								<header className="card-header pure-text">
+									<strong className="d-inline-block mr-3">Ajouter une commune</strong>
+									<br />
+									<small className="">
+										Une commune est principalement une zone qui sera couverte par un ou plusieurs
+										référent(s). Ces zones auront pour but de specifier la provenance des produits
+										ou services qui seront mis en ligne sur la plateforme. Vous, en tant
+										qu'administrateur, avez la responsabilité d'enregistrer ces communes dans la
+										base donnée.
+									</small>
 								</header>
 								<div className="card-body">
 									<form onSubmit={handleCreateZone}>
 										<div className="form-row">
 											<div className="form-group col-md-4">
 												<label htmlFor="name">
-													Nom de la zone <span style={{ color: 'red' }}>*</span>
+													Nom de la commune <span style={{ color: 'red' }}>*</span>
 												</label>
 												<input
 													type="text"
@@ -193,35 +231,46 @@ const ReferenceZoneManagement = () => {
 													className="form-control"
 													value={name}
 													onChange={(e) => setValues({ ...values, name: e.target.value })}
-													placeholder="Donnez un nom à cette zone"
+													placeholder="Sasissez le nom à cette commune"
 													required
 												/>
 											</div>
 											<div className="form-group col-md-6">
-												<label>Dans quelle île se trouve cette zone?</label>
+												<label>
+													Dans quelle île se trouve cette commune?{' '}
+													<span style={{ color: 'red' }}>*</span>
+												</label>
 												<select
 													name="island"
 													className="form-control"
+													required
 													onChange={(e) => setValues({ ...values, island: e.target.value })}
 												>
-													<option value="">Veuillez selectionner une catégorie</option>
-													<option value="anjouan">Anjouan</option>
+													<option value="">Veuillez selectionner une île</option>
+													<option value="ndzuwani">Ndzuwani</option>
 													<option value="ngazidja">Ngazidja</option>
-													<option value="mohéli">Mohéli</option>
+													<option value="mwali">Mwali</option>
 												</select>
 											</div>
 										</div>
-										<button type="submit" className="btn rounded-pill btn-primary mt-3">
-											{loading ? 'En cours...' : 'Créer une nouvelle zone'}
+										<button type="submit" className="btn btn-primary mt-3">
+											{loading ? 'En cours...' : 'Créer une nouvelle commune'}
 										</button>
 									</form>
 								</div>
 							</article>
 							<article className="card mb-4">
+								<div className="card-body">
+									<LocalSearch setValues={setValues} values={values} />
+								</div>
+							</article>
+
+							<article className="card mb-4">
 								<header className="card-header">
-									<strong className="d-inline-block mr-3">Liste des zones</strong>
+									<strong className="d-inline-block mr-3">Liste des communes</strong>
 								</header>
-								<div className="card-body">{showZones()}</div>
+
+								<div className="">{showZones()}</div>
 							</article>
 						</main>
 					</div>

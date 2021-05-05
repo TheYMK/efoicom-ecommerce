@@ -29,13 +29,12 @@ const ReferentAccountManagement = () => {
 			setReferents(allRefs.data);
 		} catch (err) {
 			console.log(`----> Failed to get all approved referents: {Error: ${err}}`);
-			toast.error('Failed to get all approved referents');
 		}
 	};
 
 	const handleDeleteUser = (id, referent_email) => {
 		if (user && user.token) {
-			const result = window.confirm('Êtes-vous sûr de vouloir supprimer ce compte?');
+			const result = window.confirm('Êtes-vous sûr de vouloir supprimer ce compte ?');
 
 			if (result) {
 				setLoading(true);
@@ -45,14 +44,14 @@ const ReferentAccountManagement = () => {
 						setOpen(false);
 						toast.success(
 							`Le compte ${res.data
-								.email} a bien été supprimer. Tous les articles de cet utilisateur ont été également supprimés`
+								.email} a bien été supprimer. Tous les articles de cet utilisateur ont été également supprimés.`
 						);
 						loadReferents();
 					})
 					.catch((err) => {
 						setLoading(false);
 						console.log(err);
-						toast.error(`Oops! l'opération n'a pas été effectuer, veuillez recommencer`);
+						toast.error(`Oops! l'opération n'a pas été effectuer, veuillez recommencer.`);
 					});
 			}
 		}
@@ -67,7 +66,7 @@ const ReferentAccountManagement = () => {
 						<th>Email</th>
 						<th>Tel</th>
 						<th>Adresse</th>
-						<th>Zone de référence</th>
+						<th>Commune</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -82,12 +81,14 @@ const ReferentAccountManagement = () => {
 								{referent.reference_zone.name} ({referent.reference_zone.island.toUpperCase()})
 							</td>
 							<td>
-								<button
-									className="btn btn-primary rounded-pill"
-									onClick={() => handleViewProfile(referent)}
-								>
-									Voir le profil
-								</button>
+								<div>
+									<button
+										className="btn btn-primary btn-block"
+										onClick={() => handleViewProfile(referent)}
+									>
+										Profil
+									</button>
+								</div>
 							</td>
 						</tr>
 					))}
@@ -148,13 +149,20 @@ const ReferentAccountManagement = () => {
 							<AdminMenu pageLocation="referent" />
 						</aside>
 						<main className="col-md-9">
-							<article className="card mb-4">
+							<article className="card mb-4 pure-text">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
 										Tous les comptes référents approuvés{' '}
 										{referents !== null && referents.length === 0 ? <NoData /> : ''}
 									</strong>
+									<br />
+									<small>
+										Vous trouverez ici la liste de tous les comptes référents approuvés de la
+										plateforme. Vous avez la possibilité de consulter les activités de ces comptes
+										et de les supprimer si nécessaire.
+									</small>
 								</header>
+
 								{referents === null ? showLoadingReferents() : showReferents()}
 							</article>
 						</main>

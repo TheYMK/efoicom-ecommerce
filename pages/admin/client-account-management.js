@@ -5,9 +5,10 @@ import AdminProtected from '../../components/auth/AdminProtected';
 import Header from '../../components/header/Header';
 import Layout from '../../components/Layout';
 import PageTop from '../../components/sections/PageTop';
+import { getAllCustomers } from '../../actions/user';
 
-const ClientAccountManagementPage = () => {
-	const message = `Bievenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
+const ClientAccountManagementPage = ({ allCustomers }) => {
+	const message = `Bienvenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
 
 	const head = () => (
 		<Head>
@@ -24,11 +25,21 @@ const ClientAccountManagementPage = () => {
 						<Header />
 					</header>
 					<PageTop title={'Tableau de bord administrateur'} message={message} />
-					<ClientAccountManagement />
+					<ClientAccountManagement customers={allCustomers} />
 				</AdminProtected>
 			</Layout>
 		</React.Fragment>
 	);
 };
+
+export async function getServerSideProps({ params }) {
+	return getAllCustomers().then((res) => {
+		return {
+			props: {
+				allCustomers: res.data
+			}
+		};
+	});
+}
 
 export default ClientAccountManagementPage;

@@ -56,15 +56,17 @@ const SingleItem = ({ imageSrc, item }) => {
 					<h6 className="product-card-category text-info">{title}</h6>
 					<p className="text-muted mt-3">
 						<i className="fa fa-map-marker-alt" />{' '}
-						{item.reference_zone && item.reference_zone.name.toUpperCase()}
+						{item.reference_zone &&
+							item.reference_zone.name.charAt(0).toUpperCase() + item.reference_zone.name.slice(1)}{' '}
+						({item.reference_zone && item.reference_zone.island.toUpperCase()})
 					</p>
 					<Link href={`/item/${item.slug}`}>
-						<a className="btn btn-primary">
+						<a className="btn btn-primary rounded-pill">
 							<i className="fas fa-cart-plus" /> Voir l'article
 						</a>
 					</Link>
 
-					<button className="btn btn-danger ml-3" onClick={handleAddItemToWishlist}>
+					<button className="btn btn-danger rounded-pill ml-3" onClick={handleAddItemToWishlist}>
 						<i className="fas fa-heart" />
 					</button>
 				</div>

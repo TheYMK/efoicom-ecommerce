@@ -172,7 +172,7 @@ const BlogCreateDialog = ({
 						nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
 					</Typography> */}
 					<div className="mt-5">
-						<h5>Selectionner des categories</h5>
+						<h5>Selectionner des catégories</h5>
 						<ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showBlogCategories()}</ul>
 
 						<hr />

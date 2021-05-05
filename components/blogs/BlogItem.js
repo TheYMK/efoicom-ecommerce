@@ -23,7 +23,7 @@ const BlogItem = ({ blog }) => {
 
 					{/* <p className="annoucement-card-description">{blog.excerpt}</p> */}
 					<Link href={`/blog/${blog.slug}`}>
-						<a className="btn btn-primary">Lire l'article</a>
+						<a className="btn btn-primary rounded-pill">Lire l'article</a>
 					</Link>
 				</div>
 			</div>

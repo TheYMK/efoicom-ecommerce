@@ -16,6 +16,7 @@ const ProductAndServiceSubmissionPage = () => {
 	const { user } = useSelector((state) => ({ ...state }));
 	const [ requestStatus, setRequestStatus ] = useState('');
 
+	const message = `Bienvenue sur votre tableau de bord référent. Vous souhaitez mettre en ligne vos produits/services ou ceux d'autres entrepreneurs de votre commune? C'est ici que tout commence. Soumettez vos articles sans plus attendre.`;
 	useEffect(
 		() => {
 			if (user && user.token) {
@@ -46,7 +47,7 @@ const ProductAndServiceSubmissionPage = () => {
 					<header className="section-header">
 						<Header />
 					</header>
-					<PageTop title={'Mon profile référent'} message="" />
+					<PageTop title={'Mon profile référent'} message={message} />
 					{requestStatus === 'approved' ? (
 						<ProductAndServiceSubmission />
 					) : (

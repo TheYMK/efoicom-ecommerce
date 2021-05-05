@@ -7,7 +7,7 @@ import PageTop from '../../components/sections/PageTop';
 import ReferenceZoneManagement from '../../components/admin/ReferenceZoneManagement';
 
 const ReferenceZoneManagementPage = () => {
-	const message = `Bievenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
+	const message = `Bienvenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
 
 	const head = () => (
 		<Head>

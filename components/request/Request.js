@@ -19,7 +19,7 @@ const Request = () => {
 					<div className="col-md-8">
 						<div
 							className="card-banner banner-quote overlay-gradient"
-							style={{ backgroundImage: "url('/static/images/banners/banner1_3.jpg')" }}
+							style={{ backgroundImage: "url('/static/images/banners/banner1.jpg')" }}
 						>
 							<div className="card-img-overlay white">
 								<h3 className="card-title text-white">Une communauté unique</h3>

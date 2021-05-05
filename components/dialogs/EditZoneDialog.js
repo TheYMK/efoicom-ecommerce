@@ -19,12 +19,12 @@ const EditZoneDialog = ({ open, handleClose, currentZone, setCurrentZone, handle
 				maxWidth="sm"
 				fullWidth={true}
 			>
-				<DialogTitle id="alert-dialog-title">Modifier la zone de référence</DialogTitle>
+				<DialogTitle id="alert-dialog-title">Modifier les informations</DialogTitle>
 				<DialogContent>
 					<div className="form-row">
 						<div className="form-group col-md-4">
 							<label htmlFor="nameD">
-								Nom de la zone <span style={{ color: 'red' }}>*</span>
+								Nom de la commune <span style={{ color: 'red' }}>*</span>
 							</label>
 							<input
 								type="text"
@@ -36,26 +36,26 @@ const EditZoneDialog = ({ open, handleClose, currentZone, setCurrentZone, handle
 								required
 							/>
 						</div>
-						<div className="form-group col-md-6">
-							<label>Dans quelle île se trouve cette zone?</label>
+						<div className="form-group col-md-8">
+							<label>Dans quelle île se trouve cette commune?</label>
 							<select
 								name="island"
 								className="form-control"
 								value={island}
 								onChange={(e) => setCurrentZone({ ...currentZone, island: e.target.value })}
 							>
-								<option value="anjouan">Anjouan</option>
+								<option value="ndzuwani">Ndzuwani</option>
 								<option value="ngazidja">Ngazidja</option>
-								<option value="mohéli">Mohéli</option>
+								<option value="mwali">Mwali</option>
 							</select>
 						</div>
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<button onClick={handleClose} className="btn btn-secondary rounded-pill">
+					<button onClick={handleClose} className="btn btn-secondary">
 						Annuler
 					</button>
-					<button onClick={handleUpdateZone} className="btn btn-primary rounded-pill">
+					<button onClick={handleUpdateZone} className="btn btn-primary">
 						Modifier
 					</button>
 				</DialogActions>

@@ -34,9 +34,9 @@ const Search = () => {
 					onChange={handleChange}
 				>
 					<option value="all">Toutes les îles</option>
-					<option value="anjouan">Anjouan</option>
+					<option value="ndzuwani">Ndzuwani</option>
 					<option value="ngazidja">Ngazidja</option>
-					<option value="mohéli">Moheli</option>
+					<option value="mwali">Mwali</option>
 				</select>
 				<input
 					type="text"

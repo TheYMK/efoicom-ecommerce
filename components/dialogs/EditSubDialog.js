@@ -40,7 +40,7 @@ const EditSubDialog = ({
 				maxWidth="sm"
 				fullWidth={true}
 			>
-				<DialogTitle id="alert-dialog-title">Modifier la sous-catégorie</DialogTitle>
+				<DialogTitle id="alert-dialog-title">Modifier les informations</DialogTitle>
 
 				<DialogContent>
 					<div className="form-group">
@@ -60,24 +60,28 @@ const EditSubDialog = ({
 								))}
 						</select>
 					</div>
-					<TextField
-						autoFocus
-						margin="dense"
-						id="name"
-						label="Nom de la sous-catégorie *"
-						type="text"
-						value={name}
-						fullWidth
-						onChange={(e) => setCurrentSub({ ...currentSub, name: e.target.value })}
-					/>
+					<form>
+						<label htmlFor="name">
+							Nom de la sous-catégorie <small style={{ color: 'red' }}>*</small>
+						</label>
+						<input
+							autoFocus
+							id="name"
+							type="text"
+							value={name}
+							className="form-control"
+							required
+							onChange={(e) => setCurrentSub({ ...currentSub, name: e.target.value })}
+						/>
+					</form>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleSubClose} color="primary">
+					<button onClick={handleSubClose} className="btn btn-secondary">
 						Annuler
-					</Button>
-					<Button onClick={handleSubmit} color="primary" autoFocus>
+					</button>
+					<button onClick={handleSubmit} className="btn btn-primary" autoFocus>
 						{subLoading ? 'En cours...' : 'Modifier'}
-					</Button>
+					</button>
 				</DialogActions>
 			</Dialog>
 		</div>

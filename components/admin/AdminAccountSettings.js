@@ -171,11 +171,13 @@ const AdminAccountSettings = () => {
 												onClick={handleAccountUpdate}
 												disabled={!name || !email}
 											>
-												{loading ? 'En cours...' : 'Sauvegarder'}
+												{loading ? 'En cours...' : 'Mettre à jour les informations'}
 											</button>
-											<button className="btn btn-light ml-3" onClick={handlePasswordChange}>
-												Changer votre mot de passe
-											</button>
+											<div className="mt-2">
+												<button className="btn btn-light" onClick={handlePasswordChange}>
+													Changer votre mot de passe
+												</button>
+											</div>
 
 											<br />
 											<br />

@@ -19,7 +19,9 @@ const AllCategoriesPage = ({ allCategories, allSubs }) => {
 
 		return subs.map((sub) => (
 			<li key={sub._id}>
-				<a onClick={() => handleClickSub(sub)}>{sub.name}</a>
+				<a href="#" onClick={() => handleClickSub(sub)}>
+					{sub.name}
+				</a>
 			</li>
 		));
 	};
@@ -61,7 +63,9 @@ const AllCategoriesPage = ({ allCategories, allSubs }) => {
 										</div>
 										<div className="card-body">
 											<h4 className="card-title">
-												<a onClick={() => handleClickCategory(category._id)}>{category.name}</a>
+												<a href="#" onClick={() => handleClickCategory(category._id)}>
+													{category.name}
+												</a>
 											</h4>
 											<ul className="list-menu">{showCategorySubs(category._id)}</ul>
 										</div>

@@ -82,7 +82,7 @@ const Register = () => {
 		e.preventDefault();
 
 		if (account_type === '') {
-			toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
+			toast.error('Veuillez remplir tous les champs avant de vous enregistrer.');
 			return;
 		}
 
@@ -98,7 +98,7 @@ const Register = () => {
 				island === '' ||
 				address === ''
 			) {
-				toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
+				toast.error('Veuillez remplir tous les champs avant de vous enregistrer.');
 				return;
 			}
 		}
@@ -115,13 +115,13 @@ const Register = () => {
 				address === '' ||
 				reference_zone === ''
 			) {
-				toast.error('Veuillez remplir tous les champs avant de vous enregistrer');
+				toast.error('Veuillez remplir tous les champs avant de vous enregistrer.');
 				return;
 			}
 		}
 		if (termsAndConditionsAccepted === false) {
 			toast.error(
-				'Veuillez lire et accepter les termes et conditions de la plateforme avant de vous enregistrer'
+				'Vous devez lire et accepter les termes et conditions de la plateforme avant de vous enregistrer.'
 			);
 			return;
 		}
@@ -168,7 +168,7 @@ const Register = () => {
 		} catch (err) {
 			console.log(`----> Error occured during registration process (=> /auth/register page): ${err}`);
 			toast.error(
-				"Oops! Une erreur s'est produite lors de la création de votre compte. Assurez vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, veuillez nous contacter"
+				"Oops! Une erreur s'est produite lors de la création de votre compte. Assurez vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, Contactez nous."
 			);
 			setLoading(false);
 		}
@@ -259,7 +259,7 @@ const Register = () => {
 									value="customer"
 									onChange={(e) => setValues({ ...values, account_type: e.target.value })}
 								/>
-								<span className="custom-control-label"> Client </span>
+								<span className="custom-control-label"> Compte client </span>
 							</label>
 							<label className="custom-control custom-radio custom-control-inline">
 								<input
@@ -270,20 +270,20 @@ const Register = () => {
 									value="referent"
 									onChange={(e) => setValues({ ...values, account_type: e.target.value })}
 								/>
-								<span className="custom-control-label"> Référent </span>
+								<span className="custom-control-label"> Compte référent </span>
 							</label>
 							<br />
 							<small className="mt-4 mb-4">
 								<i className="fas fa-exclamation-triangle" style={{ color: '#f63b3b' }} /> Les comptes
-								référent sont soumis à une évaluation. Durant cette période d'evaluation vous ne serez
-								pas encore en mesure d'acceder aux fonctionnalités de votre compte.
+								référent sont soumis à une évaluation. Durant cette période d'évaluation vous ne serez
+								pas encore en mesure d'accéder aux fonctionnalités de votre compte.
 							</small>
 						</div>
 
 						<div className="form-row">
 							<div className="form-group col-md-6">
 								<label htmlFor="city">
-									Ville <small style={{ color: 'red' }}>*</small>
+									Votre Ville <small style={{ color: 'red' }}>*</small>
 								</label>
 								<input
 									type="text"
@@ -297,7 +297,7 @@ const Register = () => {
 							</div>
 							<div className="form-group col-md-6">
 								<label htmlFor="island">
-									île <small style={{ color: 'red' }}>*</small>
+									Votre île <small style={{ color: 'red' }}>*</small>
 								</label>
 								<select
 									id="island"
@@ -307,9 +307,9 @@ const Register = () => {
 									onChange={(e) => setValues({ ...values, island: e.target.value })}
 								>
 									<option value=""> Veuillez choisir une île...</option>
-									<option value="anjouan">Anjouan</option>
+									<option value="ndzuwani">Ndzuwani</option>
 									<option value="ngazidja">Ngazidja</option>
-									<option value="mohéli">Mohéli</option>
+									<option value="mwali">Mwali</option>
 								</select>
 							</div>
 						</div>
@@ -317,7 +317,8 @@ const Register = () => {
 						{account_type === 'referent' && (
 							<div className="form-group">
 								<label htmlFor="reference_zone">
-									Quelle zone souhaitez-vous référer? <small style={{ color: 'red' }}>*</small>
+									Quelle commune souhaitez-vous être le référent?{' '}
+									<small style={{ color: 'red' }}>*</small>
 								</label>
 								<select
 									id="reference_zone"
@@ -339,7 +340,7 @@ const Register = () => {
 						<div className="form-row">
 							<div className="form-group col-md-12">
 								<label htmlFor="address">
-									Votre adresse complète<small style={{ color: 'red' }}>*</small>
+									Votre adresse complète <small style={{ color: 'red' }}>*</small>
 								</label>
 								<input
 									className="form-control"

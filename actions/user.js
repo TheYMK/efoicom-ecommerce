@@ -108,3 +108,7 @@ export const getUserWishlistCount = async (authtoken) => {
 		}
 	});
 };
+
+export const getAllCustomers = async () => {
+	return await axios.get(`${API_URL}/customer/all`);
+};

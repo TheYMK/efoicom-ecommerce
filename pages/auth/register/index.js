@@ -22,7 +22,9 @@ const RegisterPage = () => {
 					<div className="row">
 						<div className="col-md-6">
 							<div className="container mt-5">
-								<h5>Comment s'enregistrer?</h5>
+								<h5>
+									<i className="fas fa-question-circle" /> Comment s'enregistrer?
+								</h5>
 								<VideoPlayer
 									className="react-player"
 									url={

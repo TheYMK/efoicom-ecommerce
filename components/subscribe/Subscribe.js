@@ -6,8 +6,8 @@ const Subscribe = () => {
 			<section className="section-subscribe padding-y-lg">
 				<div className="container">
 					<p className="pb-2 text-center text-white">
-						Pour recevoir les dernières tendances des produits et les nouvelles de l'industrie directement
-						dans votre boîte de réception
+						Pour recevoir les dernières tendances des produits et les nouveautés sur BANGWÉ LA MASSIWA
+						directement dans votre boîte de réception
 					</p>
 
 					<div className="row justify-content-md-center">

@@ -104,11 +104,10 @@ const AdminDashboard = () => {
 			<table className="table table-hover">
 				<thead>
 					<tr>
-						<th>Type de requête</th>
 						<th>Envoyé par (référent)</th>
 						<th>Tel</th>
 						<th>Email</th>
-						<th>Zone de référence</th>
+						<th>Commune</th>
 						<th>Status</th>
 						<th>Action</th>
 					</tr>
@@ -116,7 +115,6 @@ const AdminDashboard = () => {
 				<tbody>
 					{requests.map((request, index) => (
 						<tr key={index}>
-							<td>Approbation de référent</td>
 							<td>
 								<p className="title">{request.name} </p>
 							</td>
@@ -130,11 +128,7 @@ const AdminDashboard = () => {
 							</td>
 							<td>
 								<div className="dropdown d-inline-block">
-									<button
-										href="#"
-										data-toggle="dropdown"
-										className="dropdown-toggle btn btn-secondary"
-									>
+									<button data-toggle="dropdown" className="dropdown-toggle btn btn-primary">
 										Cliquer ici
 									</button>
 									<div className="dropdown-menu dropdown-menu-right">
@@ -175,8 +169,8 @@ const AdminDashboard = () => {
 			setLoading(true);
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
-					toast.info(
-						`Vous venez d'approuver un référent. Ce dernier peut desormais mettre en ligne des produits ou services, et converser avec des clients de la platforme`
+					toast.success(
+						`Vous venez d'approuver un référent. Ce dernier peut désormais mettre en ligne des produits et des services, ainsi que converser avec des clients de la platforme.`
 					);
 					fetchAllRefRequests();
 					setLoading(false);
@@ -184,7 +178,7 @@ const AdminDashboard = () => {
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
+					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer.`);
 				});
 		}
 	};
@@ -219,7 +213,6 @@ const AdminDashboard = () => {
 			<table className="table table-hover">
 				<thead>
 					<tr>
-						<th>Type de requête</th>
 						<th>Envoyé par (référent)</th>
 						<th>Titre de l'article</th>
 						<th>Nom du fournisseur</th>
@@ -232,7 +225,6 @@ const AdminDashboard = () => {
 				<tbody>
 					{itemsrequests.map((request, index) => (
 						<tr key={index}>
-							<td>Approbation d'article</td>
 							<td>
 								<p className="title">{request.referent_email} </p>
 							</td>
@@ -248,7 +240,7 @@ const AdminDashboard = () => {
 									<button
 										href="#"
 										data-toggle="dropdown"
-										className="dropdown-toggle btn btn-secondary"
+										className="dropdown-toggle btn btn-primary "
 									>
 										Cliquer ici
 									</button>
@@ -370,7 +362,9 @@ const AdminDashboard = () => {
 											<strong> {currentUser.name} (Administrateur) </strong> <br />
 											<p className="mb-2"> {currentUser.email} </p>
 											<Link href="/admin/account-settings">
-												<a className="btn btn-light btn-sm">Modifier les informations</a>
+												<a className="btn btn-light btn-sm">
+													Modifier vos informations personnelles
+												</a>
 											</Link>
 										</div>
 									</figure>
@@ -380,25 +374,25 @@ const AdminDashboard = () => {
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{referentCount}</h4>
-												<span>Nombre de référents</span>
+												<span>Comptes référents</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{customerCount}</h4>
-												<span>Nombre de clients</span>
+												<span>Comptes clients</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{productCount}</h4>
-												<span>Nombre de produits en ligne</span>
+												<span>Produits en ligne</span>
 											</div>
 										</figure>
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">{serviceCount}</h4>
-												<span>Nombre de services en ligne</span>
+												<span>Services en ligne</span>
 											</div>
 										</figure>
 									</article>
@@ -407,7 +401,7 @@ const AdminDashboard = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Gerez les requêtes de création de compte{' '}
+										Gerez les demandes d'approbation de comptes référent{' '}
 										{requests !== null && requests.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
@@ -417,7 +411,7 @@ const AdminDashboard = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Gerez les requêtes de publication d'article{' '}
+										Gerez les demandes de publication d'articles{' '}
 										{itemsrequests !== null && itemsrequests.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>

@@ -62,7 +62,7 @@ const ReferentProfileOverview = ({
 							{referent.reference_zone && (
 								<DialogContentText id="alert-dialog-description">
 									<span style={{ color: '#000' }}>
-										<strong>Zone de référence:</strong> {referent.reference_zone.name} ({referent.reference_zone.island.toUpperCase()})
+										<strong>Commune:</strong> {referent.reference_zone.name} ({referent.reference_zone.island.toUpperCase()})
 									</span>
 								</DialogContentText>
 							)}
@@ -123,9 +123,9 @@ const ReferentProfileOverview = ({
 					</div>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<button onClick={handleClose} className="btn btn-primary">
 						Fermer
-					</Button>
+					</button>
 				</DialogActions>
 			</Dialog>
 		</div>

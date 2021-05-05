@@ -214,9 +214,18 @@ const RegisterCompletePage = () => {
 								<p>
 									Tel: <strong>{phone_number}</strong>
 								</p>
-								<p>
-									Type de compte: <strong>{account_type}</strong>
-								</p>
+								{account_type &&
+								account_type === 'customer' && (
+									<p>
+										Type de compte: <strong>Client</strong>
+									</p>
+								)}
+								{account_type &&
+								account_type === 'referent' && (
+									<p>
+										Type de compte: <strong>Référent</strong>
+									</p>
+								)}
 								<p>
 									Ville: <strong>{city}</strong>
 								</p>

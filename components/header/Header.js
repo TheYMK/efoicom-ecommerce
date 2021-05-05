@@ -101,7 +101,7 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Mon Profile</small>
+												<small className="text">Mon Profil</small>
 											</a>
 										</Link>
 									</div>
@@ -114,7 +114,7 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Mon Profile</small>
+												<small className="text">Mon Profil</small>
 											</a>
 										</Link>
 									</div>
@@ -127,7 +127,7 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Profile</small>
+												<small className="text">Mon Profil</small>
 											</a>
 										</Link>
 									</div>

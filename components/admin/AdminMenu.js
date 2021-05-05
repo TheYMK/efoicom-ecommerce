@@ -6,36 +6,37 @@ const AdminMenu = ({ pageLocation }) => {
 		<React.Fragment>
 			<nav className="list-group">
 				<Link href="/admin/dashboard">
-					<a className={`list-group-item ${pageLocation === 'dashboard' ? 'active' : ''}`}>Aperçu</a>
+					<a className={`list-group-item ${pageLocation === 'dashboard' ? 'active' : ''}`}>Aperçu général</a>
 				</Link>
-				<Link href="/admin/referent-account-management">
-					<a className={`list-group-item ${pageLocation === 'referent' ? 'active' : ''}`}>
-						Gestion comptes référents
-					</a>
-				</Link>
-				<Link href="/admin/client-account-management">
-					<a className={`list-group-item ${pageLocation === 'client' ? 'active' : ''}`}>
-						Gestion comptes clients
+				<Link href="/admin/reference-zone-management">
+					<a className={`list-group-item ${pageLocation === 'reference_zone' ? 'active' : ''}`}>
+						Gérer les communes
 					</a>
 				</Link>
 				<Link href="/admin/categories-subs">
 					<a className={`list-group-item ${pageLocation === 'categories-subs' ? 'active' : ''}`}>
-						Gestion catégories & sous-catégories
+						Gérer les catégories & sous-catégories
 					</a>
 				</Link>
-				<Link href="/admin/reference-zone-management">
-					<a className={`list-group-item ${pageLocation === 'reference_zone' ? 'active' : ''}`}>
-						Gestion zones de référence
+				<Link href="/admin/referent-account-management">
+					<a className={`list-group-item ${pageLocation === 'referent' ? 'active' : ''}`}>
+						Gérer les comptes référents
 					</a>
 				</Link>
+				<Link href="/admin/client-account-management">
+					<a className={`list-group-item ${pageLocation === 'client' ? 'active' : ''}`}>
+						Gérer les comptes clients
+					</a>
+				</Link>
+
 				<Link href="/admin/products-services-management">
 					<a className={`list-group-item ${pageLocation === 'products_and_services' ? 'active' : ''}`}>
-						Gestion produits & services
+						Gérer les produits & services
 					</a>
 				</Link>
 				<Link href="/admin/blog-management">
 					<a className={`list-group-item ${pageLocation === 'blog_management' ? 'active' : ''}`}>
-						Gestion actualité
+						Gérer les actualités
 					</a>
 				</Link>
 

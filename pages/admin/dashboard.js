@@ -8,7 +8,8 @@ import Layout from '../../components/Layout';
 import PageTop from '../../components/sections/PageTop';
 
 const AdminDashboardPage = () => {
-	const message = `Bievenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
+	const message = `Bienvenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
+
 	const head = () => (
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />

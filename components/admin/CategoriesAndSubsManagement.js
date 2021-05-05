@@ -11,6 +11,7 @@ import SubCategoryForm from './subcategory/SubCategoryForm';
 import TextField from '@material-ui/core/TextField';
 import { createSubCategory, getSubs, removeSub, updateSub } from '../../actions/sub';
 import FileUpload from '../FileUpload';
+import ConfirmDeleteDiaog from '../dialogs/ConfirmDeleteDialog';
 
 const CategoriesAndSubsManagement = () => {
 	const [ values, setValues ] = useState({
@@ -47,6 +48,7 @@ const CategoriesAndSubsManagement = () => {
 	const [ reload, setReload ] = useState(false);
 	const [ open, setOpen ] = useState(false);
 	const [ openSub, setOpenSub ] = useState(false);
+	const [ openConfirmDialog, setOpenConfirmDialog ] = useState(false);
 
 	useEffect(
 		() => {
@@ -88,34 +90,47 @@ const CategoriesAndSubsManagement = () => {
 					setValues({ ...values, name: '', images: [] });
 					setLoading(false);
 					setReload(!reload);
-					toast.success(`La catégorie "${res.data.name}" a été ajouter`);
+					toast.success(`La catégorie "${res.data.name}" a été ajouter.`);
 				})
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops! La categorie n'a pas été créer. Veuillez réessayer`);
+					toast.error(`Oops! La categorie n'a pas été créer. Veuillez réessayer.`);
 				});
 		}
 	};
 
-	const handleRemove = async (slug) => {
-		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette catégorie?');
-		setLoading(true);
-		if (answer) {
-			if (user && user.token) {
-				removeCategory(user.token, slug)
-					.then((res) => {
-						setLoading(false);
-						toast.success(`La catégorie ${res.data.name} à bien été supprimer`);
-						setReload(!reload);
-					})
-					.catch((err) => {
-						console.log(err);
-						setLoading(false);
-						toast.error(`Oops! La categorie n'a pas été supprimer. Veuillez réessayer`);
-					});
-			}
+	const handleRemove = async (c) => {
+		if (user && user.token) {
+			setLoading(true);
+			removeCategory(user.token, c.slug)
+				.then((res) => {
+					setLoading(false);
+					toast.success(`La catégorie ${res.data.name} a bien été supprimer.`);
+					setOpenConfirmDialog(false);
+					setReload(!reload);
+				})
+				.catch((err) => {
+					console.log(err);
+					setLoading(false);
+					toast.error(`Oops! La categorie n'a pas été supprimer. Veuillez réessayer.`);
+				});
 		}
+	};
+
+	const handleOpenConfirmDialog = (category) => {
+		setCurrentCategory(category);
+		setOpenConfirmDialog(true);
+	};
+
+	const handleCloseConfirmDialog = () => {
+		setCurrentCategory({
+			name: '',
+			slug: '',
+			images: []
+		});
+
+		setOpenConfirmDialog(false);
 	};
 
 	const showCategories = () => {
@@ -123,7 +138,7 @@ const CategoriesAndSubsManagement = () => {
 			<div className="alert alert-secondary" key={category._id}>
 				{category.name}
 				<span className="float-right">
-					<button className="btn btn-sm btn-primary" onClick={(e) => handleRemove(category.slug)}>
+					<button className="btn btn-sm btn-danger" onClick={(e) => handleOpenConfirmDialog(category)}>
 						<i className="fas fa-trash" />
 					</button>
 					<button
@@ -158,7 +173,7 @@ const CategoriesAndSubsManagement = () => {
 				.then((res) => {
 					setLoading(false);
 					setOpen(false);
-					toast.success(`Modification effectuer`);
+					toast.success(`Modification effectuer.`);
 					setReload(!reload);
 					setCurrentCategory({
 						name: '',
@@ -169,7 +184,7 @@ const CategoriesAndSubsManagement = () => {
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops! La categorie n'a pas été modifier. Veuillez réessayer`);
+					toast.error(`Oops! La categorie n'a pas été modifier. Veuillez réessayer.`);
 				});
 		}
 	};
@@ -201,7 +216,7 @@ const CategoriesAndSubsManagement = () => {
 				.then((res) => {
 					setSubValues({ ...subValues, subLoading: false });
 					setOpenSub(false);
-					toast.success(`Modification effectuer`);
+					toast.success(`Modification effectuer.`);
 					setReload(!reload);
 					setCurrentSub({
 						name: '',
@@ -212,7 +227,7 @@ const CategoriesAndSubsManagement = () => {
 				.catch((err) => {
 					console.log(err);
 					setSubValues({ ...subValues, subLoading: false });
-					toast.error(`Oops! La categorie n'a pas été modifier. Veuillez réessayer`);
+					toast.error(`Oops! La categorie n'a pas été modifier. Veuillez réessayer.`);
 				});
 		}
 	};
@@ -226,31 +241,31 @@ const CategoriesAndSubsManagement = () => {
 				.then((res) => {
 					setSubValues({ ...subValues, subLoading: false, subName: '' });
 					setReload(!reload);
-					toast.success(`La sous-catégorie "${res.data.name}" a été ajouter`);
+					toast.success(`La sous-catégorie "${res.data.name}" a été ajouter.`);
 				})
 				.catch((err) => {
 					console.log(err);
 					setSubValues({ ...subValues, subLoading: false });
-					toast.error(`Oops! La sous-catégorie n'a pas été créer. Veuillez réessayer`);
+					toast.error(`Oops! La sous-catégorie n'a pas été créer. Veuillez réessayer.`);
 				});
 		}
 	};
 
 	const handleSubRemove = (slug) => {
 		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette sous-catégorie?');
-		setSubValues({ ...subValues, subLoading: true });
 		if (answer) {
 			if (user && user.token) {
+				setSubValues({ ...subValues, subLoading: true });
 				removeSub(user.token, slug)
 					.then((res) => {
 						setSubValues({ ...subValues, subLoading: false });
-						toast.success(`La sous-catégorie ${res.data.name} à bien été supprimer`);
+						toast.success(`La sous-catégorie ${res.data.name} a bien été supprimer.`);
 						setReload(!reload);
 					})
 					.catch((err) => {
 						console.log(err);
 						setSubValues({ ...subValues, subLoading: false });
-						toast.error(`Oops! La sous-categorie n'a pas été supprimer. Veuillez réessayer`);
+						toast.error(`Oops! La sous-categorie n'a pas été supprimer. Veuillez réessayer.`);
 					});
 			}
 		}
@@ -261,7 +276,7 @@ const CategoriesAndSubsManagement = () => {
 			<div className="alert alert-secondary" key={sub._id}>
 				{sub.name}
 				<span className="float-right">
-					<button className="btn btn-sm btn-primary" onClick={() => handleSubRemove(sub.slug)}>
+					<button className="btn btn-sm btn-danger" onClick={() => handleSubRemove(sub.slug)}>
 						<i className="fas fa-trash" />
 					</button>
 
@@ -309,6 +324,13 @@ const CategoriesAndSubsManagement = () => {
 				subValues={subValues}
 				categories={categories}
 			/>
+			<ConfirmDeleteDiaog
+				open={openConfirmDialog}
+				handleClose={handleCloseConfirmDialog}
+				element={currentCategory}
+				action={handleRemove}
+				text={`Êtes-vous sûr de vouloir supprimer cette catégorie?`}
+			/>
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">
@@ -318,8 +340,13 @@ const CategoriesAndSubsManagement = () => {
 						<main className="col-md-9">
 							{/* For categories */}
 							<article className="card mb-4">
-								<header className="card-header">
+								<header className="card-header pure-text">
 									<strong className="d-inline-block mr-3">Ajouter une catégorie</strong>
+									<br />
+									<small>
+										Les produits ou services qui seront mis en ligne sur la plateforme doivent être
+										catégorisés pour les rendres plus facilement accessible aux visiteurs.
+									</small>
 								</header>
 								<div className="card-body">
 									<FileUpload
@@ -344,12 +371,19 @@ const CategoriesAndSubsManagement = () => {
 							</article>
 							{/* For subs */}
 							<article className="card mb-4">
-								<header className="card-header">
+								<header className="card-header pure-text">
 									<strong className="d-inline-block mr-3">Ajouter une sous-catégorie</strong>
+									<br />
+									<small>
+										Chaque catégorie doit être accompagné d'une ou plusieurs sous-catégorie(s). Ceci
+										dans le but de faciliter les recherches de produits ou services.
+									</small>
 								</header>
 								<div className="card-body">
 									<div className="form-group">
-										<label>Catégorie parente</label>
+										<label>
+											Catégorie parente <small style={{ color: 'red' }}>*</small>
+										</label>
 										<select
 											name="category"
 											className="form-control"

@@ -6,9 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const ConfirmRecommendationDialog = ({ open, handleClose, item, handleUpdateItemIsRecommended }) => {
+const ConfirmDeleteDiaog = ({ open, handleClose, element, action, text }) => {
 	const handleSubmit = () => {
-		handleUpdateItemIsRecommended(item);
+		action(element);
 	};
 
 	return (
@@ -23,9 +23,7 @@ const ConfirmRecommendationDialog = ({ open, handleClose, item, handleUpdateItem
 			>
 				{/* <DialogTitle id="alert-dialog-title">Êtes-vous sûr de vouloir recommander cet article?</DialogTitle> */}
 				<DialogContent>
-					<DialogContentText id="alert-dialog-description">
-						Êtes-vous sûr de vouloir recommander cet article?
-					</DialogContentText>
+					<DialogContentText id="alert-dialog-description">{text}</DialogContentText>
 				</DialogContent>
 				<DialogActions>
 					<button onClick={handleClose} className="btn btn-secondary">
@@ -40,4 +38,4 @@ const ConfirmRecommendationDialog = ({ open, handleClose, item, handleUpdateItem
 	);
 };
 
-export default ConfirmRecommendationDialog;
+export default ConfirmDeleteDiaog;

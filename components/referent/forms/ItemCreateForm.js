@@ -30,7 +30,10 @@ const ItemCreateForm = ({
 	const showCreateItemForm = () => (
 		<form>
 			<div className="form-group">
-				<label>Que voulez-vous soumettre?</label> <br />
+				<label>
+					Que voulez-vous soumettre? <span style={{ color: 'red' }}>*</span>
+				</label>{' '}
+				<br />
 				<label className="custom-control custom-radio custom-control-inline">
 					<input
 						className="custom-control-input"
@@ -40,7 +43,7 @@ const ItemCreateForm = ({
 						value="product"
 						onChange={handleChange}
 					/>
-					<span className="custom-control-label"> Produit </span>
+					<span className="custom-control-label"> Un produit </span>
 				</label>
 				<label className="custom-control custom-radio custom-control-inline">
 					<input
@@ -51,12 +54,14 @@ const ItemCreateForm = ({
 						value="service"
 						onChange={handleChange}
 					/>
-					<span className="custom-control-label"> Service </span>
+					<span className="custom-control-label"> Un service </span>
 				</label>
 			</div>
 
 			<div className="form-group">
-				<label>Titre</label>
+				<label>
+					Titre <span style={{ color: 'red' }}>*</span>
+				</label>
 				<input
 					type="text"
 					name="title"
@@ -64,11 +69,13 @@ const ItemCreateForm = ({
 					value={title}
 					required
 					onChange={handleChange}
-					placeholder="Saisissez un titre pour votre (vos) produit(s) ou service(s)"
+					placeholder="Saisissez un titre pour votre produit ou service"
 				/>
 			</div>
 			<div className="form-group">
-				<label>Description</label>
+				<label>
+					Description <span style={{ color: 'red' }}>*</span>
+				</label>
 				<input
 					type="text"
 					name="description"
@@ -76,13 +83,15 @@ const ItemCreateForm = ({
 					value={description}
 					required
 					onChange={handleChange}
-					placeholder="Decrivez votre (vos) produit(s) ou service(s)"
+					placeholder="Decrivez votre produit ou service"
 				/>
 			</div>
 
 			<div className="form-row">
 				<div className="col-md-6">
-					<label>Nom du fournisseur</label>
+					<label>
+						Nom du fournisseur <span style={{ color: 'red' }}>*</span>
+					</label>
 					<input
 						type="text"
 						name="provider_name"
@@ -94,7 +103,9 @@ const ItemCreateForm = ({
 					/>
 				</div>
 				<div className="col-md-6">
-					<label>Numéro de téléphone du fournisseur</label>
+					<label>
+						Numéro de téléphone du fournisseur <span style={{ color: 'red' }}>*</span>
+					</label>
 					<PhoneInput
 						placeholder="3725168"
 						value={provider_phone_number}
@@ -106,25 +117,10 @@ const ItemCreateForm = ({
 				</div>
 			</div>
 			<div className="form-row">
-				{/* <div className="form-group col-md-4 mt-4">
-					<label htmlFor="island">
-						Zone de référence <small style={{ color: 'red' }}>*</small>
-					</label>
-					<select
-						id="island"
-						className="form-control"
-						required
-						value={provider_island}
-						onChange={(e) => setValues({ ...values, provider_island: e.target.value })}
-					>
-						<option value=""> Veuillez choisir une île...</option>
-						<option value="anjouan">Anjouan</option>
-						<option value="ngazidja">Ngazidja</option>
-						<option value="mohéli">Mohéli</option>
-					</select>
-				</div> */}
 				<div className="form-group col-md-8 mt-4">
-					<label>Adresse du fournisseur</label>
+					<label>
+						Adresse du fournisseur <span style={{ color: 'red' }}>*</span>
+					</label>
 					<input
 						type="text"
 						name="provider_address"
@@ -138,7 +134,9 @@ const ItemCreateForm = ({
 			</div>
 
 			<div className="form-group mt-3">
-				<label>Categorie</label>
+				<label>
+					Categorie <span style={{ color: 'red' }}>*</span>
+				</label>
 				<select name="category" className="form-control" onChange={handleCategoryChange}>
 					<option value="">Veuillez selectionner une catégorie</option>
 					{categories.length > 0 &&
@@ -152,7 +150,9 @@ const ItemCreateForm = ({
 
 			{showSubs && (
 				<div>
-					<label>Sous-Categories</label>
+					<label>
+						Sous-Categories <span style={{ color: 'red' }}>*</span>
+					</label>
 					<Select
 						mode="multiple"
 						allowClear

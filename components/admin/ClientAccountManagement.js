@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ViewCustomerInfoDialog from '../dialogs/ViewCustomerInfoDialog';
 import AdminMenu from './AdminMenu';
 
-const ClientAccountManagement = () => {
+const ClientAccountManagement = ({ customers }) => {
+	const [ currentCustomer, setCurrentCustomer ] = useState({});
+	const [ open, setOpen ] = useState(false);
+
+	const handleViewProfile = (customer) => {
+		setCurrentCustomer(customer);
+		setOpen(true);
+	};
+
+	const handleClose = () => {
+		setCurrentCustomer({});
+		setOpen(false);
+	};
+
 	return (
 		<React.Fragment>
+			<ViewCustomerInfoDialog open={open} handleClose={handleClose} customer={currentCustomer} />
 			<section className="section-content padding-y">
 				<div className="container">
 					<div className="row">
@@ -14,6 +29,8 @@ const ClientAccountManagement = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">Tous les comptes clients</strong>
+									<br />
+									<small>Vous trouverez ici la liste de tous les clients de la plateforme.</small>
 								</header>
 								<div className="table-responsive" style={{ height: '500px' }}>
 									<table className="table table-hover">
@@ -28,45 +45,26 @@ const ClientAccountManagement = () => {
 											</tr>
 										</thead>
 										<tbody>
-											{/* 1 */}
-											<tr>
-												<td>Moufida Mohamed</td>
-												<td>moufida@gmail.com</td>
-												<td>3725168</td>
-												<td>Moroni, Zilimadjou</td>
-												<td>Ngazidja</td>
-												<td>
-													<a href="#" className="btn btn-outline-primary">
-														Voir le profile
-													</a>
-												</td>
-											</tr>
-											{/* 2 */}
-											<tr>
-												<td>Moufida Mohamed</td>
-												<td>moufida@gmail.com</td>
-												<td>3725168</td>
-												<td>Moroni, Zilimadjou</td>
-												<td>Ngazidja</td>
-												<td>
-													<a href="#" className="btn btn-outline-primary">
-														Voir le profile
-													</a>
-												</td>
-											</tr>
-											{/* 3 */}
-											<tr>
-												<td>Moufida Mohamed</td>
-												<td>moufida@gmail.com</td>
-												<td>3725168</td>
-												<td>Moroni, Zilimadjou</td>
-												<td>Ngazidja</td>
-												<td>
-													<a href="#" className="btn btn-outline-primary">
-														Voir le profile
-													</a>
-												</td>
-											</tr>
+											{customers &&
+												customers.map((c, i) => (
+													<tr key={c._id}>
+														<td>{c.name}</td>
+														<td>{c.email}</td>
+														<td>{c.phone_number}</td>
+														<td>{c.address}</td>
+														<td>{c.island}</td>
+														<td>
+															<div>
+																<button
+																	className="btn btn-primary btn-block"
+																	onClick={() => handleViewProfile(c)}
+																>
+																	Profil
+																</button>
+															</div>
+														</td>
+													</tr>
+												))}
 										</tbody>
 									</table>
 								</div>

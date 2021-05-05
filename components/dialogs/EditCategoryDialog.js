@@ -51,31 +51,34 @@ const EditCategoryDialog = ({
 				maxWidth="sm"
 				fullWidth={true}
 			>
-				<DialogTitle id="alert-dialog-title">Modifier la catégorie </DialogTitle>
+				<DialogTitle id="alert-dialog-title">Modifier les informations </DialogTitle>
 
 				<DialogContent>
 					<div className="mt-4">
 						<FileUpload values={values} setValues={setValues} loading={loading} setLoading={setLoading} />
 					</div>
-
-					<TextField
-						autoFocus
-						margin="dense"
-						id="name"
-						label="Nom de la catégorie *"
-						type="text"
-						value={name}
-						fullWidth
-						onChange={(e) => setCurrentCategory({ ...currentCategory, name: e.target.value })}
-					/>
+					<form>
+						<label htmlFor="name">
+							Nom de la catégorie <small style={{ color: 'red' }}>*</small>
+						</label>
+						<input
+							autoFocus
+							id="name"
+							type="text"
+							value={name}
+							className="form-control"
+							required
+							onChange={(e) => setCurrentCategory({ ...currentCategory, name: e.target.value })}
+						/>
+					</form>
 				</DialogContent>
 				<DialogActions>
-					<Button onClick={handleClose} color="primary">
+					<button onClick={handleClose} className="btn btn-secondary">
 						Annuler
-					</Button>
-					<Button onClick={handleSubmit} color="primary" autoFocus>
+					</button>
+					<button onClick={handleSubmit} className="btn btn-primary" autoFocus>
 						{loading ? 'En cours...' : 'Modifier'}
-					</Button>
+					</button>
 				</DialogActions>
 			</Dialog>
 		</div>

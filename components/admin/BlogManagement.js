@@ -101,12 +101,12 @@ const BlogManagement = ({ router }) => {
 	const deleteBlog = (slug) => {
 		removeBlog(slug, user.token)
 			.then((res) => {
-				toast.success('Blog supprimer avec succés');
+				toast.success('Blog supprimer avec succés.');
 				setReload(!reload);
 			})
 			.catch((err) => {
 				console.log(err);
-				toast.error(`Oops! Nous n'avons pas pu supprimer ce blog. Veuillez réessayer`);
+				toast.error(`Oops! Nous n'avons pas pu supprimer ce blog. Veuillez réessayer.`);
 			});
 	};
 
@@ -137,7 +137,7 @@ const BlogManagement = ({ router }) => {
 							</td>
 							<td>
 								{b.tags.map((t, j) => (
-									<div className="tag bg-info text-white mr-2" key={j}>
+									<div className="tag bg-dark text-white mr-2" key={j}>
 										{t.name}
 									</div>
 								))}
@@ -172,7 +172,7 @@ const BlogManagement = ({ router }) => {
 		setLoading(true);
 
 		if (!i || !i[0]) {
-			toast.error(`Vous devez telecharger au moins une image`);
+			toast.error(`Vous devez telecharger au moins une image.`);
 			setLoading(false);
 			return;
 		}
@@ -195,7 +195,7 @@ const BlogManagement = ({ router }) => {
 						success: `Nouveau blog publié: ${res.data.title}`
 					});
 
-					toast.success(`Votre blog a été publier`);
+					toast.success(`Votre blog a été publier.`);
 					setBody('');
 					setBlogcategories([]);
 					setTags([]);
@@ -208,7 +208,7 @@ const BlogManagement = ({ router }) => {
 				console.log(err);
 				// toast.error(`${err.message}`);
 				toast.error(
-					`Oops! Nous n'avons pas pu publier votre blog. Assurez vous de remplir tous les champs obligatoires. Veuillez réessayer`
+					`Oops! Nous n'avons pas pu publier votre blog. Assurez vous de remplir tous les champs obligatoires. Veuillez réessayer.`
 				);
 				setLoading(false);
 			});

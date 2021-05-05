@@ -18,18 +18,10 @@ const Footer = () => {
 										{' '}
 										<a href="#">Nous contacter</a>
 									</li>
-									<li>
-										{' '}
-										<a href="#">Signaler un abus</a>
-									</li>
-									<li>
-										{' '}
-										<a href="#">Politiques et règles</a>
-									</li>
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title text-white">Qui sommes-nous</h6>
+								<h6 className="title text-white">Qui sommes-nous ?</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
@@ -42,7 +34,7 @@ const Footer = () => {
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
-								<h6 className="title text-white">Vendre sur MassiwaMarket</h6>
+								<h6 className="title text-white">Vendre sur Bangwé La Massiwa</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
@@ -50,19 +42,19 @@ const Footer = () => {
 									</li>
 									<li>
 										{' '}
-										<a href="#">Centre d’apprentissage</a>
+										<a href="#">Trouver un référent</a>
 									</li>
 								</ul>
 							</aside>
-							<aside className="col-md col-6">
-								<h6 className="title text-white">Acheter sur Massiwa Market</h6>
+							{/* <aside className="col-md col-6">
+								<h6 className="title text-white">Trouver ce que</h6>
 								<ul className="list-unstyled">
 									<li>
 										{' '}
 										<a href="#">Toutes les catégories </a>
 									</li>
 								</ul>
-							</aside>
+							</aside> */}
 							<aside className="col-md">
 								<h6 className="title text-white">Social</h6>
 								<ul className="list-unstyled">

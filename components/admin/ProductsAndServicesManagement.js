@@ -49,11 +49,11 @@ const ProductsAndServicesManagement = () => {
 							<td scope="row">{index + 1}</td>
 							<td>{product.title}</td>
 							<td>
-								<span className="tag rounded-pill bg-dark text-white">{product.category.name}</span>
+								<span className="tag bg-info text-white">{product.category.name}</span>
 							</td>
 							<td>
 								{product.subs.map((sub) => (
-									<span key={sub._id} className="mr-2 tag rounded-pill bg-info text-white">
+									<span key={sub._id} className="mr-2 tag bg-info text-white">
 										{sub.name}
 									</span>
 								))}
@@ -123,6 +123,7 @@ const ProductsAndServicesManagement = () => {
 			<table className="table table-hover">
 				<thead>
 					<tr>
+						<th scope="col">#</th>
 						<th>Titre</th>
 						<th>Categorie</th>
 						<th>Sous-catégorie</th>
@@ -133,15 +134,16 @@ const ProductsAndServicesManagement = () => {
 				</thead>
 				<tbody>
 					{/* 1 */}
-					{allServices.map((service) => (
+					{allServices.map((service, index) => (
 						<tr key={service._id}>
+							<td scope="row">{index + 1}</td>
 							<td>{service.title}</td>
 							<td>
-								<span className="tag rounded-pill bg-dark text-white">{service.category.name}</span>
+								<span className="tag bg-info text-white">{service.category.name}</span>
 							</td>
 							<td>
 								{service.subs.map((sub) => (
-									<span key={sub._id} className="mr-2 tag rounded-pill bg-info text-white">
+									<span key={sub._id} className="mr-2 tag bg-info text-white">
 										{sub.name}
 									</span>
 								))}
@@ -297,7 +299,7 @@ const ProductsAndServicesManagement = () => {
 										{allProducts !== null && allProducts.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
-								<div className="card-body">{showProducts()}</div>
+								<div className="">{showProducts()}</div>
 							</article>
 							<article className="card mb-4">
 								<header className="card-header">
@@ -306,7 +308,7 @@ const ProductsAndServicesManagement = () => {
 										{allServices !== null && allServices.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
-								<div className="card-body">{showServices()}</div>
+								<div className="">{showServices()}</div>
 							</article>
 						</main>
 					</div>
