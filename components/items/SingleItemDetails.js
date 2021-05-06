@@ -138,6 +138,8 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 				setValues={setValues}
 				loading={loading}
 				handleSubmitContactForm={handleSubmitContactForm}
+				title={`Êtes-vous intéressé par cet article?`}
+				description={`Contacter sans plus tarder le référent:`}
 			/>
 			<section className="section-content bg-white padding-y">
 				<div className="container">

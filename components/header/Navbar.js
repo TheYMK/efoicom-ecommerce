@@ -35,13 +35,8 @@ const Navbar = () => {
 								</Link>
 							</li>
 							<li className="nav-item">
-								<Link href="/become-referent">
+								<Link href="/find-referent">
 									<a className="nav-link">Trouver un référent</a>
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link href="/forum">
-									<a className="nav-link">Forum</a>
 								</Link>
 							</li>
 							<li className="nav-item dropdown">

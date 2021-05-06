@@ -14,10 +14,13 @@ const ContactReferentDialog = ({
 	ref_city,
 	ref_island,
 	ref_address,
+	ref_zone,
 	values,
 	setValues,
 	handleSubmitContactForm,
-	loading
+	loading,
+	title,
+	description
 }) => {
 	const { ref_email, usr_email, usr_phone, usr_name, subject, message } = values;
 
@@ -29,10 +32,10 @@ const ContactReferentDialog = ({
 				aria-labelledby="alert-dialog-title"
 				aria-describedby="alert-dialog-description"
 			>
-				<DialogTitle id="alert-dialog-title">Êtes-vous intéressé par cet article?</DialogTitle>
+				<DialogTitle id="alert-dialog-title">{title}</DialogTitle>
 				<DialogContent>
 					<DialogContentText id="alert-dialog-description" style={{ color: '#000' }}>
-						Contacter sans plus tarder le référent:
+						{description}
 					</DialogContentText>
 					<DialogContentText id="alert-dialog-description">
 						Nom et prénom: <strong style={{ color: '#000' }}>{ref_name}</strong>
@@ -44,6 +47,8 @@ const ContactReferentDialog = ({
 						Ville: <strong style={{ color: '#000' }}>{ref_city}</strong>
 						<br />
 						Adresse: <strong style={{ color: '#000' }}>{ref_address}</strong>
+						<br />
+						Commune: <strong style={{ color: '#000' }}>{ref_zone}</strong>
 					</DialogContentText>
 					<form>
 						<div className="row">

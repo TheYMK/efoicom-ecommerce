@@ -112,3 +112,7 @@ export const getUserWishlistCount = async (authtoken) => {
 export const getAllCustomers = async () => {
 	return await axios.get(`${API_URL}/customer/all`);
 };
+
+export const fetchReferentsByFilter = async (arg) => {
+	return await axios.post(`${API_URL}/referent/search/filters`, arg);
+};
