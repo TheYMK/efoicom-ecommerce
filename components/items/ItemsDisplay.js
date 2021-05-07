@@ -39,17 +39,21 @@ const ItemsDisplay = ({ items }) => {
 			<article className="card card-product-list" key={item._id}>
 				<div className="row no-gutters">
 					<aside className="col-md-3">
-						<a href="#" className="img-wrap">
-							{item.isRecommended ? <span className="badge badge-success"> Recommandé </span> : ''}
+						<Link href={`/item/${item.slug}`}>
+							<a className="img-wrap">
+								{item.isRecommended ? <span className="badge badge-success"> Recommandé </span> : ''}
 
-							<img src={item.images[0].url} />
-						</a>
+								<img src={item.images[0].url} />
+							</a>
+						</Link>
 					</aside>
 					<div className="col-md-6">
 						<div className="info-main">
-							<a href="#" className="h5 title">
-								{item.title}
-							</a>
+							<Link href={`/item/${item.slug}`}>
+								<a className="h5 title">{item.title}</a>
+							</Link>
+
+							<p className="mb-2">{item.description}</p>
 							{item && item.ratings && item.ratings.length > 0 ? (
 								showAverage(item)
 							) : (
@@ -74,17 +78,16 @@ const ItemsDisplay = ({ items }) => {
 								</div>
 							)}
 							<p className="mb-3">
-								Categorie: <span className="tag bg-success text-white">{item.category.name}</span>
+								Categorie: <span className="tag bg-info text-white">{item.category.name}</span>
 							</p>
-							<p className="mb-3">
+							{/* <p className="mb-3">
 								Sous-Categorie:{' '}
 								{item.subs.map((sub, i) => (
 									<React.Fragment key={i}>
 										<span className="tag bg-info text-white">{sub.name}</span>
 									</React.Fragment>
 								))}
-							</p>
-							<p>{item.description}</p>
+							</p> */}
 						</div>
 					</div>
 					<aside className="col-sm-3">
@@ -101,8 +104,7 @@ const ItemsDisplay = ({ items }) => {
 								Tel: <strong>{item.provider_phone_number}</strong>
 							</p>
 							<p className="text-muted mt-3">
-								Zone de référence:{' '}
-								<strong>{item.reference_zone && item.reference_zone.name.toUpperCase()}</strong>
+								Commune: <strong>{item.reference_zone && item.reference_zone.name}</strong>
 							</p>
 							<p className="text-muted mt-3">
 								Adresse: <strong>{item.provider_address}</strong>

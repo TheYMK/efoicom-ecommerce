@@ -51,10 +51,10 @@ const Header = () => {
 								<div className="widget-header mr-3">
 									<a href="#" className="widget-view">
 										<div className="icon-area">
-											<i className="fa fa-comment-dots" />
+											<i className="fa fa-bell" />
 											<span className="notify">1</span>
 										</div>
-										<small className="text">Message</small>
+										<small className="text">Notification</small>
 									</a>
 								</div>
 								{user &&

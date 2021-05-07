@@ -88,7 +88,7 @@ const Filters = ({
 				</a>
 				<small>Selection multiple</small>
 			</h6>
-			<div className="filter-content collapse show" id="collapse_2">
+			<div className="filter-content collapse" id="collapse_2">
 				<div className="inner">
 					{allCategoriesFromDB.map((category, index) => (
 						<label className="checkbox-btn mr-2" key={category._id}>
@@ -115,7 +115,7 @@ const Filters = ({
 					Filtrer par réputation{' '}
 				</a>
 			</h6>
-			<div className="filter-content collapse show" id="collapse_3">
+			<div className="filter-content collapse" id="collapse_3">
 				<div className="inner">
 					<label className="custom-control custom-radio">
 						<input
@@ -234,7 +234,7 @@ const Filters = ({
 					Filtrer par type d'article{' '}
 				</a>
 			</h6>
-			<div className="filter-content collapse show" id="collapse_5">
+			<div className="filter-content collapse" id="collapse_5">
 				<div className="inner">
 					<label className="custom-control custom-radio">
 						<input
@@ -281,14 +281,14 @@ const Filters = ({
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_6">
 					{' '}
-					Filtrer par zone de référence{' '}
+					Filtrer par commune{' '}
 				</a>
 			</h6>
 			<div className="filter-content collapse show" id="collapse_6">
 				<div className="inner">
 					<div className="form-inline mr-auto">
-						<select className="ml-2 form-control" value={selectedZone} onChange={handleZoneChange}>
-							<option value="allzones">Toutes les zones</option>
+						<select className="form-control" value={selectedZone} onChange={handleZoneChange}>
+							<option value="allzones">Toutes les communes</option>
 							{allZonesFromDB.map((zone, index) => (
 								<option value={zone._id} key={zone._id}>
 									{zone.name} ({zone.island})

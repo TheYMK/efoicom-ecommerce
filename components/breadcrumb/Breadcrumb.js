@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import Router from 'next/router';
 
 const Breadcrumb = ({ category_name, category_id, item_title }) => {
+	const dispatch = useDispatch();
+
 	const handleClickCategory = (id) => {
 		dispatch({
 			type: 'SET_FILTER',

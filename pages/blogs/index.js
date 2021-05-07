@@ -79,7 +79,7 @@ const BlogsPage = ({ allBlogs, allCategories }) => {
 				</header>
 				<section className="section-pagetop bg-light">
 					<div className="container">
-						<h2 className="title-page">Actualités</h2>
+						<h2 className="title-page">Forum de discussion</h2>
 					</div>
 				</section>
 				<div className="card">

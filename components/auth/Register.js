@@ -183,7 +183,7 @@ const Register = () => {
 					</header>
 					<form>
 						<div className="form-row">
-							<div className="col form-group">
+							<div className="col-md-6 form-group">
 								<label htmlFor="first_name">
 									Prenom <span style={{ color: 'red' }}>*</span>
 								</label>
@@ -197,7 +197,7 @@ const Register = () => {
 									onChange={(e) => setValues({ ...values, first_name: e.target.value })}
 								/>
 							</div>
-							<div className="col form-group">
+							<div className="col-md-6 form-group">
 								<label htmlFor="last_name">
 									Nom <span style={{ color: 'red' }}>*</span>
 								</label>
@@ -213,7 +213,7 @@ const Register = () => {
 							</div>
 						</div>
 						<div className="form-row">
-							<div className="col form-group">
+							<div className="col-md-6 form-group">
 								<label htmlFor="email">
 									Email <span style={{ color: 'red' }}>*</span>
 								</label>
@@ -230,7 +230,7 @@ const Register = () => {
 								We'll never share your email with anyone else.
 							</small> */}
 							</div>
-							<div className="col form-group">
+							<div className="col-md-6 form-group">
 								<label htmlFor="phone_number">
 									Phone Number <span style={{ color: 'red' }}>*</span>
 								</label>
