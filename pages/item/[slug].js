@@ -67,7 +67,11 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info }) => 
 					<Header />
 					<Navbar />
 				</header>
-				<Breadcrumb category_name={item.category.name} item_title={item.title} />
+				<Breadcrumb
+					category_name={item.category.name}
+					category_id={item.category._id}
+					item_title={item.title}
+				/>
 				<SingleItemDetails
 					item={item}
 					relatedItems={relatedItems}

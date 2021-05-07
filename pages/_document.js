@@ -15,6 +15,9 @@ class MyDocument extends Document {
 						integrity="sha512-GElOEG62hoWTO/9pNNVPBz+b9AELiVOuEEjM3h5jE5nVx+SVHRaKP/TjcJrwjkJC3CfnSK4clQ6l1jxmaeK9tg=="
 						crossOrigin="anonymous"
 					/>
+					{/* icofont */}
+					<link href="/static/fonts/icofont/icofont.min.css" rel="stylesheet" />
+
 					{/* JQuery */}
 					<script src="/static/js/jquery-2.0.0.min.js" type="text/javascript" />
 					{/* Bootstrap */}
@@ -40,6 +43,13 @@ class MyDocument extends Document {
 						href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
 					/>
 
+					{/* Mapbox */}
+					<link href="https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css" rel="stylesheet" />
+					{/* Geocoder */}
+					<link
+						href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.2.0/mapbox-gl-geocoder.css"
+						rel="stylesheet"
+					/>
 					{/* Google font */}
 					<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 					{/* <!-- Font awesome 5 --> */}

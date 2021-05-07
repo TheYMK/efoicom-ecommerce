@@ -24,8 +24,8 @@ function RatingDialog({ children, handleSubmitRating, slug }) {
 
 	return (
 		<React.Fragment>
-			<a onClick={handleModal} className="btn btn-sm btn-dark text-white">
-				{user ? 'Évaluer' : 'Connecter vous pour évaluer'}
+			<a onClick={handleModal} className="btn btn-sm btn-primary text-white">
+				{user ? 'Évaluer cet article' : 'Connecter vous pour évaluer cet article'}
 			</a>
 			<Modal
 				title="Évaluer cet article"

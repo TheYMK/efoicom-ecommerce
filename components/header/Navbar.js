@@ -57,11 +57,16 @@ const Navbar = () => {
 							</li>
 						</ul>
 						<ul className="navbar-nav ml-md-auto">
-							{/* <li className="nav-item">
-								<a className="nav-link" href="#">
-									Get the app
+							<li className="nav-item">
+								<a
+									className="nav-link text-success"
+									href="https://api.whatsapp.com/send?phone=2693725168"
+									target="blank"
+								>
+									<i className="fab fa-whatsapp" /> +269 3725168 (Whatsapp)
 								</a>
-							</li> */}
+							</li>
+
 							<li className="nav-item dropdown">
 								<a
 									className="nav-link dropdown-toggle"

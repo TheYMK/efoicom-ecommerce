@@ -20,6 +20,8 @@ import {
 	WhatsappShareButton
 } from 'react-share';
 import { EmailIcon, FacebookIcon, TwitterIcon, FacebookMessengerIcon, WhatsappIcon } from 'react-share';
+import MapBox from '../mapbox/MapBox';
+import MapBox2 from '../mapbox/MapBox2';
 
 const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, handleSubmitRating, vals, setVals }) => {
 	const {
@@ -88,7 +90,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 		contactReferent(values)
 			.then((res) => {
 				toast.success(
-					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délai'
+					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délai.'
 				);
 				setOpenContactForm(false);
 				setLoading(false);
@@ -117,10 +119,10 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 				})
 				.catch((err) => {
 					console.log(err);
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer`);
+					toast.error(`Oops! Echec de l'opération. Veuillez réessayer.`);
 				});
 		} else {
-			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouté un article dans vos favoris`);
+			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouter un article dans vos favoris.`);
 		}
 	};
 
@@ -268,7 +270,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 
 									<dt className="col-sm-3">Categorie</dt>
 									<dd className="col-sm-9">
-										<span className="tag bg-success text-white">{category.name}</span>
+										<span className="tag bg-info text-white">{category.name}</span>
 									</dd>
 
 									<dt className="col-sm-3">Sous-catégorie</dt>
@@ -334,7 +336,8 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 								<div className="card-body">
 									<div className="card-title">
 										<h5>Map here</h5>
-										{JSON.stringify(referent_info)}
+										{/* <MapBox /> */}
+										<MapBox2 />
 									</div>
 									<div />
 								</div>
