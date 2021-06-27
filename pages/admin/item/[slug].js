@@ -6,7 +6,7 @@ import Navbar from '../../../components/header/Navbar';
 import Layout from '../../../components/Layout';
 import { useSelector } from 'react-redux';
 import FileUpload from '../../../components/FileUpload';
-import ItemUpdateForm from '../../../components/referent/forms/itemUpdateForm';
+import ItemUpdateForm from '../../../components/referent/forms/ItemUpdateForm';
 import { toast } from 'react-toastify';
 import Router from 'next/router';
 import AdminProtected from '../../../components/auth/AdminProtected';
