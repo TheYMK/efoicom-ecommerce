@@ -37,7 +37,9 @@ const EditZoneDialog = ({ open, handleClose, currentZone, setCurrentZone, handle
 							/>
 						</div>
 						<div className="form-group col-md-8">
-							<label>Dans quelle île se trouve cette commune?</label>
+							<label>
+								Dans quelle île se trouve cette commune? <span style={{ color: 'red' }}>*</span>
+							</label>
 							<select
 								name="island"
 								className="form-control"

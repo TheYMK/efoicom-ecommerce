@@ -25,7 +25,7 @@ const Footer = () => {
 								<ul className="list-unstyled">
 									<li>
 										{' '}
-										<a href="#">À propos de Massiwa Market</a>
+										<a href="#">À propos de Bangwé La Massiwa</a>
 									</li>
 									<li>
 										{' '}

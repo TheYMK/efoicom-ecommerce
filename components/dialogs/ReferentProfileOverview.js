@@ -41,7 +41,7 @@ const ReferentProfileOverview = ({
 							</DialogContentText>
 							<DialogContentText id="alert-dialog-description">
 								<span style={{ color: '#000' }}>
-									<strong>Tel:</strong> {referent.phone_number}
+									<strong>Tél:</strong> {referent.phone_number}
 								</span>
 							</DialogContentText>
 							<DialogContentText id="alert-dialog-description">
@@ -74,7 +74,7 @@ const ReferentProfileOverview = ({
 
 							<DialogContentText id="alert-dialog-description">
 								<span style={{ color: '#000' }}>
-									<strong>Status:</strong>{' '}
+									<strong>Statut:</strong>{' '}
 									{referent.referent_account_approval === 'approved' ? (
 										<span style={{ color: 'green' }}>Actif</span>
 									) : (

@@ -40,7 +40,7 @@ const ContactReferentDialog = ({
 					<DialogContentText id="alert-dialog-description">
 						Nom et prénom: <strong style={{ color: '#000' }}>{ref_name}</strong>
 						<br />
-						Tel: <strong style={{ color: '#000' }}>{ref_phone}</strong>
+						Tél: <strong style={{ color: '#000' }}>{ref_phone}</strong>
 						<br />
 						Île <strong style={{ color: '#000' }}>{ref_island.toUpperCase()}</strong>
 						<br />

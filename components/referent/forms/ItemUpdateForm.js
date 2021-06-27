@@ -139,7 +139,7 @@ const ItemUpdateForm = ({
 
 			<div className="form-group mt-3">
 				<label>
-					Categorie <small style={{ color: 'red' }}>*</small>
+					Catégorie <small style={{ color: 'red' }}>*</small>
 				</label>
 				<select value={category._id} name="category" className="form-control" onChange={handleCategoryChange}>
 					{categories.length > 0 &&
@@ -153,7 +153,7 @@ const ItemUpdateForm = ({
 
 			<div>
 				<label>
-					Sous-Categorie <small style={{ color: 'red' }}>*</small>
+					Sous-Catégorie <small style={{ color: 'red' }}>*</small>
 				</label>
 				<Select
 					mode="multiple"

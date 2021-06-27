@@ -110,7 +110,7 @@ const AdminItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, par
 			!item_type
 		) {
 			setLoading(false);
-			toast.error('Vous devez remplir tous les champs');
+			toast.error('Vous devez remplir tous les champs.');
 			return;
 		}
 
@@ -119,13 +119,13 @@ const AdminItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, par
 				.then((res) => {
 					setLoading(false);
 					Router.push('/admin/products-services-management');
-					toast.success(`L'article a bien été modifier`);
+					toast.success(`L'article a bien été modifié.`);
 				})
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
 					toast.error(
-						"Oops! Une erreur est survenue lors de la modification de l'article. Veuillez réessayer"
+						"Oops! Une erreur est survenue lors de la modification de l'article. Veuillez réessayer."
 					);
 					return;
 				});

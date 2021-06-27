@@ -64,7 +64,7 @@ const ReferentAccountManagement = () => {
 					<tr>
 						<th>Nom & Prénom</th>
 						<th>Email</th>
-						<th>Tel</th>
+						<th>Tél</th>
 						<th>Adresse</th>
 						<th>Commune</th>
 						<th>Action</th>
@@ -78,7 +78,7 @@ const ReferentAccountManagement = () => {
 							<td>{referent.phone_number}</td>
 							<td>{referent.address}</td>
 							<td>
-								{referent.reference_zone.name} ({referent.reference_zone.island.toUpperCase()})
+								{referent.reference_zone && referent.reference_zone.name} ({referent.reference_zone && referent.reference_zone.island.toUpperCase()})
 							</td>
 							<td>
 								<div>

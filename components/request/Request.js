@@ -12,7 +12,7 @@ const Request = () => {
 		<React.Fragment>
 			<section className="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Qu'est ce que Bangwé La Massiwa</h4>
+					<h4 className="title-section text-uppercase">Qu'est-ce que Bangwé La Massiwa</h4>
 				</header>
 
 				<div className="row" data-aos="zoom-in-up">
@@ -37,14 +37,13 @@ const Request = () => {
 						<div className="card card-body">
 							<h4 className="title py-3">Soutenir des créateurs indépendants</h4>
 							<p>
-								Il n'y a pas d'entrepôt Bangwé La Massiwa; il n'y a que des millions de personnes qui
-								vendent ce qu'ils aiment. Nous facilitons tout ce processus, en vous aidant à entrer
+								Il n'y a pas d'entrepôt Bangwé La Massiwa, il n'y a que des millions de personnes qui
+								vendent ce qu'elles aiment. Nous facilitons tout ce processus en vous aidant à entrer
 								directement en contact avec les créateurs et à trouver des choses extraordinaires.
 							</p>
 							<p>
 								Nous accordons une très haute importance à la confidentialité de vos données. Si vous
-								avez besoin d'assistance en quoi que ce soit, nous sommes toujours prêts à intervenir
-								pour vous aider.
+								avez besoin d'assistance, nous sommes toujours prêts à intervenir pour vous aider.
 							</p>
 						</div>
 					</div>

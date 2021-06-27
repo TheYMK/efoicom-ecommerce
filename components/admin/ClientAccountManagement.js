@@ -38,7 +38,7 @@ const ClientAccountManagement = ({ customers }) => {
 											<tr>
 												<th>Nom & Prénom</th>
 												<th>Email</th>
-												<th>Tel</th>
+												<th>Tél</th>
 												<th>Adresse</th>
 												<th>Île</th>
 												<th>Action</th>

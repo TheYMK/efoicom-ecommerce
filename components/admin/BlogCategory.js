@@ -37,13 +37,13 @@ const Category = ({ refresh, setRefresh }) => {
 		createBlogCategory({ name: name }, user.token)
 			.then((res) => {
 				setValues({ ...values, name: '', reload: !reload, loading: false });
-				toast.success('Nouvelle catégorie crée');
+				toast.success('Nouvelle catégorie créée.');
 				setRefresh(!refresh);
 			})
 			.catch((err) => {
 				console.log(err);
 				setValues({ ...values, loading: false });
-				toast.error(`Oops! La categorie n'a pas pu être crée`);
+				toast.error(`Oops! La categorie n'a pas pu être créée`);
 			});
 	};
 
@@ -73,7 +73,7 @@ const Category = ({ refresh, setRefresh }) => {
 	);
 
 	const deleteConfirm = (slug) => {
-		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette catégorie');
+		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette catégorie?');
 
 		if (answer) {
 			deleteCategory(slug);
@@ -84,10 +84,10 @@ const Category = ({ refresh, setRefresh }) => {
 		removeBlogCategory(slug, user.token)
 			.then((res) => {
 				setValues({ ...values, name: '', reload: !reload });
-				toast.success(`Catégorie supprimer`);
+				toast.success(`Catégorie supprimée.`);
 			})
 			.catch((err) => {
-				toast.success(`Echec de l'opération! Veuillez réessayer`);
+				toast.success(`Echec de l'opération! Veuillez réessayer!`);
 			});
 	};
 
@@ -96,7 +96,7 @@ const Category = ({ refresh, setRefresh }) => {
 			return (
 				<button
 					onDoubleClick={() => deleteConfirm(blogcategory.slug)}
-					title="Double click to delete"
+					title="Double-cliquer pour supprimer"
 					key={index}
 					className="tag bg-dark text-white mr-1 ml-1 mt-3"
 				>

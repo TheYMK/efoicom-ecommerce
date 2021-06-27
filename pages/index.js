@@ -60,7 +60,7 @@ const HomePage = ({
 						blogsLimit={blogsLimit}
 						blogsSkip={blogsSkip}
 					/>
-					{/* <Brands /> */}
+					<Brands />
 				</div>
 				<Contact />
 			</Layout>

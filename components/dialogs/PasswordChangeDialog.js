@@ -22,7 +22,7 @@ const PasswordChangeDialog = ({
 			<Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 				<DialogTitle id="form-dialog-title">Changer votre mot de passe</DialogTitle>
 				<DialogContent>
-					<DialogContentText>Vous serez déconnecter après cette opération</DialogContentText>
+					<DialogContentText>Vous serez déconnecté après cette opération</DialogContentText>
 
 					<label htmlFor="password">
 						Nouveau mot de passe <span style={{ color: 'red' }}>*</span>

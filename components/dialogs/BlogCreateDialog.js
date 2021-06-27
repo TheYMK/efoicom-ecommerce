@@ -131,7 +131,7 @@ const BlogCreateDialog = ({
 							<CloseIcon />
 						</IconButton>
 						<Typography variant="h6" className={classes.title}>
-							Ecrivez votre article ici
+							Écrivez votre article ici
 						</Typography>
 						<Button autoFocus color="inherit" onClick={() => handleSubmitBlog(formData, images)}>
 							{loading ? 'En cours...' : `Publier l'article`}
@@ -161,7 +161,7 @@ const BlogCreateDialog = ({
 									modules={QuillModules}
 									formats={QuillFormats}
 									value={body}
-									placeholder="Rediger votre article ici..."
+									placeholder="Rédigez votre article ici..."
 									onChange={handleBody}
 								/>
 							</div>
@@ -172,13 +172,13 @@ const BlogCreateDialog = ({
 						nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.
 					</Typography> */}
 					<div className="mt-5">
-						<h5>Selectionner des catégories</h5>
+						<h5>Sélectionner des catégories</h5>
 						<ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showBlogCategories()}</ul>
 
 						<hr />
 					</div>
 					<div>
-						<h5>Selectionner des étiquettes</h5>
+						<h5>Sélectionner des étiquettes</h5>
 						<ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>{showTags()}</ul>
 
 						<hr />

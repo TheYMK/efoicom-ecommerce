@@ -8,7 +8,7 @@ import PageTop from '../../components/sections/PageTop';
 import { getAllCustomers } from '../../actions/user';
 
 const ClientAccountManagementPage = ({ allCustomers }) => {
-	const message = `Bienvenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenue.`;
+	const message = `Bienvenue dans votre tableau de bord. En tant qu'administrateur, vous êtes la tour de contrôle de la plateforme. Vous contrôlez ses utilisateurs et son contenu.`;
 
 	const head = () => (
 		<Head>

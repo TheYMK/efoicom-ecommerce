@@ -37,13 +37,13 @@ const Tag = ({ refresh, setRefresh }) => {
 		createTag({ name: name }, user.token)
 			.then((res) => {
 				setValues({ ...values, name: '', reload: !reload, loading: false });
-				toast.success('Nouvelle étiquette crée');
+				toast.success('Nouvelle étiquette créée.');
 				setRefresh(!refresh);
 			})
 			.catch((err) => {
 				console.log(err);
 				setValues({ ...values, loading: false });
-				toast.error(`Oops! L'étiquette n'a pas pu être crée`);
+				toast.error(`Oops! L'étiquette n'a pas pu être créée.`);
 			});
 	};
 
@@ -73,7 +73,7 @@ const Tag = ({ refresh, setRefresh }) => {
 	);
 
 	const deleteConfirm = (slug) => {
-		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette étiquette');
+		let answer = window.confirm('Êtes-vous sûr de vouloir supprimer cette étiquette?');
 
 		if (answer) {
 			deleteTag(slug);
@@ -84,10 +84,10 @@ const Tag = ({ refresh, setRefresh }) => {
 		removeTag(slug, user.token)
 			.then((res) => {
 				setValues({ ...values, name: '', reload: !reload });
-				toast.success(`Étiquette supprimer`);
+				toast.success(`Étiquette supprimée.`);
 			})
 			.catch((err) => {
-				toast.success(`Echec de l'opération! Veuillez réessayer`);
+				toast.success(`Échec de l'opération! Veuillez réessayer!`);
 			});
 	};
 
@@ -96,7 +96,7 @@ const Tag = ({ refresh, setRefresh }) => {
 			return (
 				<button
 					onDoubleClick={() => deleteConfirm(tag.slug)}
-					title="Double click to delete"
+					title="Double-cliquer pour supprimer"
 					key={index}
 					className="tag bg-dark text-white mr-1 ml-1 mt-3"
 				>

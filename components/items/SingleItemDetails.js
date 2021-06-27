@@ -72,7 +72,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 				});
 		} else {
 			toast.error(
-				'Vous devez avoir un compte et être connecter avant de pouvoir rentrer en contact avec un référent'
+				'Vous devez avoir un compte et être connecté avant de pouvoir rentrer en contact avec un référent.'
 			);
 			setInterval(() => {
 				Router.push('/auth/login');
@@ -90,13 +90,13 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 		contactReferent(values)
 			.then((res) => {
 				toast.success(
-					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délai.'
+					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délais.'
 				);
 				setOpenContactForm(false);
 				setLoading(false);
 			})
 			.catch((err) => {
-				toast.error(`Oops! Echec de l'envoi. Veuillez réessayer`);
+				toast.error(`Oops! Echec de l'envoi. Veuillez réessayer.`);
 				setLoading(false);
 			});
 	};
@@ -105,7 +105,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 		if (user && user.token) {
 			addItemToWishlist(user.token, item._id)
 				.then((res) => {
-					toast.success('Article ajouté dans vos favoris');
+					toast.success('Article ajouté dans vos favoris.');
 					getUserWishlistCount(user.token)
 						.then((response2) => {
 							dispatch({
@@ -119,10 +119,10 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 				})
 				.catch((err) => {
 					console.log(err);
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer.`);
+					toast.error(`Oops! Échec de l'opération. Veuillez réessayer.`);
 				});
 		} else {
-			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouter un article dans vos favoris.`);
+			toast.error(`Oops! Vous devez être connecté pour pouvoir ajouter un article dans vos favoris.`);
 		}
 	};
 
@@ -259,7 +259,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 										<a href="#">{provider_name}</a>
 									</dd>
 
-									<dt className="col-sm-3">Tel</dt>
+									<dt className="col-sm-3">Tél</dt>
 									<dd className="col-sm-9">{provider_phone_number}</dd>
 
 									{/* <dt className="col-sm-3">Île</dt>
@@ -268,7 +268,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 									<dt className="col-sm-3">Adresse</dt>
 									<dd className="col-sm-9">{provider_address}</dd>
 
-									<dt className="col-sm-3">Categorie</dt>
+									<dt className="col-sm-3">Catégorie</dt>
 									<dd className="col-sm-9">
 										<span className="tag bg-info text-white">{category.name}</span>
 									</dd>

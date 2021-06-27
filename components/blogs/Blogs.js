@@ -47,7 +47,7 @@ const Blogs = ({ blogs, blogcategories, tags, totalBlogs, blogsLimit, blogsSkip 
 				</header>
 
 				<div className="row">
-					{showAllBlogs()}
+					{blogs && showAllBlogs()}
 					{showLoadedBlogs()}
 				</div>
 

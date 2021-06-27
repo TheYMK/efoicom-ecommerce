@@ -54,14 +54,16 @@ const AdminAccountSettings = () => {
 				.then((res) => {
 					logout();
 					toast.success(
-						'Vos informations ont été modifier. Par securité, vous devez vous reconnecter à nouveau'
+						'Vos informations ont été modifiées. Par securité, vous devez vous reconnecter à nouveau.'
 					);
 					setLoading(false);
 				})
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops! les informations renseignés sont erronés ou existe déjà. Veuillez réessayer`);
+					toast.error(
+						`Oops! les informations renseignées sont erronées ou existent déjà. Veuillez réessayer!`
+					);
 				});
 		}
 	};
@@ -90,12 +92,12 @@ const AdminAccountSettings = () => {
 
 	const handlePasswordSubmit = () => {
 		if (password.length < 6) {
-			toast.error('Votre mot de passe doit avoir au minimum 6 caractères');
+			toast.error('Votre mot de passe doit avoir au minimum 6 caractères.');
 			return;
 		}
 
 		if (password !== confirmPassword) {
-			toast.error('Les mots de passe doivent être identique');
+			toast.error('Les mots de passe doivent être identiques.');
 			return;
 		}
 
@@ -104,7 +106,7 @@ const AdminAccountSettings = () => {
 			updateAdminPassword(user.token, password)
 				.then((res) => {
 					logout();
-					toast.success('Votre mot de passe a bien été mis à jour');
+					toast.success('Votre mot de passe a bien été mis à jour.');
 					setLoading(false);
 					setOpen(false);
 
@@ -114,7 +116,7 @@ const AdminAccountSettings = () => {
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops! Votre mot de passe n'a pas été modifier. Veuillez réessayer`);
+					toast.error(`Oops! Votre mot de passe n'a pas été modifié. Veuillez réessayer!`);
 				});
 		}
 	};

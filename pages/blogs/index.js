@@ -39,7 +39,7 @@ const BlogsPage = ({ allBlogs, allCategories }) => {
 
 	const showCategories = () => (
 		<article className="filter-group">
-			<h6 className="title">Filtrer par categories</h6>
+			<h6 className="title">Filtrer par catégories</h6>
 			<div className="filter-content collapse show">
 				<div className="inner">
 					<label className="checkbox-btn mr-2">

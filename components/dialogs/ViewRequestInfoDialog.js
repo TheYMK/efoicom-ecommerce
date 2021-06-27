@@ -23,9 +23,9 @@ const ViewRequestInfoDialog = ({ open, handleClose, request }) => {
 						<div className="col-md-6">
 							<p>À propos du référent</p>
 							<p style={{ color: 'black' }}>
-								<strong>Nom et Prénoms:</strong> {request.name} <br />
+								<strong>Nom et Prénom:</strong> {request.name} <br />
 								<strong>Email:</strong> {request.email} <br />
-								<strong>Tel:</strong> {request.phone_number} <br />
+								<strong>Tél:</strong> {request.phone_number} <br />
 								<strong>Ville:</strong> {request.city} ({request.island}) <br />
 								<strong>Adresse:</strong> {request.address} <br />
 							</p>

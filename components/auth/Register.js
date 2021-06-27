@@ -138,7 +138,7 @@ const Register = () => {
 			await auth.sendSignInLinkToEmail(email, config);
 
 			toast.success(
-				`Un email de confirmation vous a été envoyer. Cliquez sur le lien pour completer votre enregistrement.`
+				`Un email de confirmation vous a été envoyé. Cliquez sur le lien pour compléter votre enregistrement.`
 			);
 
 			// save user info to local storage
@@ -168,7 +168,7 @@ const Register = () => {
 		} catch (err) {
 			console.log(`----> Error occured during registration process (=> /auth/register page): ${err}`);
 			toast.error(
-				"Oops! Une erreur s'est produite lors de la création de votre compte. Assurez vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, Contactez nous."
+				"Oops! Une erreur s'est produite lors de la création de votre compte. Assurez-vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, contactez-nous."
 			);
 			setLoading(false);
 		}
@@ -185,7 +185,7 @@ const Register = () => {
 						<div className="form-row">
 							<div className="col-md-6 form-group">
 								<label htmlFor="first_name">
-									Prenom <span style={{ color: 'red' }}>*</span>
+									Prénom <span style={{ color: 'red' }}>*</span>
 								</label>
 								<input
 									type="text"
@@ -232,7 +232,7 @@ const Register = () => {
 							</div>
 							<div className="col-md-6 form-group">
 								<label htmlFor="phone_number">
-									Phone Number <span style={{ color: 'red' }}>*</span>
+									Numéro de téléphone <span style={{ color: 'red' }}>*</span>
 								</label>
 								<PhoneInput
 									placeholder="3725168"
@@ -275,7 +275,7 @@ const Register = () => {
 							<br />
 							<small className="mt-4 mb-4">
 								<i className="fas fa-exclamation-triangle" style={{ color: '#f63b3b' }} /> Les comptes
-								référent sont soumis à une évaluation. Durant cette période d'évaluation vous ne serez
+								référents sont soumis à une évaluation. Durant cette période d'évaluation vous ne serez
 								pas encore en mesure d'accéder aux fonctionnalités de votre compte.
 							</small>
 						</div>
@@ -283,7 +283,7 @@ const Register = () => {
 						<div className="form-row">
 							<div className="form-group col-md-6">
 								<label htmlFor="city">
-									Votre Ville <small style={{ color: 'red' }}>*</small>
+									Votre ville <small style={{ color: 'red' }}>*</small>
 								</label>
 								<input
 									type="text"

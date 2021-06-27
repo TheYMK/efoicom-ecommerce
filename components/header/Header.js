@@ -17,7 +17,7 @@ const Header = () => {
 			type: 'LOGOUT',
 			payload: null
 		});
-		toast.success('Vous avez été déconnecter!');
+		toast.success('Vous avez été déconnecté!');
 		setTimeout(() => {
 			Router.push('/auth/login');
 		}, 2000);

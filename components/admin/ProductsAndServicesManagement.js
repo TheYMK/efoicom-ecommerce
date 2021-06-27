@@ -35,7 +35,7 @@ const ProductsAndServicesManagement = () => {
 					<tr>
 						<th scope="col">#</th>
 						<th scope="col">Titre</th>
-						<th scope="col">Categorie</th>
+						<th scope="col">Catégorie</th>
 						<th scope="col">Sous-catégorie</th>
 						<th scope="col">Référent</th>
 						<th scope="col">Recommandation</th>
@@ -99,7 +99,7 @@ const ProductsAndServicesManagement = () => {
 										)}
 
 										<Link href={`/admin/item/${product.slug}`}>
-											<a className="dropdown-item">Modifer</a>
+											<a className="dropdown-item">Modifier</a>
 										</Link>
 
 										<button
@@ -230,7 +230,7 @@ const ProductsAndServicesManagement = () => {
 		if (user && user.token) {
 			recommendItem(user.token, item.slug)
 				.then((res) => {
-					toast.success(`L'article a été ajouté dans la liste des recommendations`);
+					toast.success(`L'article a été ajouté dans la liste des recommandations.`);
 					setOpenConfirmRecommendationDialog(false);
 					setCurrentItem({});
 					loadItems();
@@ -246,7 +246,7 @@ const ProductsAndServicesManagement = () => {
 		if (user && user.token) {
 			doNotRecommendItem(user.token, item.slug)
 				.then((res) => {
-					toast.success(`L'article à été retirer de la liste des recommendations`);
+					toast.success(`L'article à été retiré de la liste des recommandations.`);
 					loadItems();
 				})
 				.catch((err) => {
@@ -263,13 +263,13 @@ const ProductsAndServicesManagement = () => {
 			if (user && user.token) {
 				removeItem(user.token, slug)
 					.then((res) => {
-						toast.success("L'article a été supprimer");
+						toast.success("L'article a été supprimé.");
 						setTimeout(() => {
 							window.location.reload();
 						}, 2000);
 					})
 					.catch((err) => {
-						toast.error("L'article n'a pas pu être supprimer. Veuillez réessayer");
+						toast.error("L'article n'a pas pu être supprimer. Veuillez réessayer.");
 						console.log(err);
 					});
 			}

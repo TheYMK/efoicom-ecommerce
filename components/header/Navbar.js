@@ -63,7 +63,7 @@ const Navbar = () => {
 									href="https://api.whatsapp.com/send?phone=2693725168"
 									target="blank"
 								>
-									<i className="fab fa-whatsapp" /> +269 3725168 (Whatsapp)
+									<i className="fab fa-whatsapp" /> +269 3725168 (WhatsApp)
 								</a>
 							</li>
 

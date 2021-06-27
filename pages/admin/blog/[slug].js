@@ -70,7 +70,7 @@ const BlogUpdatePage = ({ blog, router }) => {
 			.catch((err) => {
 				console.log(err);
 				toast.error(
-					`Nous n'avons pas pu avoir la liste des catégories existantes. Veuillez recharger la page.`
+					`Nous n'avons pas pu avoir la liste des catégories existantes. Veuillez recharger la page!`
 				);
 			});
 	};
@@ -83,7 +83,7 @@ const BlogUpdatePage = ({ blog, router }) => {
 			.catch((err) => {
 				console.log(err);
 				toast.error(
-					`Nous n'avons pas pu avoir la liste des étiquettes existantes. Veuillez recharger la page.`
+					`Nous n'avons pas pu avoir la liste des étiquettes existantes. Veuillez recharger la page!`
 				);
 			});
 	};
@@ -223,7 +223,7 @@ const BlogUpdatePage = ({ blog, router }) => {
 					toast.error(`${res.data.error}`);
 					setLoading(false);
 				} else {
-					toast.success('Modification effectué');
+					toast.success('Modification effectuée.');
 					setLoading(false);
 					Router.push('/admin/blog-management');
 				}
@@ -231,7 +231,7 @@ const BlogUpdatePage = ({ blog, router }) => {
 			.catch((err) => {
 				console.log(err);
 				toast.error(
-					`Oops! Echec de l'opération. Un problème est survenu. Assurez vous de remplir tous les champs et de selectionner au moins une catégorie et une étiquette pour votre blog`
+					`Oops! Echec de l'opération. Un problème est survenu. Assurez vous de remplir tous les champs et de sélectionner au moins une catégorie et une étiquette pour votre article.`
 				);
 				setLoading(false);
 			});

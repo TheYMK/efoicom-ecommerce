@@ -72,7 +72,7 @@ const ProductAndServiceSubmission = () => {
 			!item_type
 		) {
 			setLoading(false);
-			toast.error('Vous devez remplir tous les champs');
+			toast.error('Vous devez remplir tous les champs!');
 			return;
 		}
 
@@ -80,7 +80,7 @@ const ProductAndServiceSubmission = () => {
 			try {
 				createItem(user.token, values).then((res) => {
 					setLoading(false);
-					toast.success('Votre article a été soumis!');
+					toast.success('Votre article a été soumis.');
 					setTimeout(() => {
 						window.location.reload();
 					}, 2000);
@@ -88,7 +88,7 @@ const ProductAndServiceSubmission = () => {
 			} catch (err) {
 				console.log(err);
 				setLoading(false);
-				toast.error('Oops! La soumission a echoué. Veuillez réessayer');
+				toast.error('Oops! La soumission a echoué. Veuillez réessayer!');
 			}
 		}
 	};
@@ -121,9 +121,9 @@ const ProductAndServiceSubmission = () => {
 								<strong className="d-inline-block mr-3">Soumettre un produit ou un service</strong>
 								<br />
 								<small>
-									Cet étape est très simple. Tout ce que vous avez à faire c'est de telecharger une ou
-									plusieurs images de votre produit/service, et le décrire. Cet article sera soumis à
-									une évaluation. Il ne sera visible qu'une fois approuvé par l'équipe Bangwé La
+									Cette étape est très simple. Tout ce que vous avez à faire c'est de télécharger une
+									ou plusieurs images de votre produit/service et le décrire. Cet article sera soumis
+									à une évaluation. Il ne sera visible qu'une fois approuvé par l'équipe Bangwé La
 									Massiwa.
 								</small>
 							</header>

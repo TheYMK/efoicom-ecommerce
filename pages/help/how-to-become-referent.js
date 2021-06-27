@@ -46,9 +46,9 @@ const HowToBecomeReferentPage = () => {
 								</p>
 								<h5 className="card-title">Comment devenir référent ?</h5>
 								<p>
-									C’est très simple ! Si par exemple vous vivez à Moroni et souhaitez mettre en avant
-									les services des entrepreneurs de votre ville, votre quartier ou votre région. Tout
-									ce que vous avez à faire c’est de vous créer un compte de type référent sur la
+									C’est très simple! Vous vivez par exemple à Moroni et souhaitez mettre en avant les
+									services des entrepreneurs de votre ville, votre quartier ou votre région. Tout ce
+									que vous avez à faire c’est de vous créer un compte de type référent sur la
 									plateforme Bangwé la Massiwa. Ce compte sera soumis à une vérification de notre
 									part. Après la vérification vous aurez accès aux fonctionnalités suivantes : <br />
 									<br />- Mise en ligne des produits ou services se trouvant dans votre zone de

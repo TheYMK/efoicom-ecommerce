@@ -54,7 +54,7 @@ const ReferenceZoneManagement = () => {
 		if (user && user.token) {
 			createZone(user.token, values)
 				.then((res) => {
-					toast.success(`Nouvelle commune ajouté`);
+					toast.success(`Nouvelle commune ajoutée.`);
 					setValues({ ...values, name: '', loading: false });
 					loadZones();
 				})
@@ -77,7 +77,7 @@ const ReferenceZoneManagement = () => {
 		if (user && user.token) {
 			removeZone(user.token, zone.slug)
 				.then((res) => {
-					toast.success(`La commune a été retiré.`);
+					toast.success(`La commune a été retirée.`);
 					setValues({ ...values, loading: false });
 					setOpenConfirmDialog(false);
 					loadZones();
@@ -212,7 +212,7 @@ const ReferenceZoneManagement = () => {
 									<br />
 									<small className="">
 										Une commune est principalement une zone qui sera couverte par un ou plusieurs
-										référent(s). Ces zones auront pour but de specifier la provenance des produits
+										référent(s). Ces zones auront pour but de spécifier la provenance des produits
 										ou services qui seront mis en ligne sur la plateforme. Vous, en tant
 										qu'administrateur, avez la responsabilité d'enregistrer ces communes dans la
 										base donnée.
@@ -231,7 +231,7 @@ const ReferenceZoneManagement = () => {
 													className="form-control"
 													value={name}
 													onChange={(e) => setValues({ ...values, name: e.target.value })}
-													placeholder="Sasissez le nom à cette commune"
+													placeholder="Sasissez le nom de cette commune"
 													required
 												/>
 											</div>
@@ -246,7 +246,7 @@ const ReferenceZoneManagement = () => {
 													required
 													onChange={(e) => setValues({ ...values, island: e.target.value })}
 												>
-													<option value="">Veuillez selectionner une île</option>
+													<option value="">Veuillez sélectionner une île</option>
 													<option value="ndzuwani">Ndzuwani</option>
 													<option value="ngazidja">Ngazidja</option>
 													<option value="mwali">Mwali</option>

@@ -13,7 +13,7 @@ const ItemsDisplay = ({ items }) => {
 		if (user && user.token) {
 			addItemToWishlist(user.token, item_id)
 				.then((res) => {
-					toast.success('Article ajouté dans vos favoris');
+					toast.success('Article ajouté dans vos favoris.');
 					getUserWishlistCount(user.token)
 						.then((response2) => {
 							dispatch({
@@ -27,10 +27,10 @@ const ItemsDisplay = ({ items }) => {
 				})
 				.catch((err) => {
 					console.log(err);
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer`);
+					toast.error(`Oops! Échec de l'opération. Veuillez réessayer!`);
 				});
 		} else {
-			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouté un article dans vos favoris`);
+			toast.error(`Oops! Vous devez être connecté pour pouvoir ajouter un article dans vos favoris.`);
 		}
 	};
 
@@ -78,7 +78,7 @@ const ItemsDisplay = ({ items }) => {
 								</div>
 							)}
 							<p className="mb-3">
-								Categorie: <span className="tag bg-info text-white">{item.category.name}</span>
+								Catégorie: <span className="tag bg-info text-white">{item.category.name}</span>
 							</p>
 							{/* <p className="mb-3">
 								Sous-Categorie:{' '}
@@ -101,7 +101,7 @@ const ItemsDisplay = ({ items }) => {
 								Fournisseur: <strong>{item.provider_name}</strong>
 							</p>
 							<p className="text-muted mt-3">
-								Tel: <strong>{item.provider_phone_number}</strong>
+								Tél: <strong>{item.provider_phone_number}</strong>
 							</p>
 							<p className="text-muted mt-3">
 								Commune: <strong>{item.reference_zone && item.reference_zone.name}</strong>
@@ -136,7 +136,7 @@ const ItemsDisplay = ({ items }) => {
 		<main className="col-md-10">
 			<header className="mb-3">
 				<div className="form-inline">
-					<strong className="mr-md-auto">{items.length} articles trouvés </strong>
+					<strong className="mr-md-auto">{items.length} article(s) trouvé(s) </strong>
 				</div>
 			</header>
 			{showItems()}

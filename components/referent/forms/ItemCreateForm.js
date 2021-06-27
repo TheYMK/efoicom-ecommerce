@@ -135,7 +135,7 @@ const ItemCreateForm = ({
 
 			<div className="form-group mt-3">
 				<label>
-					Categorie <span style={{ color: 'red' }}>*</span>
+					Catégorie <span style={{ color: 'red' }}>*</span>
 				</label>
 				<select name="category" className="form-control" onChange={handleCategoryChange}>
 					<option value="">Veuillez selectionner une catégorie</option>
@@ -151,7 +151,7 @@ const ItemCreateForm = ({
 			{showSubs && (
 				<div>
 					<label>
-						Sous-Categories <span style={{ color: 'red' }}>*</span>
+						Sous-Catégories <span style={{ color: 'red' }}>*</span>
 					</label>
 					<Select
 						mode="multiple"

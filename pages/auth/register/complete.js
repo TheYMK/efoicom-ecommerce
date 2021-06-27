@@ -74,7 +74,7 @@ const RegisterCompletePage = () => {
 
 		// check if passwords match
 		if (password !== password_confirm) {
-			toast.error('Les mots de passe doivent être identique!');
+			toast.error('Les mots de passe doivent être identiques!');
 			setLoading(false);
 			return;
 		}
@@ -91,7 +91,7 @@ const RegisterCompletePage = () => {
 			!address
 		) {
 			toast.error(
-				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteur. Veuillez réessayer"
+				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteurs. Veuillez réessayer."
 			);
 
 			setLoading(false);
@@ -101,7 +101,7 @@ const RegisterCompletePage = () => {
 
 		if (account_type === 'referent' && !reference_zone) {
 			toast.error(
-				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteur. Veuillez réessayer"
+				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteurs. Veuillez réessayer."
 			);
 
 			setLoading(false);
@@ -110,7 +110,7 @@ const RegisterCompletePage = () => {
 		}
 
 		if (password.length < 6) {
-			toast.error('Votre mot de passe doit avoir au minimum 6 caractères');
+			toast.error('Votre mot de passe doit avoir au minimum 6 caractères.');
 			setLoading(false);
 			return;
 		}
@@ -192,18 +192,18 @@ const RegisterCompletePage = () => {
 					<div className="card mx-auto" style={{ maxWidth: '520px', marginTop: '40px' }}>
 						<article className="card-body">
 							<header className="mb-4">
-								<h4 className="card-title">Completez votre compte</h4>
+								<h4 className="card-title">Complétez votre compte</h4>
 								<small>
 									Si les informations suivantes sont erronées, nous vous invitons à recommencer la
 									procédure d'enregistrement en{' '}
 									<Link href="/auth/register">
-										<a>cliquant ici</a>
+										<a style={{ color: '#ff914d' }}>cliquant ici</a>
 									</Link>.
 								</small>
 							</header>
 							<div className="mb-4">
 								<p>
-									Nom et Prenom:{' '}
+									Nom et Prénom:{' '}
 									<strong>
 										{first_name} {last_name}
 									</strong>
@@ -212,7 +212,7 @@ const RegisterCompletePage = () => {
 									Email: <strong>{email}</strong>
 								</p>
 								<p>
-									Tel: <strong>{phone_number}</strong>
+									Tél: <strong>{phone_number}</strong>
 								</p>
 								{account_type &&
 								account_type === 'customer' && (

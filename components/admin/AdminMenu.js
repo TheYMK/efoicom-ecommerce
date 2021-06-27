@@ -42,7 +42,7 @@ const AdminMenu = ({ pageLocation }) => {
 
 				<Link href="/admin/account-settings">
 					<a className={`list-group-item ${pageLocation === 'account_settings' ? 'active' : ''}`}>
-						Paramètre du compte
+						Paramètres du compte
 					</a>
 				</Link>
 			</nav>

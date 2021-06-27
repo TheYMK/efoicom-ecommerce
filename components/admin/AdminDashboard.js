@@ -105,10 +105,10 @@ const AdminDashboard = () => {
 				<thead>
 					<tr>
 						<th>Envoyé par (référent)</th>
-						<th>Tel</th>
+						<th>Tél</th>
 						<th>Email</th>
 						<th>Commune</th>
-						<th>Status</th>
+						<th>Statut</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -170,7 +170,7 @@ const AdminDashboard = () => {
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
 					toast.success(
-						`Vous venez d'approuver un référent. Ce dernier peut désormais mettre en ligne des produits et des services, ainsi que converser avec des clients de la platforme.`
+						`Vous venez d'approuver un référent. Ce dernier peut désormais mettre en ligne des produits et des services, ainsi que converser avec des clients de la plateforme.`
 					);
 					fetchAllRefRequests();
 					setLoading(false);
@@ -178,14 +178,14 @@ const AdminDashboard = () => {
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer.`);
+					toast.error(`Oops, l'opération n'a pas été effectuée, veuillez recommencer!`);
 				});
 		}
 	};
 
 	// to be reduced because same as above. Just use one function and let the backend decide
 	const handleRequestRejection = (email) => {
-		const result = window.confirm('Êtes-vous sûr de vouloir decliner ce référent?');
+		const result = window.confirm('Êtes-vous sûr de vouloir décliner ce référent?');
 		const approval_status = 'rejected';
 
 		if (result === true) {
@@ -193,7 +193,7 @@ const AdminDashboard = () => {
 			updateReferentAccountApprovalStatus(user.token, email, approval_status)
 				.then((res) => {
 					toast.info(
-						`Vous venez de decliner un référent. Son compte sera automatiquement supprimer de la base de donnée.`
+						`Vous venez de décliner un référent. Son compte sera automatiquement supprimé de la base de donnée.`
 					);
 
 					fetchAllRefRequests();
@@ -202,7 +202,7 @@ const AdminDashboard = () => {
 				.catch((err) => {
 					console.log(err);
 					setLoading(false);
-					toast.error(`Oops, l'opération n'a pas été effectuer, veuillez recommencer`);
+					toast.error(`Oops, l'opération n'a pas été effectuée, veuillez recommencer!`);
 				});
 		}
 	};
@@ -216,9 +216,9 @@ const AdminDashboard = () => {
 						<th>Envoyé par (référent)</th>
 						<th>Titre de l'article</th>
 						<th>Nom du fournisseur</th>
-						<th>Tel du fournisseur</th>
+						<th>Tél du fournisseur</th>
 						<th>Adresse du fournisseur</th>
-						<th>Status</th>
+						<th>Statut</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -401,7 +401,7 @@ const AdminDashboard = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Gerez les demandes d'approbation de comptes référent{' '}
+										Gérez les demandes d'approbation de comptes référent{' '}
 										{requests !== null && requests.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
@@ -411,7 +411,7 @@ const AdminDashboard = () => {
 							<article className="card mb-4">
 								<header className="card-header">
 									<strong className="d-inline-block mr-3">
-										Gerez les demandes de publication d'articles{' '}
+										Gérez les demandes de publication d'articles{' '}
 										{itemsrequests !== null && itemsrequests.length === 0 ? <NoData /> : ''}
 									</strong>
 								</header>
