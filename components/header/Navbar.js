@@ -60,10 +60,10 @@ const Navbar = () => {
 							<li className="nav-item">
 								<a
 									className="nav-link text-success"
-									href="https://api.whatsapp.com/send?phone=2693725168"
+									href="https://api.whatsapp.com/send?phone=2693495555"
 									target="blank"
 								>
-									<i className="fab fa-whatsapp" /> +269 3725168 (WhatsApp)
+									<i className="fab fa-whatsapp" /> +269 3495555 (WhatsApp)
 								</a>
 							</li>
 

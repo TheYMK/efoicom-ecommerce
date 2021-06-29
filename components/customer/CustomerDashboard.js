@@ -40,15 +40,15 @@ const CustomerDashboard = () => {
 								<div className="card-body">
 									<figure className="icontext">
 										<div className="text">
-											<strong> {currentUser.name} (Client) </strong> <br />
+											<strong> {currentUser.name} </strong> <br />
 											<p className="mb-2"> {currentUser.email} </p>
-											<Link href="/admin/account-settings">
+											{/* <Link href="/admin/account-settings">
 												<a className="btn btn-light btn-sm">Modifier les informations</a>
-											</Link>
+											</Link> */}
 										</div>
 									</figure>
 									<hr />
-									<article className="card-group card-stat">
+									{/* <article className="card-group card-stat">
 										<figure className="card bg">
 											<div className="p-3">
 												<h4 className="title">0</h4>
@@ -67,7 +67,7 @@ const CustomerDashboard = () => {
 												<span>Service approuvé</span>
 											</div>
 										</figure>
-									</article>
+									</article> */}
 								</div>
 							</article>
 						</main>

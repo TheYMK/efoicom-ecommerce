@@ -9,7 +9,7 @@ import CustomerDashboard from '../../components/customer/CustomerDashboard';
 import MyFavorite from '../../components/customer/MyFavorite';
 
 const MyFavoritePage = () => {
-	const message = `Bievenue dans votre profile client.`;
+	const message = `Bienvenue dans votre profile.`;
 	const head = () => (
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />

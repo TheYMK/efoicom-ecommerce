@@ -335,7 +335,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 							<div className="card">
 								<div className="card-body">
 									<div className="card-title">
-										<h5>Map here</h5>
+										<h5>Localisation</h5>
 										{/* <MapBox /> */}
 										<MapBox2 />
 									</div>

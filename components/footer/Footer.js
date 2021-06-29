@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const Footer = () => {
 	return (
@@ -12,11 +13,13 @@ const Footer = () => {
 								<ul className="list-unstyled">
 									<li>
 										{' '}
-										<a href="#">Centre d’aide</a>
+										<Link href="/faq">
+											<a>F.A.Q</a>
+										</Link>
 									</li>
 									<li>
 										{' '}
-										<a href="#">Nous contacter</a>
+										<a href="/#contact">Nous contacter</a>
 									</li>
 								</ul>
 							</aside>
@@ -27,22 +30,24 @@ const Footer = () => {
 										{' '}
 										<a href="#">À propos de Bangwé La Massiwa</a>
 									</li>
-									<li>
+									{/* <li>
 										{' '}
 										<a href="#">Plan du site</a>
-									</li>
+									</li> */}
 								</ul>
 							</aside>
 							<aside className="col-md col-6">
 								<h6 className="title text-white">Vendre sur Bangwé La Massiwa</h6>
 								<ul className="list-unstyled">
 									<li>
-										{' '}
-										<a href="#">Adhésion comme référent</a>
+										<Link href="/help/how-to-become-referent">
+											<a>Devenir référent</a>
+										</Link>
 									</li>
 									<li>
-										{' '}
-										<a href="#">Trouver un référent</a>
+										<Link href="/find-referent">
+											<a>Trouver un référent</a>
+										</Link>
 									</li>
 								</ul>
 							</aside>
@@ -59,12 +64,14 @@ const Footer = () => {
 								<h6 className="title text-white">Social</h6>
 								<ul className="list-unstyled">
 									<li>
-										<a href="#">
-											{' '}
+										<a
+											href="https://www.facebook.com/Efoicom-Entreprendre-au-Feminin-Ocean-Indien-Comores-1640111439617410"
+											target="blank"
+										>
 											<i className="fab fa-facebook" /> Facebook{' '}
 										</a>
 									</li>
-									<li>
+									{/* <li>
 										<a href="#">
 											{' '}
 											<i className="fab fa-twitter" /> Twitter{' '}
@@ -81,22 +88,29 @@ const Footer = () => {
 											{' '}
 											<i className="fab fa-youtube" /> Youtube{' '}
 										</a>
-									</li>
+									</li> */}
 								</ul>
 							</aside>
 						</div>
 					</section>
 
 					<section className="footer-bottom text-center">
-						<p className="text-white">Politique de confidentialité - Mentions Legales</p>
-						<p className="text-muted">
-							{' '}
-							COPYRIGHT &copy; 2021 BANGWÉ LA MASSIWA by{' '}
+						<p className="text-white">
+							<a href="/privacy-policy" style={{ color: '#fff' }}>
+								Politique de confidentialité
+							</a>{' '}
+							-{' '}
+							<a href="/terms-and-conditions" style={{ color: '#fff' }}>
+								Mentions légales
+							</a>
+						</p>
+						<p className="text-muted"> COPYRIGHT &copy; 2021 BANGWÉ LA MASSIWA, TOUS DROIT RESERVÉS </p>
+						<p>
+							<span className="text-muted">Développé par</span>{' '}
 							<a href="https://kaymkassai.tech" target="blank" style={{ color: '#fff' }}>
 								Kaym Kassai
-							</a>, TOUS DROIT RESERVÉS{' '}
+							</a>
 						</p>
-						<br />
 					</section>
 				</div>
 			</footer>

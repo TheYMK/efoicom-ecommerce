@@ -201,8 +201,8 @@ const Login = () => {
 			<p className="text-center mt-4">
 				Vous n'avez pas de compte?{' '}
 				<Link href="/auth/register">
-					<a>
-						<i className="fas fa-hand-point-right" /> Enregistrez vous ici
+					<a style={{ color: '#FF914D' }}>
+						<i className="fas fa-hand-point-right" /> Enregistrez-vous ici
 					</a>
 				</Link>
 			</p>

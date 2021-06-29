@@ -388,7 +388,7 @@ const Register = () => {
 			<p className="text-center mt-4">
 				Avez-vous déjà un compte?{' '}
 				<Link href="/auth/login">
-					<a>Connectez-vous</a>
+					<a style={{ color: '#FF914D' }}>Connectez-vous</a>
 				</Link>
 			</p>
 			<br />

@@ -12,14 +12,14 @@ const CustomerMenu = ({ pageLocation }) => {
 					<a className={`list-group-item ${pageLocation === 'myfavorite' ? 'active' : ''}`}>Mes favoris</a>
 				</Link>
 
-				<Link href="#">
+				{/* <Link href="#">
 					<a className={`list-group-item ${pageLocation === 'client_messages' ? 'active' : ''}`}>Messages</a>
 				</Link>
 				<Link href="#">
 					<a className={`list-group-item ${pageLocation === 'account_settings' ? 'active' : ''}`}>
 						Paramètre du compte
 					</a>
-				</Link>
+				</Link> */}
 			</nav>
 		</React.Fragment>
 	);

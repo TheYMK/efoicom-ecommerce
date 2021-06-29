@@ -31,18 +31,18 @@ const Contact = () => {
 
 	return (
 		<React.Fragment>
-			<section className="section-subscribe padding-y-lg">
+			<section className="section-subscribe padding-y-lg" id="contact">
 				<div className="container">
 					<h3 className="mb-5 text-white">Avez-vous des questions? Contactez-nous</h3>
 
 					<div className="row justify-content-md-center">
 						<div className="col-lg-4" data-aos="zoom-in">
 							<div className="info">
-								<div className="address">
+								{/* <div className="address">
 									<i className="icofont-google-map" />
 									<h4>Adresse:</h4>
 									<p>Moroni, Hamramba</p>
-								</div>
+								</div> */}
 
 								<div className="email">
 									<i className="icofont-envelope" />
@@ -53,7 +53,7 @@ const Contact = () => {
 								<div className="phone">
 									<i className="icofont-phone" />
 									<h4>Numéro de téléphone:</h4>
-									<p>+269 3725168 / +269 3238914</p>
+									<p>+269 349 55 55</p>
 								</div>
 							</div>
 						</div>

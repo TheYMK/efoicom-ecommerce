@@ -32,7 +32,7 @@ const Header = () => {
 							<a href="/" className="brand-wrap">
 								<img
 									className="logo"
-									style={{ width: '250px', objectFit: 'cover' }}
+									style={{ width: '220px', objectFit: 'cover' }}
 									src="/static/images/logo.png"
 								/>
 								{/* <span className="logo">Massiwa Market</span> */}
@@ -48,7 +48,7 @@ const Header = () => {
 										<i className="fa fa-phone" /> +269 3725168
 									</p>
 								</div> */}
-								<div className="widget-header mr-3">
+								{/* <div className="widget-header mr-3">
 									<a href="#" className="widget-view">
 										<div className="icon-area">
 											<i className="fa fa-bell" />
@@ -56,7 +56,7 @@ const Header = () => {
 										</div>
 										<small className="text">Notification</small>
 									</a>
-								</div>
+								</div> */}
 								{user &&
 								user.role !== 'sysadmin' && (
 									<div className="widget-header mr-3">

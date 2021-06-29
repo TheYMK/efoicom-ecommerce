@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { createItem } from '../../actions/item';
 import { getCategories, getCategorySubs } from '../../actions/category';
-import FileUpload from '../FileUpload';
 import ItemCreateForm from './forms/ItemCreateForm';
 import { getAllZones } from '../../actions/zone';
 
@@ -128,18 +127,11 @@ const ProductAndServiceSubmission = () => {
 								</small>
 							</header>
 							<div className="card-body mt-4">
-								<div className="px-3">
-									<FileUpload
-										values={values}
-										setValues={setValues}
-										loading={loading}
-										setLoading={setLoading}
-									/>
-								</div>
-								<div className="mt-4">
+								<div className="mt-3">
 									<ItemCreateForm
 										values={values}
 										loading={loading}
+										setLoading={setLoading}
 										setValues={setValues}
 										handleSubmit={handleSubmit}
 										handleChange={handleChange}

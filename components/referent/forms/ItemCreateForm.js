@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Select } from 'antd';
 const { Option } = Select;
 import PhoneInput from 'react-phone-number-input';
+import FileUpload from '../../FileUpload';
 
 const ItemCreateForm = ({
 	values,
 	loading,
+	setLoading,
 	handleSubmit,
 	handleChange,
 	handleCategoryChange,
@@ -171,7 +173,11 @@ const ItemCreateForm = ({
 				</div>
 			)}
 
-			<button className="btn btn-primary mt-4" onClick={handleSubmit}>
+			<div className="px-3 mt-4">
+				<FileUpload values={values} setValues={setValues} loading={loading} setLoading={setLoading} />
+			</div>
+
+			<button className="btn btn-primary mt-4" onClick={handleSubmit} disabled={loading}>
 				{loading ? 'En cours...' : 'Soumettre'}
 			</button>
 		</form>

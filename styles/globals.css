@@ -214,6 +214,19 @@ section.categories {
 	padding-right: 25px;
 }
 
+.brandcolumn {
+	/* float: center; */
+	width: 33.33%;
+	padding: 5px;
+  }
+  
+  /* Clear floats after image containers */
+  .brandrow::after {
+	content: "";
+	clear: both;
+	display: table;
+  }
+
 /* Product card 2 */
 
 .product-card {
@@ -525,3 +538,55 @@ section.categories {
 .form-group {
 	padding-bottom: 8px;
 }
+
+/*--------------------------------------------------------------
+# F.A.Q
+--------------------------------------------------------------*/
+.faq {
+	padding: 60px 0;
+  }
+  
+  .faq .faq-list {
+	padding: 0;
+	list-style: none;
+  }
+  
+  .faq .faq-list li {
+	padding: 0 0 20px 25px;
+  }
+  
+  .faq .faq-list a {
+	display: block;
+	position: relative;
+	font-family: #f56a6a;
+	font-size: 18px;
+	font-weight: 500;
+  }
+  
+  .faq .faq-list i {
+	font-size: 18px;
+	position: absolute;
+	left: -25px;
+	top: 6px;
+  }
+  
+  .faq .faq-list p {
+	margin-bottom: 20px;
+	font-size: 15px;
+  }
+  
+  .faq .faq-list a.collapse {
+	color: #f56a6a;
+  }
+  
+  .faq .faq-list a.collapsed {
+	color: #343a40;
+  }
+  
+  .faq .faq-list a.collapsed:hover {
+	color: #f56a6a;
+  }
+  
+  .faq .faq-list a.collapsed i::before {
+	content: "\eab2" !important;
+  }

@@ -18,6 +18,7 @@ import { getAllRecommendedItems } from '../actions/item';
 import Blogs from '../components/blogs/Blogs';
 import { getBlogsWithCategoriesAndTags } from '../actions/blog';
 import Brands from '../components/brands/Brands';
+import FAQ from '../components/faq/faq';
 
 const HomePage = ({
 	allCategories,
@@ -61,6 +62,7 @@ const HomePage = ({
 						blogsSkip={blogsSkip}
 					/>
 					<Brands />
+					{/* <FAQ /> */}
 				</div>
 				<Contact />
 			</Layout>
