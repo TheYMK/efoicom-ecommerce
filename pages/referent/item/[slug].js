@@ -20,11 +20,11 @@ const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, 
 			<title>Bangwé La Massiwa | ${item.title}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta name="description" content={`${item.description}`} />
-			<link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
+			<link rel="canonical" href={`${DOMAIN}/item/${item.slug}`} />
 			<meta property="og:title" content={`${item.title}`} />
 			<meta property="og:description" content={`${item.description}`} />
 			<meta property="og:type" content="website" />
-			<meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:url" content={`${DOMAIN}/item/${item.slug}`} />
 			<meta property="og:site_name" content="Bangwé La Massiwa" />
 			<meta property="og:image" content={`${DOMAIN}/static/images/seo.png`} />
 			<meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seo.png`} />

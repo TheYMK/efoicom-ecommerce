@@ -43,11 +43,11 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info, route
 			<title>Bangwé La Massiwa | {itemFromDB.title}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta name="description" content={`${itemFromDB.description}`} />
-			<link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
+			<link rel="canonical" href={`${DOMAIN}/item/${itemFromDB.slug}`} />
 			<meta property="og:title" content={`${itemFromDB.title}`} />
 			<meta property="og:description" content={`${itemFromDB.description}`} />
 			<meta property="og:type" content="website" />
-			<meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:url" content={`${DOMAIN}/item/${itemFromDB.slug}`} />
 			<meta property="og:site_name" content="Bangwé La Massiwa" />
 			<meta property="og:image" content={`${DOMAIN}/static/images/seo.png`} />
 			<meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seo.png`} />

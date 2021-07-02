@@ -302,19 +302,25 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 								<div>
 									<p>Partager</p>
 									<span>
-										<FacebookShareButton quote={`${item.title}`} url="https://www.kaymkassai.tech/">
+										<FacebookShareButton
+											quote={`${item.title}`}
+											url={`https://bangwelamassiwa.com/item/${item.slug}`}
+										>
 											<FacebookIcon size={32} round={true} />
 										</FacebookShareButton>
 									</span>
 									<span className="ml-3">
-										<TwitterShareButton title={`${item.title}`} url="https://www.kaymkassai.tech/">
+										<TwitterShareButton
+											title={`${item.title}`}
+											url={`https://bangwelamassiwa.com/item/${item.slug}`}
+										>
 											<TwitterIcon size={32} round={true} />
 										</TwitterShareButton>
 									</span>
 									<span className="ml-3">
 										<WhatsappShareButton
 											title={`${item.title}`}
-											url="https://www.kaymkassai.tech/"
+											url={`https://bangwelamassiwa.com/item/${item.slug}`}
 											separator=" | "
 										>
 											<WhatsappIcon size={32} round={true} />

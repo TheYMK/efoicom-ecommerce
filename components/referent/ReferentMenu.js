@@ -21,14 +21,14 @@ const ReferentMenu = ({ pageLocation }) => {
 				<Link href="/referent/myfavorite">
 					<a className={`list-group-item ${pageLocation === 'myfavorite' ? 'active' : ''}`}>Mes favoris</a>
 				</Link>
-				<Link href="/referent/client-messages">
+				{/* <Link href="/referent/client-messages">
 					<a className={`list-group-item ${pageLocation === 'client_messages' ? 'active' : ''}`}>Messages</a>
 				</Link>
 				<Link href="/referent/account-settings">
 					<a className={`list-group-item ${pageLocation === 'account_settings' ? 'active' : ''}`}>
 						Paramètre du compte
 					</a>
-				</Link>
+				</Link> */}
 			</nav>
 		</React.Fragment>
 	);
