@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import Head from 'next/head';
+import { DOMAIN, FB_APP_ID } from '../../../config';
+import { withRouter } from 'next/router';
 import { getCategories, getCategorySubs } from '../../../actions/category';
 import { getSingleItem, updateItem } from '../../../actions/item';
 import Header from '../../../components/header/Header';
@@ -11,7 +14,25 @@ import { toast } from 'react-toastify';
 import Router from 'next/router';
 import ReferentProtected from '../../../components/auth/ReferentProtected';
 
-const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, params, categoriesFromDB }) => {
+const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, params, categoriesFromDB, router }) => {
+	const head = () => (
+		<Head>
+			<title>Bangwé La Massiwa | ${item.title}</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+			<meta name="description" content={`${item.description}`} />
+			<link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:title" content={`${item.title}`} />
+			<meta property="og:description" content={`${item.description}`} />
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:site_name" content="Bangwé La Massiwa" />
+			<meta property="og:image" content={`${DOMAIN}/static/images/seo.png`} />
+			<meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seo.png`} />
+			<meta property="og:image:type" content="image/png" />
+			<meta property="fb:app_id" content={`${FB_APP_ID}`} />
+		</Head>
+	);
+
 	const { user } = useSelector((state) => ({ ...state }));
 
 	const [ values, setValues ] = useState({
@@ -148,6 +169,7 @@ const ReferentItemUpdatePage = ({ item, subCategoriesOptions, subCategoriesIds, 
 
 	return (
 		<React.Fragment>
+			{head()}
 			<Layout>
 				<ReferentProtected>
 					<b className="screen-overlay" />
@@ -210,4 +232,4 @@ export async function getServerSideProps({ params }) {
 	});
 }
 
-export default ReferentItemUpdatePage;
+export default withRouter(ReferentItemUpdatePage);

@@ -1,16 +1,13 @@
 import React from 'react';
 import Head from 'next/head';
-import Ad from '../components/ads/Ad';
-import Deal from '../components/deal/Deal';
+import { DOMAIN, FB_APP_ID } from '../config';
+import { withRouter } from 'next/router';
 import Header from '../components/header/Header';
 import Navbar from '../components/header/Navbar';
 import Items from '../components/items/Items';
 import Layout from '../components/Layout';
 import Main from '../components/main/Main';
-import Regions from '../components/regions/Regions';
 import Request from '../components/request/Request';
-import SectionOne from '../components/sections/SectionOne';
-import SectionTwo from '../components/sections/SectionTwo';
 import Contact from '../components/contact/Contact';
 import OurCategories from '../components/ourCategories/OurCategories';
 import { getCategories } from '../actions/category';
@@ -18,7 +15,6 @@ import { getAllRecommendedItems } from '../actions/item';
 import Blogs from '../components/blogs/Blogs';
 import { getBlogsWithCategoriesAndTags } from '../actions/blog';
 import Brands from '../components/brands/Brands';
-import FAQ from '../components/faq/faq';
 
 const HomePage = ({
 	allCategories,
@@ -29,11 +25,30 @@ const HomePage = ({
 	tags,
 	totalBlogs,
 	blogsLimit,
-	blogsSkip
+	blogsSkip,
+	router
 }) => {
 	const head = () => (
 		<Head>
+			<title>Bangwé La Massiwa | Accueil</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+			<meta
+				name="description"
+				content="Bangwé La Massiwa est un marché national en ligne, où les gens se retrouvent pour fabriquer, vendre, acheter et collectionner des articles uniques."
+			/>
+			<link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:title" content={`Soutenons les créateurs indépendants`} />
+			<meta
+				property="og:description"
+				content="Bangwé La Massiwa est un marché national en ligne, où les gens se retrouvent pour fabriquer, vendre, acheter et collectionner des articles uniques."
+			/>
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:site_name" content="Bangwé La Massiwa" />
+			<meta property="og:image" content={`${DOMAIN}/static/images/seo.png`} />
+			<meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seo.png`} />
+			<meta property="og:image:type" content="image/png" />
+			<meta property="fb:app_id" content={`${FB_APP_ID}`} />
 		</Head>
 	);
 
@@ -95,4 +110,4 @@ export async function getServerSideProps({ params }) {
 	});
 }
 
-export default HomePage;
+export default withRouter(HomePage);

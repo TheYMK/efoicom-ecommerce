@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Head from 'next/head';
+import { DOMAIN, FB_APP_ID } from '../../config';
+import { withRouter } from 'next/router';
 import { getRelatedItems, getSingleItem, itemStarRating } from '../../actions/item';
 import { getSingleReferentByEmail } from '../../actions/user';
 import Breadcrumb from '../../components/breadcrumb/Breadcrumb';
@@ -8,7 +11,7 @@ import SingleItemDetails from '../../components/items/SingleItemDetails';
 import Layout from '../../components/Layout';
 import { useSelector } from 'react-redux';
 
-const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info }) => {
+const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info, router }) => {
 	const [ vals, setVals ] = useState({
 		item: itemFromDB,
 		star: 0,
@@ -33,6 +36,24 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info }) => 
 			}
 		},
 		[ user ]
+	);
+
+	const head = () => (
+		<Head>
+			<title>Bangwé La Massiwa | {itemFromDB.title}</title>
+			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+			<meta name="description" content={`${itemFromDB.description}`} />
+			<link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:title" content={`${itemFromDB.title}`} />
+			<meta property="og:description" content={`${itemFromDB.description}`} />
+			<meta property="og:type" content="website" />
+			<meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
+			<meta property="og:site_name" content="Bangwé La Massiwa" />
+			<meta property="og:image" content={`${DOMAIN}/static/images/seo.png`} />
+			<meta property="og:image:secure_url" content={`${DOMAIN}/static/images/seo.png`} />
+			<meta property="og:image:type" content="image/png" />
+			<meta property="fb:app_id" content={`${FB_APP_ID}`} />
+		</Head>
 	);
 
 	const onStarClick = (newRating, id) => {
@@ -61,6 +82,7 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info }) => 
 
 	return (
 		<React.Fragment>
+			{head()}
 			<Layout>
 				<b className="screen-overlay" />
 				<header className="section-header">
@@ -103,4 +125,4 @@ export async function getServerSideProps({ params }) {
 	});
 }
 
-export default SingleItemPage;
+export default withRouter(SingleItemPage);
