@@ -37,7 +37,7 @@ const Brands = () => {
 										src="/static/images/partenaires/logocomores.png"
 										alt="Snow"
 										className="img-thumbnail"
-										style={{ width: '50%' }}
+										style={{ width: '100%' }}
 									/>
 								</div>
 								<div className="brandcolumn col-md-2">
@@ -45,7 +45,7 @@ const Brands = () => {
 										src="/static/images/partenaires/logoefoicom.png"
 										alt="Forest"
 										className="img-thumbnail"
-										style={{ width: '50%' }}
+										style={{ width: '100%' }}
 									/>
 								</div>
 								<div className="brandcolumn col-md-2">
@@ -53,7 +53,7 @@ const Brands = () => {
 										src="/static/images/partenaires/logoonu.png"
 										alt="Mountains"
 										className="img-thumbnail"
-										style={{ width: '50%' }}
+										style={{ width: '100%' }}
 									/>
 								</div>
 								<div className="brandcolumn col-md-2">
@@ -61,7 +61,7 @@ const Brands = () => {
 										src="/static/images/partenaires/logopnud.png"
 										alt="Mountains"
 										className="img-thumbnail"
-										style={{ width: '50%' }}
+										style={{ width: '100%' }}
 									/>
 								</div>
 								<div className="brandcolumn col-md-2">
@@ -69,7 +69,7 @@ const Brands = () => {
 										src="/static/images/partenaires/logocanada.png"
 										alt="Mountains"
 										className="img-thumbnail"
-										style={{ width: '50%' }}
+										style={{ width: '100%' }}
 									/>
 								</div>
 							</div>

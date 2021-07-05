@@ -106,7 +106,7 @@ const Footer = () => {
 						</p>
 						<p className="text-muted"> COPYRIGHT &copy; 2021 BANGWÉ LA MASSIWA, TOUS DROIT RESERVÉS </p>
 						<p>
-							<span className="text-muted">Développé par</span>{' '}
+							<span className="text-muted">Developed by</span>{' '}
 							<a href="https://kaymkassai.tech" target="blank" style={{ color: '#fff' }}>
 								Kaym Kassai
 							</a>
