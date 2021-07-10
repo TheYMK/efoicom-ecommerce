@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { getBlogsWithCategoriesAndTags } from '../../actions/blog';
 import BlogItem from './BlogItem';
+import { useSelector } from 'react-redux';
 
 const Blogs = ({ blogs, blogcategories, tags, totalBlogs, blogsLimit, blogsSkip }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const [ limit, setLimit ] = useState(blogsLimit);
 	const [ skip, setSkip ] = useState(blogsSkip);
 	const [ size, setSize ] = useState(totalBlogs);
@@ -18,7 +21,7 @@ const Blogs = ({ blogs, blogcategories, tags, totalBlogs, blogsLimit, blogsSkip 
 			size > 0 &&
 			size >= limit && (
 				<button className="btn btn-primary mt-4 rounded-pill" onClick={loadMore}>
-					{loading ? 'Chargement...' : 'Charger plus'}
+					{lang === 'fr' ? loading ? 'Chargement...' : 'Charger plus' : loading ? 'Loading...' : 'Load more'}
 				</button>
 			)
 		);
@@ -43,7 +46,9 @@ const Blogs = ({ blogs, blogcategories, tags, totalBlogs, blogsLimit, blogsSkip 
 		<React.Fragment>
 			<section className="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Actualités récentes</h4>
+					<h4 className="title-section text-uppercase">
+						{lang === 'fr' ? 'Actualités récentes' : 'Recent news'}
+					</h4>
 				</header>
 
 				<div className="row">

@@ -1,9 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Router from 'next/router';
 
 const Breadcrumb = ({ category_name, category_id, item_title }) => {
 	const dispatch = useDispatch();
+	const { lang } = useSelector((state) => ({ ...state }));
 
 	const handleClickCategory = (id) => {
 		dispatch({
@@ -18,7 +19,7 @@ const Breadcrumb = ({ category_name, category_id, item_title }) => {
 			<div className="container">
 				<ol className="breadcrumb">
 					<li className="breadcrumb-item">
-						<a href="/">Accueil</a>
+						<a href="/">{lang === 'fr' ? 'Accueil' : 'Home'}</a>
 					</li>
 					<li className="breadcrumb-item">
 						<a href="#" onClick={(e) => handleClickCategory(category_id)}>

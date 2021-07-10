@@ -19,7 +19,7 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info, route
 		itemID: ''
 	});
 
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, lang } = useSelector((state) => ({ ...state }));
 
 	const { item, star, comment, itemID } = vals;
 

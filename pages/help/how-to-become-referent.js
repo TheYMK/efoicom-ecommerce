@@ -50,7 +50,7 @@ const HowToBecomeReferentPage = ({ router }) => {
 				<section className="section-content bg-white padding-y">
 					<div className="container pure-text">
 						<div className="row">
-							<div className="col-md-6">
+							{/* <div className="col-md-6">
 								<VideoPlayer
 									className="react-player"
 									url={
@@ -63,24 +63,23 @@ const HowToBecomeReferentPage = ({ router }) => {
 									pip={true}
 									muted={false}
 								/>
-							</div>
-							<div className="col-md-6">
+							</div> */}
+							<div className="col-md-12">
 								<h5 className="card-title">Qu’est-ce qu’un référent ?</h5>
 								<p>
 									Le référent est la personne qui sera chargée de mettre en ligne les produits ou
-									services situés dans le lieu qu’il aura choisi (région, ville, quartier). Il est
-									responsable de la mise en relation entre les clients et les fournisseurs de ces
-									produits ou les prestataires de ces services.
+									services situés dans la commune qu’il aura choisi. Il est responsable de la mise en
+									relation entre les clients et les fournisseurs de ces produits ou les prestataires
+									de ces services.
 								</p>
 								<h5 className="card-title">Comment devenir référent ?</h5>
 								<p>
 									C’est très simple! Vous vivez par exemple à Moroni et souhaitez mettre en avant les
-									services des entrepreneurs de votre ville, votre quartier ou votre région. Tout ce
-									que vous avez à faire c’est de vous créer un compte de type référent sur la
-									plateforme Bangwé la Massiwa. Ce compte sera soumis à une vérification de notre
-									part. Après la vérification vous aurez accès aux fonctionnalités suivantes : <br />
-									<br />- Mise en ligne des produits ou services se trouvant dans votre zone de
-									référence.<br />
+									services des entrepreneurs de votre commune. Tout ce que vous avez à faire c’est de
+									vous créer un compte de type référent sur la plateforme Bangwé la Massiwa. Ce compte
+									sera soumis à une vérification de notre part. Après la vérification vous aurez accès
+									aux fonctionnalités suivantes : <br />
+									<br />- Mise en ligne des produits ou services se trouvant dans votre commune.<br />
 									- Prise de contact avec des potentiels clients intéréssés par vos produits ou
 									services.
 								</p>

@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { emailContactForm } from '../../actions/form';
+import { useSelector } from 'react-redux';
 
 const Contact = () => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const [ values, setValues ] = useState({
 		name: '',
 		email: '',
@@ -22,9 +25,21 @@ const Contact = () => {
 			const res = await emailContactForm(values);
 			setValues({ ...values, name: '', email: '', subject: '', message: '' });
 			setLoading(false);
-			toast.success('Votre message a bien été envoyé! Nous vous contacterons le plus rapidement possible :)');
+			if (lang === 'fr') {
+				toast.success(
+					'Votre message a bien été envoyé ! Nous vous contacterons le plus rapidement possible :)'
+				);
+			}
+			if (lang === 'en') {
+				toast.success('Your message has been sent ! We will reach back to you as soon as possible :)');
+			}
 		} catch (err) {
-			toast.error(`Oops! Echec de l'opération. Veuillez réessayer :(`);
+			if (lang === 'fr') {
+				toast.success(`Oops ! Echec de l'opération. Veuillez réessayer :(`);
+			}
+			if (lang === 'en') {
+				toast.error(`Oops ! Something went wrong. Please try again :(`);
+			}
 			setLoading(false);
 		}
 	};
@@ -33,7 +48,9 @@ const Contact = () => {
 		<React.Fragment>
 			<section className="section-subscribe padding-y-lg" id="contact">
 				<div className="container">
-					<h3 className="mb-5 text-white">Avez-vous des questions? Contactez-nous</h3>
+					<h3 className="mb-5 text-white">
+						{lang === 'fr' ? 'Avez-vous des questions ? Contactez-nous' : 'Got questions ? Contact us'}
+					</h3>
 
 					<div className="row justify-content-md-center">
 						<div className="col-lg-4" data-aos="zoom-in">
@@ -52,7 +69,7 @@ const Contact = () => {
 
 								<div className="phone">
 									<i className="icofont-phone" />
-									<h4>Numéro de téléphone:</h4>
+									<h4>{lang === 'fr' ? 'Numéro de téléphone:' : 'Phone number'}</h4>
 									<p>+269 349 55 55</p>
 								</div>
 							</div>
@@ -67,7 +84,7 @@ const Contact = () => {
 											name="name"
 											className="form-control"
 											id="name"
-											placeholder="Votre nom..."
+											placeholder={lang === 'fr' ? 'Votre nom...' : 'Your name...'}
 											value={name}
 											data-rule="minlen:4"
 											data-msg="Please enter at least 4 chars"
@@ -80,7 +97,7 @@ const Contact = () => {
 											className="form-control"
 											name="email"
 											id="email"
-											placeholder="Votre email..."
+											placeholder={lang === 'fr' ? 'Votre email...' : 'Your email...'}
 											data-rule="email"
 											value={email}
 											data-msg="Please enter a valid email"
@@ -94,7 +111,7 @@ const Contact = () => {
 										className="form-control"
 										name="subject"
 										id="subject"
-										placeholder="Objet du message..."
+										placeholder={lang === 'fr' ? 'Objet du message...' : 'Subject...'}
 										data-rule="minlen:4"
 										value={subject}
 										data-msg="Please enter at least 8 chars of subject"
@@ -108,7 +125,7 @@ const Contact = () => {
 										rows="5"
 										data-rule="required"
 										data-msg="Please write something for us"
-										placeholder="Votre message..."
+										placeholder={lang === 'fr' ? 'Votre message...' : 'Your message...'}
 										value={message}
 										onChange={(e) => setValues({ ...values, message: e.target.value })}
 									/>
@@ -116,7 +133,15 @@ const Contact = () => {
 
 								<div className="text-center">
 									<button className="btn btn-primary rounded-pill" type="submit">
-										{loading ? 'En cours...' : 'Envoyer un message'}
+										{lang === 'fr' ? loading ? (
+											'En cours...'
+										) : (
+											'Envoyer un message'
+										) : loading ? (
+											'Sending...'
+										) : (
+											'Send a message'
+										)}
 									</button>
 								</div>
 							</form>

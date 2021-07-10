@@ -15,9 +15,11 @@ import Router from 'next/router';
 import { getAllZones } from '../../actions/zone';
 
 const FindReferentPage = ({ allReferents, allZones, router }) => {
+	const { user, lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | Trouvez un référent</title>
+			<title>Bangwé La Massiwa | {lang === 'fr' ? 'Trouvez un référent' : 'Find a referent'}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"
@@ -54,7 +56,6 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 
 	const { allRefs } = data;
 	const [ openContactDialog, setOpenContactDialog ] = useState(false);
-	const { user } = useSelector((state) => ({ ...state }));
 	const [ currentReferent, setCurrentReferent ] = useState({
 		ref_name: '',
 		ref_phone: '',
@@ -95,9 +96,16 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 					console.log(err);
 				});
 		} else {
-			toast.error(
-				'Vous devez avoir un compte et être connecter avant de pouvoir rentrer en contact avec un référent'
-			);
+			if (lang === 'fr') {
+				toast.error(
+					'Vous devez avoir un compte et être connecter avant de pouvoir rentrer en contact avec un référent'
+				);
+			}
+
+			if (lang === 'en') {
+				toast.error('You need to be logged in to perform this action.');
+			}
+
 			setInterval(() => {
 				Router.push('/auth/login');
 			}, 3000);
@@ -131,14 +139,29 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 		setLoading(true);
 		contactReferent(values)
 			.then((res) => {
-				toast.success(
-					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délai'
-				);
+				if (lang === 'fr') {
+					toast.success(
+						'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délai.'
+					);
+				}
+
+				if (lang === 'en') {
+					toast.success(
+						'Your message has been sent. The referent of this item will reach back to you as soon as possible.'
+					);
+				}
+
 				handleCloseContactDialog();
 				setLoading(false);
 			})
 			.catch((err) => {
-				toast.error(`Oops! Echec de l'envoi. Veuillez réessayer`);
+				if (lang === 'fr') {
+					toast.error(`Oops! Echec de l'envoi. Veuillez réessayer!`);
+				}
+
+				if (lang === 'en') {
+					toast.error(`Oops! Failed to send the message. Please try again!`);
+				}
 				setLoading(false);
 			});
 	};
@@ -149,11 +172,11 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 				<thead>
 					<tr>
 						<th>#</th>
-						<th>Nom & Prénom</th>
-						<th>Tel</th>
-						<th>Ville</th>
-						<th>Adresse</th>
-						<th>Commune</th>
+						<th>{lang === 'fr' ? 'Nom & Prénom' : 'Full name'}</th>
+						<th>{lang === 'fr' ? 'Tél' : 'Phone number'}</th>
+						<th>{lang === 'fr' ? 'Ville' : 'City'}</th>
+						<th>{lang === 'fr' ? 'Adresse' : 'Address'}</th>
+						<th>{lang === 'fr' ? 'Commune' : 'Region'}</th>
 						<th>Action</th>
 					</tr>
 				</thead>
@@ -174,7 +197,7 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 										className="btn btn-primary"
 										onClick={(e) => handleOpenContactDialog(referent)}
 									>
-										Contacter
+										{lang === 'fr' ? 'Contacter' : 'Contact'}
 									</button>
 								</td>
 							</tr>
@@ -226,8 +249,15 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 				setValues={setValues}
 				loading={loading}
 				handleSubmitContactForm={handleSubmitContactForm}
-				title={`Souhaitez-vous contacter ce référent?`}
-				description={`À propos de ce référent`}
+				title={
+					lang === 'fr' ? (
+						`Souhaitez-vous contacter ce référent ?`
+					) : (
+						'Would you like to contact this referent ?'
+					)
+				}
+				description={lang === 'fr' ? `À propos de ce référent` : 'About this referent'}
+				lang={lang}
 			/>
 			<Layout>
 				<b className="screen-overlay" />
@@ -237,7 +267,9 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 				</header>
 				<section className="section-pagetop bg-light">
 					<div className="container">
-						<h2 className="title-page">Vous cherchez un référent ?</h2>
+						<h2 className="title-page">
+							{lang === 'fr' ? 'Vous cherchez un référent ?' : 'Are you looking for a referent ?'}
+						</h2>
 					</div>
 				</section>
 				<section className="section-content padding-y">
@@ -245,27 +277,33 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 						<article className="card mb-3">
 							<header className="card-header">
 								<div className="form-inline d-inline-flex mt-2">
-									<label htmlFor="zones">Filtrer par île</label>
+									<label htmlFor="zones">
+										{lang === 'fr' ? 'Filtrer par île:' : 'Filter by island:'}
+									</label>
 									<select
 										id="zones"
 										className="ml-2 form-control"
 										value={selectedIsland}
 										onChange={handleIslandChange}
 									>
-										<option value="allIslands">Toutes les îles</option>
+										<option value="allIslands">
+											{lang === 'fr' ? 'Toutes les îles' : 'All islands'}
+										</option>
 										<option value="ndzuwani">Ndzuwani</option>
 										<option value="ngazidja">Ngazidja</option>
 										<option value="mwali">Mwali</option>
 									</select>
 								</div>
 								<div className="form-inline d-inline-flex ml-md-2 mt-2">
-									<label>Filtrer par commune</label>
+									<label>{lang === 'fr' ? 'Filtrer par commune:' : 'Filter by region:'}</label>
 									<select
 										className="ml-2 form-control"
 										value={selectedZone}
 										onChange={handleZoneChange}
 									>
-										<option value="allZones">Toutes les communes</option>
+										<option value="allZones">
+											{lang === 'fr' ? 'Toutes les communes' : 'All regions'}
+										</option>
 										{allZones &&
 											allZones.map((zone, index) => (
 												<option value={zone.name} key={zone._id}>
@@ -278,7 +316,7 @@ const FindReferentPage = ({ allReferents, allZones, router }) => {
 						</article>
 						<article className="card">
 							<header className="card-header">
-								<strong>Liste des référents</strong>
+								<strong>{lang === 'fr' ? 'Liste des référents' : 'Referent list'}</strong>
 							</header>
 							<div className="">{showRefs()}</div>
 						</article>

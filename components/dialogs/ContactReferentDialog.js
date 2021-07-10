@@ -20,7 +20,8 @@ const ContactReferentDialog = ({
 	handleSubmitContactForm,
 	loading,
 	title,
-	description
+	description,
+	lang
 }) => {
 	const { ref_email, usr_email, usr_phone, usr_name, subject, message } = values;
 
@@ -38,22 +39,28 @@ const ContactReferentDialog = ({
 						{description}
 					</DialogContentText>
 					<DialogContentText id="alert-dialog-description">
-						Nom et prénom: <strong style={{ color: '#000' }}>{ref_name}</strong>
+						{lang === 'fr' ? 'Nom et prénom:' : 'Full name:'}{' '}
+						<strong style={{ color: '#000' }}>{ref_name}</strong>
 						<br />
-						Tél: <strong style={{ color: '#000' }}>{ref_phone}</strong>
+						{lang === 'fr' ? 'Tél:' : 'Phone number:'}{' '}
+						<strong style={{ color: '#000' }}>{ref_phone}</strong>
 						<br />
-						Île <strong style={{ color: '#000' }}>{ref_island.toUpperCase()}</strong>
+						{lang === 'fr' ? 'Île:' : 'Island:'}{' '}
+						<strong style={{ color: '#000' }}>{ref_island.toUpperCase()}</strong>
 						<br />
-						Ville: <strong style={{ color: '#000' }}>{ref_city}</strong>
+						{lang === 'fr' ? 'Ville:' : 'City:'} <strong style={{ color: '#000' }}>{ref_city}</strong>
 						<br />
-						Adresse: <strong style={{ color: '#000' }}>{ref_address}</strong>
+						{lang === 'fr' ? 'Adresse:' : 'Address:'}{' '}
+						<strong style={{ color: '#000' }}>{ref_address}</strong>
 						<br />
-						Commune: <strong style={{ color: '#000' }}>{ref_zone}</strong>
+						{lang === 'fr' ? 'Commune:' : 'City:'} <strong style={{ color: '#000' }}>{ref_zone}</strong>
 					</DialogContentText>
 					<form>
 						<div className="row">
 							<div className="col-md-12">
-								<label htmlFor="referent_email">Email du référent</label>
+								<label htmlFor="referent_email">
+									{lang === 'fr' ? 'Email du référent:' : 'Referent email:'}
+								</label>
 								<input
 									id="referent_email"
 									type="email"
@@ -63,7 +70,9 @@ const ContactReferentDialog = ({
 								/>
 							</div>
 							<div className="col-md-6 mt-3">
-								<label htmlFor="usr_email">Votre adresse email</label>
+								<label htmlFor="usr_email">
+									{lang === 'fr' ? 'Votre adresse email:' : 'Your email address:'}
+								</label>
 								<input
 									id="usr_email"
 									type="email"
@@ -73,7 +82,9 @@ const ContactReferentDialog = ({
 								/>
 							</div>
 							<div className="col-md-6 mt-3">
-								<label htmlFor="usr_phone">Votre numéro de téléphone</label>
+								<label htmlFor="usr_phone">
+									{lang === 'fr' ? 'Votre numéro de téléphone:' : 'Your phone number:'}
+								</label>
 								<input
 									id="usr_phone"
 									type="text"
@@ -83,7 +94,9 @@ const ContactReferentDialog = ({
 								/>
 							</div>
 							<div className="col-md-12 mt-3">
-								<label htmlFor="usr_name">Votre nom et prénom</label>
+								<label htmlFor="usr_name">
+									{lang === 'fr' ? 'Votre nom et prénom:' : 'Your full name:'}
+								</label>
 								<input
 									id="usr_name"
 									type="text"
@@ -93,7 +106,7 @@ const ContactReferentDialog = ({
 								/>
 							</div>
 							<div className="col-md-12 mt-3">
-								<label htmlFor="subject">Objet</label>
+								<label htmlFor="subject">{lang === 'fr' ? 'Objet:' : 'Subject:'}</label>
 								<input
 									id="subject"
 									type="text"
@@ -104,7 +117,7 @@ const ContactReferentDialog = ({
 								/>
 							</div>
 							<div className="col-md-12 mt-3">
-								<label htmlFor="message">Votre message</label>
+								<label htmlFor="message">{lang === 'fr' ? 'Votre message:' : 'Your message:'}</label>
 								<textarea
 									className="form-control"
 									id="message"
@@ -118,10 +131,10 @@ const ContactReferentDialog = ({
 				</DialogContent>
 				<DialogActions>
 					<button onClick={handleClose} className="btn btn-secondary">
-						Fermer
+						{lang === 'fr' ? 'Fermer' : 'Close'}
 					</button>
 					<button onClick={handleSubmitContactForm} className="btn btn-primary" autoFocus>
-						{loading ? 'En cours...' : 'Envoyer'}
+						{lang === 'fr' ? loading ? 'En cours...' : 'Envoyer' : loading ? 'Sending...' : 'Send'}
 					</button>
 				</DialogActions>
 			</Dialog>

@@ -6,14 +6,21 @@ import Link from 'next/link';
 import { showAverage } from '../../actions/rating';
 
 const ItemsDisplay = ({ items }) => {
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, lang } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
 
 	const handleAddItemToWishlist = (item_id) => {
 		if (user && user.token) {
 			addItemToWishlist(user.token, item_id)
 				.then((res) => {
-					toast.success('Article ajouté dans vos favoris.');
+					if (lang === 'fr') {
+						toast.success('Article ajouté dans vos favoris.');
+					}
+
+					if (lang === 'en') {
+						toast.success('Item added to your favorites.');
+					}
+
 					getUserWishlistCount(user.token)
 						.then((response2) => {
 							dispatch({
@@ -27,10 +34,21 @@ const ItemsDisplay = ({ items }) => {
 				})
 				.catch((err) => {
 					console.log(err);
-					toast.error(`Oops! Échec de l'opération. Veuillez réessayer!`);
+					if (lang === 'fr') {
+						toast.error(`Oops! Échec de l'opération. Veuillez réessayer!`);
+					}
+
+					if (lang === 'en') {
+						toast.error(`Oops! Something went wrong. Please try again !`);
+					}
 				});
 		} else {
-			toast.error(`Oops! Vous devez être connecté pour pouvoir ajouter un article dans vos favoris.`);
+			if (lang === 'fr') {
+				toast.error(`Oops! Vous devez être connecté pour pouvoir ajouter un article dans vos favoris.`);
+			}
+			if (lang === 'en') {
+				toast.error(`Oops ! You must be connected first before adding an item to your favorites.`);
+			}
 		}
 	};
 
@@ -41,7 +59,14 @@ const ItemsDisplay = ({ items }) => {
 					<aside className="col-md-3">
 						<Link href={`/item/${item.slug}`}>
 							<a className="img-wrap">
-								{item.isRecommended ? <span className="badge badge-success"> Recommandé </span> : ''}
+								{item.isRecommended ? (
+									<span className="badge badge-success">
+										{' '}
+										{lang === 'fr' ? 'Recommandé' : 'Recommended'}{' '}
+									</span>
+								) : (
+									''
+								)}
 
 								<img src={item.images[0].url} />
 							</a>
@@ -78,7 +103,8 @@ const ItemsDisplay = ({ items }) => {
 								</div>
 							)}
 							<p className="mb-3">
-								Catégorie: <span className="tag bg-info text-white">{item.category.name}</span>
+								{lang === 'fr' ? 'Catégorie' : 'Category'}:{' '}
+								<span className="tag bg-info text-white">{item.category.name}</span>
 							</p>
 							{/* <p className="mb-3">
 								Sous-Categorie:{' '}
@@ -98,23 +124,25 @@ const ItemsDisplay = ({ items }) => {
 							</div> */}
 							{/* <small className="text-warning">Paid shipping</small> */}
 							<p className="text-muted mt-3">
-								Fournisseur: <strong>{item.provider_name}</strong>
+								{lang === 'fr' ? 'Fournisseur:' : 'Provider:'} <strong>{item.provider_name}</strong>
 							</p>
 							<p className="text-muted mt-3">
-								Tél: <strong>{item.provider_phone_number}</strong>
+								{lang === 'fr' ? 'Tél:' : 'Phone number:'} <strong>{item.provider_phone_number}</strong>
 							</p>
 							<p className="text-muted mt-3">
-								Commune: <strong>{item.reference_zone && item.reference_zone.name}</strong>
+								{lang === 'fr' ? 'Commune:' : 'Region:'}{' '}
+								<strong>{item.reference_zone && item.reference_zone.name}</strong>
 							</p>
 							<p className="text-muted mt-3">
-								Adresse: <strong>{item.provider_address}</strong>
+								{lang === 'fr' ? 'Adresse:' : 'Address:'} <strong>{item.provider_address}</strong>
 							</p>
 
 							<p className="mt-3">
 								<Link href={`/item/${item.slug}`}>
 									<a className="btn btn-sm btn-primary mr-2">
 										{' '}
-										<i className="fa fa-cart-plus" /> Voir l'article
+										<i className="fa fa-cart-plus" />{' '}
+										{lang === 'fr' ? `Voir l'article` : 'View item'}
 									</a>
 								</Link>
 
@@ -136,7 +164,9 @@ const ItemsDisplay = ({ items }) => {
 		<main className="col-md-10">
 			<header className="mb-3">
 				<div className="form-inline">
-					<strong className="mr-md-auto">{items.length} article(s) trouvé(s) </strong>
+					<strong className="mr-md-auto">
+						{items.length} {lang === 'fr' ? `article(s) trouvé(s)` : 'item(s) found'}{' '}
+					</strong>
 				</div>
 			</header>
 			{showItems()}

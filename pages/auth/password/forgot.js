@@ -10,9 +10,11 @@ import Router from 'next/router';
 import { FORGOT_PASSWORD_REDIRECT_URL, DOMAIN, FB_APP_ID } from '../../../config';
 
 const ForgotPasswordPage = ({ router }) => {
+	const { user, lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | Mot de passe oublié</title>
+			<title>Bangwé La Massiwa | {lang === 'fr' ? 'Mot de passe oublié ?' : 'Password recovery'}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"
@@ -37,8 +39,6 @@ const ForgotPasswordPage = ({ router }) => {
 	const [ email, setEmail ] = useState('');
 	const [ loading, setLoading ] = useState(false);
 
-	const { user } = useSelector((state) => ({ ...state }));
-
 	useEffect(
 		() => {
 			if (user && user.token) {
@@ -62,11 +62,19 @@ const ForgotPasswordPage = ({ router }) => {
 			setEmail('');
 			setLoading(false);
 
-			toast.success(`Un email vous a été envoyer. Cliquer sur le lien pour reinitialiser votre mot de passe`);
+			toast.success(
+				lang === 'fr'
+					? `Un email vous a été envoyer. Cliquer sur le lien pour reinitialiser votre mot de passe.`
+					: 'An email has been sent to you. Click on the link to reset your password.'
+			);
 		} catch (err) {
 			setLoading(false);
 			console.log(`Error occured during password reset process (=> /auth/password/forgot page): ${err}`);
-			toast.error("Nous n'avons pas pu récupérer votre mot de passe. Veuillez réessayer!");
+			toast.error(
+				lang === 'fr'
+					? "Nous n'avons pas pu récupérer votre mot de passe. Veuillez réessayer !"
+					: 'We were unable to retrieve your password. Try Again!'
+			);
 		}
 	};
 
@@ -80,12 +88,24 @@ const ForgotPasswordPage = ({ router }) => {
 				<section className="section-content padding-y" style={{ minHeight: '84vh' }}>
 					<div className="card mx-auto" style={{ maxWidth: '580px', marginTop: '100px' }}>
 						<div className="card-body">
-							<h4 className="card-title mb-4">Voulez-vous reinitialiser votre mot de passe ?</h4>
+							<h4 className="card-title mb-4">
+								{lang === 'fr' ? (
+									`Voulez-vous reinitialiser votre mot de passe ?`
+								) : (
+									'Would you like to reset your password?'
+								)}
+							</h4>
 							<form>
 								<div className="form-group">
 									<input
 										className="form-control"
-										placeholder="Entrez votre adresse email ici"
+										placeholder={
+											lang === 'fr' ? (
+												'Entrez votre adresse email ici...'
+											) : (
+												'Enter yout email address here...'
+											)
+										}
 										type="text"
 										value={email}
 										onChange={(e) => setEmail(e.target.value)}
@@ -98,7 +118,15 @@ const ForgotPasswordPage = ({ router }) => {
 										onClick={handleSubmit}
 										disabled={!email}
 									>
-										{loading ? 'En cours....' : 'Reinitialiser votre mot de passe'}
+										{lang === 'fr' ? loading ? (
+											'En cours....'
+										) : (
+											'Envoyer le lien de réinitialisation du mot de passe'
+										) : loading ? (
+											'Processing....'
+										) : (
+											'Send reset password link'
+										)}
 									</button>
 								</div>
 							</form>

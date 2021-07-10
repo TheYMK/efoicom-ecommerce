@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 
 const SingleItem = ({ imageSrc, item }) => {
 	const { title, description, provider_name, provider_phone_number, provider_address } = item;
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, lang } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -20,7 +20,13 @@ const SingleItem = ({ imageSrc, item }) => {
 		if (user && user.token) {
 			addItemToWishlist(user.token, item._id)
 				.then((res) => {
-					toast.success('Article ajouté dans vos favoris');
+					if (lang === 'fr') {
+						toast.success('Article ajouté dans vos favoris.');
+					}
+					if (lang === 'en') {
+						toast.success('Item added to your favorites.');
+					}
+
 					getUserWishlistCount(user.token)
 						.then((response2) => {
 							dispatch({
@@ -34,10 +40,20 @@ const SingleItem = ({ imageSrc, item }) => {
 				})
 				.catch((err) => {
 					console.log(err);
-					toast.error(`Oops! Echec de l'opération. Veuillez réessayer`);
+					if (lang === 'fr') {
+						toast.success(`Oops! Echec de l'opération. Veuillez réessayer !`);
+					}
+					if (lang === 'en') {
+						toast.success('Oops ! Something wrong happened. Please try again !');
+					}
 				});
 		} else {
-			toast.error(`Oops! Vous devez être connecter pour pouvoir ajouté un article dans vos favoris`);
+			if (lang === 'fr') {
+				toast.success(`Oops! Vous devez être connecter pour pouvoir ajouté un article dans vos favoris.`);
+			}
+			if (lang === 'en') {
+				toast.success('Oops ! You must be connected first before adding an item to your favorites.');
+			}
 		}
 	};
 
@@ -62,7 +78,7 @@ const SingleItem = ({ imageSrc, item }) => {
 					</p>
 					<Link href={`/item/${item.slug}`}>
 						<a className="btn btn-primary rounded-pill">
-							<i className="fas fa-cart-plus" /> Voir l'article
+							<i className="fas fa-cart-plus" /> {lang === 'fr' ? `Voir l'article` : 'View item'}
 						</a>
 					</Link>
 
@@ -80,13 +96,17 @@ const SingleItem = ({ imageSrc, item }) => {
 							<strong className="text-dark">Description:</strong> <br /> {description}
 						</p>
 						<p>
-							<strong className="text-dark">Nom du fournisseur:</strong> <br /> {provider_name}
+							<strong className="text-dark">
+								{lang === 'fr' ? 'Nom du fournisseur:' : 'Provider name:'}
+							</strong>{' '}
+							<br /> {provider_name}
 						</p>
 						<p>
 							<strong className="text-dark">Contact:</strong> <br /> {provider_phone_number}
 						</p>
 						<p>
-							<strong className="text-dark">Adresse:</strong> <br /> {provider_address}
+							<strong className="text-dark">{lang === 'fr' ? 'Adresse:' : 'Address:'}</strong> <br />{' '}
+							{provider_address}
 						</p>
 					</div>
 				</div>

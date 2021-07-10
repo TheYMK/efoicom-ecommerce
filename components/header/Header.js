@@ -8,7 +8,7 @@ import Search from './Search';
 
 const Header = () => {
 	const dispatch = useDispatch();
-	const { user, wishlistCount } = useSelector((state) => ({ ...state }));
+	const { user, wishlistCount, lang } = useSelector((state) => ({ ...state }));
 
 	const logout = () => {
 		firebase.auth().signOut();
@@ -17,7 +17,19 @@ const Header = () => {
 			type: 'LOGOUT',
 			payload: null
 		});
-		toast.success('Vous avez été déconnecté!');
+
+		if (lang === 'fr') {
+			toast.success('Vous avez été déconnecté!');
+		}
+
+		if (lang === 'en') {
+			toast.success('You have been signed out!');
+		}
+
+		if (lang === 'km') {
+			toast.success('Vous avez été déconnecté!');
+		}
+
 		setTimeout(() => {
 			Router.push('/auth/login');
 		}, 2000);
@@ -74,7 +86,11 @@ const Header = () => {
 													<i className="fa fa-heart" />
 													<span className="notify">{wishlistCount}</span>
 												</div>
-												<small className="text"> Mes favoris </small>
+												<small className="text">
+													{lang === 'fr' && 'Mes favoris'}
+													{lang === 'en' && 'My favorites'}
+													{lang === 'km' && 'Mes favoris'}
+												</small>
 											</a>
 										</Link>
 									</div>
@@ -87,7 +103,11 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-sign-in-alt" />
 												</div>
-												<small className="text">Se connecter</small>
+												<small className="text">
+													{lang === 'fr' && 'Se connecter'}
+													{lang === 'en' && 'Sign in'}
+													{lang === 'km' && 'Se connecter'}
+												</small>
 											</a>
 										</Link>
 									</div>
@@ -101,7 +121,11 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Mon Profil</small>
+												<small className="text">
+													{lang === 'fr' && 'Mon profil'}
+													{lang === 'en' && 'My profile'}
+													{lang === 'km' && 'Mon profil'}
+												</small>
 											</a>
 										</Link>
 									</div>
@@ -114,7 +138,11 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Mon Profil</small>
+												<small className="text">
+													{lang === 'fr' && 'Mon profil'}
+													{lang === 'en' && 'My profile'}
+													{lang === 'km' && 'Mon profil'}
+												</small>
 											</a>
 										</Link>
 									</div>
@@ -127,7 +155,11 @@ const Header = () => {
 												<div className="icon-area">
 													<i className="fa fa-user" />
 												</div>
-												<small className="text">Mon Profil</small>
+												<small className="text">
+													{lang === 'fr' && 'Mon profil'}
+													{lang === 'en' && 'My profile'}
+													{lang === 'km' && 'Mon profil'}
+												</small>
 											</a>
 										</Link>
 									</div>
@@ -138,7 +170,11 @@ const Header = () => {
 											<div className="icon-area">
 												<i className="fa fa-sign-out-alt" />
 											</div>
-											<small className="text">Deconnexion</small>
+											<small className="text">
+												{lang === 'fr' && 'Déconnexion'}
+												{lang === 'en' && 'Sign out'}
+												{lang === 'km' && 'Déconnexion'}
+											</small>
 										</div>
 									</div>
 								)}

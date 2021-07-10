@@ -24,6 +24,8 @@ import MapBox from '../mapbox/MapBox';
 import MapBox2 from '../mapbox/MapBox2';
 
 const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, handleSubmitRating, vals, setVals }) => {
+	const { user, lang } = useSelector((state) => ({ ...state }));
+
 	const {
 		title,
 		referent_email,
@@ -44,7 +46,6 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 	const [ loading, setLoading ] = useState(false);
 	const [ selectedImage, setSelectedImage ] = useState(images[0]);
 	const [ openContactForm, setOpenContactForm ] = useState(false);
-	const { user } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
 	const [ values, setValues ] = useState({
 		ref_email: referent_info.email,
@@ -72,7 +73,9 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 				});
 		} else {
 			toast.error(
-				'Vous devez avoir un compte et être connecté avant de pouvoir rentrer en contact avec un référent.'
+				lang === 'fr'
+					? 'Vous devez avoir un compte et être connecté avant de pouvoir rentrer en contact avec un référent.'
+					: 'You need to have an account and be logged in before contacting a referent.'
 			);
 			setInterval(() => {
 				Router.push('/auth/login');
@@ -90,13 +93,19 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 		contactReferent(values)
 			.then((res) => {
 				toast.success(
-					'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délais.'
+					lang === 'fr'
+						? 'Votre message à bien été envoyé. Le référent de cet article vous contactera dans les plus brefs délais.'
+						: 'Your message has been sent. The referent of this item will reach back to you as soon as possible.'
 				);
 				setOpenContactForm(false);
 				setLoading(false);
 			})
 			.catch((err) => {
-				toast.error(`Oops! Echec de l'envoi. Veuillez réessayer.`);
+				toast.error(
+					lang === 'fr'
+						? `Oops! Echec de l'envoi. Veuillez réessayer !`
+						: 'Oops! Failed to send your message. Please try again !'
+				);
 				setLoading(false);
 			});
 	};
@@ -142,6 +151,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 				handleSubmitContactForm={handleSubmitContactForm}
 				title={`Êtes-vous intéressé par cet article?`}
 				description={`Contacter sans plus tarder le référent:`}
+				lang={lang}
 			/>
 			<section className="section-content bg-white padding-y">
 				<div className="container">
@@ -247,33 +257,34 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 
 								{isRecommended && (
 									<div className="mb-3">
-										<i className="fas fa-clipboard-check text-success" /> Article recommandé
+										<i className="fas fa-clipboard-check text-success" />{' '}
+										{lang === 'fr' ? 'Article recommandé' : 'Recommended item'}
 									</div>
 								)}
 
 								<p>{description}</p>
 
 								<dl className="row">
-									<dt className="col-sm-3">Fournisseur</dt>
+									<dt className="col-sm-3">{lang === 'fr' ? 'Fournisseur:' : 'Provider:'}</dt>
 									<dd className="col-sm-9">
 										<a href="#">{provider_name}</a>
 									</dd>
 
-									<dt className="col-sm-3">Tél</dt>
+									<dt className="col-sm-3">{lang === 'fr' ? 'Tél:' : 'Phone number:'}</dt>
 									<dd className="col-sm-9">{provider_phone_number}</dd>
 
 									{/* <dt className="col-sm-3">Île</dt>
 									<dd className="col-sm-9">{provider_island && provider_island.toUpperCase()}</dd> */}
 
-									<dt className="col-sm-3">Adresse</dt>
+									<dt className="col-sm-3">{lang === 'fr' ? 'Adresse:' : 'Address:'}</dt>
 									<dd className="col-sm-9">{provider_address}</dd>
 
-									<dt className="col-sm-3">Catégorie</dt>
+									<dt className="col-sm-3">{lang === 'fr' ? 'Catégorie:' : 'Category:'}</dt>
 									<dd className="col-sm-9">
 										<span className="tag bg-info text-white">{category.name}</span>
 									</dd>
 
-									<dt className="col-sm-3">Sous-catégorie</dt>
+									<dt className="col-sm-3">{lang === 'fr' ? 'Sous-catégorie:' : 'Subcategory:'}</dt>
 									<dd className="col-sm-9">
 										{subs.map((sub) => (
 											<span key={sub._id} className="tag bg-info text-white mr-2">
@@ -287,7 +298,9 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 									<div className="form-group col-md">
 										<button className="btn  btn-primary mt-2" onClick={handleOpenContactForm}>
 											<i className="fas fa-comments" />
-											<span className="text">Contactez le référent</span>
+											<span className="text">
+												{lang === 'fr' ? 'Contactez le référent' : 'Contact the referent'}
+											</span>
 										</button>
 
 										<button
@@ -295,12 +308,14 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 											onClick={handleAddItemToWishlist}
 										>
 											<i className="fas fa-heart" />{' '}
-											<span className="text">Ajouter aux favoris</span>
+											<span className="text">
+												{lang === 'fr' ? 'Ajouter aux favoris' : 'Add to favorites'}
+											</span>
 										</button>
 									</div>
 								</div>
 								<div>
-									<p>Partager</p>
+									<p>{lang === 'fr' ? 'Partager:' : 'Share:'}</p>
 									<span>
 										<FacebookShareButton
 											quote={`${item.title}`}
@@ -341,7 +356,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 							<div className="card">
 								<div className="card-body">
 									<div className="card-title">
-										<h5>Localisation</h5>
+										<h5>{lang === 'fr' ? 'Localisation:' : 'Location:'}</h5>
 										{/* <MapBox /> */}
 										<MapBox2 />
 									</div>
@@ -354,13 +369,15 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 							<div className="card">
 								<div className="card-body">
 									<div className="card-title">
-										<h5 className="title-description mb-4">Voir aussi</h5>
+										<h5 className="title-description mb-4">
+											{lang === 'fr' ? 'Voir aussi:' : 'View also:'}
+										</h5>
 									</div>
 
 									{relatedItems.length > 0 ? (
 										relatedItems.map((item) => <RelatedItems key={item._id} item={item} />)
 									) : (
-										<p>Aucun article</p>
+										<p>{lang === 'fr' ? 'Aucun article' : 'No item'}</p>
 									)}
 								</div>
 							</div>

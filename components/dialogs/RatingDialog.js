@@ -6,7 +6,7 @@ import { StarOutlined } from '@ant-design/icons';
 import Router, { useRouter } from 'next/router';
 
 function RatingDialog({ children, handleSubmitRating, slug }) {
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, lang } = useSelector((state) => ({ ...state }));
 	const [ modalVisible, setModalVisible ] = useState(false);
 	const router = useRouter();
 
@@ -25,16 +25,28 @@ function RatingDialog({ children, handleSubmitRating, slug }) {
 	return (
 		<React.Fragment>
 			<a onClick={handleModal} className="btn btn-sm btn-primary text-white">
-				{user ? 'Évaluer cet article' : 'Connecter vous pour évaluer cet article'}
+				{lang === 'fr' ? user ? (
+					'Évaluer cet article'
+				) : (
+					'Connecter vous pour évaluer cet article'
+				) : user ? (
+					'Rate this item'
+				) : (
+					'Login to rate this item'
+				)}
 			</a>
 			<Modal
-				title="Évaluer cet article"
+				title={lang === 'fr' ? 'Évaluer cet article' : 'Rate this item'}
 				centered
 				visible={modalVisible}
 				onOk={() => {
 					setModalVisible(false);
 					handleSubmitRating();
-					toast.success('Nous vous remercions pour votre évalution.');
+					toast.success(
+						lang === 'fr'
+							? 'Nous vous remercions pour votre évalution.'
+							: 'Thank you for rating this item !'
+					);
 				}}
 				onCancel={() => {
 					setModalVisible(false);

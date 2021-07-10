@@ -22,9 +22,11 @@ const AllProductsPage = ({
 	allZonesFromDB,
 	router
 }) => {
+	const { search, filter, lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | Tous les articles</title>
+			<title>Bangwé La Massiwa | {lang === 'fr' ? 'Tous les articles' : 'All items'}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"
@@ -54,7 +56,6 @@ const AllProductsPage = ({
 	const { allItems } = values;
 
 	const dispatch = useDispatch();
-	const { search, filter } = useSelector((state) => ({ ...state }));
 	const { text, island_choice } = search;
 	const { byCategory, bySub, byType, byzone } = filter;
 
@@ -297,9 +298,11 @@ const AllProductsPage = ({
 							<div className="card-body">
 								<ol className="breadcrumb float-left">
 									<li className="breadcrumb-item">
-										<a href="/">Accueil</a>
+										<a href="/">{lang === 'fr' ? 'Accueil' : 'Home'}</a>
 									</li>
-									<li className="breadcrumb-item active">Tous les articles</li>
+									<li className="breadcrumb-item active">
+										{lang === 'fr' ? 'Tous les articles' : 'All items'}
+									</li>
 								</ol>
 							</div>
 						</div>

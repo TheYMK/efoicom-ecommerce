@@ -6,11 +6,14 @@ import Login from '../../../components/auth/Login';
 import Header from '../../../components/header/Header';
 import Navbar from '../../../components/header/Navbar';
 import Layout from '../../../components/Layout';
+import { useDispatch, useSelector } from 'react-redux';
 
 const LoginPage = ({ router }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | Se connecter</title>
+			<title>Bangwé La Massiwa | {lang === 'fr' ? 'Se connecter' : 'Sign in'}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"

@@ -23,7 +23,7 @@ const Register = () => {
 	});
 
 	// Get currently logged in user from redux
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, lang } = useSelector((state) => ({ ...state }));
 
 	const [ loading, setLoading ] = useState(false);
 
@@ -82,7 +82,11 @@ const Register = () => {
 		e.preventDefault();
 
 		if (account_type === '') {
-			toast.error('Veuillez remplir tous les champs avant de vous enregistrer.');
+			toast.error(
+				lang === 'fr'
+					? 'Veuillez remplir tous les champs avant de vous enregistrer.'
+					: 'Please complete all fields before registering.'
+			);
 			return;
 		}
 
@@ -98,7 +102,11 @@ const Register = () => {
 				island === '' ||
 				address === ''
 			) {
-				toast.error('Veuillez remplir tous les champs avant de vous enregistrer.');
+				toast.error(
+					lang === 'fr'
+						? 'Veuillez remplir tous les champs avant de vous enregistrer.'
+						: 'Please complete all fields before registering.'
+				);
 				return;
 			}
 		}
@@ -115,13 +123,19 @@ const Register = () => {
 				address === '' ||
 				reference_zone === ''
 			) {
-				toast.error('Veuillez remplir tous les champs avant de vous enregistrer.');
+				toast.error(
+					lang === 'fr'
+						? 'Veuillez remplir tous les champs avant de vous enregistrer.'
+						: 'Please complete all fields before registering.'
+				);
 				return;
 			}
 		}
 		if (termsAndConditionsAccepted === false) {
 			toast.error(
-				'Vous devez lire et accepter les termes et conditions de la plateforme avant de vous enregistrer.'
+				lang === 'fr'
+					? 'Vous devez lire et accepter les termes et conditions de la plateforme avant de vous enregistrer.'
+					: 'You must read and agree to the terms and conditions of the platform before registering.'
 			);
 			return;
 		}
@@ -138,7 +152,9 @@ const Register = () => {
 			await auth.sendSignInLinkToEmail(email, config);
 
 			toast.success(
-				`Un email de confirmation vous a été envoyé. Cliquez sur le lien pour compléter votre enregistrement.`
+				lang === 'fr'
+					? `Un email de confirmation vous a été envoyé. Cliquez sur le lien pour compléter votre enregistrement.`
+					: 'A confirmation email has been sent to you. Click on the link to complete your registration.'
 			);
 
 			// save user info to local storage
@@ -168,7 +184,9 @@ const Register = () => {
 		} catch (err) {
 			console.log(`----> Error occured during registration process (=> /auth/register page): ${err}`);
 			toast.error(
-				"Oops! Une erreur s'est produite lors de la création de votre compte. Assurez-vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, contactez-nous."
+				lang === 'fr'
+					? "Oops! Une erreur s'est produite lors de la création de votre compte. Assurez-vous de remplir tous les champs obligatoires. Veuillez réessayer! Si le problème persiste, contactez-nous."
+					: 'Oops! An error occurred while creating your account. Make sure you complete all the required fields. Try Again! If the problem persists, contact us.'
 			);
 			setLoading(false);
 		}
@@ -179,13 +197,13 @@ const Register = () => {
 			<div className="card mx-auto" style={{ maxWidth: '520px', marginTop: '40px' }}>
 				<article className="card-body">
 					<header className="mb-4">
-						<h4 className="card-title">S'enregistrer</h4>
+						<h4 className="card-title">{lang === 'fr' ? `S'enregistrer` : 'Register'}</h4>
 					</header>
 					<form>
 						<div className="form-row">
 							<div className="col-md-6 form-group">
 								<label htmlFor="first_name">
-									Prénom <span style={{ color: 'red' }}>*</span>
+									{lang === 'fr' ? 'Prénom' : 'First name'} <span style={{ color: 'red' }}>*</span>
 								</label>
 								<input
 									type="text"
@@ -199,7 +217,7 @@ const Register = () => {
 							</div>
 							<div className="col-md-6 form-group">
 								<label htmlFor="last_name">
-									Nom <span style={{ color: 'red' }}>*</span>
+									{lang === 'fr' ? 'Nom' : 'Last name'} <span style={{ color: 'red' }}>*</span>
 								</label>
 								<input
 									type="text"
@@ -232,7 +250,8 @@ const Register = () => {
 							</div>
 							<div className="col-md-6 form-group">
 								<label htmlFor="phone_number">
-									Numéro de téléphone <span style={{ color: 'red' }}>*</span>
+									{lang === 'fr' ? 'Numéro de téléphone' : 'Phone number'}{' '}
+									<span style={{ color: 'red' }}>*</span>
 								</label>
 								<PhoneInput
 									placeholder="3725168"
@@ -247,7 +266,12 @@ const Register = () => {
 
 						<div className="form-group">
 							<label>
-								Quel type de compte souhaitez-vous créer? <small style={{ color: 'red' }}>*</small>
+								{lang === 'fr' ? (
+									'Quel type de compte souhaitez-vous créer ?'
+								) : (
+									'What type of account would you like to create ?'
+								)}{' '}
+								<small style={{ color: 'red' }}>*</small>
 							</label>{' '}
 							<br />
 							<label className="custom-control custom-radio custom-control-inline">
@@ -259,7 +283,10 @@ const Register = () => {
 									value="customer"
 									onChange={(e) => setValues({ ...values, account_type: e.target.value })}
 								/>
-								<span className="custom-control-label"> Compte client </span>
+								<span className="custom-control-label">
+									{' '}
+									{lang === 'fr' ? 'Compte client' : 'Customer account'}{' '}
+								</span>
 							</label>
 							<label className="custom-control custom-radio custom-control-inline">
 								<input
@@ -270,20 +297,29 @@ const Register = () => {
 									value="referent"
 									onChange={(e) => setValues({ ...values, account_type: e.target.value })}
 								/>
-								<span className="custom-control-label"> Compte référent </span>
+								<span className="custom-control-label">
+									{' '}
+									{lang === 'fr' ? 'Compte référent' : 'Referent account'}{' '}
+								</span>
 							</label>
 							<br />
 							<small className="mt-4 mb-4">
-								<i className="fas fa-exclamation-triangle" style={{ color: '#f63b3b' }} /> Les comptes
+								<i className="fas fa-exclamation-triangle" style={{ color: '#f63b3b' }} />{' '}
+								{lang === 'fr' ? (
+									`Les comptes
 								référents sont soumis à une évaluation. Durant cette période d'évaluation vous ne serez
-								pas encore en mesure d'accéder aux fonctionnalités de votre compte.
+								pas encore en mesure d'accéder aux fonctionnalités de votre compte.`
+								) : (
+									'Referent accounts are subject to an evaluation. During this evaluation period you will not yet be able to access the features of your account.'
+								)}
 							</small>
 						</div>
 
 						<div className="form-row">
 							<div className="form-group col-md-6">
 								<label htmlFor="city">
-									Votre ville <small style={{ color: 'red' }}>*</small>
+									{lang === 'fr' ? 'Votre ville' : 'Your city'}{' '}
+									<small style={{ color: 'red' }}>*</small>
 								</label>
 								<input
 									type="text"
@@ -297,7 +333,8 @@ const Register = () => {
 							</div>
 							<div className="form-group col-md-6">
 								<label htmlFor="island">
-									Votre île <small style={{ color: 'red' }}>*</small>
+									{lang === 'fr' ? 'Votre île' : 'Your island'}{' '}
+									<small style={{ color: 'red' }}>*</small>
 								</label>
 								<select
 									id="island"
@@ -306,7 +343,10 @@ const Register = () => {
 									value={island}
 									onChange={(e) => setValues({ ...values, island: e.target.value })}
 								>
-									<option value=""> Veuillez choisir une île...</option>
+									<option value="">
+										{' '}
+										{lang === 'fr' ? 'Veuillez choisir une île' : 'Please choose an island'}...
+									</option>
 									<option value="ndzuwani">Ndzuwani</option>
 									<option value="ngazidja">Ngazidja</option>
 									<option value="mwali">Mwali</option>
@@ -317,7 +357,11 @@ const Register = () => {
 						{account_type === 'referent' && (
 							<div className="form-group">
 								<label htmlFor="reference_zone">
-									Quelle commune souhaitez-vous être le référent?{' '}
+									{lang === 'fr' ? (
+										`Quelle commune souhaitez-vous être le référent ?`
+									) : (
+										'Which region do you want to be the referent?'
+									)}{' '}
 									<small style={{ color: 'red' }}>*</small>
 								</label>
 								<select
@@ -327,7 +371,10 @@ const Register = () => {
 									value={reference_zone}
 									onChange={(e) => setValues({ ...values, reference_zone: e.target.value })}
 								>
-									<option value=""> Veuillez choisir une zone...</option>
+									<option value="">
+										{' '}
+										{lang === 'fr' ? 'Veuillez choisir une commune' : 'Please choose a region'}...
+									</option>
 									{allZones.map((zone, index) => (
 										<option value={zone._id} key={index}>
 											{zone.name} ({zone.island.toUpperCase()})
@@ -340,7 +387,8 @@ const Register = () => {
 						<div className="form-row">
 							<div className="form-group col-md-12">
 								<label htmlFor="address">
-									Votre adresse complète <small style={{ color: 'red' }}>*</small>
+									{lang === 'fr' ? 'Votre adresse complète' : 'Your full address'}{' '}
+									<small style={{ color: 'red' }}>*</small>
 								</label>
 								<input
 									className="form-control"
@@ -359,10 +407,24 @@ const Register = () => {
 								disabled={!termsAndConditionsAccepted}
 								onClick={handleSubmit}
 							>
-								{loading ? 'En cours...' : "S'enregistrer"}
+								{lang === 'fr' ? loading ? (
+									'En cours...'
+								) : (
+									"S'enregistrer"
+								) : loading ? (
+									'Processing...'
+								) : (
+									'Register'
+								)}
 							</button>
 							{termsAndConditionsAccepted === false ? (
-								<small>Vous devez cocher la case ci-dessous pour pouvoir vous enregister</small>
+								<small>
+									{lang === 'fr' ? (
+										'Vous devez cocher la case ci-dessous pour pouvoir vous enregister.'
+									) : (
+										'You must check the box below to be able to register.'
+									)}
+								</small>
 							) : (
 								''
 							)}
@@ -377,7 +439,10 @@ const Register = () => {
 								/>
 								<div className="custom-control-label">
 									{' '}
-									J'accepte les <a href="#">termes et conditions</a>{' '}
+									{lang === 'fr' ? `J'accepte les` : 'I agree to'}{' '}
+									<a href="#">
+										{lang === 'fr' ? 'Termes et Conditions' : 'Terms and Conditions'}
+									</a>{' '}
 									<small style={{ color: 'red' }}>*</small>{' '}
 								</div>{' '}
 							</label>
@@ -386,9 +451,9 @@ const Register = () => {
 				</article>
 			</div>
 			<p className="text-center mt-4">
-				Avez-vous déjà un compte?{' '}
+				{lang === 'fr' ? 'Avez-vous déjà un compte ?' : 'Already have an account?'}{' '}
 				<Link href="/auth/login">
-					<a style={{ color: '#FF914D' }}>Connectez-vous</a>
+					<a style={{ color: '#FF914D' }}>{lang === 'fr' ? 'Connectez-vous' : 'Sign in'}</a>
 				</Link>
 			</p>
 			<br />

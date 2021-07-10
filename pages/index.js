@@ -15,6 +15,7 @@ import { getAllRecommendedItems } from '../actions/item';
 import Blogs from '../components/blogs/Blogs';
 import { getBlogsWithCategoriesAndTags } from '../actions/blog';
 import Brands from '../components/brands/Brands';
+import { useDispatch, useSelector } from 'react-redux';
 
 const HomePage = ({
 	allCategories,
@@ -28,9 +29,11 @@ const HomePage = ({
 	blogsSkip,
 	router
 }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | Accueil</title>
+			<title>{lang === 'fr' ? `Bangwé La Massiwa | Accueil` : `Bangwé La Massiwa | Home`}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"

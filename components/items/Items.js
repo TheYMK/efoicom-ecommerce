@@ -6,6 +6,7 @@ import Router from 'next/router';
 
 const Items = ({ items_type, items }) => {
 	const dispatch = useDispatch();
+	const { lang } = useSelector((state) => ({ ...state }));
 
 	const handleClickProducts = () => {
 		dispatch({
@@ -28,9 +29,21 @@ const Items = ({ items_type, items }) => {
 		<React.Fragment>
 			<section className="padding-bottom-sm">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">
-						{items_type === 'products' ? 'Produits' : 'Services'} recommandés
-					</h4>
+					{lang === 'fr' && (
+						<h4 className="title-section text-uppercase">
+							{items_type === 'products' ? 'Produits' : 'Services'} recommandés
+						</h4>
+					)}
+					{lang === 'en' && (
+						<h4 className="title-section text-uppercase">
+							Recommended {items_type === 'products' ? 'products' : 'services'}
+						</h4>
+					)}
+					{lang === 'km' && (
+						<h4 className="title-section text-uppercase">
+							{items_type === 'products' ? 'Produits' : 'Services'} recommandés
+						</h4>
+					)}
 				</header>
 
 				<div className="container">
@@ -48,11 +61,11 @@ const Items = ({ items_type, items }) => {
 				<div className="text-center">
 					{items_type === 'products' ? (
 						<button className="btn btn-primary mt-4 rounded-pill" onClick={handleClickProducts}>
-							Tous les produits
+							{lang === 'fr' ? 'Tous les produits' : 'All products'}
 						</button>
 					) : (
 						<button className="btn btn-primary mt-4 rounded-pill" onClick={handleClickServices}>
-							Tous les services
+							{lang === 'fr' ? 'Tous les services' : 'All services'}
 						</button>
 					)}
 				</div>

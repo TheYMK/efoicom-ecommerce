@@ -14,7 +14,7 @@ const Login = () => {
 	});
 
 	const { email, password } = values;
-	const { user } = useSelector((state) => ({ ...state }));
+	const { user, lang } = useSelector((state) => ({ ...state }));
 	const dispatch = useDispatch();
 	const [ loading, setLoading ] = useState(false);
 
@@ -94,7 +94,9 @@ const Login = () => {
 					});
 
 					toast.success(
-						'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience sur notre plateforme.'
+						lang === 'fr'
+							? `'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience sur notre plateforme.'`
+							: `Karibu on Bangwé La Massiwa. We wish you a pleasant experience on our platform.`
 					);
 					setLoading(false);
 					roleBasedRedirect(response);
@@ -107,7 +109,9 @@ const Login = () => {
 			setLoading(false);
 			console.log(`----> Error occured during login process (=> /auth/login page): ${err}`);
 			toast.error(
-				`Email ou mot de passe non valide. Verifiez encore une fois vos information. Si vous n'avez pas de compte, assurez vous d'en créer un avant de vous connecter.`
+				lang === 'fr'
+					? `Email ou mot de passe non valide. Verifiez encore une fois vos information. Si vous n'avez pas de compte, assurez vous d'en créer un avant de vous connecter.`
+					: `Invalid email or password. Double check your information. If you don't have an account, be sure to create one before signing in.`
 			);
 		}
 	};
@@ -155,7 +159,7 @@ const Login = () => {
 		<React.Fragment>
 			<div className="card mx-auto" style={{ maxWidth: '380px', marginTop: '100px' }}>
 				<div className="card-body">
-					<h4 className="card-title mb-4">Connexion</h4>
+					<h4 className="card-title mb-4">{lang === 'fr' ? 'Se connecter' : 'Sign in'}</h4>
 					<form>
 						{/* <a href="#" className="btn btn-facebook btn-block mb-2">
 							{' '}
@@ -178,7 +182,7 @@ const Login = () => {
 						<div className="form-group">
 							<input
 								className="form-control"
-								placeholder="Mot de passe"
+								placeholder={lang === 'fr' ? 'Mot de passe' : 'Password'}
 								type="password"
 								value={password}
 								onChange={(e) => setValues({ ...values, password: e.target.value })}
@@ -187,22 +191,33 @@ const Login = () => {
 
 						<div className="form-group">
 							<Link href="/auth/password/forgot">
-								<a className="float-right">Mot de passe oublié?</a>
+								<a className="float-right">
+									{lang === 'fr' ? 'Mot de passe oublié ?' : 'Forgot password ?'}
+								</a>
 							</Link>
 						</div>
 						<div className="form-group">
 							<button className="btn btn-primary btn-block" onClick={handleSubmit}>
-								{loading ? 'En cours...' : 'Se Connecter'}
+								{lang === 'fr' ? loading ? (
+									'En cours...'
+								) : (
+									'Se Connecter'
+								) : loading ? (
+									'Processing...'
+								) : (
+									'Sign in'
+								)}
 							</button>
 						</div>
 					</form>
 				</div>
 			</div>
 			<p className="text-center mt-4">
-				Vous n'avez pas de compte?{' '}
+				{lang === 'fr' ? `Vous n'avez pas de compte ?` : `You don't have an account yet ?`}{' '}
 				<Link href="/auth/register">
 					<a style={{ color: '#FF914D' }}>
-						<i className="fas fa-hand-point-right" /> Enregistrez-vous ici
+						<i className="fas fa-hand-point-right" />{' '}
+						{lang === 'fr' ? `Enregistrez-vous ici` : 'Register here'}
 					</a>
 				</Link>
 			</p>

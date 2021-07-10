@@ -6,8 +6,11 @@ import FAQ from '../../components/faq/faq';
 import Header from '../../components/header/Header';
 import Navbar from '../../components/header/Navbar';
 import Layout from '../../components/Layout';
+import { useSelector } from 'react-redux';
 
 const FaqPage = ({ router }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
 			<title>Bangwé La Massiwa | F.A.Q</title>
@@ -43,7 +46,7 @@ const FaqPage = ({ router }) => {
 				</header>
 				<section className="section-pagetop bg-light">
 					<div className="container">
-						<h2 className="title-page">Foire aux questions</h2>
+						<h2 className="title-page">{lang === 'fr' ? 'Foire aux questions' : 'F.A.Q'}</h2>
 					</div>
 				</section>
 				<section className="section-content bg-white padding-y">

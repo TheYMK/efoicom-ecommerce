@@ -3,7 +3,7 @@ import Router from 'next/router';
 import { auth } from '../../../actions/firebase';
 import { toast } from 'react-toastify';
 import Layout from '../../../components/Layout';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../../../components/header/Header';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -12,9 +12,11 @@ import { withRouter } from 'next/router';
 import { createOrUpdateUser } from '../../../actions/auth';
 
 const RegisterCompletePage = ({ router }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | Sécurisez votre compte</title>
+			<title>Bangwé La Massiwa | {lang === 'fr' ? 'Sécurisez votre compte' : 'Secure your account'}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"
@@ -100,7 +102,7 @@ const RegisterCompletePage = ({ router }) => {
 
 		// check if passwords match
 		if (password !== password_confirm) {
-			toast.error('Les mots de passe doivent être identiques!');
+			toast.error(lang === 'fr' ? 'Les mots de passe doivent être identiques !' : 'Passwords must be identical!');
 			setLoading(false);
 			return;
 		}
@@ -117,7 +119,9 @@ const RegisterCompletePage = ({ router }) => {
 			!address
 		) {
 			toast.error(
-				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteurs. Veuillez réessayer."
+				lang === 'fr'
+					? "Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteurs. Veuillez réessayer."
+					: 'Oops! We were unable to retrieve your information. This can be due to several factors. Try Again.'
 			);
 
 			setLoading(false);
@@ -127,7 +131,9 @@ const RegisterCompletePage = ({ router }) => {
 
 		if (account_type === 'referent' && !reference_zone) {
 			toast.error(
-				"Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteurs. Veuillez réessayer."
+				lang === 'fr'
+					? "Oops! Nous n'avons pas pu recupérer vos informations. Ceci peut être dû à plusieurs facteurs. Veuillez réessayer."
+					: 'Oops! We were unable to retrieve your information. This can be due to several factors. Try Again.'
 			);
 
 			setLoading(false);
@@ -136,7 +142,11 @@ const RegisterCompletePage = ({ router }) => {
 		}
 
 		if (password.length < 6) {
-			toast.error('Votre mot de passe doit avoir au minimum 6 caractères.');
+			toast.error(
+				lang === 'fr'
+					? 'Votre mot de passe doit avoir au minimum 6 caractères.'
+					: 'Your password must be at least 6 characters long.'
+			);
 			setLoading(false);
 			return;
 		}
@@ -176,7 +186,9 @@ const RegisterCompletePage = ({ router }) => {
 							}
 						});
 						toast.success(
-							'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience sur notre plateforme.'
+							lang === 'fr'
+								? 'Karibu sur Bangwé La Massiwa. Nous vous souhaitons une agréable expérience sur notre plateforme.'
+								: 'Karibu on Bangwé La Massiwa. We wish you a pleasant experience on our platform.'
 						);
 					})
 					.catch((err) => {
@@ -184,7 +196,9 @@ const RegisterCompletePage = ({ router }) => {
 							`----> Error occured during registration completion process (=> /auth/complete page): ${err}`
 						);
 						toast.error(
-							"Oops! une erreur s'est produite durant la création de votre compte. Veuillez réessayer! Contacter nous si le problème persiste."
+							lang === 'fr'
+								? "Oops! une erreur s'est produite durant la création de votre compte. Veuillez réessayer! Contacter nous si le problème persiste."
+								: 'Oops! an error occurred while creating your account. Try Again! Contact us if the problem persists.'
 						);
 					});
 
@@ -195,7 +209,9 @@ const RegisterCompletePage = ({ router }) => {
 			setLoading(false);
 			console.log(`----> Error occured during registration completion process (=> /auth/complete page): ${err}`);
 			toast.error(
-				"Oops! une erreur s'est produite durant la création de votre compte. Veuillez réessayer! Contacter nous si le problème persiste."
+				lang === 'fr'
+					? "Oops! une erreur s'est produite durant la création de votre compte. Veuillez réessayer! Contacter nous si le problème persiste."
+					: 'Oops! an error occurred while creating your account. Try Again! Contact us if the problem persists.'
 			);
 		}
 	};
@@ -212,18 +228,26 @@ const RegisterCompletePage = ({ router }) => {
 					<div className="card mx-auto" style={{ maxWidth: '520px', marginTop: '40px' }}>
 						<article className="card-body">
 							<header className="mb-4">
-								<h4 className="card-title">Complétez votre compte</h4>
+								<h4 className="card-title">
+									{lang === 'fr' ? 'Sécuriser votre compte' : 'Secure your account'}
+								</h4>
 								<small>
-									Si les informations suivantes sont erronées, nous vous invitons à recommencer la
-									procédure d'enregistrement en{' '}
+									{lang === 'fr' ? (
+										`Si les informations suivantes sont erronées, nous vous invitons à recommencer la
+									procédure d'enregistrement en`
+									) : (
+										'If the following informations are incorrect, we invite you to start the registration procedure again by'
+									)}{' '}
 									<Link href="/auth/register">
-										<a style={{ color: '#ff914d' }}>cliquant ici</a>
+										<a style={{ color: '#ff914d' }}>
+											{lang === 'fr' ? 'cliquant ici' : 'clicking here'}
+										</a>
 									</Link>.
 								</small>
 							</header>
 							<div className="mb-4">
 								<p>
-									Nom et Prénom:{' '}
+									{lang === 'fr' ? 'Nom et Prénom' : 'Full name'}:{' '}
 									<strong>
 										{first_name} {last_name}
 									</strong>
@@ -232,35 +256,38 @@ const RegisterCompletePage = ({ router }) => {
 									Email: <strong>{email}</strong>
 								</p>
 								<p>
-									Tél: <strong>{phone_number}</strong>
+									{lang === 'fr' ? 'Tél' : 'Phone number'}: <strong>{phone_number}</strong>
 								</p>
 								{account_type &&
 								account_type === 'customer' && (
 									<p>
-										Type de compte: <strong>Client</strong>
+										{lang === 'fr' ? 'Type de compte' : 'Account type'}:{' '}
+										<strong>{lang === 'fr' ? 'Client' : 'Customer'}</strong>
 									</p>
 								)}
 								{account_type &&
 								account_type === 'referent' && (
 									<p>
-										Type de compte: <strong>Référent</strong>
+										{lang === 'fr' ? 'Type de compte' : 'Account type'}:{' '}
+										<strong>{lang === 'fr' ? 'Référent' : 'Referent'}</strong>
 									</p>
 								)}
 								<p>
-									Ville: <strong>{city}</strong>
+									{lang === 'fr' ? 'Ville' : 'City'}: <strong>{city}</strong>
 								</p>
 								<p>
-									Île: <strong>{island}</strong>
+									{lang === 'fr' ? 'Île' : 'Island'}: <strong>{island}</strong>
 								</p>
 								<p>
-									Adresse: <strong>{address}</strong>
+									{lang === 'fr' ? 'Adresse' : 'Address'}: <strong>{address}</strong>
 								</p>
 							</div>
 							<form>
 								<div className="form-row">
 									<div className="col form-group">
 										<label htmlFor="password">
-											Mot de passe <span style={{ color: 'red' }}>*</span>
+											{lang === 'fr' ? 'Mot de passe' : 'Password'}{' '}
+											<span style={{ color: 'red' }}>*</span>
 										</label>
 										<input
 											type="password"
@@ -274,7 +301,12 @@ const RegisterCompletePage = ({ router }) => {
 									</div>
 									<div className="col form-group">
 										<label htmlFor="password_confirm">
-											Confirmer votre mot de passe <span style={{ color: 'red' }}>*</span>
+											{lang === 'fr' ? (
+												'Confirmer votre mot de passe'
+											) : (
+												'Confirm your password'
+											)}{' '}
+											<span style={{ color: 'red' }}>*</span>
 										</label>
 										<input
 											type="password"
@@ -289,7 +321,15 @@ const RegisterCompletePage = ({ router }) => {
 								</div>
 								<div className="form-group">
 									<button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit}>
-										{loading ? 'En cours...' : 'Validation'}
+										{lang === 'fr' ? loading ? (
+											'En cours...'
+										) : (
+											'Validation'
+										) : loading ? (
+											'Processing...'
+										) : (
+											'Validate'
+										)}
 									</button>
 								</div>
 							</form>

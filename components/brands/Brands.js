@@ -1,11 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Brands = () => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	return (
 		<React.Fragment>
 			<section className="padding-bottom">
 				<header className="section-heading heading-line">
-					<h4 className="title-section text-uppercase">Nos partenaires</h4>
+					<h4 className="title-section text-uppercase">
+						{lang === 'fr' ? 'Nos partenaires' : 'Our partners'}
+					</h4>
 				</header>
 
 				<div className="container">

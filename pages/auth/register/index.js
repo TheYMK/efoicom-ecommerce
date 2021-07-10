@@ -6,11 +6,14 @@ import Register from '../../../components/auth/Register';
 import Header from '../../../components/header/Header';
 import Layout from '../../../components/Layout';
 import VideoPlayer from '../../../components/videoplayer/VideoPlayer';
+import { useDispatch, useSelector } from 'react-redux';
 
 const RegisterPage = ({ router }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const head = () => (
 		<Head>
-			<title>Bangwé La Massiwa | S'enregistrer</title>
+			<title>Bangwé La Massiwa | {lang === 'fr' ? `S'enregistrer` : 'Register'}</title>
 			<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
 			<meta
 				name="description"
@@ -40,7 +43,7 @@ const RegisterPage = ({ router }) => {
 				</header>
 				<section className="section-content padding-y" style={{ overflow: 'hidden' }}>
 					<div className="row">
-						<div className="col-md-6">
+						{/* <div className="col-md-6">
 							<div className="container mt-5">
 								<h5>
 									<i className="fas fa-question-circle" /> Comment s'enregistrer?
@@ -58,8 +61,8 @@ const RegisterPage = ({ router }) => {
 									muted={false}
 								/>
 							</div>
-						</div>
-						<div className="col-md-6">
+						</div> */}
+						<div className="col-md-12">
 							<Register />
 						</div>
 					</div>

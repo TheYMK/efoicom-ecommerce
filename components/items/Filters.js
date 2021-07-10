@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const Filters = ({
 	selectedIsland,
@@ -17,12 +18,14 @@ const Filters = ({
 	selectedZone,
 	handleZoneChange
 }) => {
+	const { lang } = useSelector((state) => ({ ...state }));
+
 	const showIslands = () => (
 		<article className="filter-group">
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">
 					{' '}
-					Filtrer par île{' '}
+					{lang === 'fr' ? 'Filtrer par île' : 'Filter by island'}{' '}
 				</a>
 			</h6>
 			<div className="filter-content collapse show" id="collapse_1">
@@ -36,7 +39,7 @@ const Filters = ({
 							className="custom-control-input"
 							onChange={handleIslandChange}
 						/>
-						<div className="custom-control-label">Toutes les îles</div>
+						<div className="custom-control-label">{lang === 'fr' ? 'Toutes les îles' : 'All islands'}</div>
 					</label>
 
 					<label className="custom-control custom-radio">
@@ -84,9 +87,10 @@ const Filters = ({
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">
 					{' '}
-					Filtrer par catégories{' '}
+					{lang === 'fr' ? 'Filtrer par catégories' : 'Filter by categories'}{' '}
 				</a>
-				<small>Selection multiple</small>
+				<br />
+				<small>{lang === 'fr' ? 'Selection multiple' : 'Multiple selection'}</small>
 			</h6>
 			<div className="filter-content collapse" id="collapse_2">
 				<div className="inner">
@@ -112,7 +116,7 @@ const Filters = ({
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3">
 					{' '}
-					Filtrer par réputation{' '}
+					{lang === 'fr' ? 'Filtrer par réputation' : 'Filter by rating'}{' '}
 				</a>
 			</h6>
 			<div className="filter-content collapse" id="collapse_3">
@@ -199,7 +203,7 @@ const Filters = ({
 							className="custom-control-input"
 							onChange={handleRatingChange}
 						/>
-						<div className="custom-control-label text-warning">Tous</div>
+						<div className="custom-control-label text-warning">{lang === 'fr' ? 'Tous' : 'All'}</div>
 					</label>
 				</div>
 			</div>
@@ -211,7 +215,7 @@ const Filters = ({
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_4">
 					{' '}
-					Filtrer par sous-catégorie{' '}
+					{lang === 'fr' ? 'Filtrer par sous-catégorie' : 'Filter by subcategory'}{' '}
 				</a>
 			</h6>
 			<div className="filter-content collapse" id="collapse_4">
@@ -231,7 +235,7 @@ const Filters = ({
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5">
 					{' '}
-					Filtrer par type d'article{' '}
+					{lang === 'fr' ? `Filtrer par type d'article` : 'Filter by type'}{' '}
 				</a>
 			</h6>
 			<div className="filter-content collapse" id="collapse_5">
@@ -245,7 +249,7 @@ const Filters = ({
 							className="custom-control-input"
 							onChange={handleTypeChange}
 						/>
-						<div className="custom-control-label">Tous types</div>
+						<div className="custom-control-label">{lang === 'fr' ? 'Tous types' : 'All types'}</div>
 					</label>
 
 					<label className="custom-control custom-radio">
@@ -257,7 +261,7 @@ const Filters = ({
 							onChange={handleTypeChange}
 							className="custom-control-input"
 						/>
-						<div className="custom-control-label">Produits</div>
+						<div className="custom-control-label">{lang === 'fr' ? 'Produits' : 'Products'}</div>
 					</label>
 
 					<label className="custom-control custom-radio">
@@ -269,7 +273,7 @@ const Filters = ({
 							onChange={handleTypeChange}
 							className="custom-control-input"
 						/>
-						<div className="custom-control-label">Services</div>
+						<div className="custom-control-label">{lang === 'fr' ? 'Services' : 'Services'}</div>
 					</label>
 				</div>
 			</div>
@@ -281,14 +285,14 @@ const Filters = ({
 			<h6 className="title">
 				<a href="#" className="dropdown-toggle" data-toggle="collapse" data-target="#collapse_6">
 					{' '}
-					Filtrer par commune{' '}
+					{lang === 'fr' ? 'Filtrer par commune' : 'Filter by region'}{' '}
 				</a>
 			</h6>
 			<div className="filter-content collapse show" id="collapse_6">
 				<div className="inner">
 					<div className="form-inline mr-auto">
 						<select className="form-control" value={selectedZone} onChange={handleZoneChange}>
-							<option value="allzones">Toutes les communes</option>
+							<option value="allzones">{lang === 'fr' ? 'Toutes les communes' : 'All regions'}</option>
 							{allZonesFromDB.map((zone, index) => (
 								<option value={zone._id} key={zone._id}>
 									{zone.name} ({zone.island})
