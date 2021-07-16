@@ -78,9 +78,9 @@ const FAQ = () => {
 								<div id="faq4" className="collapse" data-parent=".faq-list">
 									<p>
 										{lang === 'fr' ? (
-											`Pour le moment, nous n'acceptons pas les paiements en ligne sur notre plateforme. Notre plateforme est là dans le seul mais de faciliter la communication entre vous et les clients potentiels.`
+											`Pour le moment, nous n'acceptons pas les paiements en ligne sur notre plateforme. Notre plateforme est là dans le seul but de faciliter la communication entre vous et les clients potentiels.`
 										) : (
-											'At the moment, we do not accept online payments on our platform. Our platform is there in the only but to facilitate communication between you and potential customers.'
+											'At the moment, we do not accept online payments on our platform. Our platform is there with the only goal to facilitate communication between you and potential customers.'
 										)}
 									</p>
 								</div>
@@ -98,7 +98,7 @@ const FAQ = () => {
 								<div id="faq5" className="collapse" data-parent=".faq-list">
 									<p>
 										{lang === 'fr' ? (
-											`Il existe deux manières de télécharger un produit ou un service sur notre plateforme. Vous pouvez soit créer un compte référent par vous-même et soumettre votre produit ou service. Ou utilisez notre plateforme pour trouver et contacter un référent existant situé dans votre commune qui peut vous aider dans l'ensemble de ce processus.`
+											`Il existe deux manières de mettre en ligne un produit ou un service sur notre plateforme. Vous pouvez soit créer un compte référent par vous-même et soumettre votre produit ou service. Ou utilisez notre plateforme pour trouver et contacter un référent existant situé dans votre commune qui peut vous aider dans l'ensemble de ce processus.`
 										) : (
 											'There are two ways to upload a product or service to our platform. You can either create a referent account by yourself and submit your product or service. Or use our platform to find and contact an existing referent located in your area who can help you with this entire process.'
 										)}

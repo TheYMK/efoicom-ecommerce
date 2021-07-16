@@ -71,8 +71,16 @@ class MyDocument extends Document {
 					<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 					{/* <!-- Font awesome 5 --> */}
 					<link href="/static/fonts/fontawesome/css/all.min.css" type="text/css" rel="stylesheet" />
+					{/* <link
+						rel="stylesheet"
+						href="https://cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css"
+						integrity="sha512-DanfxWBasQtq+RtkNAEDTdX4Q6BPCJQ/kexi/RftcP0BcA4NIJPSi7i31Vl+Yl5OCfgZkdJmCqz+byTOIIRboQ=="
+						crossOrigin="anonymous"
+						referrerPolicy="no-referrer"
+					/> */}
 
 					{/* <!-- custom style --> */}
+					{/* <link href="/nprogress/nprogress.css" rel="stylesheet" type="text/css" /> */}
 					<link href="/static/css/ui.css" rel="stylesheet" type="text/css" />
 					<link href="/static/css/responsive.css" rel="stylesheet" type="text/css" />
 

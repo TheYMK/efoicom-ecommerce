@@ -8,14 +8,11 @@ const Main = () => {
 					<div id="carousel1_indicator" className="slider-home-banner carousel slide" data-ride="carousel">
 						<ol className="carousel-indicators">
 							<li data-target="#carousel1_indicator" data-slide-to="0" className="active" />
-							<li data-target="#carousel1_indicator" data-slide-to="1" />
+							{/* <li data-target="#carousel1_indicator" data-slide-to="1" /> */}
 						</ol>
 						<div className="carousel-inner">
 							<div className="carousel-item active">
-								<img src="/static/images/banners/karibu.png" alt="First slide" />
-							</div>
-							<div className="carousel-item">
-								<img src="/static/images/banners/karibu.png" alt="Second slide" />
+								<img src="/static/images/banners/karibu.webp" alt="First slide" />
 							</div>
 						</div>
 						<a

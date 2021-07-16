@@ -46,7 +46,9 @@ const FaqPage = ({ router }) => {
 				</header>
 				<section className="section-pagetop bg-light">
 					<div className="container">
-						<h2 className="title-page">{lang === 'fr' ? 'Foire aux questions' : 'F.A.Q'}</h2>
+						<h2 className="title-page">
+							{lang === 'fr' ? 'Foire aux questions' : 'Frequently Asked Questions'}
+						</h2>
 					</div>
 				</section>
 				<section className="section-content bg-white padding-y">

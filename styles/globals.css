@@ -558,7 +558,7 @@ section.categories {
   .faq .faq-list a {
 	display: block;
 	position: relative;
-	font-family: #f56a6a;
+	font-family: #ff914d;
 	font-size: 18px;
 	font-weight: 500;
   }
@@ -576,7 +576,7 @@ section.categories {
   }
   
   .faq .faq-list a.collapse {
-	color: #f56a6a;
+	color: #ff914d;
   }
   
   .faq .faq-list a.collapsed {
@@ -584,7 +584,7 @@ section.categories {
   }
   
   .faq .faq-list a.collapsed:hover {
-	color: #f56a6a;
+	color: #ff914d;
   }
   
   .faq .faq-list a.collapsed i::before {
