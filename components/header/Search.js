@@ -41,7 +41,7 @@ const Search = () => {
 					value={island_choice}
 					onChange={handleChange}
 				>
-					<option value="all">
+					<option value="allIslands">
 						{lang === 'fr' && 'Toutes les îles'}
 						{lang === 'en' && 'All islands'}
 						{lang === 'km' && 'Toutes les îles'}
