@@ -60,10 +60,7 @@ const ItemsDisplay = ({ items }) => {
 						<Link href={`/item/${item.slug}`}>
 							<a className="img-wrap">
 								{item.isRecommended ? (
-									<span className="badge badge-success">
-										{' '}
-										{lang === 'fr' ? 'Recommandé' : 'Recommended'}{' '}
-									</span>
+									<span className="badge badge-success"> {lang === 'fr' ? 'Recommandé' : 'Recommended'} </span>
 								) : (
 									''
 								)}
@@ -78,7 +75,7 @@ const ItemsDisplay = ({ items }) => {
 								<a className="h5 title">{item.title}</a>
 							</Link>
 
-							<p className="mb-2">{item.description}</p>
+							<p className="mb-2">{item.description && item.description.substring(0, 300)}...</p>
 							{item && item.ratings && item.ratings.length > 0 ? (
 								showAverage(item)
 							) : (
@@ -141,15 +138,11 @@ const ItemsDisplay = ({ items }) => {
 								<Link href={`/item/${item.slug}`}>
 									<a className="btn btn-sm btn-primary mr-2">
 										{' '}
-										<i className="fa fa-cart-plus" />{' '}
-										{lang === 'fr' ? `Voir l'article` : 'View item'}
+										<i className="fa fa-cart-plus" /> {lang === 'fr' ? `Voir l'article` : 'View item'}
 									</a>
 								</Link>
 
-								<button
-									className="btn btn-sm btn-danger"
-									onClick={(e) => handleAddItemToWishlist(item._id)}
-								>
+								<button className="btn btn-sm btn-danger" onClick={(e) => handleAddItemToWishlist(item._id)}>
 									<i className="fa fa-heart" />
 								</button>
 							</p>

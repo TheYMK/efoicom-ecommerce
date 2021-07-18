@@ -169,11 +169,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 									</div>
 									<div className="thumbs-wrap">
 										{images.map((image, index) => (
-											<a
-												key={index}
-												className="item-thumb"
-												onClick={(e) => setSelectedImage(images[index])}
-											>
+											<a key={index} className="item-thumb" onClick={(e) => setSelectedImage(images[index])}>
 												{' '}
 												<img src={image.url} />
 											</a>
@@ -245,8 +241,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 															className="form-control"
 															value={comment}
 															placeholder="Comment..."
-															onChange={(e) =>
-																setVals({ ...vals, comment: e.target.value })}
+															onChange={(e) => setVals({ ...vals, comment: e.target.value })}
 														/>
 													</div>
 												</form>
@@ -261,8 +256,9 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 										{lang === 'fr' ? 'Article recommandé' : 'Recommended item'}
 									</div>
 								)}
-
-								<p>{description}</p>
+								<div className="pure-text mb-3">
+									<p>{description}</p>
+								</div>
 
 								<dl className="row">
 									<dt className="col-sm-3">{lang === 'fr' ? 'Fournisseur:' : 'Provider:'}</dt>
@@ -298,37 +294,24 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 									<div className="form-group col-md">
 										<button className="btn  btn-primary mt-2" onClick={handleOpenContactForm}>
 											<i className="fas fa-comments" />
-											<span className="text">
-												{lang === 'fr' ? 'Contactez le référent' : 'Contact the referent'}
-											</span>
+											<span className="text">{lang === 'fr' ? 'Contactez le référent' : 'Contact the referent'}</span>
 										</button>
 
-										<button
-											className="btn btn-danger mt-2 ml-xl-2"
-											onClick={handleAddItemToWishlist}
-										>
+										<button className="btn btn-danger mt-2 ml-xl-2" onClick={handleAddItemToWishlist}>
 											<i className="fas fa-heart" />{' '}
-											<span className="text">
-												{lang === 'fr' ? 'Ajouter aux favoris' : 'Add to favorites'}
-											</span>
+											<span className="text">{lang === 'fr' ? 'Ajouter aux favoris' : 'Add to favorites'}</span>
 										</button>
 									</div>
 								</div>
 								<div>
 									<p>{lang === 'fr' ? 'Partager:' : 'Share:'}</p>
 									<span>
-										<FacebookShareButton
-											quote={`${item.title}`}
-											url={`https://bangwelamassiwa.com/item/${item.slug}`}
-										>
+										<FacebookShareButton quote={`${item.title}`} url={`https://bangwelamassiwa.com/item/${item.slug}`}>
 											<FacebookIcon size={32} round={true} />
 										</FacebookShareButton>
 									</span>
 									<span className="ml-3">
-										<TwitterShareButton
-											title={`${item.title}`}
-											url={`https://bangwelamassiwa.com/item/${item.slug}`}
-										>
+										<TwitterShareButton title={`${item.title}`} url={`https://bangwelamassiwa.com/item/${item.slug}`}>
 											<TwitterIcon size={32} round={true} />
 										</TwitterShareButton>
 									</span>
@@ -369,9 +352,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 							<div className="card">
 								<div className="card-body">
 									<div className="card-title">
-										<h5 className="title-description mb-4">
-											{lang === 'fr' ? 'Voir aussi:' : 'View also:'}
-										</h5>
+										<h5 className="title-description mb-4">{lang === 'fr' ? 'Voir aussi:' : 'View also:'}</h5>
 									</div>
 
 									{relatedItems.length > 0 ? (

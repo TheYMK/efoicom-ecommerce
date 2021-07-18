@@ -53,6 +53,7 @@ const AboutPage = ({ router }) => {
 
     return (
         <React.Fragment>
+            {head()}
             <Layout>
                 <b className="screen-overlay" />
                 <header className="section-header">
