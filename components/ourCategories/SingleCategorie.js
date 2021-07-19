@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Router from 'next/router';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Image from 'next/image';
 
 const SingleCategorie = ({ category }) => {
 	const dispatch = useDispatch();
@@ -24,10 +25,7 @@ const SingleCategorie = ({ category }) => {
 		<div className="col-md-3 col-sm-6 col-xs-6">
 			<div className="categories-item" data-aos="fade-up">
 				<a onClick={() => handleClick(category._id)}>
-					<img
-						src={category.images.length > 0 ? category.images[0].url : ''}
-						alt={`Categorie ${category.name}`}
-					/>
+					<img src={category.images.length > 0 ? category.images[0].url : ''} alt={`Categorie ${category.name}`} />
 					<h4>{category.name}</h4>
 				</a>
 			</div>

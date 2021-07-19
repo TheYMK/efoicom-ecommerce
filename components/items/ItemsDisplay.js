@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
 import Link from 'next/link';
 import { showAverage } from '../../actions/rating';
+import Image from 'next/image';
 
 const ItemsDisplay = ({ items }) => {
 	const { user, lang } = useSelector((state) => ({ ...state }));
@@ -56,7 +57,7 @@ const ItemsDisplay = ({ items }) => {
 		return items.map((item, index) => (
 			<article className="card card-product-list" key={item._id}>
 				<div className="row no-gutters">
-					<aside className="col-md-3">
+					<aside className="col-md-3 image-container">
 						<Link href={`/item/${item.slug}`}>
 							<a className="img-wrap">
 								{item.isRecommended ? (
@@ -65,7 +66,7 @@ const ItemsDisplay = ({ items }) => {
 									''
 								)}
 
-								<img src={item.images[0].url} />
+								<Image src={item.images[0].url} layout="fill" className="image" />
 							</a>
 						</Link>
 					</aside>

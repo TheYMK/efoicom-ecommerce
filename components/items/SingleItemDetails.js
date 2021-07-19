@@ -22,6 +22,7 @@ import {
 import { EmailIcon, FacebookIcon, TwitterIcon, FacebookMessengerIcon, WhatsappIcon } from 'react-share';
 import MapBox from '../mapbox/MapBox';
 import MapBox2 from '../mapbox/MapBox2';
+import Image from 'next/image';
 
 const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, handleSubmitRating, vals, setVals }) => {
 	const { user, lang } = useSelector((state) => ({ ...state }));
@@ -163,7 +164,7 @@ const SingleItemDetails = ({ item, relatedItems, referent_info, onStarClick, han
 										<div>
 											{' '}
 											<a>
-												<img src={selectedImage.url} />
+												<Image src={selectedImage.url} width={1000} height={750} />
 											</a>
 										</div>
 									</div>

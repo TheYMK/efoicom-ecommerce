@@ -5,6 +5,7 @@ import { addItemToWishlist, getUserWishlistCount } from '../../actions/user';
 import { toast } from 'react-toastify';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Image from 'next/image';
 
 const SingleItem = ({ imageSrc, item }) => {
 	const { title, description, provider_name, provider_phone_number, provider_address } = item;
@@ -63,7 +64,7 @@ const SingleItem = ({ imageSrc, item }) => {
 				<div className="product-card-header product-card-header-image">
 					<Link href={`/item/${item.slug}`}>
 						<a>
-							<img className="img" src={imageSrc} />
+							<Image src={imageSrc} width={1000} height={750} />
 						</a>
 					</Link>
 					<div className="colored-shadow" />

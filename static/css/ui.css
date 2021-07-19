@@ -2209,4 +2209,20 @@ preloader
             transform: rotate(360deg);
   }
 }
+
+.image-container {
+  width: 100%;
+}
+
+.image-container > div {
+  position: unset !important;
+}
+
+.image-container .image {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}
 /*# sourceMappingURL=ui.css.map */
