@@ -88,7 +88,7 @@ const HomePage = ({
 	);
 };
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
 	let skip = 0;
 	let limit = 4;
 
@@ -106,7 +106,8 @@ export async function getServerSideProps({ params }) {
 						totalBlogs: res3.data.size,
 						blogsLimit: limit,
 						blogsSkip: skip
-					}
+					},
+					revalidate: 60 * 60
 				};
 			});
 		});

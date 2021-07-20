@@ -300,9 +300,7 @@ const AllProductsPage = ({
 									<li className="breadcrumb-item">
 										<a href="/">{lang === 'fr' ? 'Accueil' : 'Home'}</a>
 									</li>
-									<li className="breadcrumb-item active">
-										{lang === 'fr' ? 'Tous les articles' : 'All items'}
-									</li>
+									<li className="breadcrumb-item active">{lang === 'fr' ? 'Tous les articles' : 'All items'}</li>
 								</ol>
 							</div>
 						</div>
@@ -335,7 +333,7 @@ const AllProductsPage = ({
 	);
 };
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
 	return getAllItems().then((i) => {
 		return getCategories().then((c) => {
 			return getSubs().then((s) => {
@@ -347,7 +345,8 @@ export async function getServerSideProps({ params }) {
 							allCategoriesFromDB: c.data,
 							allSubsFromDB: s.data,
 							allZonesFromDB: z.data
-						}
+						},
+						revalidate: 60 * 60
 					};
 				});
 			});

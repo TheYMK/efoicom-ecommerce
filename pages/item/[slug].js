@@ -26,9 +26,7 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info, route
 	useEffect(
 		() => {
 			if (item.ratings && user) {
-				let existingRatingObject = item.ratings.find(
-					(rating) => rating.postedBy.toString() === user._id.toString()
-				);
+				let existingRatingObject = item.ratings.find((rating) => rating.postedBy.toString() === user._id.toString());
 
 				if (existingRatingObject !== undefined) {
 					setVals({ ...vals, star: existingRatingObject.star, comment: existingRatingObject.comment });
@@ -89,11 +87,7 @@ const SingleItemPage = ({ itemFromDB, params, relatedItems, referent_info, route
 					<Header />
 					<Navbar />
 				</header>
-				<Breadcrumb
-					category_name={item.category.name}
-					category_id={item.category._id}
-					item_title={item.title}
-				/>
+				<Breadcrumb category_name={item.category.name} category_id={item.category._id} item_title={item.title} />
 				<SingleItemDetails
 					item={item}
 					relatedItems={relatedItems}
