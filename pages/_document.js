@@ -42,10 +42,7 @@ class MyDocument extends Document {
 					<link href="/static/css/bootstrap.css" rel="stylesheet" type="text/css" />
 
 					{/* Material UI */}
-					<link
-						rel="stylesheet"
-						href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-					/>
+					<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 					{/* Carousel */}
 
 					<link
@@ -86,6 +83,20 @@ class MyDocument extends Document {
 
 					{/* <!-- custom javascript --> */}
 					<script src="/static/js/script.js" type="text/javascript" />
+
+					<script async src="https://www.googletagmanager.com/gtag/js?id=G-94KH10CD4Q" />
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `
+						}}
+					/>
 				</Head>
 				<body>
 					<Main />

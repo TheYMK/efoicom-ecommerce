@@ -1121,7 +1121,8 @@ a[class*='card']:hover .title {
 .card-category .img-wrap {
   overflow: hidden;
   display: inline-block;
-  height: 170px;
+  height: 200px;
+  width: 100%;
   background: #fff0c5;
 }
 
